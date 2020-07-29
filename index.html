@@ -1,92 +1,1080 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="菜鸡">
+<meta property="og:type" content="website">
+<meta property="og:title" content="genuine nonage">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="菜鸡">
+<meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>genuine nonage</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
 
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <article id="post-一点点git的简单使用-随时更新" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.571Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">一点点git的简单使用-随时更新</a>
-    </h1>
+    
   
 
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">genuine nonage</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">genuine nonage</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/" itemprop="url">Hexo Next 主题的标签、分类、搜索的配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T22:51:18+08:00">
+                2020-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/next/" itemprop="url" rel="index">
+                    <span itemprop="name">next</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h4 id="个性使用"><a href="#个性使用" class="headerlink" title="个性使用"></a>个性使用</h4><ol>
+      
+
+      
+        
+          
+            <h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol>
+<li>新建页面<br> hexo new page tags  </li>
+<li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li>
+<li>修改菜单<br> menu:  <pre><code>home: /  
+archives: /archives  
+tags: /tags  </code></pre><h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li>
+<li>新建页面<br> hexo new page categories  </li>
+<li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li>
+<li>修改菜单<br> menu:  <pre><code>home: /  
+archives: /archives  
+tags: /categories  </code></pre><h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li>
+<li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li>
+<li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code>path: ./public/search.xml  
+field: post  
+format: html  
+limit: 10000    </code></pre><ul>
+<li>path：索引文件的路径，相对与站点根目录</li>
+<li>field：搜索范围，默认是post  </li>
+<li>limit：限制搜索的条目数  </li>
+</ul>
+</li>
+<li>修改主题配置文件<br> local_serach:  <pre><code>enable: true  
+trigger: auto  
+top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/equals%20%E4%B8%8E%20==/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/29/equals%20%E4%B8%8E%20==/" itemprop="url">equals 与 == 的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T11:26:00+08:00">
+                2020-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。  </li>
+<li>== 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）<br>String类中重新定义了equals方法，比较的是值。  </li>
+<li>如果比较基本类型，只能用 == 比较，不能用equals  </li>
+<li>对于基本类型的包装类型， == 比较地址，equals比较内容。<br>（Object类中的equals方法使用来比较地址的，其他对象需要重写equals方法。）</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/github%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/19/github%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" itemprop="url">github拉取远端分支到本地</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T19:38:00+08:00">
+                2020-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="github-拉取远端分支到本地"><a href="#github-拉取远端分支到本地" class="headerlink" title="github 拉取远端分支到本地"></a>github 拉取远端分支到本地</h2><ol>
+<li>新建一个文件夹</li>
+<li>初始化，在 git base 中输入<blockquote>
+<p>git init</p>
+</blockquote>
+</li>
+<li>与远端master建立链接<blockquote>
+<p>git remote add origin 仓库链接地址<a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a><br>//如果第一遍输入错误，可以输入 git remode rm origin ，删除上一步的操作之后重新输入  </p>
+</blockquote>
+</li>
+<li>把远程分支拉到本地<blockquote>
+<p>git fetch origin dev(dev为远程仓库的分支名)</p>
+</blockquote>
+</li>
+<li>切换到分支<blockquote>
+<p>git checkout dev(dev为远程仓库的分支名)</p>
+</blockquote>
+</li>
+<li>以后每次使用时最好先：把分支的最新内容拉取到本地<blockquote>
+<p>git pull origin dev(远程分支名)</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/" itemprop="url">轻量级与重量级</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
+                2020-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>轻量级与重量级<br>两者是一个相对概念，主要是对应 应用框架的使用方便性和所提供的服务特性等方面作比较。<br>比如：<br>EJB是重量级框架：对编写的代码有限制，同时提供了分布式等复杂的功能。<br>Spring是轻量级框架：只需要普通的Java对象，提供中小应用使用的功能。</p>
+<p>划分一个应用是否属于轻量级还是重量级，主要看使用了多少服务。<br>使用的服务越多，容器要为普通Java对象做的工作越多，必然会影响到应用的发布时间或运行性能。<br>对于spring容器，提供了很多服务，但这些服务不是默认打开的，应用需要某种服务，需指明使用该服务。如果应用使用的服务很少，如：只使用了spring核心服务，可以认为此时应用属于轻量级的；如果应用使用了spring提供的大部分服务，这是应用就属于重量级。EJB容器就因为他默认为应用提供了EJB规范中所有的功能，所以属于重量级。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url">架构，构件，组件，框架，中间件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
+                2020-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
+<p>####### 中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</p>
+<p>####### 中间件的分类<br>IDC的分类：</p>
+<ol>
+<li>终端仿真/屏幕转换</li>
+<li>数据访问</li>
+<li>远程过程调用</li>
+<li>消息中间件</li>
+<li>交易中间件</li>
+<li>对象中间件</li>
+</ol>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" itemprop="url">一点点git的简单使用-随时更新</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-15T19:16:00+08:00">
+                2020-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="个性使用"><a href="#个性使用" class="headerlink" title="个性使用"></a>个性使用</h4><ol>
 <li>删除本地分支<blockquote>
 <p>git branch -d dev(分支名)  </p>
 </blockquote>
@@ -119,129 +1107,542 @@
 </li>
 </ol>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" data-id="ckcxhmx9m0004gsru69j1ase0" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-我的第一篇博客-如何搭建hexo个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.571Z" itemprop="datePublished">2020-07-22</time>
-</a>
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">我的第一篇博客-如何搭建hexo个人博客</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/14/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/" itemprop="url">GitHub拉取分支单独文件或文件夹</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-14T22:52:00+08:00">
+                2020-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简要搭建hexo个人博客"><a href="#简要搭建hexo个人博客" class="headerlink" title="简要搭建hexo个人博客"></a>简要搭建hexo个人博客</h2><ul>
-<li>首先电脑里要有Node.js(要选择安装upm)和git的应用程序。<br>接下来在cmd中操作即可。</li>
-<li>cmd中输入<blockquote>
-<p>npm install -g hexo-cli</p>
-</blockquote>
-</li>
-<li>安装hexo  </li>
-<li>选择合适的博客存放文件夹，输入<blockquote>
-<p>hexo init blog </p>
-</blockquote>
-</li>
-<li>等待初始化。<blockquote>
-<p>cd blog<br>hexo s</p>
-</blockquote>
-</li>
-<li>启动服务，可以在浏览器中看到个人博客，地址：localhost:4000/</li>
-</ul>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>清理一下，清理缓存和已生成的静态文件</p>
-<blockquote>
-<p>hexo clean</p>
-</blockquote>
-<p>生成一下</p>
-<blockquote>
-<p>hexo g  </p>
-</blockquote>
-<p>启动一下</p>
-<blockquote>
-<p>hexo s</p>
-</blockquote>
-<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><ul>
-<li>在github创建仓库，命名有强制要求：<blockquote>
-<p>//例如：nicheng.github.io<br>你的昵称+  .github.io</p>
-</blockquote>
-</li>
-<li>更改_config.yml 文件<blockquote>
-<p>deploy:</p>
-<blockquote>
-<p>type: git<br>repo: 仓库地址<br>branch: master</p>
-</blockquote>
-</blockquote>
-</li>
-<li>部署到github上,cmd输入:<blockquote>
-<p>npm install –save hexo-deplover-git<br>hexo d</p>
-</blockquote>
-</li>
-<li>输入昵称密码</li>
-<li>部署成功，浏览器访问 你的昵称.github.io</li>
-</ul>
-<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><ul>
-<li>卸载hexo<br>  npm uninstall hexo-cli -g<br>然后再文件夹中的blog，手动卸载。<br>注意：进行重装之前，如果还是在原来的位置上，必须手动清理了才能再次安装。</li>
-</ul>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckcxhmx9v0005gsru8hkogjkm" class="article-share-link">Share</a>
       
+
+      
+        
+          
+            <ol>
+<li>选择放置git仓库的文件夹，创建并初始化git本地仓库  <blockquote>
+<p>git init dev_work &amp;&amp; cd dev_work  </p>
+</blockquote>
+</li>
+<li>关联远端地址<blockquote>
+<p>git remote add -f origin <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
+</blockquote>
+</li>
+<li>开启git的 Sparse Checkout 模式（该模式专门用于git检出指定目录或文件，在config中配置）  <blockquote>
+<p>git config core.sparsecheckout true  </p>
+</blockquote>
+</li>
+<li>设置需要拉取github上的文件目录<blockquote>
+<p>//这些目录写在了.git/info/sparse-check文件中。<br>echo “source/posts(github上的目录或文件路径)” &gt;&gt; .git/info/sparse-check<br>echo “css/fonts(可以写多个)” &gt;&gt; .git/info/sparse-check </p>
+</blockquote>
+</li>
+<li>从GitHub上拉取下来<blockquote>
+<p>git pull origin dev(对应分支名)   </p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-数据结构知识点总结-更新中" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.555Z" itemprop="datePublished">2020-07-22</time>
-</a>
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">数据结构知识点总结-更新中</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/" itemprop="url">Oracle数据库恢复与备份</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-14T19:24:00+08:00">
+                2020-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <h3 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h3><p>当一个数组中大部分元素为0，或者为同一个值的数组时，可以使用稀疏数组来保存。<br>处理方法：  </p>
+      
+
+      
+        
+          
+            <h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
+<li>在本地创建表空间<blockquote>
+<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
+</blockquote>
+</li>
+<li>创建用户<blockquote>
+<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
+</blockquote>
+</li>
+<li>给用户授权：<blockquote>
+<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
+</blockquote>
+</li>
+<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
+<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
+</blockquote>
+</li>
+<li>cmd导入库数据泵  <blockquote>
+<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
+</blockquote>
+<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
+<li>cmd导出数据库<blockquote>
+<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/13/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/13/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url">Navicat 链接远端Oracle数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T13:43:00+08:00">
+                2020-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Oracle官网下载Oracle的客户端 install client。<br>官网地址：<a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
+<p>我下载的是：instantclient-basic-windows.x64-19.6.0.0.0dbru.zip</p>
+<p>我解压到：D:\Oracle\instantclient_19_6</p>
+<p>在这个目录下新建sqlnet.ora和tnsnames.ora两个文件<br>sqlnet.ora文件内容<br>　　SQLNET.AUTHENTICATION_SERVICES= (NTS)<br>　　NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)<br>tnsnames.ora文件内容<br>　　orcl =<br>　　　　(DESCRIPTION =<br> 　　　　 (ADDRESS_LIST =<br>   　　　　 (ADDRESS = (PROTOCOL = TCP)(HOST = <strong><em>192.168.146.143</em></strong> )(PORT = 1521))<br>  　　　　　　)<br> 　　　　　 (CONNECT_DATA =<br>    　　　　　    (SERVICE_NAME = <strong>orcl</strong> )<br>  　　　　　　)<br>　　　　　)<br>　注：粗体部分需要按需配置，如果端口是自定义的也需要相应变更。</p>
+<p>设置系统变量</p>
+<ol>
+<li>变量名：ORACLE_HOME<br>变量值：D:\Oracle\instantclient_19_6  </li>
+<li>变量名：TNS_ADMIN<br>变量值：D:\Oracle\instantclient_19_6  </li>
+<li>变量名：NLS_LANG<br>变量值：SIMPlIFIED CHINESE_CHINA.ZHS16GBK  </li>
+<li>修改Path变量<br>添加D:\Oracle\instantclient_19_6   <h3 id="安装Nevicat"><a href="#安装Nevicat" class="headerlink" title="安装Nevicat"></a>安装Nevicat</h3>通过Tools（工具）-&gt;Options-&gt; Miscellaneous -&gt; OCI  将Nevicat的oci.dll更改为Oracle客户端的oci.dll</li>
+</ol>
+<p>一切准备完成，可以直接用Nevicat链接远端Oracle数据库了。<br>我看的是两个人不同操作，有的步骤可能多余，我也不想再仔细研究了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">数据结构知识点总结-更新中</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T08:00:00+08:00">
+                2020-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h3><p>当一个数组中大部分元素为0，或者为同一个值的数组时，可以使用稀疏数组来保存。<br>处理方法：  </p>
 <ol>
 <li>记录数组一共有几行几列，有多少个不同的值。  </li>
 <li>把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模。</li>
@@ -281,389 +1682,653 @@
 <li>出栈，int value = stack[top];top–,return value;</li>
 </ol>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" data-id="ckcxhmx9w0006gsru77qxath6" class="article-share-link">Share</a>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+  </section>
 
   
-    <article id="post-Oracle数据库恢复与备份" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.518Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
         
+          
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/">Oracle数据库恢复与备份</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
-<li>在本地创建表空间<blockquote>
-<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
-</blockquote>
-</li>
-<li>创建用户<blockquote>
-<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
-</blockquote>
-</li>
-<li>给用户授权：<blockquote>
-<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
-</blockquote>
-</li>
-<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
-<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
-</blockquote>
-</li>
-<li>cmd导入库数据泵  <blockquote>
-<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
-</blockquote>
-<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
-<li>cmd导出数据库<blockquote>
-<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/" data-id="ckcxhmx9h0001gsru54nhgz3j" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Navicat 链接远端Oracle数据库" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.486Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/">Navicat 链接远端Oracle数据库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Oracle官网下载Oracle的客户端 install client。<br>官网地址：<a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
-<p>我下载的是：instantclient-basic-windows.x64-19.6.0.0.0dbru.zip</p>
-<p>我解压到：D:\Oracle\instantclient_19_6</p>
-<p>在这个目录下新建sqlnet.ora和tnsnames.ora两个文件<br>sqlnet.ora文件内容<br>　　SQLNET.AUTHENTICATION_SERVICES= (NTS)<br>　　NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)<br>tnsnames.ora文件内容<br>　　orcl =<br>　　　　(DESCRIPTION =<br> 　　　　 (ADDRESS_LIST =<br>   　　　　 (ADDRESS = (PROTOCOL = TCP)(HOST = <strong><em>192.168.146.143</em></strong> )(PORT = 1521))<br>  　　　　　　)<br> 　　　　　 (CONNECT_DATA =<br>    　　　　　    (SERVICE_NAME = <strong>orcl</strong> )<br>  　　　　　　)<br>　　　　　)<br>　注：粗体部分需要按需配置，如果端口是自定义的也需要相应变更。</p>
-<p>设置系统变量</p>
-<ol>
-<li>变量名：ORACLE_HOME<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：TNS_ADMIN<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：NLS_LANG<br>变量值：SIMPlIFIED CHINESE_CHINA.ZHS16GBK  </li>
-<li>修改Path变量<br>添加D:\Oracle\instantclient_19_6   <h3 id="安装Nevicat"><a href="#安装Nevicat" class="headerlink" title="安装Nevicat"></a>安装Nevicat</h3>通过Tools（工具）-&gt;Options-&gt; Miscellaneous -&gt; OCI  将Nevicat的oci.dll更改为Oracle客户端的oci.dll</li>
-</ol>
-<p>一切准备完成，可以直接用Nevicat链接远端Oracle数据库了。<br>我看的是两个人不同操作，有的步骤可能多余，我也不想再仔细研究了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckcxhmx940000gsru4k165lsf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-github拉取远端分支到本地" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/github%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.340Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/github%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/">github拉取远端分支到本地</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="github-拉取远端分支到本地"><a href="#github-拉取远端分支到本地" class="headerlink" title="github 拉取远端分支到本地"></a>github 拉取远端分支到本地</h2><ol>
-<li>新建一个文件夹</li>
-<li>初始化，在 git base 中输入<blockquote>
-<p>git init</p>
-</blockquote>
-</li>
-<li>与远端master建立链接<blockquote>
-<p>git remote add origin 仓库链接地址<a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a><br>//如果第一遍输入错误，可以输入 git remode rm origin ，删除上一步的操作之后重新输入  </p>
-</blockquote>
-</li>
-<li>把远程分支拉到本地<blockquote>
-<p>git fetch origin dev(dev为远程仓库的分支名)</p>
-</blockquote>
-</li>
-<li>切换到分支<blockquote>
-<p>git checkout dev(dev为远程仓库的分支名)</p>
-</blockquote>
-</li>
-<li>以后每次使用时最好先：把分支的最新内容拉取到本地<blockquote>
-<p>git pull origin dev(远程分支名)</p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/github%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0/" data-id="ckcxhmx9j0002gsru8d0gaosw" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-GitHub拉取分支单独文件或文件夹" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/" class="article-date">
-  <time datetime="2020-07-22T14:43:53.340Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/">GitHub拉取分支单独文件或文件夹</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>选择放置git仓库的文件夹，创建并初始化git本地仓库  <blockquote>
-<p>git init dev_work &amp;&amp; cd dev_work  </p>
-</blockquote>
-</li>
-<li>关联远端地址<blockquote>
-<p>git remote add -f origin <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
-</blockquote>
-</li>
-<li>开启git的 Sparse Checkout 模式（该模式专门用于git检出指定目录或文件，在config中配置）  <blockquote>
-<p>git config core.sparsecheckout true  </p>
-</blockquote>
-</li>
-<li>设置需要拉取github上的文件目录<blockquote>
-<p>//这些目录写在了.git/info/sparse-check文件中。<br>echo “source/posts(github上的目录或文件路径)” &gt;&gt; .git/info/sparse-check<br>echo “css/fonts(可以写多个)” &gt;&gt; .git/info/sparse-check </p>
-</blockquote>
-</li>
-<li>从GitHub上拉取下来<blockquote>
-<p>git pull origin dev(对应分支名)   </p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/" data-id="ckcxhmx9y0007gsru8n94hyqh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/hello-world/" class="article-date">
-  <time datetime="2020-07-22T14:21:44.093Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/hello-world/" data-id="ckcxhmx9k0003gsru945655v1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/07/22/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">一点点git的简单使用-随时更新</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">我的第一篇博客-如何搭建hexo个人博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">数据结构知识点总结-更新中</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/">Oracle数据库恢复与备份</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/">Navicat 链接远端Oracle数据库</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <div class="sidebar-inner">
 
-  
-</aside>
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">QB</p>
+              <p class="site-description motion-element" itemprop="description">菜鸡</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
