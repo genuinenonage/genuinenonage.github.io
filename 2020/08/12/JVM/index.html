@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JVM,Java," />
 
 
 
@@ -81,13 +81,15 @@
 
 <meta name="description" content="JVMjava 跨平台语言就是因为JVMJVM 跨语言的平台：Kotlin,Clojure,Groovy(需各自的编译器)…趋向于 多语言混合编程如何搞懂JVM，自己动手编写一个JVM虚拟机。   虚拟机虚拟机（Virtual Machine）虚拟的计算机，分为系统虚拟机和程序虚拟机（专门执行单个计算机程序而设计）。 Java虚拟机Java技术的核心就是Java虚拟机（二进制字节码的运行环境）。特">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM">
+<meta property="og:title" content="JVM简要笔记-更新中">
 <meta property="og:url" content="http://yoursite.com/2020/08/12/JVM/index.html">
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="JVMjava 跨平台语言就是因为JVMJVM 跨语言的平台：Kotlin,Clojure,Groovy(需各自的编译器)…趋向于 多语言混合编程如何搞懂JVM，自己动手编写一个JVM虚拟机。   虚拟机虚拟机（Virtual Machine）虚拟的计算机，分为系统虚拟机和程序虚拟机（专门执行单个计算机程序而设计）。 Java虚拟机Java技术的核心就是Java虚拟机（二进制字节码的运行环境）。特">
 <meta property="article:published_time" content="2020-08-12T10:59:00.000Z">
-<meta property="article:modified_time" content="2020-08-12T15:28:24.946Z">
+<meta property="article:modified_time" content="2020-08-16T13:16:17.887Z">
 <meta property="article:author" content="QB">
+<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
 
@@ -124,7 +126,7 @@
 
 
 
-  <title>JVM | genuine nonage</title>
+  <title>JVM简要笔记-更新中 | genuine nonage</title>
   
 
 
@@ -302,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM</h1>
+          <h1 class="post-title" itemprop="name headline">JVM简要笔记-更新中</h1>
         
 
         <div class="post-meta">
@@ -324,6 +326,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -358,27 +393,27 @@
 <ul>
 <li>一次编译，到处运行  </li>
 <li>自动内存管理  </li>
-<li>自动垃圾回收功能   </li>
+<li>自动垃圾回收功能  <h3 id=""><a href="#" class="headerlink" title=""></a></h3>Java源文件 - 编译器 - 字节码文件 .class - 类加载器 - 字节码校验器 - 翻译字节码、JIT编译器（解释执行即时编译）  <h3 id="Java架构模型"><a href="#Java架构模型" class="headerlink" title="Java架构模型"></a>Java架构模型</h3>Java编译器上输入的指令流是基于栈的指令集架构。（另一种指令集架构是基于寄存器的指令集架构）<br>跨平台性、指令集小、指令多；执行性能比寄存器差。 <h3 id="反编译操作"><a href="#反编译操作" class="headerlink" title="反编译操作"></a>反编译操作</h3>cd out/production/java<br>javap -v StackStruTest.class    <h3 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a>JVM的生命周期</h3></li>
 </ul>
-<h3 id="Java文件加载流程"><a href="#Java文件加载流程" class="headerlink" title="Java文件加载流程"></a>Java文件加载流程</h3><p>Java源文件 - 编译器 - 字节码文件 .class - 类加载器 - 字节码校验器 - 翻译字节码、JIT编译器（解释执行即时编译）  </p>
-<h3 id="Java架构模型"><a href="#Java架构模型" class="headerlink" title="Java架构模型"></a>Java架构模型</h3><p>Java编译器上输入的指令流是基于栈的指令集架构。（另一种指令集架构是基于寄存器的指令集架构）<br>跨平台性、指令集小、指令多；执行性能比寄存器差。 </p>
-<h3 id="反编译操作"><a href="#反编译操作" class="headerlink" title="反编译操作"></a>反编译操作</h3><p>cd out/production/java<br>javap -v StackStruTest.class    </p>
-<h3 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a>JVM的生命周期</h3><ol>
-<li>启动：引导类加载器（bootstrap class loader）创建一个初始类（initial class）来完成。这个类有虚拟机的具体实现来指定的。  </li>
-<li>执行：执行Java，真正是执行程序jvm虚拟机的进程。（jps查看进程）  </li>
-<li>退出：程序正常执行结束；遇到异常或错误；线程盗用exit()或halt()方法（Runtime()是单例的）。  </li>
-</ol>
+<ol>
+<li><p>启动：引导类加载器（bootstrap class loader）创建一个初始类（initial class）来完成。这个类有虚拟机的具体实现来指定的。  </p>
+</li>
+<li><p>执行：执行Java，真正是执行程序jvm虚拟机的进程。（jps查看进程）  </p>
+</li>
+<li><p>退出：程序正常执行结束；遇到异常或错误；线程盗用exit()或halt()方法（Runtime()是单例的）。  </p>
 <h3 id="JVM的发展历程"><a href="#JVM的发展历程" class="headerlink" title="JVM的发展历程"></a>JVM的发展历程</h3><p>（san）classic VM 、 Exact VM 、 hotspot VM<br>（BEA）JRockit：专注于服务器端，纯即时编译器<br>（IBM）J9：IBM Technology for Java Virtual Machine 简称IT4J。<br>KVM：面向更低端的设备（如：智能控制器，传感器）<br>Azul VM和BEA Liquid VM 与特定硬件平台绑定、软硬件配合的专有虚拟机。<br>Apache Harmony<br>Microsoft JVM<br>TaobaoJVM<br>（非Java，应用Android系统）Dalvik VM<br>（Oracle发展中 跨语言全栈虚拟机）Graal VM  </p>
 <h2 id="类加载器与类加载子系统"><a href="#类加载器与类加载子系统" class="headerlink" title="类加载器与类加载子系统"></a>类加载器与类加载子系统</h2><p>类加载子系统 加载class文件，class文件在文件开头有特殊的标识。<br>ClassLoader只负责class文件的加载，是否能运行有ExecutionEngine决定。<br>加载的类信息存放于方法区的内存空间。方法去还有存放运行时常量池信息。  </p>
 <h3 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h3><p>开始 - 装载类HelloLoader - （是否装载顺利，否则抛出异常） - 链接 - 初始化HelloLoader - 调用 HelloLoader.main() - 结束  </p>
+</li>
+<li><p>加载Loading：</p>
 <ol>
-<li>加载Loading：<ol>
 <li>通过类的全限定名获取此类的二进制字节流。</li>
 <li>静态存储结构转化为方法区的运行时数据结构。</li>
 <li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法去这个类的各种数据的访问对象。</li>
 </ol>
 </li>
-<li>链接：<ol>
+<li><p>链接Lingking：</p>
+<ol>
 <li>验证Verify：确保class文件中的字节流中包含的信息符合当前虚拟机要求，保证被加载类的正确性。<ol>
 <li>主要四种验证：文件格式，元数据，字节码，符号引用验证。</li>
 </ol>
@@ -391,27 +426,29 @@
 <li>解析Resolve：符号引用转换为直接引用。</li>
 </ol>
 </li>
-<li>初始化Initialization：<ol>
+<li><p>初始化Initialization：</p>
+<ol>
 <li>初始化阶段就是执行类构造器方法<clinit>()的过程。</li>
 <li>不需定义，javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。</li>
 <li>构造器方法中指令按语句在源文件中出现的顺序执行。</li>
 <li><clinit>()不同于类的构造器。</li>
 <li>类中有构造方法会出现<init>的结构</li>
 <li>该类有父类，加载Father类，其次加载Son类。</li>
-<li>虚拟机保证一个类的<clinit>()方法在多线程下被同步加锁（一个类只会被加载一次 ）。  </li>
+<li>虚拟机保证一个类的<clinit>()方法在多线程下被同步加锁（一个类只会被加载一次 ）。  <h3 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h3>自定义类，系统类，扩展类，引导类加载器（四者是包含关系）<br>两种类型：  </li>
+<li>引导类加载器（Java的核心类库使用引导类加载器进行加载的 .class.getClassLoader() 获取不到。C和C++编写的）</li>
+<li>自定义类加载器（继承了ClassLoader的类，如系统，扩展类） </li>
 </ol>
 </li>
-</ol>
-<h3 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h3><p>自定义类，系统类，扩展类，引导类加载器（四者是包含关系）<br>两种类型：<br>    1. 引导类加载器（Java的核心类库使用引导类加载器进行加载的 .class.getClassLoader() 获取不到。C和C++编写的）<br>    2. 自定义类加载器（继承了ClassLoader的类，如系统，扩展类） </p>
+<li><p>启动类加载器（引导类加载器，Bootstrap classLoader）  </p>
 <ol>
-<li>启动类加载器（引导类加载器，Bootstrap classLoader）  <ol>
 <li>没有父加载器</li>
 <li>加载Java的核心库</li>
 <li>加载扩展类和应用程序类加载器，并指定为他们的父类加载器。</li>
 <li>C/C++语言实现的，嵌套在JVM内部。</li>
 </ol>
 </li>
-<li>扩展类加载器（Extension ClassLoader）<ol>
+<li><p>扩展类加载器（Extension ClassLoader）</p>
+<ol>
 <li>Java语言编写，由sun.misc.Launcher$ExtClassLoader实现。</li>
 </ol>
 </li>
@@ -430,6 +467,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
       
 
       
@@ -536,7 +581,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -547,7 +592,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -580,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java虚拟机"><span class="nav-number">1.2.</span> <span class="nav-text">Java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java文件加载流程"><span class="nav-number">1.2.1.</span> <span class="nav-text">Java文件加载流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java架构模型"><span class="nav-number">1.2.2.</span> <span class="nav-text">Java架构模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反编译操作"><span class="nav-number">1.2.3.</span> <span class="nav-text">反编译操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM的生命周期"><span class="nav-number">1.2.4.</span> <span class="nav-text">JVM的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM的发展历程"><span class="nav-number">1.2.5.</span> <span class="nav-text">JVM的发展历程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器与类加载子系统"><span class="nav-number">1.3.</span> <span class="nav-text">类加载器与类加载子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的加载过程"><span class="nav-number">1.3.1.</span> <span class="nav-text">类的加载过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器的分类"><span class="nav-number">1.3.2.</span> <span class="nav-text">类加载器的分类</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java虚拟机"><span class="nav-number">1.2.</span> <span class="nav-text">Java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.2.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java架构模型"><span class="nav-number">1.2.2.</span> <span class="nav-text">Java架构模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反编译操作"><span class="nav-number">1.2.3.</span> <span class="nav-text">反编译操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM的生命周期"><span class="nav-number">1.2.4.</span> <span class="nav-text">JVM的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM的发展历程"><span class="nav-number">1.2.5.</span> <span class="nav-text">JVM的发展历程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器与类加载子系统"><span class="nav-number">1.3.</span> <span class="nav-text">类加载器与类加载子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的加载过程"><span class="nav-number">1.3.1.</span> <span class="nav-text">类的加载过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器的分类"><span class="nav-number">1.3.2.</span> <span class="nav-text">类加载器的分类</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
