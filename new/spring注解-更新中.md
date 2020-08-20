@@ -4,7 +4,7 @@ date: 2020/08/11 16:00:00
 tags: 
 - spring
 categories:	
-- spring  
+- spring
 ---
 ## Spring 注解  
 ### @Bean
@@ -50,4 +50,7 @@ spring.data.mongodb.uri=mongodb://springbucks:springbucks@xxx.xxx.xxx.xxx:xxxxx/
 (用Java Persistence查询语言)指定一个静态的命名查询。查询名称的作用域是持久性单元。(NamedQuery批注可以应用于实体或映射的超类。)  
 ### @Column  
 用于为持久属性或字段指定映射的列。如果未指定Column注解，则应用默认值。  
-### @
+### @FeignClient  
+接口注释，声明应创建具有该接口的REST客户端（例如，用于自动装配到另一个组件中）。如果功能区可用，它将用于负载均衡后端请求，并且可以使用与假客户端具有相同名称（即值）的@RibbonClient配置负载均衡器。  
+name指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现。  
+url属性一般用于调试程序，允许我们手动指定@FeignClient调用的地址。
