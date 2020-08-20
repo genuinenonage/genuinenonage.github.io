@@ -5,9 +5,8 @@ updated: 2020/7/29 23:12:00
 comments: true
 tags: 
 - hexo
-- next
 categories: 
-- [基础,hexo]
+- hexo
 ---
 ## 简要搭建hexo个人博客
 * 首先电脑里要有Node.js(要选择安装upm)和git的应用程序。
