@@ -284,6 +284,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/20/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/" itemprop="url">Hexo Next 主题的标签、分类、搜索的配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-20T18:45:58+08:00">
+                2020-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol>
+<li>新建页面<br> hexo new page tags  </li>
+<li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li>
+<li>修改菜单<br> menu:  <pre><code>home: /  
+archives: /archives  
+tags: /tags  </code></pre><h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li>
+<li>新建页面<br> hexo new page categories  </li>
+<li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li>
+<li>修改菜单<br> menu:  <pre><code>home: /  
+archives: /archives  
+tags: /categories  </code></pre><h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li>
+<li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li>
+<li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code>path: ./public/search.xml  
+field: post  
+format: html  
+limit: 10000    </code></pre><ul>
+<li>path：索引文件的路径，相对与站点根目录</li>
+<li>field：搜索范围，默认是post  </li>
+<li>limit：限制搜索的条目数  </li>
+</ul>
+</li>
+<li>修改主题配置文件<br> local_serach:  <pre><code>enable: true  
+trigger: auto  
+top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -578,7 +744,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/12/JVM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/12/JVM-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -597,7 +763,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/JVM/" itemprop="url">JVM</a></h1>
+                <a class="post-title-link" href="/2020/08/12/JVM-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">JVM</a></h1>
         
 
         <div class="post-meta">
@@ -816,7 +982,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/11/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -835,7 +1001,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/" itemprop="url">Hexo Next 主题的标签、分类、搜索的配置</a></h1>
+                <a class="post-title-link" href="/2020/08/11/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">Spring 注解学习-持续更新</a></h1>
         
 
         <div class="post-meta">
@@ -847,8 +1013,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T22:51:18+08:00">
-                2020-07-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T16:00:00+08:00">
+                2020-08-11
               </time>
             
 
@@ -870,8 +1036,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/next/" itemprop="url" rel="index">
-                    <span itemprop="name">next</span>
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
                   </a>
                 </span>
 
@@ -909,31 +1075,25 @@
       
         
           
-            <h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol>
-<li>新建页面<br> hexo new page tags  </li>
-<li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li>
-<li>修改菜单<br> menu:  <pre><code>home: /  
-archives: /archives  
-tags: /tags  </code></pre><h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li>
-<li>新建页面<br> hexo new page categories  </li>
-<li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li>
-<li>修改菜单<br> menu:  <pre><code>home: /  
-archives: /archives  
-tags: /categories  </code></pre><h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li>
-<li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li>
-<li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code>path: ./public/search.xml  
-field: post  
-format: html  
-limit: 10000    </code></pre><ul>
-<li>path：索引文件的路径，相对与站点根目录</li>
-<li>field：搜索范围，默认是post  </li>
-<li>limit：限制搜索的条目数  </li>
-</ul>
-</li>
-<li>修改主题配置文件<br> local_serach:  <pre><code>enable: true  
-trigger: auto  
-top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li>
+            <h2 id="Spring-注解"><a href="#Spring-注解" class="headerlink" title="Spring 注解"></a>Spring 注解</h2><h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><h3 id="WebMethod"><a href="#WebMethod" class="headerlink" title="@WebMethod"></a>@WebMethod</h3><h3 id="FeignClient"><a href="#FeignClient" class="headerlink" title="@FeignClient"></a>@FeignClient</h3><p>注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上。<br>    name：指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现<br>    url: url一般用于调试，可以手动指定@FeignClient调用的地址   </p>
+<h3 id="EnableMongoRepositories"><a href="#EnableMongoRepositories" class="headerlink" title="@EnableMongoRepositories"></a>@EnableMongoRepositories</h3><p>启动类中：让框架创建的Repository接口创建实现类，并添加到Spring容器中进行管理。<br>resources目录下：application.properties文件中配置MongoDB的连接字符串。<br>spring.data.mongodb.uri=mongodb://springbucks:<a href="mailto:springbucks@xxx.xxx.xxx.xxx">springbucks@xxx.xxx.xxx.xxx</a>:xxxxx/springbucks  </p>
+<h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h3><p>用来映射请求，也就是通过它来指定控制器可以处理哪些URL请求，相当于Servlet中在web.xml中配置  </p>
+<ol>
+<li>@Target中有两个属性，分别为 ElementType.METHOD 和 ElementType.TYPE ，也就是说 @RequestMapping 可以在方法和类的声明中使用  <h3 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h3></li>
 </ol>
+<h3 id="controller"><a href="#controller" class="headerlink" title="@controller"></a>@controller</h3><p>控制器（注入服务），用于标注控制层，相当于struts中的action层。  </p>
+<h3 id="service"><a href="#service" class="headerlink" title="@service"></a>@service</h3><p>服务（注入dao），用于标注服务层，主要用来进行业务的逻辑处理。  </p>
+<h3 id="repository"><a href="#repository" class="headerlink" title="@repository"></a>@repository</h3><p>实现dao访问，用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件。  </p>
+<h3 id="component"><a href="#component" class="headerlink" title="@component"></a>@component</h3><p>把普通pojo实例化到spring容器中，泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。</p>
+<h3 id="Document"><a href="#Document" class="headerlink" title="@Document"></a>@Document</h3><p>主要体现在pojo实体中，通常要在实体类上注明@Document。<br>其属性可以标明属于的索引和类型—-对应数据库中的数据库名和表名,其中type不预先创建也可以,没预先创建的它会自动创建一个与实体相匹配的type。<br>标识要持久保存到MongoDB的域对象。  </p>
+<h3 id="NoRepositoryBean"><a href="#NoRepositoryBean" class="headerlink" title="@NoRepositoryBean"></a>@NoRepositoryBean</h3><p>以排除获取存储库接口，从而导致创建实例。<br>当为所有存储库提供扩展的基本接口并结合自定义存储库基类以实现在该中间接口中声明的方法时，通常会使用此方法。在这种情况下，您通常是从中间接口派生出具体的存储库接口，但又不想为中间接口创建Spring bean。  </p>
+<h3 id="SuppressWarnings"><a href="#SuppressWarnings" class="headerlink" title="@SuppressWarnings"></a>@SuppressWarnings</h3><p>抑制警告，取消警告信息。  </p>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h3><p>指示一个类声明了一个或多个@Bean方法，并且可以由Spring容器处理以在运行时为这些bean生成bean定义和服务请求。  </p>
+<h3 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a>@Entity</h3><p>指定该类是一个实体。该注释应用于实体类。  </p>
+<h3 id="Table-name-“DE-WS-OID-DT”"><a href="#Table-name-“DE-WS-OID-DT”" class="headerlink" title="@Table(name = “DE_WS_OID_DT”)"></a>@Table(name = “DE_WS_OID_DT”)</h3><p>指定带注释的实体的主表。<br>如果没有为实体类指定Table注释，则使用默认值。  </p>
+<h3 id="NamedQuery"><a href="#NamedQuery" class="headerlink" title="@NamedQuery"></a>@NamedQuery</h3><p>(用Java Persistence查询语言)指定一个静态的命名查询。查询名称的作用域是持久性单元。(NamedQuery批注可以应用于实体或映射的超类。)  </p>
+<h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h3><p>用于为持久属性或字段指定映射的列。如果未指定Column注解，则应用默认值。  </p>
+<h3 id="FeignClient-1"><a href="#FeignClient-1" class="headerlink" title="@FeignClient"></a>@FeignClient</h3><p>接口注释，声明应创建具有该接口的REST客户端（例如，用于自动装配到另一个组件中）。如果功能区可用，它将用于负载均衡后端请求，并且可以使用与假客户端具有相同名称（即值）的@RibbonClient配置负载均衡器。<br>name指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现。<br>url属性一般用于调试程序，允许我们手动指定@FeignClient调用的地址。</p>
 
           
         
@@ -1673,157 +1833,6 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" itemprop="url">一点点git的简单使用-随时更新</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-15T19:16:00+08:00">
-                2020-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="个性使用"><a href="#个性使用" class="headerlink" title="个性使用"></a>个性使用</h4><ol>
-<li>删除本地分支<blockquote>
-<p>git branch -d dev(分支名)  </p>
-</blockquote>
-</li>
-<li>取消目录的git初始化  <blockquote>
-<p>rm -rf.git  </p>
-</blockquote>
-</li>
-<li>克隆想要的分支到本地  <blockquote>
-<p>git clone –branch dev(分支名) <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
-</blockquote>
-</li>
-</ol>
-<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ol>
-<li>初始化本地仓库  <blockquote>
-<p>git init git_work(仓库文件夹名称) &amp;&amp; cd git_work  </p>
-</blockquote>
-</li>
-<li>将变化提交到暂存区  <blockquote>
-<p>git add .  </p>
-</blockquote>
-</li>
-<li>将本地暂存提交到版本库  <blockquote>
-<p>git commit -m “提交说明”  </p>
-</blockquote>
-</li>
-<li>本地推送到远端分支  <blockquote>
-<p>git push origin dev(分支名)  </p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1874,7 +1883,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1885,7 +1894,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1896,7 +1905,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
