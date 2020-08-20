@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD:new/JVM-更新中.md
 title: JVM
 date: 2020/08/12 18:59:00
 tags:
@@ -7,6 +8,16 @@ tags:
 categories:
 - java
 - JVM
+=======
+title: JVM简要笔记-更新中
+date: 2020/08/12 18:59:00
+tags:
+- JVM
+- Java
+categories:
+- JVM
+- Java
+>>>>>>> 2505c1cf5f2b1bf8f331c33ee7980e7845f37b81:source/_posts/JVM.md
 ---
 ## JVM  
 java 跨平台语言就是因为JVM  
@@ -56,7 +67,7 @@ ClassLoader只负责class文件的加载，是否能运行有ExecutionEngine决�
 	1. 通过类的全限定名获取此类的二进制字节流。
 	2. 静态存储结构转化为方法区的运行时数据结构。
 	3. 在内存中生成一个代表这个类的java.lang.Class对象，作为方法去这个类的各种数据的访问对象。
-2. 链接：
+2. 链接Lingking：
 	1. 验证Verify：确保class文件中的字节流中包含的信息符合当前虚拟机要求，保证被加载类的正确性。
 		1. 主要四种验证：文件格式，元数据，字节码，符号引用验证。
 	2. 准备Prepare：为类变量分配内存并赋值默认初始值，如零值。（后初始化）  
@@ -75,23 +86,16 @@ ClassLoader只负责class文件的加载，是否能运行有ExecutionEngine决�
 自定义类，系统类，扩展类，引导类加载器（四者是包含关系）
 两种类型：  
 	1. 引导类加载器（Java的核心类库使用引导类加载器进行加载的 .class.getClassLoader() 获取不到。C和C++编写的）
-	2. 自定义类加载器（继承了ClassLoader的类，如系统，扩展类）
-
-为什么要自定义类加载器：
-	1. 隔离加载类：使用中间件时，隔离不冲突。  
-	2. 修改类加载的方式：需要的是狗动态加载。  
-	3. 扩展加载源  
-	4. 防止源码泄露  
- 
+	2. 自定义类加载器（继承了ClassLoader的类，如系统，扩展类） 
 1. 启动类加载器（引导类加载器，Bootstrap classLoader）  
 	1. 没有父加载器
 	2. 加载Java的核心库
 	3. 加载扩展类和应用程序类加载器，并指定为他们的父类加载器。
-	4. C/C++语言实现的，嵌套在JVM内部。  
-
+	4. C/C++语言实现的，嵌套在JVM内部。
 2. 扩展类加载器（Extension ClassLoader）
 	1. Java语言编写，由sun.misc.Launcher$ExtClassLoader实现。
 
+<<<<<<< HEAD:new/JVM-更新中.md
 ### 双亲委派机制  
 有父类加载器向上委托。父类加载器失败交由子加载器自己处理。
 
@@ -134,5 +138,7 @@ PC寄存器：用来存储指向下一条指令的地址。
 
 
 
+=======
+>>>>>>> 2505c1cf5f2b1bf8f331c33ee7980e7845f37b81:source/_posts/JVM.md
   
 
