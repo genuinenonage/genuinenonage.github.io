@@ -1822,7 +1822,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -1841,7 +1841,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/" itemprop="url">轻量级与重量级</a></h1>
+                <a class="post-title-link" href="/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url">组件，框架，中间件</a></h1>
         
 
         <div class="post-meta">
@@ -1893,8 +1893,18 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
       
         
           
-            <p>轻量级与重量级<br>两者是一个相对概念，主要是对应 应用框架的使用方便性和所提供的服务特性等方面作比较。<br>比如：<br>EJB是重量级框架：对编写的代码有限制，同时提供了分布式等复杂的功能。<br>Spring是轻量级框架：只需要普通的Java对象，提供中小应用使用的功能。</p>
-<p>划分一个应用是否属于轻量级还是重量级，主要看使用了多少服务。<br>使用的服务越多，容器要为普通Java对象做的工作越多，必然会影响到应用的发布时间或运行性能。<br>对于spring容器，提供了很多服务，但这些服务不是默认打开的，应用需要某种服务，需指明使用该服务。如果应用使用的服务很少，如：只使用了spring核心服务，可以认为此时应用属于轻量级的；如果应用使用了spring提供的大部分服务，这是应用就属于重量级。EJB容器就因为他默认为应用提供了EJB规范中所有的功能，所以属于重量级。</p>
+            <h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
+<h6 id="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"><a href="#中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。" class="headerlink" title="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"></a>中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</h6><h6 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h6><p>IDC的分类：</p>
+<ol>
+<li>终端仿真/屏幕转换</li>
+<li>数据访问</li>
+<li>远程过程调用</li>
+<li>消息中间件</li>
+<li>交易中间件</li>
+<li>对象中间件</li>
+</ol>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
 
           
         
