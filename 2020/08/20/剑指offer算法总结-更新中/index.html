@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="03. 数组中重复的数字利用集合的唯一性。 &#x2F;&#x2F;重要代码 Set&lt;Integer&gt; set &#x3D; new HashSet&lt;Integer&gt;(); set.add(value)   集合中没有返回true  集合中已存在，返回false    public int findRepeatNumber(int[] nums) {       Set&lt;Integer&gt; s">
 <meta property="article:published_time" content="2020-08-20T11:47:00.000Z">
-<meta property="article:modified_time" content="2020-08-21T07:58:24.247Z">
+<meta property="article:modified_time" content="2020-08-23T14:15:40.351Z">
 <meta property="article:author" content="QB">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="offer">
@@ -446,22 +446,34 @@ class Solution {
 }  </code></pre><h2 id="06-从尾到头打印链表-未完成"><a href="#06-从尾到头打印链表-未完成" class="headerlink" title="06. 从尾到头打印链表-未完成"></a>06. 从尾到头打印链表-未完成</h2><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。  </p>
 <pre><code>class Solution {
     public int[] reversePrint(ListNode head) {
-        ListNode start = new ListNode();
-        start.next = head;
-        ListNode after = new ListNode();
-        int size = 1;
-        where(head.next!=null){
-            size++;
+        //1. 首先使用数组解决，链表我还没有清晰的思路
+        int[] arr = new int[10000];
+        int size = 0;
+        while(head!= null){
+            arr[size] = head.val;
+            size ++;
             head = head.next;
-            temp = head;
-            after = start.next;
-            start.next = temp;
-            temp.next = after;
         }
-        int 
-        where(start.next!=null){
+        int [] rearr = new int[size];
+        int i = 0;
+        int j = 0;
+        for(i = size-1,j = 0;i &gt;= 0;i --,j++){
+            rearr[i] = arr[j];
+        }
+        return rearr;
 
-        }
+        //2. 使用栈解决
+        // Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();
+        // while(head != null){
+        //     stack.push(head.val);
+        //     head = head.next;
+        // }
+        // int size = stack.size();
+        // int[] rearr = new int[size];
+        // for(int i = 0; i &lt; size; i++){
+        //     rearr[i] = stack.pop();
+        // }
+        // return rearr;
     }
 }</code></pre>
       
