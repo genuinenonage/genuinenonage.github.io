@@ -93,22 +93,34 @@ categories:
 
 	class Solution {
 	    public int[] reversePrint(ListNode head) {
-	        ListNode start = new ListNode();
-	        start.next = head;
-	        ListNode after = new ListNode();
-	        int size = 1;
-	        where(head.next!=null){
-	            size++;
+	        //1. 首先使用数组解决，链表我还没有清晰的思路
+	        int[] arr = new int[10000];
+	        int size = 0;
+	        while(head!= null){
+	            arr[size] = head.val;
+	            size ++;
 	            head = head.next;
-	            temp = head;
-	            after = start.next;
-	            start.next = temp;
-	            temp.next = after;
 	        }
-	        int 
-	        where(start.next!=null){
-	            
+	        int [] rearr = new int[size];
+	        int i = 0;
+	        int j = 0;
+	        for(i = size-1,j = 0;i >= 0;i --,j++){
+	            rearr[i] = arr[j];
 	        }
+	        return rearr;
+	
+	        //2. 使用栈解决
+	        // Stack<Integer> stack = new Stack<Integer>();
+	        // while(head != null){
+	        //     stack.push(head.val);
+	        //     head = head.next;
+	        // }
+	        // int size = stack.size();
+	        // int[] rearr = new int[size];
+	        // for(int i = 0; i < size; i++){
+	        //     rearr[i] = stack.pop();
+	        // }
+	        // return rearr;
 	    }
 	}
 
