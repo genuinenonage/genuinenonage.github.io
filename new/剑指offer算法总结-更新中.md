@@ -31,7 +31,7 @@ categories:
 
 ## 04. 二维数组中的查找  
 标签：数组，双指针  
-利用题目的特性，找出解题的简便方法，是程序流程变得简单。  
+利用题目的特性，找出解题的简便方法，使程序流程变得简单。  
     
 	class Solution {
 	    int tar = 0;
@@ -93,7 +93,7 @@ categories:
 
 	class Solution {
 	    public int[] reversePrint(ListNode head) {
-	        //1. 首先使用数组解决，链表我还没有清晰的思路
+	        //1. 首先使用数组解决 效率高内存占用低
 	        int[] arr = new int[10000];
 	        int size = 0;
 	        while(head!= null){
@@ -109,7 +109,7 @@ categories:
 	        }
 	        return rearr;
 	
-	        //2. 使用栈解决
+	        //2. 使用栈解决 效率低内存占用高
 	        // Stack<Integer> stack = new Stack<Integer>();
 	        // while(head != null){
 	        //     stack.push(head.val);
@@ -124,6 +124,7 @@ categories:
 	    }
 	}
 
+## 
 
 
 
