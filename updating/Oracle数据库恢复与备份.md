@@ -1,6 +1,12 @@
 ---
+title: Oracle数据库恢复与备份
 date: 2020/7/14 19:24:00
 ---
+### 登录Oracle  
+	sqlplus /nolog
+	conn /as sysdba
+	//或
+	sqlplus / as sysdba
 ### 恢复impdp
 1. 在本地创建表空间
 	> CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE 'E:\tablespace\nncdata01.dbf'(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;
