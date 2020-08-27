@@ -124,7 +124,44 @@ categories:
 	    }
 	}
 
-## 
+## 10- I. 斐波那契数列  
+输入 n ，求斐波那契（Fibonacci）数列的第 n 项。    
+答案需要取模 1e9+7（1000000007）。    
+
+	int constant = 1000000007;
+    Map<Integer,Integer> map = new HashMap();
+    public int fib(int n) {
+        // return digui(n);
+        return nodigui(n);
+    }
+    //递归
+    // public int digui(int n) {
+    //     if (n < 2)
+    //         return n;
+    //     if (map.containsKey(n))
+    //         return map.get(n);
+    //     int first = digui(n - 1) % constant;
+    //     map.put(n - 1, first);
+    //     int second = digui(n - 2) % constant;
+    //     map.put(n - 2, second);
+    //     int res = (first + second) % constant;
+    //     map.put(n, res);
+    //     return res;
+    // }
+    //非递归
+    public int nodigui(int n){
+        int one = 0;
+        int two = 1;
+        int res = 0;
+        while(n-- > 0){
+            res = (one+two)%constant;
+            one = two%constant;
+            two = res;
+        }
+        return one;
+    }
+
+
 
 
 
