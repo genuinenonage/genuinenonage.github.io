@@ -31,7 +31,7 @@ categories:
 
 ## 04. 二维数组中的查找  
 标签：数组，双指针  
-利用题目的特性，找出解题的简便方法，是程序流程变得简单。  
+利用题目的特性，找出解题的简便方法，使程序流程变得简单。  
     
 	class Solution {
 	    int tar = 0;
@@ -93,7 +93,7 @@ categories:
 
 	class Solution {
 	    public int[] reversePrint(ListNode head) {
-	        //1. 首先使用数组解决，链表我还没有清晰的思路
+	        //1. 首先使用数组解决 效率高内存占用低
 	        int[] arr = new int[10000];
 	        int size = 0;
 	        while(head!= null){
@@ -109,7 +109,7 @@ categories:
 	        }
 	        return rearr;
 	
-	        //2. 使用栈解决
+	        //2. 使用栈解决 效率低内存占用高
 	        // Stack<Integer> stack = new Stack<Integer>();
 	        // while(head != null){
 	        //     stack.push(head.val);
@@ -123,6 +123,44 @@ categories:
 	        // return rearr;
 	    }
 	}
+
+## 10- I. 斐波那契数列  
+输入 n ，求斐波那契（Fibonacci）数列的第 n 项。    
+答案需要取模 1e9+7（1000000007）。    
+
+	int constant = 1000000007;
+    Map<Integer,Integer> map = new HashMap();
+    public int fib(int n) {
+        // return digui(n);
+        return nodigui(n);
+    }
+    //递归
+    // public int digui(int n) {
+    //     if (n < 2)
+    //         return n;
+    //     if (map.containsKey(n))
+    //         return map.get(n);
+    //     int first = digui(n - 1) % constant;
+    //     map.put(n - 1, first);
+    //     int second = digui(n - 2) % constant;
+    //     map.put(n - 2, second);
+    //     int res = (first + second) % constant;
+    //     map.put(n, res);
+    //     return res;
+    // }
+    //非递归
+    public int nodigui(int n){
+        int one = 0;
+        int two = 1;
+        int res = 0;
+        while(n-- > 0){
+            res = (one+two)%constant;
+            one = two%constant;
+            two = res;
+        }
+        return one;
+    }
+
 
 
 
