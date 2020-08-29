@@ -4,6 +4,77 @@
   
     
     <entry>
+      <title>Hexo Next 主题的标签、分类、搜索的配置</title>
+      <link href="/2020/08/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
+      <url>/2020/08/29/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol><li>新建页面<br> hexo new page tags  </li><li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li><li>修改菜单<br> menu:  <pre><code>home: /  archives: /archives  tags: /tags  </code></pre><h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li><li>新建页面<br> hexo new page categories  </li><li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li><li>修改菜单<br> menu:  <pre><code>home: /  archives: /archives  tags: /categories  </code></pre><h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li><li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li><li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code>path: ./public/search.xml  field: post  format: html  limit: 10000    </code></pre><ul><li>path：索引文件的路径，相对与站点根目录</li><li>field：搜索范围，默认是post  </li><li>limit：限制搜索的条目数  </li></ul></li><li>修改主题配置文件<br> local_serach:  <pre><code>enable: true  trigger: auto  top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> next </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>十一组开发流程</title>
+      <link href="/2020/08/27/%E5%8D%81%E4%B8%80%E7%BB%84%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+      <url>/2020/08/27/%E5%8D%81%E4%B8%80%E7%BB%84%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="从码云上拉取代码"><a href="#从码云上拉取代码" class="headerlink" title="从码云上拉取代码"></a>从码云上拉取代码</h2><p>待给组员分享dev分支权限。<br>所有人拉取dev分支，直接使用idea导入拉去下来的项目。<br>组员只在dev分支操作。<br>注意：每次使用前先pull，再操作代码，再add/commit/push。</p><h2 id="连接统一数据库"><a href="#连接统一数据库" class="headerlink" title="连接统一数据库"></a>连接统一数据库</h2><p>在application.properties中间中设置：</p><pre><code>#配置数据源spring.datasource.type=com.alibaba.druid.pool.DruidDataSourcespring.datasource.url=jdbc:mysql://39.97.117.252:3306/cssy?allowMultiQueries=true&amp;characterEncoding=utf8&amp;serverTimezone=UTCspring.datasource.driver-class-name=com.mysql.cj.jdbc.Driverspring.datasource.username=rootspring.datasource.password=123456</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学校 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux安装Mysql 8.0</title>
+      <link href="/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/"/>
+      <url>/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/xiexinxx0225/article/details/107665316" target="_blank" rel="noopener" title="参考连接">https://blog.csdn.net/xiexinxx0225/article/details/107665316</a>  </p><h2 id="卸载MariaDB"><a href="#卸载MariaDB" class="headerlink" title="卸载MariaDB"></a>卸载MariaDB</h2><p>MariaDB是Linux默认数据库，需先卸载。  </p><ol><li>使用 yum list installed | grep mariadb 检查MariaDB是否安装。</li><li>使用 yum -y remove mariadb* 命令 卸载</li></ol><h2 id="删除MySQL对应的文件夹"><a href="#删除MySQL对应的文件夹" class="headerlink" title="删除MySQL对应的文件夹"></a>删除MySQL对应的文件夹</h2><ol><li><p>whereis mysql</p></li><li><p>find / -name musql</p><pre><code>[root@localhost /]# whereis mysqlmysql: /usr/bin/mysql /usr/include/mysql[root@localhost lib]# find / -name mysql/data/mysql/data/mysql/mysql</code></pre></li></ol><ol start="3"><li><p>删除上两条命令查询出来的相关目录或文件。</p><pre><code>[root@localhost /]#  rm -rf /usr/bin/mysql /usr/include/mysql /data/mysql /data/mysql/mysql </code></pre></li><li><p>重复输入1、2命令，是否删除完毕。</p></li></ol><h2 id="检查MySQL用户组和用户是否存在，如果没有，则创建"><a href="#检查MySQL用户组和用户是否存在，如果没有，则创建" class="headerlink" title="检查MySQL用户组和用户是否存在，如果没有，则创建"></a>检查MySQL用户组和用户是否存在，如果没有，则创建</h2><pre><code>[root@localhost /]# cat /etc/group | grep mysql[root@localhost /]# cat /etc/passwd |grep mysql[root@localhost /]# groupadd mysql[root@localhost /]# useradd -r -g mysql mysql[root@localhost /]#</code></pre><h2 id="命令下载Linux的Mysql安装包"><a href="#命令下载Linux的Mysql安装包" class="headerlink" title="命令下载Linux的Mysql安装包"></a>命令下载Linux的Mysql安装包</h2><pre><code>[root@localhost ~]#  wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h1 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h1><h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><pre><code>[root@localhost /]#  tar xvf mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz[root@localhost /]# lsmysql-8.0.19-linux-glibc2.12-x86_64mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol><li><p>首先确保/usr/local/下没有mysql文件夹，如果有就删除  </p></li><li><p>执行移动命令  </p><pre><code>[root@localhost ~]# mv mysql-8.0.19-linux-glibc2.12-x86_64 /usr/local/mysql</code></pre></li></ol><ol start="3"><li><p>在/usr/local/mysql目录下创建data目录  </p><pre><code>[root@localhost /]# mkdir /usr/local/mysql/data</code></pre></li><li><p>更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限  </p></li></ol><pre><code>[root@localhost /]# chown -R mysql:mysql /usr/local/mysql[root@localhost /]# chmod -R 755 /usr/local/mysql </code></pre><ol start="5"><li><p>下载链接库文件  </p><pre><code>[root@localhost bin]#  yum -y install libaio-devel.x86_64</code></pre></li><li><p>编译安装并初始化mysql,务必记住初始化输出日志末尾的密码（数据库管理员临时密码）  </p><pre><code>[root@localhost /]# cd /usr/local/mysql/bin[root@localhost bin]# ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql</code></pre></li><li><p>编辑配置文件my.cnf，添加配置如下</p><pre><code>[root@localhost bin]#  vi /etc/my.cnf[mysqld]datadir=/usr/local/mysql/dataport=3306sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLESsymbolic-links=0max_connections=600innodb_file_per_table=1log-error=/usr/local/mysql/data/error.log</code></pre></li><li><p>测试启动mysql服务器</p><pre><code>[root@localhost /]# /usr/local/mysql/support-files/mysql.server start</code></pre></li><li><p>添加软连接，并重启mysql服务</p><pre><code>[root@localhost /]#  ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql [root@localhost /]#  ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql[root@localhost /]#  service mysql restart  </code></pre></li><li><p>登录mysql，修改密码(密码为步骤6生成的临时密码)</p><pre><code>[root@localhost /]#  mysql -u root -pEnter password:mysql&gt;ALTER USER USER() IDENTIFIED BY &apos;yourpass&apos;;mysql&gt;flush privileges;</code></pre></li><li><p>开放远程连接  </p><pre><code>mysql&gt;use mysql;msyql&gt;update user set user.Host=&apos;%&apos; where user.User=&apos;root&apos;;mysql&gt;flush privileges; </code></pre></li></ol><ol start="12"><li><p>必须修改加密规则  </p><pre><code>1.输入 use mysql; 出现Database changed2.输入select user,host from user; 目的为了查看user的root 对应host是什么  我对应的是 %3.修改加密规则：输入ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;root:为数据库用户名123456：为数据库密码</code></pre></li></ol><ol start="13"><li>可以自由设置开机自动启动</li></ol><pre><code>1、将服务文件拷贝到init.d下，并重命名为mysql[root@localhost /]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld2、赋予可执行权限[root@localhost /]# chmod +x /etc/init.d/mysqld3、添加服务[root@localhost /]# chkconfig --add mysqld4、显示服务列表[root@localhost /]# chkconfig --list</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>剑指offer算法总结</title>
       <link href="/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/"/>
       <url>/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
@@ -23,33 +94,6 @@
             <tag> 算法 </tag>
             
             <tag> offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hexo Next 主题的标签、分类、搜索的配置</title>
-      <link href="/2020/08/20/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
-      <url>/2020/08/20/%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol><li>新建页面<br> hexo new page tags  </li><li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li><li>修改菜单<br> menu:  <pre><code>home: /  archives: /archives  tags: /tags  </code></pre><h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li><li>新建页面<br> hexo new page categories  </li><li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li><li>修改菜单<br> menu:  <pre><code>home: /  archives: /archives  tags: /categories  </code></pre><h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li><li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li><li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code>path: ./public/search.xml  field: post  format: html  limit: 10000    </code></pre><ul><li>path：索引文件的路径，相对与站点根目录</li><li>field：搜索范围，默认是post  </li><li>limit：限制搜索的条目数  </li></ul></li><li>修改主题配置文件<br> local_serach:  <pre><code>enable: true  trigger: auto  top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> hexo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-            <tag> next </tag>
             
         </tags>
       
@@ -279,7 +323,7 @@
       <link href="/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/"/>
       <url>/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/</url>
       
-        <content type="html"><![CDATA[<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol><li>在本地创建表空间<blockquote><p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p></blockquote></li><li>创建用户<blockquote><p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p></blockquote></li><li>给用户授权：<blockquote><p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p></blockquote></li><li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote><p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p></blockquote></li><li>cmd导入库数据泵  <blockquote><p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p></blockquote><h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li><li>cmd导出数据库<blockquote><p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p></blockquote></li></ol>]]></content>
+        <content type="html"><![CDATA[<h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nologconn /as sysdba//或sqlplus / as sysdba</code></pre><h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol><li>在本地创建表空间<blockquote><p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p></blockquote></li><li>创建用户<blockquote><p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p></blockquote></li><li>给用户授权：<blockquote><p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p></blockquote></li><li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote><p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p></blockquote></li><li>cmd导入库数据泵  <blockquote><p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p></blockquote><h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li><li>cmd导出数据库<blockquote><p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p></blockquote></li></ol>]]></content>
       
       
       
