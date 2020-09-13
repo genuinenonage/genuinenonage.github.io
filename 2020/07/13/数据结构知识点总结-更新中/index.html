@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="稀疏数组当一个数组中大部分元素为0，或者为同一个值的数组时，可以使用稀疏数组来保存。处理方法：    记录数组一共有几行几列，有多少个不同的值。   把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模。  二维数组转稀疏数组的思路： 遍历 原始的二维数组，得到有效数据的个数sum。 根据sum 创建稀疏数组sparseArr  int[sum+1][3] 将二维数组的有效数据">
 <meta property="article:published_time" content="2020-07-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-29T15:08:58.000Z">
+<meta property="article:modified_time" content="2020-09-07T04:22:56.288Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 
@@ -391,6 +391,12 @@
 <li>入栈的操作，当有数据加入栈，top++；stack[top]]=data;</li>
 <li>出栈，int value = stack[top];top–,return value;</li>
 </ol>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>Dynamic Programming的思想：</p>
+<ul>
+<li>对于递归，有退出条件，之后调用自身，最终达到推出条件是，逐个退出函数。  </li>
+<li>动态规划从头开始用循环达到目的。</li>
+<li>动态规划和递归最大的区别在于，碰到重叠子问题时，是否只需要计算一次。  </li>
+</ul>
 
       
     </div>
@@ -504,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -526,7 +532,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -559,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏数组"><span class="nav-number">1.</span> <span class="nav-text">稀疏数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组转稀疏数组的思路："><span class="nav-number">1.1.</span> <span class="nav-text">二维数组转稀疏数组的思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏数组转原始的二维数组的思路："><span class="nav-number">1.2.</span> <span class="nav-text">稀疏数组转原始的二维数组的思路：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分法"><span class="nav-number">3.</span> <span class="nav-text">二分法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向环形链表"><span class="nav-number">4.</span> <span class="nav-text">单向环形链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建思路"><span class="nav-number">4.1.</span> <span class="nav-text">构建思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历"><span class="nav-number">4.2.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决问题-约瑟夫问题"><span class="nav-number">4.3.</span> <span class="nav-text">解决问题-约瑟夫问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">5.</span> <span class="nav-text">栈</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏数组"><span class="nav-number">1.</span> <span class="nav-text">稀疏数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组转稀疏数组的思路："><span class="nav-number">1.1.</span> <span class="nav-text">二维数组转稀疏数组的思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏数组转原始的二维数组的思路："><span class="nav-number">1.2.</span> <span class="nav-text">稀疏数组转原始的二维数组的思路：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分法"><span class="nav-number">3.</span> <span class="nav-text">二分法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向环形链表"><span class="nav-number">4.</span> <span class="nav-text">单向环形链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建思路"><span class="nav-number">4.1.</span> <span class="nav-text">构建思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历"><span class="nav-number">4.2.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决问题-约瑟夫问题"><span class="nav-number">4.3.</span> <span class="nav-text">解决问题-约瑟夫问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">5.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划"><span class="nav-number">6.</span> <span class="nav-text">动态规划</span></a></li></ol></div>
             
 
           </div>
