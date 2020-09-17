@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>设计模式</title>
+      <link href="/2020/09/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <url>/2020/09/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式：将可变的部分从程序中抽象出来分离成算法接口，在该接口下分别封装一系列算法实现。</p><h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ol><li>找出需要变化的部分，独立出来做成算法接口。</li><li>面向接口编程，而不是面向实现。</li><li>多用组合，少用继承。</li></ol><p>优点：</p><ol><li><strong>使用组合</strong>，而不单单继承，使得架构更加灵活。</li><li>富有弹性，<strong>可以较好的应对未来的变化</strong>。（开-闭原则）</li><li>更好的代码复用性。（相对于继承）</li></ol><p>缺点：</p><ol><li>增加了对象的数量（每个接口都做成一个对象）。</li></ol><p><img src="https://i.loli.net/2020/09/17/N4b3qvGBMWDZoLu.jpg" alt="策略模式.jpg"></p><p>面向接口编程</p><h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>微服务架构技术</title>
+      <link href="/2020/09/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF/"/>
+      <url>/2020/09/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="微服务架构的优势"><a href="#微服务架构的优势" class="headerlink" title="微服务架构的优势"></a>微服务架构的优势</h1><p>微服务：单独服务拆分成子系统，单独的war包去实现去上线。系统间调用系统间的接口，这样spring的事务机制就解决不了了。</p><p>微服务：会员服务、商品服务、库存服务、交易服务、积分服务，仓库服务</p><p>nginx-&gt; spring cloud注册中心</p><h4 id="ribbon多实例服务"><a href="#ribbon多实例服务" class="headerlink" title="ribbon多实例服务"></a>ribbon多实例服务</h4><p>负载均衡如何去解决</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mysql</title>
+      <link href="/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/"/>
+      <url>/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<h2 id="索引数据结构红黑树，Hash表，B-Tree"><a href="#索引数据结构红黑树，Hash表，B-Tree" class="headerlink" title="索引数据结构红黑树，Hash表，B+Tree"></a>索引数据结构红黑树，Hash表，B+Tree</h2><p>二叉树，红黑树，Hash表，B-Tree。</p><h3 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h3><p>索引是帮助Mysql高效获取数据的排好序的数据结构。</p><p>红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。</p><p>Hash：哈希算法：哈希散列值结果就是磁盘文件地址。</p><ul><li>不管表记录有多少，都能快速定位表数据的位置。</li><li>但是不能很好解决范围查找。</li></ul><p>B-Tree： </p><ul><li>叶子节点具有相同的深度，存放数据。</li><li>所有索引元素不重复。</li><li>节点中的数据索引从左到右递增排列。</li></ul><p>B+Tree：每个数据节点都能快速找到相邻节点（节点之间双向指针）。</p><ul><li><p>非叶子节点不存储data，只存储索引（非叶子节点冗余索引），可以放更多的索引。</p></li><li><p>叶子界定啊包含所有索引字段</p></li><li><p>叶子节点用指针链接，提高区间访问的性能。</p></li><li><p>提高范围查找的性能。</p></li></ul><h3 id="B-Tree与B-Tree的不同："><a href="#B-Tree与B-Tree的不同：" class="headerlink" title="B-Tree与B+Tree的不同："></a>B-Tree与B+Tree的不同：</h3><ul><li><p>B+Tree叶子节点之间增加双向指针，B-Tree叶子节点之间没有。</p></li><li><p>B+Tree非叶子简单不存放数据，只存放索引（所以造成冗余索引）；B-Tree所有节点都存放数据，没有冗余索引。</p></li><li><p>在树的高度相同的情况下，B+Tree能放的数据更多。</p></li></ul><h2 id="千万级数据表快速查找"><a href="#千万级数据表快速查找" class="headerlink" title="千万级数据表快速查找"></a>千万级数据表快速查找</h2><p>Mysql底层数据结构：B+Tree（B-Tree变种）：多叉查找(x&lt;y&lt;=z]</p><p>B+Tree的索引每个节点大小：16kb</p><p>数据库有存储引擎的概念。表级别的概念。INNODB/MYISAM</p><p>MYISAM（非聚集索引）:</p><pre><code>frm表结构信息MYD存储数据MYI存储B+Tree的索引。</code></pre><p>INNODB（聚集索引）: </p><pre><code>frm表结构信息ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a href="#基于B-Tree高性能索引" class="headerlink" title="基于B+Tree高性能索引"></a>基于B+Tree高性能索引</h2><p>INNODB索引实现（聚集）</p><ul><li>表数据文件本身就是按B+Tree组织的一个索引结构的文件。</li><li>聚集索引：叶子节点包含了完整的数据记录。</li><li>为什么INNODB表必须有主键，并且建议整型自增。<ul><li>如果没有主键，mysql找字段中的唯一字段作为索引，如果都没有，MySQL会创建一个隐藏列。不要增加MySQL的性能负担。</li><li>主键不要使用UUID（UUID不是整形也不是自增），B+树经常比大小，整形比大小快，上产环境高速SSD成本高。</li><li>在B+Tree数据结构中，自增树插入对B+Tree树的分裂小（B+Tree会自动优化分裂树的结构，保证在一定的规范下），随机树插入对B+Tree的分裂大</li></ul></li><li>为什么主键索引结构叶子节点存储的是主键值？（一致性和节省存储空间）</li></ul><h2 id="联合索引底层数据结构"><a href="#联合索引底层数据结构" class="headerlink" title="联合索引底层数据结构"></a>联合索引底层数据结构</h2><p>KEY ‘idx_name_age_position’ （’name’,’age’,’position’) USING BTREE</p><p>根据索引字段的顺序进行比较。先比较name后age后position</p><p><img src="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg" alt="联合索引底层数据结构.jpg"></p><p>最左前缀优化：因为联合索引底层已经实现了</p><pre><code>explain select * from employees where name=&apos;Bill&apos; and age=31;</code></pre><p>还有很多的知识需要学习。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java多线程</title>
       <link href="/2020/09/12/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
       <url>/2020/09/12/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
