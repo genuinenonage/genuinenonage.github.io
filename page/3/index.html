@@ -284,6 +284,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/14/GitHub%E6%8B%89%E5%8F%96%E5%88%86%E6%94%AF%E5%8D%95%E7%8B%AC%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9/" itemprop="url">GitHub拉取分支单独文件或文件夹</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-14T22:52:00+08:00">
+                2020-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>选择放置git仓库的文件夹，创建并初始化git本地仓库  <blockquote>
+<p>git init dev_work &amp;&amp; cd dev_work  </p>
+</blockquote>
+</li>
+<li>关联远端地址<blockquote>
+<p>git remote add -f origin <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
+</blockquote>
+</li>
+<li>开启git的 Sparse Checkout 模式（该模式专门用于git检出指定目录或文件，在config中配置）  <blockquote>
+<p>git config core.sparsecheckout true  </p>
+</blockquote>
+</li>
+<li>设置需要拉取github上的文件目录<blockquote>
+<p>//这些目录写在了.git/info/sparse-check文件中。<br>echo “source/posts(github上的目录或文件路径)” &gt;&gt; .git/info/sparse-check<br>echo “css/fonts(可以写多个)” &gt;&gt; .git/info/sparse-check </p>
+</blockquote>
+</li>
+<li>从GitHub上拉取下来<blockquote>
+<p>git pull origin dev(对应分支名)   </p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1076,7 +1217,7 @@ sqlplus / as sysdba</code></pre><h3 id="恢复impdp"><a href="#恢复impdp" clas
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
