@@ -284,6 +284,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" itemprop="url">mybatis的懒加载与分页查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-19T17:21:00+08:00">
+                2020-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>延迟加载，也叫懒加载，但是懒加载往往与分布查询同时使用  </p>
+<h2 id="分布查询"><a href="#分布查询" class="headerlink" title="分布查询"></a>分布查询</h2><p>先查询主表，通过主表的道德信息将作为参数传递给关联表，查询关联表的信息。  </p>
+<pre><code>&lt;resultMap id=&quot;MystudentStep&quot; type=&quot;com.tulun.bean.Student&quot;&gt;  
+    &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;  
+    &lt;result column=&quot;name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;  
+    &lt;result column=&quot;passward&quot; property=&quot;passward&quot;&gt;&lt;/result&gt;  
+    &lt;!--
+        association:定义关联对象的封装规则
+        select:表明当前属性是调用select 指定的方法查出的结果
+        column:指定将哪一列的值传给这个方法
+        流程：使用select 指定的方法（传入column 指定的这列参数的值）查出对象，
+                并封装给property 指定的属性
+    --&gt;
+    &lt;association property=&quot;dept&quot;
+                 select=&quot;com.tulun.dao.DeptMapper.getDeptById&quot;
+                 column=&quot;d_id&quot;&gt;
+    &lt;/association&gt;
+&lt;/resultMap&gt;  
+
+
+&lt;select id=&quot;getStuByIdStep&quot; resultMap=&quot;MystudentStep&quot;&gt;
+    select * from student where id = #{id}
+&lt;/select&gt;
+&lt;select id=&quot;getDeptById&quot; resultType=&quot;com.tulun.bean.Dept&quot;&gt;
+     select * from dept where id = #{id}
+&lt;/select&gt;</code></pre><h2 id="延迟加载-1"><a href="#延迟加载-1" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>MyBatis中的延迟加载，也称为懒加载，是指在进行关联查询时，按照设置延迟规则推迟对关联对象的select查询。延迟加载可以有效的减少数据库压力。</p>
+<p>Mybatis 根据关联对象查询Select 语句的查询时机分为：直接加载、侵入式加载、深度延迟性加载。  </p>
+<ol>
+<li>直接加载<br>执行完主加载对象的select语句，马上执行关联对象的Select语句</li>
+<li>侵入式加载<br>执行完主加载对象查询后不会马上执行关联对象查询，但是当访问主加载对象时，就会加载关联对象的查询。即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
+<li>深度延迟加载<br>执行主对象的查询时不会执行关联对象的执行，访问主对象详情时也不会执行关联对象的查询，只有当访问关联对象时才会对其进行查询 </li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1709,157 +1882,6 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/15/%E4%B8%80%E7%82%B9%E7%82%B9git%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" itemprop="url">一点点git的简单使用-随时更新</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-15T19:16:00+08:00">
-                2020-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="个性使用"><a href="#个性使用" class="headerlink" title="个性使用"></a>个性使用</h4><ol>
-<li>删除本地分支<blockquote>
-<p>git branch -d dev(分支名)  </p>
-</blockquote>
-</li>
-<li>取消目录的git初始化  <blockquote>
-<p>rm -rf.git  </p>
-</blockquote>
-</li>
-<li>克隆想要的分支到本地  <blockquote>
-<p>git clone –branch dev(分支名) <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
-</blockquote>
-</li>
-</ol>
-<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ol>
-<li>初始化本地仓库  <blockquote>
-<p>git init git_work(仓库文件夹名称) &amp;&amp; cd git_work  </p>
-</blockquote>
-</li>
-<li>将变化提交到暂存区  <blockquote>
-<p>git add .  </p>
-</blockquote>
-</li>
-<li>将本地暂存提交到版本库  <blockquote>
-<p>git commit -m “提交说明”  </p>
-</blockquote>
-</li>
-<li>本地推送到远端分支  <blockquote>
-<p>git push origin dev(分支名)  </p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1910,7 +1932,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

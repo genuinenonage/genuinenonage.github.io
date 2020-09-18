@@ -284,6 +284,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/18/%E9%9D%A2%E7%BB%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/18/%E9%9D%A2%E7%BB%8F/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-18T09:56:00+08:00">
+                2020-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/RocketMQ/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1139,7 +1258,7 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/10/spring%E5%AD%A6%E4%B9%A0/" itemprop="url">springEE学习</a></h1>
+                <a class="post-title-link" href="/2020/09/10/spring%E5%AD%A6%E4%B9%A0/" itemprop="url">spring学习</a></h1>
         
 
         <div class="post-meta">
@@ -1191,7 +1310,37 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
       
         
           
-            <h2 id="Spring的核心容器"><a href="#Spring的核心容器" class="headerlink" title="Spring的核心容器"></a>Spring的核心容器</h2>
+            <h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><p>Spring框架是一系列应用框架的核心，是整合其他应用框架的基座。同时还是SpringBoot的基础。里面包含了Spring，SpringMVC，SpringData（事务），SpringTest等等。</p>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><p>Spring包含两大核心IOC和AOP。</p>
+<p>IOC负责降低代码间的依赖关系，使项目灵活度更高，可复用性更强。</p>
+<p>AOP让方法间的各个部分更加独立，达到统一调用执行，使后期维护更加方便。</p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>对Servlet和JSP的API进行了封装，并在此基础上进一步加强。它推出的一套注解，可以更轻松的做表现层开发。</p>
+<h3 id="SpringData"><a href="#SpringData" class="headerlink" title="SpringData"></a>SpringData</h3><p>一组技术合集。里面包含了JDBC，Data JPA，Data Redis，Data Mongodb，Data Rabbit，Data ElasticSearch等等。合集中的每一项都是针对不同数据存储做的简化封装。</p>
+<h3 id="SpringTest"><a href="#SpringTest" class="headerlink" title="SpringTest"></a>SpringTest</h3><p>对Junit单元测试的整合。在开发中以及开发后期进行测试时，直接使用Junit结合spring一起测试。</p>
+<h1 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring的IOC"><a href="#Spring的IOC" class="headerlink" title="Spring的IOC"></a>Spring的IOC</h2><h3 id="设计模式-工厂模式"><a href="#设计模式-工厂模式" class="headerlink" title="设计模式-工厂模式"></a>设计模式-工厂模式</h3><p>最常用的实例化对象模式，用工厂中的方法代替new创建对象的一种设计模式。</p>
+<h3 id="IOC和DI"><a href="#IOC和DI" class="headerlink" title="IOC和DI"></a>IOC和DI</h3><h4 id="IOC-Inversion-of-Control"><a href="#IOC-Inversion-of-Control" class="headerlink" title="IOC-Inversion of Control"></a>IOC-Inversion of Control</h4><p>控制反转。不是一个技术，而是一个思想。</p>
+<p>作用：削减代码间的耦合。</p>
+<p>实现思想：利用工厂模式，把创建对象代码从具体类中剥离出去，交由工厂完成，从而降低代码间的依赖关系。</p>
+<p>耦合分类：</p>
+<ol>
+<li>内容耦合：修改时需要修改源码</li>
+<li>公共耦合：开发时需要限制作用范围</li>
+<li>外部耦合</li>
+<li>控制耦合：</li>
+<li>标记耦合</li>
+<li>数据耦合</li>
+<li>非直接耦合</li>
+</ol>
+<p>为什么要解耦：</p>
+<ul>
+<li>耦合是影响软件复杂程度和设计质量的一个重要因素，在设计上我们应采用原则：<ul>
+<li>如果模块间必然存在耦合，就尽量使用数据耦合，少用控制耦合，限制公共耦合的范围，尽量避免使用内容耦合。</li>
+</ul>
+</li>
+</ul>
+<h4 id="DI-Dependency-Injection"><a href="#DI-Dependency-Injection" class="headerlink" title="DI-Dependency Injection"></a>DI-Dependency Injection</h4><p>依赖注入。是spring框架核心IOC的具体实现。</p>
+<h3 id="Spring注解驱动"><a href="#Spring注解驱动" class="headerlink" title="Spring注解驱动"></a>Spring注解驱动</h3><p>@Configuration</p>
+<h3 id="IOC的常用注解"><a href="#IOC的常用注解" class="headerlink" title="IOC的常用注解"></a>IOC的常用注解</h3><h3 id="生命周期以及作用范围"><a href="#生命周期以及作用范围" class="headerlink" title="生命周期以及作用范围"></a>生命周期以及作用范围</h3><h2 id="Spring高级使用"><a href="#Spring高级使用" class="headerlink" title="Spring高级使用"></a>Spring高级使用</h2>
           
         
       
@@ -1844,179 +1993,6 @@ class Solution {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" itemprop="url">mybatis的懒加载与分页查询</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-19T17:21:00+08:00">
-                2020-08-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>延迟加载，也叫懒加载，但是懒加载往往与分布查询同时使用  </p>
-<h2 id="分布查询"><a href="#分布查询" class="headerlink" title="分布查询"></a>分布查询</h2><p>先查询主表，通过主表的道德信息将作为参数传递给关联表，查询关联表的信息。  </p>
-<pre><code>&lt;resultMap id=&quot;MystudentStep&quot; type=&quot;com.tulun.bean.Student&quot;&gt;  
-    &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;  
-    &lt;result column=&quot;name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;  
-    &lt;result column=&quot;passward&quot; property=&quot;passward&quot;&gt;&lt;/result&gt;  
-    &lt;!--
-        association:定义关联对象的封装规则
-        select:表明当前属性是调用select 指定的方法查出的结果
-        column:指定将哪一列的值传给这个方法
-        流程：使用select 指定的方法（传入column 指定的这列参数的值）查出对象，
-                并封装给property 指定的属性
-    --&gt;
-    &lt;association property=&quot;dept&quot;
-                 select=&quot;com.tulun.dao.DeptMapper.getDeptById&quot;
-                 column=&quot;d_id&quot;&gt;
-    &lt;/association&gt;
-&lt;/resultMap&gt;  
-
-
-&lt;select id=&quot;getStuByIdStep&quot; resultMap=&quot;MystudentStep&quot;&gt;
-    select * from student where id = #{id}
-&lt;/select&gt;
-&lt;select id=&quot;getDeptById&quot; resultType=&quot;com.tulun.bean.Dept&quot;&gt;
-     select * from dept where id = #{id}
-&lt;/select&gt;</code></pre><h2 id="延迟加载-1"><a href="#延迟加载-1" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>MyBatis中的延迟加载，也称为懒加载，是指在进行关联查询时，按照设置延迟规则推迟对关联对象的select查询。延迟加载可以有效的减少数据库压力。</p>
-<p>Mybatis 根据关联对象查询Select 语句的查询时机分为：直接加载、侵入式加载、深度延迟性加载。  </p>
-<ol>
-<li>直接加载<br>执行完主加载对象的select语句，马上执行关联对象的Select语句</li>
-<li>侵入式加载<br>执行完主加载对象查询后不会马上执行关联对象查询，但是当访问主加载对象时，就会加载关联对象的查询。即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
-<li>深度延迟加载<br>执行主对象的查询时不会执行关联对象的执行，访问主对象详情时也不会执行关联对象的查询，只有当访问关联对象时才会对其进行查询 </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2067,7 +2043,7 @@ class Solution {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

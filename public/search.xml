@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>面经</title>
+      <link href="/2020/09/18/%E9%9D%A2%E7%BB%8F/"/>
+      <url>/2020/09/18/%E9%9D%A2%E7%BB%8F/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RocketMQ</title>
       <link href="/2020/09/17/RocketMQ/"/>
       <url>/2020/09/17/RocketMQ/</url>
@@ -75,11 +88,11 @@
     
     
     <entry>
-      <title>springEE学习</title>
+      <title>spring学习</title>
       <link href="/2020/09/10/spring%E5%AD%A6%E4%B9%A0/"/>
       <url>/2020/09/10/spring%E5%AD%A6%E4%B9%A0/</url>
       
-        <content type="html"><![CDATA[<h2 id="Spring的核心容器"><a href="#Spring的核心容器" class="headerlink" title="Spring的核心容器"></a>Spring的核心容器</h2>]]></content>
+        <content type="html"><![CDATA[<h1 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h1><p>Spring框架是一系列应用框架的核心，是整合其他应用框架的基座。同时还是SpringBoot的基础。里面包含了Spring，SpringMVC，SpringData（事务），SpringTest等等。</p><h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><p>Spring包含两大核心IOC和AOP。</p><p>IOC负责降低代码间的依赖关系，使项目灵活度更高，可复用性更强。</p><p>AOP让方法间的各个部分更加独立，达到统一调用执行，使后期维护更加方便。</p><h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>对Servlet和JSP的API进行了封装，并在此基础上进一步加强。它推出的一套注解，可以更轻松的做表现层开发。</p><h3 id="SpringData"><a href="#SpringData" class="headerlink" title="SpringData"></a>SpringData</h3><p>一组技术合集。里面包含了JDBC，Data JPA，Data Redis，Data Mongodb，Data Rabbit，Data ElasticSearch等等。合集中的每一项都是针对不同数据存储做的简化封装。</p><h3 id="SpringTest"><a href="#SpringTest" class="headerlink" title="SpringTest"></a>SpringTest</h3><p>对Junit单元测试的整合。在开发中以及开发后期进行测试时，直接使用Junit结合spring一起测试。</p><h1 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring的IOC"><a href="#Spring的IOC" class="headerlink" title="Spring的IOC"></a>Spring的IOC</h2><h3 id="设计模式-工厂模式"><a href="#设计模式-工厂模式" class="headerlink" title="设计模式-工厂模式"></a>设计模式-工厂模式</h3><p>最常用的实例化对象模式，用工厂中的方法代替new创建对象的一种设计模式。</p><h3 id="IOC和DI"><a href="#IOC和DI" class="headerlink" title="IOC和DI"></a>IOC和DI</h3><h4 id="IOC-Inversion-of-Control"><a href="#IOC-Inversion-of-Control" class="headerlink" title="IOC-Inversion of Control"></a>IOC-Inversion of Control</h4><p>控制反转。不是一个技术，而是一个思想。</p><p>作用：削减代码间的耦合。</p><p>实现思想：利用工厂模式，把创建对象代码从具体类中剥离出去，交由工厂完成，从而降低代码间的依赖关系。</p><p>耦合分类：</p><ol><li>内容耦合：修改时需要修改源码</li><li>公共耦合：开发时需要限制作用范围</li><li>外部耦合</li><li>控制耦合：</li><li>标记耦合</li><li>数据耦合</li><li>非直接耦合</li></ol><p>为什么要解耦：</p><ul><li>耦合是影响软件复杂程度和设计质量的一个重要因素，在设计上我们应采用原则：<ul><li>如果模块间必然存在耦合，就尽量使用数据耦合，少用控制耦合，限制公共耦合的范围，尽量避免使用内容耦合。</li></ul></li></ul><h4 id="DI-Dependency-Injection"><a href="#DI-Dependency-Injection" class="headerlink" title="DI-Dependency Injection"></a>DI-Dependency Injection</h4><p>依赖注入。是spring框架核心IOC的具体实现。</p><h3 id="Spring注解驱动"><a href="#Spring注解驱动" class="headerlink" title="Spring注解驱动"></a>Spring注解驱动</h3><p>@Configuration</p><h3 id="IOC的常用注解"><a href="#IOC的常用注解" class="headerlink" title="IOC的常用注解"></a>IOC的常用注解</h3><h3 id="生命周期以及作用范围"><a href="#生命周期以及作用范围" class="headerlink" title="生命周期以及作用范围"></a>生命周期以及作用范围</h3><h2 id="Spring高级使用"><a href="#Spring高级使用" class="headerlink" title="Spring高级使用"></a>Spring高级使用</h2>]]></content>
       
       
       
