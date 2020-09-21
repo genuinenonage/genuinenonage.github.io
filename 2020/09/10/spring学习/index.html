@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="Spring框架Spring框架是一系列应用框架的核心，是整合其他应用框架的基座。同时还是SpringBoot的基础。里面包含了Spring，SpringMVC，SpringData（事务），SpringTest等等。 SpringSpring包含两大核心IOC和AOP。 IOC负责降低代码间的依赖关系，使项目灵活度更高，可复用性更强。 AOP让方法间的各个部分更加独立，达到统一调用执行，使后期维">
 <meta property="article:published_time" content="2020-09-10T09:19:00.000Z">
-<meta property="article:modified_time" content="2020-09-18T01:12:30.273Z">
+<meta property="article:modified_time" content="2020-09-18T12:02:59.402Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 
@@ -359,8 +359,17 @@
 <h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>对Servlet和JSP的API进行了封装，并在此基础上进一步加强。它推出的一套注解，可以更轻松的做表现层开发。</p>
 <h3 id="SpringData"><a href="#SpringData" class="headerlink" title="SpringData"></a>SpringData</h3><p>一组技术合集。里面包含了JDBC，Data JPA，Data Redis，Data Mongodb，Data Rabbit，Data ElasticSearch等等。合集中的每一项都是针对不同数据存储做的简化封装。</p>
 <h3 id="SpringTest"><a href="#SpringTest" class="headerlink" title="SpringTest"></a>SpringTest</h3><p>对Junit单元测试的整合。在开发中以及开发后期进行测试时，直接使用Junit结合spring一起测试。</p>
-<h1 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring的IOC"><a href="#Spring的IOC" class="headerlink" title="Spring的IOC"></a>Spring的IOC</h2><h3 id="设计模式-工厂模式"><a href="#设计模式-工厂模式" class="headerlink" title="设计模式-工厂模式"></a>设计模式-工厂模式</h3><p>最常用的实例化对象模式，用工厂中的方法代替new创建对象的一种设计模式。</p>
+<h1 id="Spring-1"><a href="#Spring-1" class="headerlink" title="Spring"></a>Spring</h1><p>IOC：控制反转，对象创建的权力转移了，不在new了，交由spring管理。<br>AOP：日志与异常的代码，动态的切入业务类。</p>
+<p>以前使用EJB，臃肿、低效的开发模式。</p>
+<p>开发分三层：</p>
+<ul>
+<li>表现层：整合Struts</li>
+<li>业务层：事务管理，记录日志</li>
+<li>持久层：整合Hibernate，JdbcTemplate</li>
+</ul>
+<h2 id="Spring的IOC"><a href="#Spring的IOC" class="headerlink" title="Spring的IOC"></a>Spring的IOC</h2><h3 id="设计模式-工厂模式"><a href="#设计模式-工厂模式" class="headerlink" title="设计模式-工厂模式"></a>设计模式-工厂模式</h3><p>最常用的实例化对象模式，用工厂中的方法代替new创建对象的一种设计模式。</p>
 <h3 id="IOC和DI"><a href="#IOC和DI" class="headerlink" title="IOC和DI"></a>IOC和DI</h3><h4 id="IOC-Inversion-of-Control"><a href="#IOC-Inversion-of-Control" class="headerlink" title="IOC-Inversion of Control"></a>IOC-Inversion of Control</h4><p>控制反转。不是一个技术，而是一个思想。</p>
+<p>对象创建的权力转移了，不在new了，交由spring管理。</p>
 <p>作用：削减代码间的耦合。</p>
 <p>实现思想：利用工厂模式，把创建对象代码从具体类中剥离出去，交由工厂完成，从而降低代码间的依赖关系。</p>
 <p>耦合分类：</p>
@@ -495,7 +504,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -517,7 +526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

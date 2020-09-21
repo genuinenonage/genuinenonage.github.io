@@ -284,6 +284,481 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/" itemprop="url">Linux安装Mysql 8.0</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T10:42:00+08:00">
+                2020-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E8%A3%85/" itemprop="url" rel="index">
+                    <span itemprop="name">安装</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://blog.csdn.net/xiexinxx0225/article/details/107665316" target="_blank" rel="noopener" title="参考连接">https://blog.csdn.net/xiexinxx0225/article/details/107665316</a>  </p>
+<h2 id="卸载MariaDB"><a href="#卸载MariaDB" class="headerlink" title="卸载MariaDB"></a>卸载MariaDB</h2><p>MariaDB是Linux默认数据库，需先卸载。  </p>
+<ol>
+<li>使用 yum list installed | grep mariadb 检查MariaDB是否安装。</li>
+<li>使用 yum -y remove mariadb* 命令 卸载</li>
+</ol>
+<h2 id="删除MySQL对应的文件夹"><a href="#删除MySQL对应的文件夹" class="headerlink" title="删除MySQL对应的文件夹"></a>删除MySQL对应的文件夹</h2><ol>
+<li><p>whereis mysql</p>
+</li>
+<li><p>find / -name musql</p>
+<pre><code>[root@localhost /]# whereis mysql
+mysql: /usr/bin/mysql /usr/include/mysql
+[root@localhost lib]# find / -name mysql
+/data/mysql
+/data/mysql/mysql</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>删除上两条命令查询出来的相关目录或文件。</p>
+<pre><code>[root@localhost /]#  rm -rf /usr/bin/mysql /usr/include/mysql /data/mysql /data/mysql/mysql </code></pre></li>
+<li><p>重复输入1、2命令，是否删除完毕。</p>
+</li>
+</ol>
+<h2 id="检查MySQL用户组和用户是否存在，如果没有，则创建"><a href="#检查MySQL用户组和用户是否存在，如果没有，则创建" class="headerlink" title="检查MySQL用户组和用户是否存在，如果没有，则创建"></a>检查MySQL用户组和用户是否存在，如果没有，则创建</h2><pre><code>[root@localhost /]# cat /etc/group | grep mysql
+[root@localhost /]# cat /etc/passwd |grep mysql
+[root@localhost /]# groupadd mysql
+[root@localhost /]# useradd -r -g mysql mysql
+[root@localhost /]#</code></pre><h2 id="命令下载Linux的Mysql安装包"><a href="#命令下载Linux的Mysql安装包" class="headerlink" title="命令下载Linux的Mysql安装包"></a>命令下载Linux的Mysql安装包</h2><pre><code>[root@localhost ~]#  wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h1 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h1><h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><pre><code>[root@localhost /]#  tar xvf mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
+[root@localhost /]# ls
+mysql-8.0.19-linux-glibc2.12-x86_64
+mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li><p>首先确保/usr/local/下没有mysql文件夹，如果有就删除  </p>
+</li>
+<li><p>执行移动命令  </p>
+<pre><code>[root@localhost ~]# mv mysql-8.0.19-linux-glibc2.12-x86_64 /usr/local/mysql</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>在/usr/local/mysql目录下创建data目录  </p>
+<pre><code>[root@localhost /]# mkdir /usr/local/mysql/data</code></pre></li>
+<li><p>更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限  </p>
+</li>
+</ol>
+<pre><code>[root@localhost /]# chown -R mysql:mysql /usr/local/mysql
+[root@localhost /]# chmod -R 755 /usr/local/mysql </code></pre><ol start="5">
+<li><p>下载链接库文件  </p>
+<pre><code>[root@localhost bin]#  yum -y install libaio-devel.x86_64</code></pre></li>
+<li><p>编译安装并初始化mysql,务必记住初始化输出日志末尾的密码（数据库管理员临时密码）  </p>
+<pre><code>[root@localhost /]# cd /usr/local/mysql/bin
+[root@localhost bin]# ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql</code></pre></li>
+<li><p>编辑配置文件my.cnf，添加配置如下</p>
+<pre><code>[root@localhost bin]#  vi /etc/my.cnf
+
+[mysqld]
+datadir=/usr/local/mysql/data
+port=3306
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+symbolic-links=0
+max_connections=600
+innodb_file_per_table=1
+log-error=/usr/local/mysql/data/error.log</code></pre></li>
+<li><p>测试启动mysql服务器</p>
+<pre><code>[root@localhost /]# /usr/local/mysql/support-files/mysql.server start</code></pre></li>
+<li><p>添加软连接，并重启mysql服务</p>
+<pre><code>[root@localhost /]#  ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
+[root@localhost /]#  ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+[root@localhost /]#  service mysql restart  </code></pre></li>
+<li><p>登录mysql，修改密码(密码为步骤6生成的临时密码)</p>
+<pre><code>[root@localhost /]#  mysql -u root -p
+Enter password:
+mysql&gt;ALTER USER USER() IDENTIFIED BY &apos;yourpass&apos;;
+mysql&gt;flush privileges;</code></pre></li>
+<li><p>开放远程连接  </p>
+<pre><code>mysql&gt;use mysql;
+msyql&gt;update user set user.Host=&apos;%&apos; where user.User=&apos;root&apos;;
+mysql&gt;flush privileges; </code></pre></li>
+</ol>
+<ol start="12">
+<li><p>必须修改加密规则  </p>
+<pre><code>1.输入 use mysql; 出现Database changed
+2.输入select user,host from user; 目的为了查看user的root 对应host是什么  我对应的是 %
+3.修改加密规则：输入ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;
+
+root:为数据库用户名
+123456：为数据库密码</code></pre></li>
+</ol>
+<ol start="13">
+<li>可以自由设置开机自动启动</li>
+</ol>
+<pre><code>1、将服务文件拷贝到init.d下，并重命名为mysql
+[root@localhost /]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+2、赋予可执行权限
+[root@localhost /]# chmod +x /etc/init.d/mysqld
+3、添加服务
+[root@localhost /]# chkconfig --add mysqld
+4、显示服务列表
+[root@localhost /]# chkconfig --list</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">剑指offer算法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-20T19:47:00+08:00">
+                2020-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03. 数组中重复的数字"></a>03. 数组中重复的数字</h2><p>利用集合的唯一性。</p>
+<pre><code>//重要代码
+Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();
+set.add(value)  </code></pre><ul>
+<li><p>集合中没有返回true</p>
+</li>
+<li><p>集合中已存在，返回false   </p>
+<pre><code>public int findRepeatNumber(int[] nums) {  
+    Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();  
+    for(int num: nums){  
+        if(!set.add(num)){  
+            return num;
+        }
+    }
+    return -1;
+}</code></pre></li>
+</ul>
+<h2 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04. 二维数组中的查找"></a>04. 二维数组中的查找</h2><p>标签：数组，双指针<br>利用题目的特性，找出解题的简便方法，是程序流程变得简单。  </p>
+<pre><code>class Solution {
+    int tar = 0;
+    int n = 0;
+    int m = 0;
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        tar=target;
+        n = matrix.length;
+        if(n == 0){
+            return false;
+        }
+        m = matrix[0].length;
+        if(m == 0){
+            return false;
+        }
+        return bianli(matrix,0,m-1);
+    }
+
+    public boolean bianli(int[][] numss, int i, int j){
+        if(numss[i][j] &lt; tar &amp;&amp; i+1 &lt; n){
+            return bianli(numss, i+1, j);
+        }else if(numss[i][j] == tar){
+            return true;
+        }else if( j-1&gt;=0){
+            return bianli(numss,i,j-1);
+        }
+        return false;
+    }
+}</code></pre><h2 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h2><p>字符数组的使用比字符串拼接（+）快无数倍。  </p>
+<pre><code>//重要代码  
+String s = new String(chars, 0, size);
+
+class Solution {
+    public String replaceSpace(String s) {
+        int len = s.length();
+        char[] chars = new char[len * 3];
+        int size = 0;
+        for(int i = 0; i &lt; len; i++){
+            char c = s.charAt(i);
+            if(c == &apos; &apos;){
+                chars[size++] = &apos;%&apos;;
+                chars[size++] = &apos;2&apos;;
+                chars[size++] = &apos;0&apos;;
+            }else{
+                chars[size++] = c;
+            }
+        }
+        String res = new String(chars, 0, size);
+        return res;
+    }
+}  </code></pre><h2 id="06-从尾到头打印链表-未完成"><a href="#06-从尾到头打印链表-未完成" class="headerlink" title="06. 从尾到头打印链表-未完成"></a>06. 从尾到头打印链表-未完成</h2><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。  </p>
+<pre><code>class Solution {
+    public int[] reversePrint(ListNode head) {
+        //1. 首先使用数组解决，链表我还没有清晰的思路
+        int[] arr = new int[10000];
+        int size = 0;
+        while(head!= null){
+            arr[size] = head.val;
+            size ++;
+            head = head.next;
+        }
+        int [] rearr = new int[size];
+        int i = 0;
+        int j = 0;
+        for(i = size-1,j = 0;i &gt;= 0;i --,j++){
+            rearr[i] = arr[j];
+        }
+        return rearr;
+
+        //2. 使用栈解决
+        // Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();
+        // while(head != null){
+        //     stack.push(head.val);
+        //     head = head.next;
+        // }
+        // int size = stack.size();
+        // int[] rearr = new int[size];
+        // for(int i = 0; i &lt; size; i++){
+        //     rearr[i] = stack.pop();
+        // }
+        // return rearr;
+    }
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1630,258 +2105,6 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url">组件，框架，中间件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
-                2020-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
-<h6 id="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"><a href="#中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。" class="headerlink" title="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"></a>中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</h6><h6 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h6><p>IDC的分类：</p>
-<ol>
-<li>终端仿真/屏幕转换</li>
-<li>数据访问</li>
-<li>远程过程调用</li>
-<li>消息中间件</li>
-<li>交易中间件</li>
-<li>对象中间件</li>
-</ol>
-<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/" itemprop="url">轻量级与重量级</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
-                2020-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>轻量级与重量级<br>两者是一个相对概念，主要是对应 应用框架的使用方便性和所提供的服务特性等方面作比较。<br>比如：<br>EJB是重量级框架：对编写的代码有限制，同时提供了分布式等复杂的功能。<br>Spring是轻量级框架：只需要普通的Java对象，提供中小应用使用的功能。</p>
-<p>划分一个应用是否属于轻量级还是重量级，主要看使用了多少服务。<br>使用的服务越多，容器要为普通Java对象做的工作越多，必然会影响到应用的发布时间或运行性能。<br>对于spring容器，提供了很多服务，但这些服务不是默认打开的，应用需要某种服务，需指明使用该服务。如果应用使用的服务很少，如：只使用了spring核心服务，可以认为此时应用属于轻量级的；如果应用使用了spring提供的大部分服务，这是应用就属于重量级。EJB容器就因为他默认为应用提供了EJB规范中所有的功能，所以属于重量级。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1932,7 +2155,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1954,7 +2177,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
