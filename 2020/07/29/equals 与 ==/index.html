@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。   &#x3D;&#x3D; 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）String类中重新定义了eq">
+<meta name="description" content="区别 equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。   &#x3D;&#x3D; 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）String类中重新定义了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="equals 与 &#x3D;&#x3D; 的区别">
 <meta property="og:url" content="http://yoursite.com/2020/07/29/equals%20%E4%B8%8E%20==/index.html">
 <meta property="og:site_name" content="genuine nonage">
-<meta property="og:description" content="equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。   &#x3D;&#x3D; 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）String类中重新定义了eq">
+<meta property="og:description" content="区别 equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。   &#x3D;&#x3D; 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）String类中重新定义了">
 <meta property="article:published_time" content="2020-07-29T03:26:00.000Z">
 <meta property="article:modified_time" content="2020-07-29T15:02:00.000Z">
 <meta property="article:author" content="QB">
@@ -386,12 +386,19 @@
       
 
       
-        <ol>
+        <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol>
 <li>equals方法对于字符串来说是比较内容的，对于非字符串来说是比较 其指向的对象是否相同。  </li>
 <li>== 比较的 其指向的对象是否相同，也就是对象在内存中的首地址。（Java中对象的首地址是 它的内存中存放的起始地址，后面的地址是用来存放他所包含的各个属性的地址，内存中会用多个内存块来存放对象的各个参数，而通过这个首地址就可以找到该对象，进而可以找到该对象的各个属性。）<br>String类中重新定义了equals方法，比较的是值。  </li>
 <li>如果比较基本类型，只能用 == 比较，不能用equals  </li>
 <li>对于基本类型的包装类型， == 比较地址，equals比较内容。<br>（Object类中的equals方法使用来比较地址的，其他对象需要重写equals方法。）</li>
 </ol>
+<h3 id="如何重写对象的equals方法和hashCode方法"><a href="#如何重写对象的equals方法和hashCode方法" class="headerlink" title="如何重写对象的equals方法和hashCode方法"></a>如何重写对象的equals方法和hashCode方法</h3><h4 id="1-需求"><a href="#1-需求" class="headerlink" title="1. 需求"></a>1. 需求</h4><p>对比两个对象是否相等对比下面的User对象，只需姓名和年龄相等则认为是同一个对象</p>
+<h4 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2. 解决方案"></a>2. 解决方案</h4><p>需要重写对象的 equals 方法和 hashCode 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户实体</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yule</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/8/6 21:51</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id, String name, String age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;&#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.id + <span class="string">" "</span> + <span class="keyword">this</span>.name + <span class="string">" "</span> + <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span> == obj)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//地址相等</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(obj == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//非空性：对于任意非空引用x，x.equals(null)应该返回false。</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(obj <span class="keyword">instanceof</span> User)&#123;</span><br><span class="line">            User other = (User) obj;</span><br><span class="line">            <span class="comment">//需要比较的字段相等，则这两个对象相等</span></span><br><span class="line">            <span class="keyword">if</span>(equalsStr(<span class="keyword">this</span>.name, other.name)</span><br><span class="line">                    &amp;&amp; equalsStr(<span class="keyword">this</span>.age, other.age))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">equalsStr</span><span class="params">(String str1, String str2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isEmpty(str1) &amp;&amp; StringUtils.isEmpty(str2))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!StringUtils.isEmpty(str1) &amp;&amp; str1.equals(str2))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">17</span>;</span><br><span class="line">        result = <span class="number">31</span> * result + (name == <span class="keyword">null</span> ? <span class="number">0</span> : name.hashCode());</span><br><span class="line">        result = <span class="number">31</span> * result + (age == <span class="keyword">null</span> ? <span class="number">0</span> : age.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。</p>
+<p>正例：”test”.equals(object);</p>
+<p>说明：推荐使用 java.util.Objects#equals（JDK7 引入的工具类）。</p>
 
       
     </div>
@@ -486,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +529,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -524,7 +540,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -547,6 +563,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何重写对象的equals方法和hashCode方法"><span class="nav-number">2.</span> <span class="nav-text">如何重写对象的equals方法和hashCode方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-需求"><span class="nav-number">2.1.</span> <span class="nav-text">1. 需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-解决方案"><span class="nav-number">2.2.</span> <span class="nav-text">2. 解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用建议"><span class="nav-number">3.</span> <span class="nav-text">使用建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
