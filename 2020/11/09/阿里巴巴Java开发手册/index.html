@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="索引数据结构红黑树，Hash表，B+Tree二叉树，红黑树，Hash表，B-Tree。 索引的本质索引是帮助Mysql高效获取数据的排好序的数据结构。 红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。 Hash：哈希算法：哈希散列值结果就是磁盘文件地址。  不管表记录有多少，都能快速定位表数据的位置。 但是不能很好解决范围查找。  B-Tree：   叶子节点具有相同的深度，存放数">
+<meta name="description" content="阿里巴巴Java开发手册前言划分七个维度：编程规约、异常日志、单元测试、安全规约、MySQL数据库、工程结构、设计规约。 编程规约命名风格 代码中的命名不能以下划线或美元符号开始或结束。 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文。 类名是使用UpperCamelCase风格，但有例外：DO&#x2F;BO&#x2F;DTO&#x2F;VO&#x2F;AO&#x2F;PO&#x2F;UID等。 正例：UserDO&#x2F;XmlService">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql">
-<meta property="og:url" content="http://yoursite.com/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="阿里巴巴Java开发手册">
+<meta property="og:url" content="http://yoursite.com/2020/11/09/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/index.html">
 <meta property="og:site_name" content="genuine nonage">
-<meta property="og:description" content="索引数据结构红黑树，Hash表，B+Tree二叉树，红黑树，Hash表，B-Tree。 索引的本质索引是帮助Mysql高效获取数据的排好序的数据结构。 红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。 Hash：哈希算法：哈希散列值结果就是磁盘文件地址。  不管表记录有多少，都能快速定位表数据的位置。 但是不能很好解决范围查找。  B-Tree：   叶子节点具有相同的深度，存放数">
-<meta property="og:image" content="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg">
-<meta property="article:published_time" content="2020-09-17T03:04:00.000Z">
-<meta property="article:modified_time" content="2020-09-17T09:59:10.511Z">
+<meta property="og:description" content="阿里巴巴Java开发手册前言划分七个维度：编程规约、异常日志、单元测试、安全规约、MySQL数据库、工程结构、设计规约。 编程规约命名风格 代码中的命名不能以下划线或美元符号开始或结束。 代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文。 类名是使用UpperCamelCase风格，但有例外：DO&#x2F;BO&#x2F;DTO&#x2F;VO&#x2F;AO&#x2F;PO&#x2F;UID等。 正例：UserDO&#x2F;XmlService">
+<meta property="article:published_time" content="2020-11-09T10:01:00.736Z">
+<meta property="article:modified_time" content="2020-11-11T01:36:08.085Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/09/17/Mysql索引优化/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/11/09/阿里巴巴Java开发手册/"/>
 
 
 
 
 
-  <title>Mysql | genuine nonage</title>
+  <title>阿里巴巴Java开发手册 | genuine nonage</title>
   
 
 
@@ -287,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -304,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mysql</h1>
+          <h1 class="post-title" itemprop="name headline">阿里巴巴Java开发手册</h1>
         
 
         <div class="post-meta">
@@ -316,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-17T11:04:00+08:00">
-                2020-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-09T18:01:00+08:00">
+                2020-11-09
               </time>
             
 
@@ -354,65 +352,88 @@
       
 
       
-        <h2 id="索引数据结构红黑树，Hash表，B-Tree"><a href="#索引数据结构红黑树，Hash表，B-Tree" class="headerlink" title="索引数据结构红黑树，Hash表，B+Tree"></a>索引数据结构红黑树，Hash表，B+Tree</h2><p>二叉树，红黑树，Hash表，B-Tree。</p>
-<h3 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h3><p>索引是帮助Mysql高效获取数据的排好序的数据结构。</p>
-<p>红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。</p>
-<p>Hash：哈希算法：哈希散列值结果就是磁盘文件地址。</p>
-<ul>
-<li>不管表记录有多少，都能快速定位表数据的位置。</li>
-<li>但是不能很好解决范围查找。</li>
-</ul>
-<p>B-Tree： </p>
-<ul>
-<li>叶子节点具有相同的深度，存放数据。</li>
-<li>所有索引元素不重复。</li>
-<li>节点中的数据索引从左到右递增排列。</li>
-</ul>
-<p>B+Tree：每个数据节点都能快速找到相邻节点（节点之间双向指针）。</p>
-<ul>
-<li><p>非叶子节点不存储data，只存储索引（非叶子节点冗余索引），可以放更多的索引。</p>
+        <h1 id="阿里巴巴Java开发手册"><a href="#阿里巴巴Java开发手册" class="headerlink" title="阿里巴巴Java开发手册"></a>阿里巴巴Java开发手册</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>划分七个维度：编程规约、异常日志、单元测试、安全规约、MySQL数据库、工程结构、设计规约。</p>
+<h2 id="编程规约"><a href="#编程规约" class="headerlink" title="编程规约"></a>编程规约</h2><h3 id="命名风格"><a href="#命名风格" class="headerlink" title="命名风格"></a>命名风格</h3><ol>
+<li>代码中的命名不能以下划线或美元符号开始或结束。</li>
+<li>代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文。</li>
+<li>类名是使用UpperCamelCase风格，但有例外：DO/BO/DTO/VO/AO/PO/UID等。<ol>
+<li>正例：UserDO/XmlService</li>
+<li>反例：UserDo/XMLService</li>
+</ol>
 </li>
-<li><p>叶子界定啊包含所有索引字段</p>
+<li>方法名、参数名、成员变量、局部变量统一使用lowerCamelCase风格。必须遵从驼峰式。</li>
+<li>常量名全部大写，单词间用下划线隔开，力求语义表达完整，不要嫌名字长。</li>
+<li>抽象类命名使用Abstract或Base开头；异常类命名使用Exception结尾；测试类命名以Test结尾。</li>
+<li>类型与中括号紧挨相连表示数组。</li>
+<li>POJO类中布尔类型变量都不要加si前缀，否则部分框架解析会引起序列化错误。</li>
+<li>包名统一使用小写，点分隔符之间有且仅有一个自然语义的英语单词。</li>
+<li>避免在子父类的成员变量之间、或者不同代码块的局部变量之间采用完全相同的命名。</li>
+<li>杜绝不规范缩写。</li>
+<li>任何自定义编程元素在命名时，使用尽量完整的单词组合来表达其意。</li>
+<li>命名常量与变量时，表示类型的名词放在词尾。<ol>
+<li>正例：startTime</li>
+</ol>
 </li>
-<li><p>叶子节点用指针链接，提高区间访问的性能。</p>
+<li>如果模块、接口、类、方法使用了设计模式，在命名时体现出具体模式<ol>
+<li>public class OrderFactory;</li>
+</ol>
 </li>
-<li><p>提高范围查找的性能。</p>
+<li>接口类中的方法和属性不要加任何修饰符号（public也不要加），保持代码的简洁性，并加上有效的Javadoc注释。尽量不要在接口里定义变量，除非与接口方法相关，并且是整个应用的基础常量。</li>
+<li>接口和实现类有两套命名规则<ol>
+<li>对于Service和DAO类，基于SOA理念，暴露出来的服务一定是接口，额你不的实现类用Impl的后缀与接口区别。</li>
+<li>如果是形容能力的接口名称，去对应的形容词为接口名（通常是-able的形容词）<ol>
+<li>正例：AbstractTranslator实现Translatable接口。</li>
+</ol>
 </li>
-</ul>
-<h3 id="B-Tree与B-Tree的不同："><a href="#B-Tree与B-Tree的不同：" class="headerlink" title="B-Tree与B+Tree的不同："></a>B-Tree与B+Tree的不同：</h3><ul>
-<li><p>B+Tree叶子节点之间增加双向指针，B-Tree叶子节点之间没有。</p>
+</ol>
 </li>
-<li><p>B+Tree非叶子简单不存放数据，只存放索引（所以造成冗余索引）；B-Tree所有节点都存放数据，没有冗余索引。</p>
+<li>枚举类名带上Enum后缀，枚举成员名称需全大写，单词间用下划线隔开。<ol>
+<li>说明：枚举其实就是特殊的类，域成员均为常量，且构造方法被默认强制是私有。</li>
+</ol>
 </li>
-<li><p>在树的高度相同的情况下，B+Tree能放的数据更多。</p>
+<li>各层命名规约：<ol>
+<li>Service/DAO层方法命名规约<ol>
+<li>获取单个对象的方法用 get 做前缀。</li>
+<li>获取多个对象的方法用 list 做前缀，复数形式结尾如：listObjects。</li>
+<li>获取统计值的方法用 count 做前缀。 </li>
+<li>插入的方法用 save/insert 做前缀。</li>
+<li>删除的方法用 remove/delete 做前缀。</li>
+<li>修改的方法用 update 做前缀。</li>
+</ol>
 </li>
-</ul>
-<h2 id="千万级数据表快速查找"><a href="#千万级数据表快速查找" class="headerlink" title="千万级数据表快速查找"></a>千万级数据表快速查找</h2><p>Mysql底层数据结构：B+Tree（B-Tree变种）：多叉查找(x&lt;y&lt;=z]</p>
-<p>B+Tree的索引每个节点大小：16kb</p>
-<p>数据库有存储引擎的概念。表级别的概念。INNODB/MYISAM</p>
-<p>MYISAM（非聚集索引）:</p>
-<pre><code>frm表结构信息
-MYD存储数据
-MYI存储B+Tree的索引。</code></pre><p>INNODB（聚集索引）: </p>
-<pre><code>frm表结构信息
-ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a href="#基于B-Tree高性能索引" class="headerlink" title="基于B+Tree高性能索引"></a>基于B+Tree高性能索引</h2><p>INNODB索引实现（聚集）</p>
-<ul>
-<li>表数据文件本身就是按B+Tree组织的一个索引结构的文件。</li>
-<li>聚集索引：叶子节点包含了完整的数据记录。</li>
-<li>为什么INNODB表必须有主键，并且建议整型自增。<ul>
-<li>如果没有主键，mysql找字段中的唯一字段作为索引，如果都没有，MySQL会创建一个隐藏列。不要增加MySQL的性能负担。</li>
-<li>主键不要使用UUID（UUID不是整形也不是自增），B+树经常比大小，整形比大小快，上产环境高速SSD成本高。</li>
-<li>在B+Tree数据结构中，自增树插入对B+Tree树的分裂小（B+Tree会自动优化分裂树的结构，保证在一定的规范下），随机树插入对B+Tree的分裂大</li>
-</ul>
+<li>领域模型命名规约<ol>
+<li>数据对象：xxxDO，xxx 即为数据表名。</li>
+<li>数据传输对象：xxxDTO，xxx 为业务领域相关的名称。</li>
+<li>展示对象：xxxVO，xxx 一般为网页名称。</li>
+<li>POJO 是 DO/DTO/BO/VO 的统称，禁止命名成 xxxPOJO。</li>
+</ol>
 </li>
-<li>为什么主键索引结构叶子节点存储的是主键值？（一致性和节省存储空间）</li>
-</ul>
-<h2 id="联合索引底层数据结构"><a href="#联合索引底层数据结构" class="headerlink" title="联合索引底层数据结构"></a>联合索引底层数据结构</h2><p>KEY ‘idx_name_age_position’ （’name’,’age’,’position’) USING BTREE</p>
-<p>根据索引字段的顺序进行比较。先比较name后age后position</p>
-<p><img src="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg" alt="联合索引底层数据结构.jpg"></p>
-<p>最左前缀优化：因为联合索引底层已经实现了</p>
-<pre><code>explain select * from employees where name=&apos;Bill&apos; and age=31;</code></pre><p>还有很多的知识需要学习。</p>
-
+</ol>
+</li>
+</ol>
+<h3 id="代码格式"><a href="#代码格式" class="headerlink" title="代码格式"></a>代码格式</h3><h3 id="OOP规约"><a href="#OOP规约" class="headerlink" title="OOP规约"></a>OOP规约</h3><h3 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h3><h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><ol>
+<li>获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</li>
+<li>创建线程或线程池是请指定有意义的线程名称，方便出错时回溯。</li>
+<li>线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。</li>
+<li>线程池不允许使用Executors去创建，通过ThreadPoolExector的方式。可以更加明确线程池的运行规则，规避资源耗尽的风险。</li>
+<li>SimpleDateFormat 是线程不安全的类，一般不要定义为 static 变量，如果定义为static，必须加锁，或者使用 DateUtils 工具类。</li>
+<li>必须回收自定义的ThreadLocal变量，尤其在线程池场景下，线程经常会被复用，如不清理，可能会影响后续业务逻辑和造成内存泄漏等问题。尽量在代理中使用try-finally块进行回收。</li>
+<li>高并发时，同步调用应该去考量锁的性能损耗。能用无锁数据结构，就不要用锁；能锁区块，不要锁整个方法体；能用对象锁，不要用类锁。<ol>
+<li>说明：尽可能使加锁的代码块工作量尽可能的小，避免在锁代码块中调用RPC方法。</li>
+</ol>
+</li>
+<li>对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。</li>
+<li>在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。</li>
+<li>在使用尝试机制来获取锁的方式中，进入业务代码块之前，必须先判断当前线程是否持有锁。锁的释放规则与锁的阻塞等待方式相同。<ol>
+<li>说明：Lock 对象的 unlock 方法在执行时，它会调用 AQS 的 tryRelease 方法（取决于具体实现类），如果当前线程不持有锁，则抛出IllegalMonitorStateException 异常。</li>
+</ol>
+</li>
+<li>并发修改同一记录时，避免更新丢失，需要加锁。要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用 version 作为更新依据。<ol>
+<li>说明：如果每次访问冲突概率小于 20%，推荐使用乐观锁，否则使用悲观锁。乐观锁的重试次数不得小于3次。</li>
+</ol>
+</li>
+</ol>
+<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><h3 id="注释规约"><a href="#注释规约" class="headerlink" title="注释规约"></a>注释规约</h3><h2 id="异常日志"><a href="#异常日志" class="headerlink" title="异常日志"></a>异常日志</h2><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h3 id="日志规约"><a href="#日志规约" class="headerlink" title="日志规约"></a>日志规约</h3><h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h2 id="安全规约"><a href="#安全规约" class="headerlink" title="安全规约"></a>安全规约</h2><h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><h3 id="ORM映射"><a href="#ORM映射" class="headerlink" title="ORM映射"></a>ORM映射</h3><h2 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h2><h3 id="应用分层"><a href="#应用分层" class="headerlink" title="应用分层"></a>应用分层</h3><h3 id="二方库依赖"><a href="#二方库依赖" class="headerlink" title="二方库依赖"></a>二方库依赖</h3><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><h2 id="设计规约"><a href="#设计规约" class="headerlink" title="设计规约"></a>设计规约</h2>
       
     </div>
     
@@ -436,8 +457,8 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/09/12/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="next" title="Java多线程">
-                <i class="fa fa-chevron-left"></i> Java多线程
+              <a href="/2020/11/09/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/" rel="next" title="docker安装多种容器">
+                <i class="fa fa-chevron-left"></i> docker安装多种容器
               </a>
             
           </div>
@@ -446,8 +467,8 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/09/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF/" rel="prev" title="微服务架构技术">
-                微服务架构技术 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/11/10/%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="prev" title="一些零散的知识点">
+                一些零散的知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,7 +601,7 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引数据结构红黑树，Hash表，B-Tree"><span class="nav-number">1.</span> <span class="nav-text">索引数据结构红黑树，Hash表，B+Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的本质"><span class="nav-number">1.1.</span> <span class="nav-text">索引的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree与B-Tree的不同："><span class="nav-number">1.2.</span> <span class="nav-text">B-Tree与B+Tree的不同：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#千万级数据表快速查找"><span class="nav-number">2.</span> <span class="nav-text">千万级数据表快速查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于B-Tree高性能索引"><span class="nav-number">3.</span> <span class="nav-text">基于B+Tree高性能索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合索引底层数据结构"><span class="nav-number">4.</span> <span class="nav-text">联合索引底层数据结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阿里巴巴Java开发手册"><span class="nav-number">1.</span> <span class="nav-text">阿里巴巴Java开发手册</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编程规约"><span class="nav-number">1.2.</span> <span class="nav-text">编程规约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名风格"><span class="nav-number">1.2.1.</span> <span class="nav-text">命名风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码格式"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OOP规约"><span class="nav-number">1.2.3.</span> <span class="nav-text">OOP规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合处理"><span class="nav-number">1.2.4.</span> <span class="nav-text">集合处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发处理"><span class="nav-number">1.2.5.</span> <span class="nav-text">并发处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制语句"><span class="nav-number">1.2.6.</span> <span class="nav-text">控制语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释规约"><span class="nav-number">1.2.7.</span> <span class="nav-text">注释规约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常日志"><span class="nav-number">1.3.</span> <span class="nav-text">异常日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">1.3.1.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志规约"><span class="nav-number">1.3.2.</span> <span class="nav-text">日志规约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.4.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全规约"><span class="nav-number">1.5.</span> <span class="nav-text">安全规约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL数据库"><span class="nav-number">1.6.</span> <span class="nav-text">MySQL数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建表规约"><span class="nav-number">1.7.</span> <span class="nav-text">建表规约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引规约"><span class="nav-number">1.8.</span> <span class="nav-text">索引规约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句"><span class="nav-number">1.9.</span> <span class="nav-text">SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ORM映射"><span class="nav-number">1.9.1.</span> <span class="nav-text">ORM映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程结构"><span class="nav-number">1.10.</span> <span class="nav-text">工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用分层"><span class="nav-number">1.10.1.</span> <span class="nav-text">应用分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二方库依赖"><span class="nav-number">1.10.2.</span> <span class="nav-text">二方库依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">1.10.3.</span> <span class="nav-text">服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计规约"><span class="nav-number">1.11.</span> <span class="nav-text">设计规约</span></a></li></ol></li></ol></div>
             
 
           </div>

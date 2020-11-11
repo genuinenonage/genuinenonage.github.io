@@ -362,6 +362,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateAnswer</span><span class="params">(<span class="keyword">double</span> wingSpan, <span class="keyword">int</span> numberOfEngines,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">double</span> length, <span class="keyword">double</span> grossTons)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//do the calculation here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面方法的签名是:<br><code>calculateAnswer(double, int, double, double)</code></p>
+<h3 id="3-OOM"><a href="#3-OOM" class="headerlink" title="3. OOM"></a>3. OOM</h3><h4 id="什么是OOM？"><a href="#什么是OOM？" class="headerlink" title="什么是OOM？"></a>什么是OOM？</h4><p>OOM，全称”Out Of Memory”—“内存用完了”，来源于java.lang.OutOfMemoryError。</p>
+<p>当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也没有空间可回收时，就会抛出这个error。</p>
+<h4 id="为什么会OOM？"><a href="#为什么会OOM？" class="headerlink" title="为什么会OOM？"></a>为什么会OOM？</h4><ol>
+<li>分配的少了：虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。</li>
+<li>应用用的太多，并且用完没释放，浪费了。此时造成内存泄露或者内存溢出。</li>
+</ol>
+<h4 id="内存泄漏，内存溢出"><a href="#内存泄漏，内存溢出" class="headerlink" title="内存泄漏，内存溢出"></a>内存泄漏，内存溢出</h4><p><strong>内存泄漏</strong>：申请使用完的内存没有释放，导致虚拟机不能再次使用该内存，此时这段内存就泄露了。因为申请者不用了，而又不能被虚拟机分配给别人用。</p>
+<p><strong>内存溢出</strong>：申请的内存超出了JVM能提供的内存大小，此时称之为溢出。</p>
+<p><strong>在Java语言中</strong>，由于存在了垃圾自动回收机制，所以，我们一般不用去主动释放不用的对象所占的内存，也就是理论上来说，是<strong>不会存在“内存泄露”的</strong>。</p>
+<p><strong>如果编码不当</strong>，比如，将某个对象的引用放到了全局的Map中，虽然方法结束了，但是由于垃圾回收器会根据对象的引用情况来回收内存，导致该对象不能被及时的回收。如果该种情况出现次数多了，就<strong>会导致内存溢出</strong>，比如<strong>系统中经常使用的缓存机制。</strong></p>
 
           
         
@@ -410,7 +420,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -429,7 +439,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/11/09/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" itemprop="url">Java开发手册</a></h1>
+                <a class="post-title-link" href="/2020/11/09/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/" itemprop="url">阿里巴巴Java开发手册</a></h1>
         
 
         <div class="post-meta">
@@ -481,7 +491,7 @@
       
         
           
-            <h1 id="Java开发手册"><a href="#Java开发手册" class="headerlink" title="Java开发手册"></a>Java开发手册</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>划分七个维度：编程规约、异常日志、单元测试、安全规约、MySQL数据库、工程结构、设计规约。</p>
+            <h1 id="阿里巴巴Java开发手册"><a href="#阿里巴巴Java开发手册" class="headerlink" title="阿里巴巴Java开发手册"></a>阿里巴巴Java开发手册</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>划分七个维度：编程规约、异常日志、单元测试、安全规约、MySQL数据库、工程结构、设计规约。</p>
 <h2 id="编程规约"><a href="#编程规约" class="headerlink" title="编程规约"></a>编程规约</h2><h3 id="命名风格"><a href="#命名风格" class="headerlink" title="命名风格"></a>命名风格</h3><ol>
 <li>代码中的命名不能以下划线或美元符号开始或结束。</li>
 <li>代码中的命名严禁使用拼音与英文混合的方式，更不允许直接使用中文。</li>
@@ -540,7 +550,29 @@
 </ol>
 </li>
 </ol>
-<h3 id="代码格式"><a href="#代码格式" class="headerlink" title="代码格式"></a>代码格式</h3><h3 id="OOP规约"><a href="#OOP规约" class="headerlink" title="OOP规约"></a>OOP规约</h3><h3 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h3><h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><h3 id="注释规约"><a href="#注释规约" class="headerlink" title="注释规约"></a>注释规约</h3><h2 id="异常日志"><a href="#异常日志" class="headerlink" title="异常日志"></a>异常日志</h2><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h3 id="日志规约"><a href="#日志规约" class="headerlink" title="日志规约"></a>日志规约</h3><h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h2 id="安全规约"><a href="#安全规约" class="headerlink" title="安全规约"></a>安全规约</h2><h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><h3 id="ORM映射"><a href="#ORM映射" class="headerlink" title="ORM映射"></a>ORM映射</h3><h2 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h2><h3 id="应用分层"><a href="#应用分层" class="headerlink" title="应用分层"></a>应用分层</h3><h3 id="二方库依赖"><a href="#二方库依赖" class="headerlink" title="二方库依赖"></a>二方库依赖</h3><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><h2 id="设计规约"><a href="#设计规约" class="headerlink" title="设计规约"></a>设计规约</h2>
+<h3 id="代码格式"><a href="#代码格式" class="headerlink" title="代码格式"></a>代码格式</h3><h3 id="OOP规约"><a href="#OOP规约" class="headerlink" title="OOP规约"></a>OOP规约</h3><h3 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h3><h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><ol>
+<li>获取单例对象需要保证线程安全，其中的方法也要保证线程安全。</li>
+<li>创建线程或线程池是请指定有意义的线程名称，方便出错时回溯。</li>
+<li>线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。</li>
+<li>线程池不允许使用Executors去创建，通过ThreadPoolExector的方式。可以更加明确线程池的运行规则，规避资源耗尽的风险。</li>
+<li>SimpleDateFormat 是线程不安全的类，一般不要定义为 static 变量，如果定义为static，必须加锁，或者使用 DateUtils 工具类。</li>
+<li>必须回收自定义的ThreadLocal变量，尤其在线程池场景下，线程经常会被复用，如不清理，可能会影响后续业务逻辑和造成内存泄漏等问题。尽量在代理中使用try-finally块进行回收。</li>
+<li>高并发时，同步调用应该去考量锁的性能损耗。能用无锁数据结构，就不要用锁；能锁区块，不要锁整个方法体；能用对象锁，不要用类锁。<ol>
+<li>说明：尽可能使加锁的代码块工作量尽可能的小，避免在锁代码块中调用RPC方法。</li>
+</ol>
+</li>
+<li>对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁。</li>
+<li>在使用阻塞等待获取锁的方式中，必须在 try 代码块之外，并且在加锁方法与 try 代码块之间没有任何可能抛出异常的方法调用，避免加锁成功后，在 finally 中无法解锁。</li>
+<li>在使用尝试机制来获取锁的方式中，进入业务代码块之前，必须先判断当前线程是否持有锁。锁的释放规则与锁的阻塞等待方式相同。<ol>
+<li>说明：Lock 对象的 unlock 方法在执行时，它会调用 AQS 的 tryRelease 方法（取决于具体实现类），如果当前线程不持有锁，则抛出IllegalMonitorStateException 异常。</li>
+</ol>
+</li>
+<li>并发修改同一记录时，避免更新丢失，需要加锁。要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用 version 作为更新依据。<ol>
+<li>说明：如果每次访问冲突概率小于 20%，推荐使用乐观锁，否则使用悲观锁。乐观锁的重试次数不得小于3次。</li>
+</ol>
+</li>
+</ol>
+<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><h3 id="注释规约"><a href="#注释规约" class="headerlink" title="注释规约"></a>注释规约</h3><h2 id="异常日志"><a href="#异常日志" class="headerlink" title="异常日志"></a>异常日志</h2><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h3 id="日志规约"><a href="#日志规约" class="headerlink" title="日志规约"></a>日志规约</h3><h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><h2 id="安全规约"><a href="#安全规约" class="headerlink" title="安全规约"></a>安全规约</h2><h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><h2 id="建表规约"><a href="#建表规约" class="headerlink" title="建表规约"></a>建表规约</h2><h2 id="索引规约"><a href="#索引规约" class="headerlink" title="索引规约"></a>索引规约</h2><h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><h3 id="ORM映射"><a href="#ORM映射" class="headerlink" title="ORM映射"></a>ORM映射</h3><h2 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h2><h3 id="应用分层"><a href="#应用分层" class="headerlink" title="应用分层"></a>应用分层</h3><h3 id="二方库依赖"><a href="#二方库依赖" class="headerlink" title="二方库依赖"></a>二方库依赖</h3><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><h2 id="设计规约"><a href="#设计规约" class="headerlink" title="设计规约"></a>设计规约</h2>
           
         
       
@@ -2434,7 +2466,7 @@ interface GreetingService
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2445,7 +2477,7 @@ interface GreetingService
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2456,7 +2488,7 @@ interface GreetingService
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
