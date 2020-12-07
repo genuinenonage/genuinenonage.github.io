@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="1.安装服务器工具 安装虚拟机  安装VirtualBox  安装 vagrant 快速搭建虚拟机  安装成功后重启系统。  cmd输入命令vagrant测试是否安装成功。  cmd输入vagrant init centos&#x2F;7  cmd输入vagrant up 启动虚拟机（停止可以在VirtualBox中停止）  cmd输入vagrant ssh 链接上虚拟机  vagrant reload">
 <meta property="article:published_time" content="2020-10-19T07:03:00.000Z">
-<meta property="article:modified_time" content="2020-11-09T03:30:01.571Z">
+<meta property="article:modified_time" content="2020-11-28T02:30:14.103Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 
@@ -411,12 +411,18 @@
 <li><p>配置镜像加速</p>
 <blockquote>
 <p>在阿里云查找镜像加速器</p>
+<p>sudo mkdir -p /etc/docker</p>
+<p>sudo tee /etc/docker/daemon.json &lt;&lt;-‘EOF’ {  “registry-mirrors”: [“<a href="https://x7tuoc0z.mirror.aliyuncs.com&quot;]">https://x7tuoc0z.mirror.aliyuncs.com&quot;]</a> } EOF </p>
+<p>sudo systemctl daemon-reload </p>
+<p>sudo systemctl restart docker</p>
 </blockquote>
 </li>
 <li><p>其他的使用</p>
 <blockquote>
 <p>查看正在运行中的容器</p>
 <p>docker ps</p>
+<p>查看全部容器</p>
+<p>docker ps -a</p>
 <p>删除容器</p>
 <p>docker rm -f 容器名</p>
 <p>停止容器</p>
@@ -439,10 +445,11 @@
 </blockquote>
 </li>
 <li><p>创建my.cnf文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   [client]</span><br><span class="line">   default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">   [mysql]</span><br><span class="line">   default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">   [mysqld]</span><br><span class="line">init_connect&#x3D;&#39;SET collation_connection&#x3D;utf8_unicode_ci&#39;</span><br><span class="line">   init_connect&#x3D;&#39;SET NAMES utf8&#39;</span><br><span class="line">character-set-server&#x3D;utf8</span><br><span class="line">   collation-server&#x3D;utf8_unicode_ci</span><br><span class="line">skip-character-set-client-handshake</span><br><span class="line">   skip-name-resolve</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mydata/mysql57/conf/</span><br><span class="line">touch /mydata/mysql57/conf/my.cnf</span><br><span class="line">touch /mydata/mysql57/conf/my.cnf</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   [client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">[mysql]</span><br><span class="line">   default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">   [mysqld]</span><br><span class="line">   init_connect&#x3D;&#39;SET collation_connection&#x3D;utf8_unicode_ci&#39;</span><br><span class="line">   init_connect&#x3D;&#39;SET NAMES utf8&#39;</span><br><span class="line">   character-set-server&#x3D;utf8</span><br><span class="line">   collation-server&#x3D;utf8_unicode_ci</span><br><span class="line">   skip-character-set-client-handshake</span><br><span class="line">   skip-name-resolve</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装</p>
 <blockquote>
@@ -804,7 +811,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
