@@ -17,6 +17,19 @@
     
     
     <entry>
+      <title>Linux命令</title>
+      <link href="/2020/11/28/Linux%E5%91%BD%E4%BB%A4/"/>
+      <url>/2020/11/28/Linux%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -iname "node"</span><br><span class="line">find / -type " *.config "</span><br></pre></td></tr></table></figure><h3 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://...</span><br></pre></td></tr></table></figure><h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><ul><li><p>tar.gz</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf xxx</span><br></pre></td></tr></table></figure></li></ul><h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [源] [目标地址]</span><br></pre></td></tr></table></figure><h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm xxx</span><br><span class="line">强制删除</span><br><span class="line">rm -f xxx</span><br><span class="line">删除文件夹</span><br><span class="line">rm -rf xxx</span><br></pre></td></tr></table></figure><h3 id="查看剩余空间"><a href="#查看剩余空间" class="headerlink" title="查看剩余空间"></a>查看剩余空间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure><h3 id="启动软件命令"><a href="#启动软件命令" class="headerlink" title="启动软件命令"></a>启动软件命令</h3><h4 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户     ./elasticsearch -d</span><br></pre></td></tr></table></figure><h4 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户nohup ./kibana &amp;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>编程技巧</title>
       <link href="/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/"/>
       <url>/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/</url>
