@@ -88,7 +88,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png">
 <meta property="og:image" content="https://i.loli.net/2020/11/28/qrwxmknuNspSYeV.png">
 <meta property="article:published_time" content="2020-11-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-30T01:47:00.235Z">
+<meta property="article:modified_time" content="2020-12-11T06:45:54.382Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png">
@@ -483,7 +483,7 @@
 </ol>
 <p>通过location来指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以是浏览器缓存过期时间，减少与服务器之前的请求和流量。</p>
 <p>具体Expires定义：给一个资源设定一个过期时间，无需去服务端验证，直接</p>
-<h1 id="未来补充"><a href="#未来补充" class="headerlink" title="未来补充"></a>未来补充</h1><p>安装，常用命令和配置文件</p>
+<h1 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h1><h1 id="未来补充"><a href="#未来补充" class="headerlink" title="未来补充"></a>未来补充</h1><p>安装，常用命令和配置文件</p>
 <p>在Linux系统中安装nginx</p>
 <p>nginx配置实例</p>
 <p>反向代理</p>
@@ -526,6 +526,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/09/MyBatis/" rel="prev" title="MyBatis">
+                MyBatis <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -602,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -613,7 +617,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -624,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -657,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介"><span class="nav-number">1.1.</span> <span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-特点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-作为web服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 作为web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-作为HTTP服务器"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 作为HTTP服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-基本概念"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-正向代理"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.4.1 正向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-反向代理"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">1.4.2 反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-负载均衡"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">1.4.3 负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-动静分离"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">1.4.4 动静分离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Nginx安装"><span class="nav-number">1.2.</span> <span class="nav-text">2. Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装pcre依赖"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装pcre依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装openssl和zlib"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 安装openssl和zlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一键安装上面三个依赖"><span class="nav-number">1.2.3.</span> <span class="nav-text">一键安装上面三个依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装nginx"><span class="nav-number">1.2.4.</span> <span class="nav-text">3. 安装nginx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Nginx常用命令"><span class="nav-number">1.3.</span> <span class="nav-text">3. Nginx常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Nginx的配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">4. Nginx的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局块"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">全局块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#events块"><span class="nav-number">1.4.1.</span> <span class="nav-text">events块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http块"><span class="nav-number">1.4.2.</span> <span class="nav-text">http块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http全局块"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">http全局块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server块"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">server块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局server块"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">全局server块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#location块"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">location块</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx配置实例"><span class="nav-number">2.</span> <span class="nav-text">Nginx配置实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">2.1.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动静分离"><span class="nav-number">2.3.</span> <span class="nav-text">动静分离</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未来补充"><span class="nav-number">3.</span> <span class="nav-text">未来补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介"><span class="nav-number">1.1.</span> <span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-特点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-作为web服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 作为web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-作为HTTP服务器"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 作为HTTP服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-基本概念"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-正向代理"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.4.1 正向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-反向代理"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">1.4.2 反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-负载均衡"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">1.4.3 负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-动静分离"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">1.4.4 动静分离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Nginx安装"><span class="nav-number">1.2.</span> <span class="nav-text">2. Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装pcre依赖"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装pcre依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装openssl和zlib"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 安装openssl和zlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一键安装上面三个依赖"><span class="nav-number">1.2.3.</span> <span class="nav-text">一键安装上面三个依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装nginx"><span class="nav-number">1.2.4.</span> <span class="nav-text">3. 安装nginx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Nginx常用命令"><span class="nav-number">1.3.</span> <span class="nav-text">3. Nginx常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Nginx的配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">4. Nginx的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局块"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">全局块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#events块"><span class="nav-number">1.4.1.</span> <span class="nav-text">events块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http块"><span class="nav-number">1.4.2.</span> <span class="nav-text">http块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http全局块"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">http全局块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server块"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">server块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局server块"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">全局server块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#location块"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">location块</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx配置实例"><span class="nav-number">2.</span> <span class="nav-text">Nginx配置实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理"><span class="nav-number">2.1.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动静分离"><span class="nav-number">2.3.</span> <span class="nav-text">动静分离</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx原理"><span class="nav-number">3.</span> <span class="nav-text">Nginx原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未来补充"><span class="nav-number">4.</span> <span class="nav-text">未来补充</span></a></li></ol></div>
             
 
           </div>
