@@ -284,6 +284,671 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/" itemprop="url">Linux安装Mysql 8.0</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T10:42:00+08:00">
+                2020-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E8%A3%85/" itemprop="url" rel="index">
+                    <span itemprop="name">安装</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://blog.csdn.net/xiexinxx0225/article/details/107665316" target="_blank" rel="noopener" title="参考连接">https://blog.csdn.net/xiexinxx0225/article/details/107665316</a>  </p>
+<h2 id="卸载MariaDB"><a href="#卸载MariaDB" class="headerlink" title="卸载MariaDB"></a>卸载MariaDB</h2><p>MariaDB是Linux默认数据库，需先卸载。  </p>
+<ol>
+<li>使用 yum list installed | grep mariadb 检查MariaDB是否安装。</li>
+<li>使用 yum -y remove mariadb* 命令 卸载</li>
+</ol>
+<h2 id="删除MySQL对应的文件夹"><a href="#删除MySQL对应的文件夹" class="headerlink" title="删除MySQL对应的文件夹"></a>删除MySQL对应的文件夹</h2><ol>
+<li><p>whereis mysql</p>
+</li>
+<li><p>find / -name musql</p>
+<pre><code>[root@localhost /]# whereis mysql
+mysql: /usr/bin/mysql /usr/include/mysql
+[root@localhost lib]# find / -name mysql
+/data/mysql
+/data/mysql/mysql</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>删除上两条命令查询出来的相关目录或文件。</p>
+<pre><code>[root@localhost /]#  rm -rf /usr/bin/mysql /usr/include/mysql /data/mysql /data/mysql/mysql </code></pre></li>
+<li><p>重复输入1、2命令，是否删除完毕。</p>
+</li>
+</ol>
+<h2 id="检查MySQL用户组和用户是否存在，如果没有，则创建"><a href="#检查MySQL用户组和用户是否存在，如果没有，则创建" class="headerlink" title="检查MySQL用户组和用户是否存在，如果没有，则创建"></a>检查MySQL用户组和用户是否存在，如果没有，则创建</h2><pre><code>[root@localhost /]# cat /etc/group | grep mysql
+[root@localhost /]# cat /etc/passwd |grep mysql
+[root@localhost /]# groupadd mysql
+[root@localhost /]# useradd -r -g mysql mysql
+[root@localhost /]#</code></pre><h2 id="命令下载Linux的Mysql安装包"><a href="#命令下载Linux的Mysql安装包" class="headerlink" title="命令下载Linux的Mysql安装包"></a>命令下载Linux的Mysql安装包</h2><pre><code>[root@localhost ~]#  wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h1 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h1><h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><pre><code>[root@localhost /]#  tar xvf mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
+[root@localhost /]# ls
+mysql-8.0.19-linux-glibc2.12-x86_64
+mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li><p>首先确保/usr/local/下没有mysql文件夹，如果有就删除  </p>
+</li>
+<li><p>执行移动命令  </p>
+<pre><code>[root@localhost ~]# mv mysql-8.0.19-linux-glibc2.12-x86_64 /usr/local/mysql</code></pre></li>
+</ol>
+<ol start="3">
+<li><p>在/usr/local/mysql目录下创建data目录  </p>
+<pre><code>[root@localhost /]# mkdir /usr/local/mysql/data</code></pre></li>
+<li><p>更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限  </p>
+</li>
+</ol>
+<pre><code>[root@localhost /]# chown -R mysql:mysql /usr/local/mysql
+[root@localhost /]# chmod -R 755 /usr/local/mysql </code></pre><ol start="5">
+<li><p>下载链接库文件  </p>
+<pre><code>[root@localhost bin]#  yum -y install libaio-devel.x86_64</code></pre></li>
+<li><p>编译安装并初始化mysql,务必记住初始化输出日志末尾的密码（数据库管理员临时密码）  </p>
+<pre><code>[root@localhost /]# cd /usr/local/mysql/bin
+[root@localhost bin]# ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql</code></pre></li>
+<li><p>编辑配置文件my.cnf，添加配置如下</p>
+<pre><code>[root@localhost bin]#  vi /etc/my.cnf
+
+[mysqld]
+datadir=/usr/local/mysql/data
+port=3306
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+symbolic-links=0
+max_connections=600
+innodb_file_per_table=1
+log-error=/usr/local/mysql/data/error.log</code></pre></li>
+<li><p>测试启动mysql服务器</p>
+<pre><code>[root@localhost /]# /usr/local/mysql/support-files/mysql.server start</code></pre></li>
+<li><p>添加软连接，并重启mysql服务</p>
+<pre><code>[root@localhost /]#  ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
+[root@localhost /]#  ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+[root@localhost /]#  service mysql restart  </code></pre></li>
+<li><p>登录mysql，修改密码(密码为步骤6生成的临时密码)</p>
+<pre><code>[root@localhost /]#  mysql -u root -p
+Enter password:
+mysql&gt;ALTER USER USER() IDENTIFIED BY &apos;yourpass&apos;;
+mysql&gt;flush privileges;</code></pre></li>
+<li><p>开放远程连接  </p>
+<pre><code>mysql&gt;use mysql;
+msyql&gt;update user set user.Host=&apos;%&apos; where user.User=&apos;root&apos;;
+mysql&gt;flush privileges; </code></pre></li>
+</ol>
+<ol start="12">
+<li><p>必须修改加密规则  </p>
+<pre><code>1.输入 use mysql; 出现Database changed
+2.输入select user,host from user; 目的为了查看user的root 对应host是什么  我对应的是 %
+3.修改加密规则：输入ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;
+
+root:为数据库用户名
+123456：为数据库密码</code></pre></li>
+</ol>
+<ol start="13">
+<li>可以自由设置开机自动启动</li>
+</ol>
+<pre><code>1、将服务文件拷贝到init.d下，并重命名为mysql
+[root@localhost /]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+2、赋予可执行权限
+[root@localhost /]# chmod +x /etc/init.d/mysqld
+3、添加服务
+[root@localhost /]# chkconfig --add mysqld
+4、显示服务列表
+[root@localhost /]# chkconfig --list</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-%E6%9C%AA%E5%AE%8C%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-%E6%9C%AA%E5%AE%8C%E6%88%90/" itemprop="url">并发编程基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-24T15:04:00+08:00">
+                2020-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ArrayList线程不安全，他的读写方法没有同步策略，会导致脏数据和不可预期的结果。</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>读-改-写操作，线程要么全部执行，要么全部不执行。<br>使用Synchronized可以实现线程安全，即实现可见性和同步，但是Synchronized是独占锁，没有获得内部锁的线程会被阻塞掉。  </p>
+<h3 id="原子变量类"><a href="#原子变量类" class="headerlink" title="原子变量类"></a>原子变量类</h3><p>原子变量类比锁更轻巧，比如AtomicLong代表了一个Long值，并提供了get,set方法，get，set方法语义和volatile相同，因为AtomicLong内部就是使用了volatile修饰的真正的Long变量。另外提供了原子性的自增自减操作。<br>相比使用Synchronized的好处在于原子类操作不会导致线程的挂起和重新调度，内部使用的是cas的非阻塞算法。<br>常用的原子类为：AtomicLong,AtomicInteger,AtomicBoolean,AtomicReference。  </p>
+<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>CAS（CompareAndSet） 比较并设置。<br>CAS有三个操作数：内存位置，旧的预期值，新的值。<br>当内存位置的变量值为旧的预期值时，使用新的值替换旧的值，否则返回旧的值。这个处理器提供的一个原子性指令。  </p>
+<pre><code>for (;;) {
+    long current = get();（1）
+    long next = current + 1;（2）
+    if (compareAndSet(current, next))（3）
+        return next;
+}</code></pre><p>这里使用了无限循环使用CAS进行轮询检查，一定程度上浪费了cpu，但是相比锁避免了线程的上下文切换和调度。  </p>
+<h2 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h2><p>一个线程要获取被其他线程占用的锁时，线程会被阻塞。<br>可重入锁：当线程再次获取他自己已经获取的锁时，不会被阻塞。只要线程获得了该锁，可以无限制次数进入被该锁锁住的代码。 </p>
+<p>如果内置锁不是可重入的那么该调用就会导致死锁了，因为线程持有并等待了锁。  </p>
+<p>实际上内部锁是可重入锁，例如synchronized关键字管理的方法，可重入锁的原理是在锁内部维护了一个线程标示，标示该锁目前被那个线程占用，关联一个计数器，一开始计数器值为0，说明该锁没有被任何线程占用，当一个线程获取了该锁，计数器会变成1，其他线程在获取该锁时候发现锁的所有者不是自己所以被阻塞，但是当获取该锁的线程再次获取锁时候发现锁拥有者是自己会把计数器值+1， 当释放锁后计数器会-1，当计数器为0时候，锁里面的线程标示重置为null,这时候阻塞的线程会获取被唤醒来获取该锁。  </p>
+<h2 id="Synchronized关键字"><a href="#Synchronized关键字" class="headerlink" title="Synchronized关键字"></a>Synchronized关键字</h2><p>synchronized块是Java提供的一种强制性内置锁，执行代码在进入synchronized代码块前会自动获取内部锁，这时候其他线程访问该同步代码块时候会阻塞掉。拿到内部锁的线程会在正常退出同步代码块或者异常抛出后释放内部锁，这时候阻塞掉的线程才能获取内部锁进入同步代码块。  </p>
+<p>线程A进入同步块修改变量值后，会在退出同步块前把值刷新到主内存，而线程B在进入同步块前会首先清空本地内存内容，从主内存重新获取变量值，所以实现了可见性。但是要注意一点所有线程使用的是同一个锁。  </p>
+<p>注意 Synchronized关键字会引起线程上下文切换和线程调度。  </p>
+<h2 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h2><p>Synchronized可以实现同步，但是只有一个线程访问共享变量。正常情况下，对于多个读操作时不需要同步。而大部分情况下读操作次数多于写操作，ReentrantReadWriteLock，可以实现读写分离，多个线程同时进行读取，但是最多一个写线程存在。  </p>
+<h5 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h5><pre><code>public class ArrayList&lt;E&gt;
+{
+    private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    public E get(int index){
+        Lock readLock = readWriteLock.readLock();
+        readLock.lock();
+        try{
+            return list.get(index);
+        }finally{
+            readLock.unlock();
+        }
+    }
+    public E set(int index, E element){
+        Lock wirteLock = readWriteLock.writeLock();
+        wirteLock.lock();
+        try{
+            return list.set(index, element);
+        }finally{
+            wirteLock.unlock();
+        }
+    }
+}</code></pre><p>get方法readWriteLock.readLock()获取读锁，多个线程可获得。<br>set方法readwriteLock.writeLock()获取写锁，一个线程可获得，其他线程会被阻塞。<br>一个线程获得了读锁，要获得写锁需要等待释放读锁<br>一个线程获得了写锁，要获取读锁需要等待释放写锁<br>相比Synchronized来说运行多个读者同时存在，提高了并发量。<br>** 注意：需要显示调用Lock与unlock操作。** </p>
+<h2 id="Volatile变量"><a href="#Volatile变量" class="headerlink" title="Volatile变量"></a>Volatile变量</h2><p>注意 volatile关键字不会引起线程上下文切换和线程调度。另外volatile还用来解决重排序问题。  </p>
+<h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>指数据被外界修改持保守态度(悲观)，在数据处理过程中，数据处于锁定状态。悲观锁的实现依靠数据库的锁机制。<br>数据库中实现对数据记录操作前，先给记录加排它锁，如果获取锁失败，则说明数据正在被其他线程修改，则等待或者抛出异常。如果加锁成功，则获取记录，对其修改，然后事务提交后释放排它锁。<br>一个例子：select * from 表 where .. for update;</p>
+<p>悲观锁是先加锁再访问策略，处理加锁会让数据库产生额外的开销，还有增加产生死锁的机会，另外在多个线程只读情况下不会产生数据不一致行问题，没必要使用锁，只会增加系统负载，降低并发性，因为当一个事务锁定了该条记录，其他读该记录的事务只能等待。</p>
+<h4 id="悲观锁详细操作"><a href="#悲观锁详细操作" class="headerlink" title="悲观锁详细操作"></a>悲观锁详细操作</h4><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是相对悲观锁来说的，它认为数据一般情况下不会造成冲突，所以在访问记录前不会加排他锁，而是在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，具体说根据update返回的行数让用户决定如何去做。乐观锁并不会使用数据库提供的锁机制，一般在表添加version字段或者使用业务状态来做。  </p>
+<p>乐观锁直到提交的时候才去锁定，所以不会产生任何锁和死锁。  </p>
+<h4 id="乐观锁详细操作"><a href="#乐观锁详细操作" class="headerlink" title="乐观锁详细操作"></a>乐观锁详细操作</h4><h2 id="独占锁与共享锁"><a href="#独占锁与共享锁" class="headerlink" title="独占锁与共享锁"></a>独占锁与共享锁</h2><p>根据锁能够被单个线程还是多个线程共同持有，锁又分为独占锁和共享锁。<br>独占锁保证任何时候都只有一个线程能读写权限，ReentrantLock就是以独占方式实现的互斥锁。<br>共享锁则可以同时有多个读线程，但最多只能有一个写线程，读和写是互斥的，例如ReadWriteLock读写锁。  </p>
+<p>独占锁是一种悲观锁，每次访问资源都先加上互斥锁，这限制了并发性，因为读操作并不会影响数据一致性，而独占锁只允许同时一个线程读取数据，其他线程必须等待当前线程释放锁才能进行读取。</p>
+<p>共享锁则是一种乐观锁，它放宽了加锁的条件，允许多个线程同时进行读操作。  </p>
+<h2 id="公平锁与非公平锁"><a href="#公平锁与非公平锁" class="headerlink" title="公平锁与非公平锁"></a>公平锁与非公平锁</h2><p>根据线程获取锁的抢占机制锁可以分为公平锁和非公平锁。<br>公平锁表示线程获取锁的顺序是按照线程加锁的时间多少来决定的，也就是最早加锁的线程将最早获取锁，也就是先来先得的FIFO顺序。而非公平锁则运行闯入，也就是先来不一定先得。  </p>
+<p>ReentrantLock提供了公平和非公平锁的实现：<br>公平锁ReentrantLock pairLock = new ReentrantLock(true);<br>非公平锁 Reen trantLock pairLock = new ReentrantLock(false);<br>如果构造函数不传递参数，则默认是非公平锁。<br>在没有公平性需求的前提下尽量使用非公平锁，因为公平锁会带来性能开销。  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">剑指offer算法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-20T19:47:00+08:00">
+                2020-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03. 数组中重复的数字"></a>03. 数组中重复的数字</h2><p>利用集合的唯一性。</p>
+<pre><code>//重要代码
+Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();
+set.add(value)  </code></pre><ul>
+<li><p>集合中没有返回true</p>
+</li>
+<li><p>集合中已存在，返回false   </p>
+<pre><code>public int findRepeatNumber(int[] nums) {  
+    Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();  
+    for(int num: nums){  
+        if(!set.add(num)){  
+            return num;
+        }
+    }
+    return -1;
+}</code></pre></li>
+</ul>
+<h2 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04. 二维数组中的查找"></a>04. 二维数组中的查找</h2><p>标签：数组，双指针<br>利用题目的特性，找出解题的简便方法，是程序流程变得简单。  </p>
+<pre><code>class Solution {
+    int tar = 0;
+    int n = 0;
+    int m = 0;
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        tar=target;
+        n = matrix.length;
+        if(n == 0){
+            return false;
+        }
+        m = matrix[0].length;
+        if(m == 0){
+            return false;
+        }
+        return bianli(matrix,0,m-1);
+    }
+
+    public boolean bianli(int[][] numss, int i, int j){
+        if(numss[i][j] &lt; tar &amp;&amp; i+1 &lt; n){
+            return bianli(numss, i+1, j);
+        }else if(numss[i][j] == tar){
+            return true;
+        }else if( j-1&gt;=0){
+            return bianli(numss,i,j-1);
+        }
+        return false;
+    }
+}</code></pre><h2 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h2><p>字符数组的使用比字符串拼接（+）快无数倍。  </p>
+<pre><code>//重要代码  
+String s = new String(chars, 0, size);
+
+class Solution {
+    public String replaceSpace(String s) {
+        int len = s.length();
+        char[] chars = new char[len * 3];
+        int size = 0;
+        for(int i = 0; i &lt; len; i++){
+            char c = s.charAt(i);
+            if(c == &apos; &apos;){
+                chars[size++] = &apos;%&apos;;
+                chars[size++] = &apos;2&apos;;
+                chars[size++] = &apos;0&apos;;
+            }else{
+                chars[size++] = c;
+            }
+        }
+        String res = new String(chars, 0, size);
+        return res;
+    }
+}  </code></pre><h2 id="06-从尾到头打印链表-未完成"><a href="#06-从尾到头打印链表-未完成" class="headerlink" title="06. 从尾到头打印链表-未完成"></a>06. 从尾到头打印链表-未完成</h2><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。  </p>
+<pre><code>class Solution {
+    public int[] reversePrint(ListNode head) {
+        //1. 首先使用数组解决，链表我还没有清晰的思路
+        int[] arr = new int[10000];
+        int size = 0;
+        while(head!= null){
+            arr[size] = head.val;
+            size ++;
+            head = head.next;
+        }
+        int [] rearr = new int[size];
+        int i = 0;
+        int j = 0;
+        for(i = size-1,j = 0;i &gt;= 0;i --,j++){
+            rearr[i] = arr[j];
+        }
+        return rearr;
+
+        //2. 使用栈解决
+        // Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();
+        // while(head != null){
+        //     stack.push(head.val);
+        //     head = head.next;
+        // }
+        // int size = stack.size();
+        // int[] rearr = new int[size];
+        // for(int i = 0; i &lt; size; i++){
+        //     rearr[i] = stack.pop();
+        // }
+        // return rearr;
+    }
+}</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1499,533 +2164,6 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url">组件，框架，中间件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
-                2020-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
-<h6 id="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"><a href="#中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。" class="headerlink" title="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"></a>中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</h6><h6 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h6><p>IDC的分类：</p>
-<ol>
-<li>终端仿真/屏幕转换</li>
-<li>数据访问</li>
-<li>远程过程调用</li>
-<li>消息中间件</li>
-<li>交易中间件</li>
-<li>对象中间件</li>
-</ol>
-<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/" itemprop="url">轻量级与重量级</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T17:13:00+08:00">
-                2020-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>轻量级与重量级<br>两者是一个相对概念，主要是对应 应用框架的使用方便性和所提供的服务特性等方面作比较。<br>比如：<br>EJB是重量级框架：对编写的代码有限制，同时提供了分布式等复杂的功能。<br>Spring是轻量级框架：只需要普通的Java对象，提供中小应用使用的功能。</p>
-<p>划分一个应用是否属于轻量级还是重量级，主要看使用了多少服务。<br>使用的服务越多，容器要为普通Java对象做的工作越多，必然会影响到应用的发布时间或运行性能。<br>对于spring容器，提供了很多服务，但这些服务不是默认打开的，应用需要某种服务，需指明使用该服务。如果应用使用的服务很少，如：只使用了spring核心服务，可以认为此时应用属于轻量级的；如果应用使用了spring提供的大部分服务，这是应用就属于重量级。EJB容器就因为他默认为应用提供了EJB规范中所有的功能，所以属于重量级。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/git%E7%9A%84%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/15/git%E7%9A%84%E4%BD%BF%E7%94%A8-%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0/" itemprop="url">git的使用-随时更新</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-15T19:16:00+08:00">
-                2020-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ol>
-<li><p>初始化本地仓库  </p>
-<blockquote>
-<p>git init git_work(仓库文件夹名称) &amp;&amp; cd git_work  </p>
-</blockquote>
-</li>
-<li><p>将变化提交到暂存区  </p>
-<blockquote>
-<p>git add .  </p>
-</blockquote>
-</li>
-<li><p>将本地暂存提交到版本库  </p>
-<blockquote>
-<p>git commit -m “提交说明”  </p>
-</blockquote>
-</li>
-<li><p>本地推送到远端分支  </p>
-<blockquote>
-<p>git push origin dev(分支名)  </p>
-</blockquote>
-</li>
-</ol>
-<h3 id="git查看、切换用户"><a href="#git查看、切换用户" class="headerlink" title="git查看、切换用户"></a>git查看、切换用户</h3><p>查看用户名：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br></pre></td></tr></table></figure>
-
-<p>查看用户邮箱：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
-
-<p>修改命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git conifg --global user.name "genuine"</span><br></pre></td></tr></table></figure>
-
-<p>修改用户邮箱</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "17828022605@163.com"</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="分支使用"><a href="#分支使用" class="headerlink" title="分支使用"></a>分支使用</h3><ol>
-<li><p>删除本地分支</p>
-<blockquote>
-<p>git branch -d dev(分支名)  </p>
-</blockquote>
-</li>
-<li><p>取消目录的git初始化  </p>
-<blockquote>
-<p>rm -rf.git  </p>
-</blockquote>
-</li>
-<li><p>克隆想要的分支到本地  </p>
-<blockquote>
-<p>git clone –branch dev(分支名) <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
-</blockquote>
-</li>
-</ol>
-<h4 id="拉去远程分支到本地"><a href="#拉去远程分支到本地" class="headerlink" title="拉去远程分支到本地"></a>拉去远程分支到本地</h4><ol>
-<li><p>新建一个文件夹</p>
-</li>
-<li><p>初始化，在 git base 中输入</p>
-<blockquote>
-<p>git init</p>
-</blockquote>
-</li>
-<li><p>与远端master建立链接</p>
-<blockquote>
-<p>git remote add origin 仓库链接地址<a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a><br>//如果第一遍输入错误，可以输入 git remode rm origin ，删除上一步的操作之后重新输入  </p>
-</blockquote>
-</li>
-<li><p>把远程分支拉到本地</p>
-<blockquote>
-<p>git fetch origin dev(dev为远程仓库的分支名)</p>
-</blockquote>
-</li>
-<li><p>切换到分支</p>
-<blockquote>
-<p>git checkout dev(dev为远程仓库的分支名)</p>
-</blockquote>
-</li>
-<li><p>以后每次使用时最好先：把分支的最新内容拉取到本地</p>
-<blockquote>
-<p>git pull origin dev(远程分支名)</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="拉取远程分支单独文件或文件夹"><a href="#拉取远程分支单独文件或文件夹" class="headerlink" title="拉取远程分支单独文件或文件夹"></a>拉取远程分支单独文件或文件夹</h4><ol>
-<li><p>选择放置git仓库的文件夹，创建并初始化git本地仓库  </p>
-<blockquote>
-<p>git init dev_work &amp;&amp; cd dev_work  </p>
-</blockquote>
-</li>
-<li><p>关联远端地址</p>
-<blockquote>
-<p>git remote add -f origin <a href="https://github.com/xx/xx.git" target="_blank" rel="noopener">https://github.com/xx/xx.git</a>  </p>
-</blockquote>
-</li>
-<li><p>开启git的 Sparse Checkout 模式（该模式专门用于git检出指定目录或文件，在config中配置）  </p>
-<blockquote>
-<p>git config core.sparsecheckout true  </p>
-</blockquote>
-</li>
-<li><p>设置需要拉取github上的文件目录</p>
-<blockquote>
-<p>//这些目录写在了.git/info/sparse-check文件中。<br>echo “source/posts(github上的目录或文件路径)” &gt;&gt; .git/info/sparse-check<br>echo “css/fonts(可以写多个)” &gt;&gt; .git/info/sparse-check </p>
-</blockquote>
-</li>
-<li><p>从GitHub上拉取下来</p>
-<blockquote>
-<p>git pull origin dev(对应分支名)   </p>
-</blockquote>
-</li>
-</ol>
-<h3 id="将idea本地已有的新项目完整提交到gitlab上"><a href="#将idea本地已有的新项目完整提交到gitlab上" class="headerlink" title="将idea本地已有的新项目完整提交到gitlab上"></a>将idea本地已有的新项目完整提交到gitlab上</h3><ol>
-<li><p>先初始化项目</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把文件添加到版本库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把文件提交到本地残酷</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m "提交说明"</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关联远程库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rmmote add origin 远程仓库地址</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取远程库与本地合并</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把本地库的内容推送到远程</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ol>
-<p><img src="https://i.loli.net/2020/12/14/VyaOrLifJoc4Hth.png" alt="image.png"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2076,7 +2214,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2098,7 +2236,7 @@ top_n_per_article: 1  </code></pre>确保修改enable设成true。<br>top_n_per_
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -284,6 +284,554 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/12/%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/12/%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" itemprop="url">问题收集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-12T17:01:00+08:00">
+                2020-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="tomcate问题"><a href="#tomcate问题" class="headerlink" title="tomcate问题"></a>tomcate问题</h2><h3 id="乱码问题"><a href="#乱码问题" class="headerlink" title="乱码问题"></a>乱码问题</h3><h5 id="springmvc启动tomcate控制台乱码问题"><a href="#springmvc启动tomcate控制台乱码问题" class="headerlink" title="springmvc启动tomcate控制台乱码问题"></a>springmvc启动tomcate控制台乱码问题</h5><p>在tomcat文件夹中的conf包下的logging.properties中找到</p>
+<p>java.util.logging.ConsoleHandler.encoding = UTF-8</p>
+<p>将这行代码注销改为</p>
+<p>java.util.logging.ConsoleHandler.encoding = GBK</p>
+<p>重启tomcat即可！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/21/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/" itemprop="url">Java8的新特性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T07:31:00+08:00">
+                2020-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>新增了非常多的特性，主要有：</p>
+<ul>
+<li><strong>Lambad表达式</strong>：Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。</li>
+<li><strong>方法引用</strong>：可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合，使语言的构造更紧凑简洁，减少冗余代码。</li>
+<li><strong>默认方法</strong>：默认方法就是一个在接口里面有了一个实现的方法。</li>
+<li><strong>StreamAPI</strong>：新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。</li>
+<li><strong>DateTimeAPI</strong>：加强对日期与时间的处理。</li>
+<li><strong>Optional类</strong>：Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。</li>
+<li><strong>Nashorn，JavaScript引擎</strong>：Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。</li>
+</ul>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。</p>
+<p>Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
+<ol>
+<li><p>接收2个int型整数,返回他们的和<br>(int x, int y) -&gt; x + y  </p>
+</li>
+<li><p>接受2个参数(数字),并返回他们的差值<br>(x, y) -&gt; x – y  </p>
+</li>
+<li><p>接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)<br>(String s) -&gt; System.out.print(s)</p>
+<pre><code>public class Java8Tester {
+   public static void main(String args[]){
+      Java8Tester tester = new Java8Tester();
+
+      // 类型声明
+      MathOperation addition = (int a, int b) -&gt; a + b;
+
+      // 不用类型声明
+      MathOperation subtraction = (a, b) -&gt; a - b;
+
+      // 大括号中的返回语句
+      MathOperation multiplication = (int a, int b) -&gt; { return a * b; };
+
+      // 没有大括号及返回语句
+      MathOperation division = (int a, int b) -&gt; a / b;
+
+      System.out.println(&quot;10 + 5 = &quot; + tester.operate(10, 5, addition));
+      System.out.println(&quot;10 - 5 = &quot; + tester.operate(10, 5, subtraction));
+      System.out.println(&quot;10 x 5 = &quot; + tester.operate(10, 5, multiplication));
+      System.out.println(&quot;10 / 5 = &quot; + tester.operate(10, 5, division));
+
+      // 不用括号
+      GreetingService greetService1 = message -&gt;
+      System.out.println(&quot;Hello &quot; + message);
+
+      // 用括号
+      GreetingService greetService2 = (message) -&gt;
+      System.out.println(&quot;Hello &quot; + message);
+
+      greetService1.sayMessage(&quot;Runoob&quot;);
+      greetService2.sayMessage(&quot;Google&quot;);
+   }
+
+   interface MathOperation {
+      int operation(int a, int b);
+   }
+
+   interface GreetingService {
+      void sayMessage(String message);
+   }
+
+   private int operate(int a, int b, MathOperation mathOperation){
+      return mathOperation.operation(a, b);
+   }
+}</code></pre></li>
+</ol>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>方法引用通过方法的名字来指向一个方法。</p>
+<p>方法引用使用一对冒号 :: 。</p>
+<ul>
+<li><p>构造器引用：它的语法是Class::new，或者更一般的Class&lt; T &gt;::new</p>
+<ul>
+<li>实例如下：<br>final Car car = Car.create( Car::new );<br>final List&lt; Car &gt; cars = Arrays.asList( car );</li>
+</ul>
+</li>
+<li><p>静态方法引用：它的语法是Class::static_method</p>
+<ul>
+<li>实例如下：<br>cars.forEach( Car::collide );</li>
+</ul>
+</li>
+<li><p>特定类的任意对象的方法引用：它的语法是Class::method</p>
+<ul>
+<li>实例如下：<br>cars.forEach( Car::repair );</li>
+</ul>
+</li>
+<li><p>特定对象的方法引用：它的语法是instance::method</p>
+<ul>
+<li><p>实例如下：<br>final Car police = Car.create( Car::new );<br>cars.forEach( police::follow );</p>
+<pre><code>public class Java8Tester {
+   public static void main(String args[]){
+      List names = new ArrayList();
+
+      names.add(&quot;Google&quot;);
+      names.add(&quot;Runoob&quot;);
+      names.add(&quot;Taobao&quot;);
+      names.add(&quot;Baidu&quot;);
+      names.add(&quot;Sina&quot;);
+
+      names.forEach(System.out::println);
+   }
+}
+实例中我们将 System.out::println 方法作为静态方法来引用。</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>函数式接口(Functional Interface)就是一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。</p>
+<p>函数式接口可以被隐式转换为 lambda 表达式。</p>
+<pre><code>@FunctionalInterface
+interface GreetingService 
+{
+    void sayMessage(String message);
+}</code></pre><p>使用Lambda表达式来表示该接口的一个实现(注：JAVA 8 之前一般是用匿名类实现的)：</p>
+<pre><code>GreetingService greetService1 = message -&gt; System.out.println(&quot;Hello &quot; + message);</code></pre><h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>新增了接口的默认方法。</p>
+<p>接口可以有实现方法，不需要实现类去实现其方法。</p>
+<p>只需在方法名前面加个 default 关键字即可实现默认方法。</p>
+<h4 id="静态默认方法"><a href="#静态默认方法" class="headerlink" title="静态默认方法"></a>静态默认方法</h4><p>Java 8 的另一个特性是接口可以声明（并且可以提供实现）静态方法。</p>
+<pre><code>public interface Vehicle {
+   default void print(){
+      System.out.println(&quot;我是一辆车!&quot;);
+   }
+    // 静态方法
+   static void blowHorn(){
+      System.out.println(&quot;按喇叭!!!&quot;);
+   }
+}</code></pre><h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</p>
+<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。</p>
+<h4 id="什么是-Stream？"><a href="#什么是-Stream？" class="headerlink" title="什么是 Stream？"></a>什么是 Stream？</h4><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作。</p>
+<ul>
+<li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
+<li>数据源 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
+<li>聚合操作 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</li>
+<li>Pipelining: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。</li>
+<li>内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
+</ul>
+<h4 id="生成流"><a href="#生成流" class="headerlink" title="生成流"></a>生成流</h4><p>在 Java 8 中, 集合接口有两个方法来生成流：</p>
+<ul>
+<li>stream()  为集合创建串行流。</li>
+<li>parallelStream()  为集合创建并行流。</li>
+</ul>
+<h3 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h3><ul>
+<li>一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</li>
+<li>Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。 </li>
+<li>Optional 类的引入很好的解决空指针异常。</li>
+</ul>
+<h3 id="日期时间API"><a href="#日期时间API" class="headerlink" title="日期时间API"></a>日期时间API</h3><p>通过发布新的Date-Time API  加强对日期与时间的处理。 </p>
+<p>旧版日期时间API问题：</p>
+<ul>
+<li>非线程安全：java.util.Date 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一。</li>
+<li>设计很差：Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字。</li>
+<li>时区处理麻烦：日期类并不提供国际化，没有时区支持。</li>
+</ul>
+<p>Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较重要的 API：</p>
+<ul>
+<li>Local(本地) − 简化了日期时间的处理，没有时区的问题。</li>
+<li>Zoned(时区) − 通过制定的时区处理日期时间。</li>
+</ul>
+<h4 id="本地化日期时间API"><a href="#本地化日期时间API" class="headerlink" title="本地化日期时间API"></a>本地化日期时间API</h4><p>LocalDate/LocalTime 和 LocalDateTime 类可以在处理时区不是必须的情况。</p>
+<h4 id="时区的时间日期API"><a href="#时区的时间日期API" class="headerlink" title="时区的时间日期API"></a>时区的时间日期API</h4><p>需要考虑到时区，就可以使用时区的日期时间API。</p>
+<pre><code>public void testZonedDateTime(){
+
+  // 获取当前时间日期
+  ZonedDateTime date1 = ZonedDateTime.parse(&quot;2015-12-03T10:15:30+05:30[Asia/Shanghai]&quot;);
+  System.out.println(&quot;date1: &quot; + date1);
+
+  ZoneId id = ZoneId.of(&quot;Europe/Paris&quot;);
+  System.out.println(&quot;ZoneId: &quot; + id);
+
+  ZoneId currentZone = ZoneId.systemDefault();
+  System.out.println(&quot;当期时区: &quot; + currentZone);</code></pre><p>   }</p>
+<h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><p>在Java 8中，Base64编码已经成为Java类库的标准。</p>
+<p>Java 8 内置了 Base64 编码的编码器和解码器。</p>
+<p>Base64工具类提供了一套静态方法获取下面三种BASE64编解码器：</p>
+<ul>
+<li>基本：输出被映射到一组字符A-Za-z0-9+/，编码不添加任何行标，输出的解码仅支持A-Za-z0-9+/。</li>
+<li>URL：输出映射到一组字符A-Za-z0-9+_，输出是URL和文件。</li>
+<li>MIME：输出隐射到MIME友好格式。输出每行不超过76字符，并且使用’\r’并跟随’\n’作为分割。编码输出最后没有行分割。</li>
+</ul>
+<h4 id="内嵌类"><a href="#内嵌类" class="headerlink" title="内嵌类"></a>内嵌类</h4><ol>
+<li>static class Base64.Decoder  该类实现一个解码器用于，使用 Base64 编码来解码字节数据。</li>
+<li>static class Base64.Encoder  该类实现一个编码器，使用 Base64 编码来编码字节数据。</li>
+</ol>
+<p>有多个get方法使用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/" itemprop="url">什么是脚手架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T06:43:00+08:00">
+                2020-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="在我看来："><a href="#在我看来：" class="headerlink" title="在我看来："></a>在我看来：</h3><p>脚手架就是搭建的能直接从事业务开发的项目框架。比如整合并配置完成了：AOP/Swagger/Mybatis/Druid/通用工具类等。</p>
+<h3 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h3><p>指的是两种技术：</p>
+<ol>
+<li>与某些MVC 框架中的数据库访问相关的代码生成技术</li>
+<li>由各种工具支持的项目生成技术</li>
+</ol>
+<p>脚手架是一种由一些 model–view–controller 框架支持的技术，程序员可以在其中指定应用程序数据库的使用方式。该编译器或框架使用说明书中，与预先定义的代码模板在一起，产生最终代码的应用程序可以使用它来创建，读取，更新和删除数据库条目，有效治疗模板作为“ 支架 ”上建立更强大的应用程序。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/18/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2229,671 +2777,6 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/27/Linux%E5%AE%89%E8%A3%85Mysql%208.0/" itemprop="url">Linux安装Mysql 8.0</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T10:42:00+08:00">
-                2020-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%89%E8%A3%85/" itemprop="url" rel="index">
-                    <span itemprop="name">安装</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://blog.csdn.net/xiexinxx0225/article/details/107665316" target="_blank" rel="noopener" title="参考连接">https://blog.csdn.net/xiexinxx0225/article/details/107665316</a>  </p>
-<h2 id="卸载MariaDB"><a href="#卸载MariaDB" class="headerlink" title="卸载MariaDB"></a>卸载MariaDB</h2><p>MariaDB是Linux默认数据库，需先卸载。  </p>
-<ol>
-<li>使用 yum list installed | grep mariadb 检查MariaDB是否安装。</li>
-<li>使用 yum -y remove mariadb* 命令 卸载</li>
-</ol>
-<h2 id="删除MySQL对应的文件夹"><a href="#删除MySQL对应的文件夹" class="headerlink" title="删除MySQL对应的文件夹"></a>删除MySQL对应的文件夹</h2><ol>
-<li><p>whereis mysql</p>
-</li>
-<li><p>find / -name musql</p>
-<pre><code>[root@localhost /]# whereis mysql
-mysql: /usr/bin/mysql /usr/include/mysql
-[root@localhost lib]# find / -name mysql
-/data/mysql
-/data/mysql/mysql</code></pre></li>
-</ol>
-<ol start="3">
-<li><p>删除上两条命令查询出来的相关目录或文件。</p>
-<pre><code>[root@localhost /]#  rm -rf /usr/bin/mysql /usr/include/mysql /data/mysql /data/mysql/mysql </code></pre></li>
-<li><p>重复输入1、2命令，是否删除完毕。</p>
-</li>
-</ol>
-<h2 id="检查MySQL用户组和用户是否存在，如果没有，则创建"><a href="#检查MySQL用户组和用户是否存在，如果没有，则创建" class="headerlink" title="检查MySQL用户组和用户是否存在，如果没有，则创建"></a>检查MySQL用户组和用户是否存在，如果没有，则创建</h2><pre><code>[root@localhost /]# cat /etc/group | grep mysql
-[root@localhost /]# cat /etc/passwd |grep mysql
-[root@localhost /]# groupadd mysql
-[root@localhost /]# useradd -r -g mysql mysql
-[root@localhost /]#</code></pre><h2 id="命令下载Linux的Mysql安装包"><a href="#命令下载Linux的Mysql安装包" class="headerlink" title="命令下载Linux的Mysql安装包"></a>命令下载Linux的Mysql安装包</h2><pre><code>[root@localhost ~]#  wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h1 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h1><h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><pre><code>[root@localhost /]#  tar xvf mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
-[root@localhost /]# ls
-mysql-8.0.19-linux-glibc2.12-x86_64
-mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz</code></pre><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
-<li><p>首先确保/usr/local/下没有mysql文件夹，如果有就删除  </p>
-</li>
-<li><p>执行移动命令  </p>
-<pre><code>[root@localhost ~]# mv mysql-8.0.19-linux-glibc2.12-x86_64 /usr/local/mysql</code></pre></li>
-</ol>
-<ol start="3">
-<li><p>在/usr/local/mysql目录下创建data目录  </p>
-<pre><code>[root@localhost /]# mkdir /usr/local/mysql/data</code></pre></li>
-<li><p>更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限  </p>
-</li>
-</ol>
-<pre><code>[root@localhost /]# chown -R mysql:mysql /usr/local/mysql
-[root@localhost /]# chmod -R 755 /usr/local/mysql </code></pre><ol start="5">
-<li><p>下载链接库文件  </p>
-<pre><code>[root@localhost bin]#  yum -y install libaio-devel.x86_64</code></pre></li>
-<li><p>编译安装并初始化mysql,务必记住初始化输出日志末尾的密码（数据库管理员临时密码）  </p>
-<pre><code>[root@localhost /]# cd /usr/local/mysql/bin
-[root@localhost bin]# ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql</code></pre></li>
-<li><p>编辑配置文件my.cnf，添加配置如下</p>
-<pre><code>[root@localhost bin]#  vi /etc/my.cnf
-
-[mysqld]
-datadir=/usr/local/mysql/data
-port=3306
-sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
-symbolic-links=0
-max_connections=600
-innodb_file_per_table=1
-log-error=/usr/local/mysql/data/error.log</code></pre></li>
-<li><p>测试启动mysql服务器</p>
-<pre><code>[root@localhost /]# /usr/local/mysql/support-files/mysql.server start</code></pre></li>
-<li><p>添加软连接，并重启mysql服务</p>
-<pre><code>[root@localhost /]#  ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
-[root@localhost /]#  ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
-[root@localhost /]#  service mysql restart  </code></pre></li>
-<li><p>登录mysql，修改密码(密码为步骤6生成的临时密码)</p>
-<pre><code>[root@localhost /]#  mysql -u root -p
-Enter password:
-mysql&gt;ALTER USER USER() IDENTIFIED BY &apos;yourpass&apos;;
-mysql&gt;flush privileges;</code></pre></li>
-<li><p>开放远程连接  </p>
-<pre><code>mysql&gt;use mysql;
-msyql&gt;update user set user.Host=&apos;%&apos; where user.User=&apos;root&apos;;
-mysql&gt;flush privileges; </code></pre></li>
-</ol>
-<ol start="12">
-<li><p>必须修改加密规则  </p>
-<pre><code>1.输入 use mysql; 出现Database changed
-2.输入select user,host from user; 目的为了查看user的root 对应host是什么  我对应的是 %
-3.修改加密规则：输入ALTER USER &apos;root&apos;@&apos;%&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;;
-
-root:为数据库用户名
-123456：为数据库密码</code></pre></li>
-</ol>
-<ol start="13">
-<li>可以自由设置开机自动启动</li>
-</ol>
-<pre><code>1、将服务文件拷贝到init.d下，并重命名为mysql
-[root@localhost /]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
-2、赋予可执行权限
-[root@localhost /]# chmod +x /etc/init.d/mysqld
-3、添加服务
-[root@localhost /]# chkconfig --add mysqld
-4、显示服务列表
-[root@localhost /]# chkconfig --list</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-%E6%9C%AA%E5%AE%8C%E6%88%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-%E6%9C%AA%E5%AE%8C%E6%88%90/" itemprop="url">并发编程基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-24T15:04:00+08:00">
-                2020-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">并发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>ArrayList线程不安全，他的读写方法没有同步策略，会导致脏数据和不可预期的结果。</p>
-<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>读-改-写操作，线程要么全部执行，要么全部不执行。<br>使用Synchronized可以实现线程安全，即实现可见性和同步，但是Synchronized是独占锁，没有获得内部锁的线程会被阻塞掉。  </p>
-<h3 id="原子变量类"><a href="#原子变量类" class="headerlink" title="原子变量类"></a>原子变量类</h3><p>原子变量类比锁更轻巧，比如AtomicLong代表了一个Long值，并提供了get,set方法，get，set方法语义和volatile相同，因为AtomicLong内部就是使用了volatile修饰的真正的Long变量。另外提供了原子性的自增自减操作。<br>相比使用Synchronized的好处在于原子类操作不会导致线程的挂起和重新调度，内部使用的是cas的非阻塞算法。<br>常用的原子类为：AtomicLong,AtomicInteger,AtomicBoolean,AtomicReference。  </p>
-<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>CAS（CompareAndSet） 比较并设置。<br>CAS有三个操作数：内存位置，旧的预期值，新的值。<br>当内存位置的变量值为旧的预期值时，使用新的值替换旧的值，否则返回旧的值。这个处理器提供的一个原子性指令。  </p>
-<pre><code>for (;;) {
-    long current = get();（1）
-    long next = current + 1;（2）
-    if (compareAndSet(current, next))（3）
-        return next;
-}</code></pre><p>这里使用了无限循环使用CAS进行轮询检查，一定程度上浪费了cpu，但是相比锁避免了线程的上下文切换和调度。  </p>
-<h2 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h2><p>一个线程要获取被其他线程占用的锁时，线程会被阻塞。<br>可重入锁：当线程再次获取他自己已经获取的锁时，不会被阻塞。只要线程获得了该锁，可以无限制次数进入被该锁锁住的代码。 </p>
-<p>如果内置锁不是可重入的那么该调用就会导致死锁了，因为线程持有并等待了锁。  </p>
-<p>实际上内部锁是可重入锁，例如synchronized关键字管理的方法，可重入锁的原理是在锁内部维护了一个线程标示，标示该锁目前被那个线程占用，关联一个计数器，一开始计数器值为0，说明该锁没有被任何线程占用，当一个线程获取了该锁，计数器会变成1，其他线程在获取该锁时候发现锁的所有者不是自己所以被阻塞，但是当获取该锁的线程再次获取锁时候发现锁拥有者是自己会把计数器值+1， 当释放锁后计数器会-1，当计数器为0时候，锁里面的线程标示重置为null,这时候阻塞的线程会获取被唤醒来获取该锁。  </p>
-<h2 id="Synchronized关键字"><a href="#Synchronized关键字" class="headerlink" title="Synchronized关键字"></a>Synchronized关键字</h2><p>synchronized块是Java提供的一种强制性内置锁，执行代码在进入synchronized代码块前会自动获取内部锁，这时候其他线程访问该同步代码块时候会阻塞掉。拿到内部锁的线程会在正常退出同步代码块或者异常抛出后释放内部锁，这时候阻塞掉的线程才能获取内部锁进入同步代码块。  </p>
-<p>线程A进入同步块修改变量值后，会在退出同步块前把值刷新到主内存，而线程B在进入同步块前会首先清空本地内存内容，从主内存重新获取变量值，所以实现了可见性。但是要注意一点所有线程使用的是同一个锁。  </p>
-<p>注意 Synchronized关键字会引起线程上下文切换和线程调度。  </p>
-<h2 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h2><p>Synchronized可以实现同步，但是只有一个线程访问共享变量。正常情况下，对于多个读操作时不需要同步。而大部分情况下读操作次数多于写操作，ReentrantReadWriteLock，可以实现读写分离，多个线程同时进行读取，但是最多一个写线程存在。  </p>
-<h5 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h5><pre><code>public class ArrayList&lt;E&gt;
-{
-    private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    public E get(int index){
-        Lock readLock = readWriteLock.readLock();
-        readLock.lock();
-        try{
-            return list.get(index);
-        }finally{
-            readLock.unlock();
-        }
-    }
-    public E set(int index, E element){
-        Lock wirteLock = readWriteLock.writeLock();
-        wirteLock.lock();
-        try{
-            return list.set(index, element);
-        }finally{
-            wirteLock.unlock();
-        }
-    }
-}</code></pre><p>get方法readWriteLock.readLock()获取读锁，多个线程可获得。<br>set方法readwriteLock.writeLock()获取写锁，一个线程可获得，其他线程会被阻塞。<br>一个线程获得了读锁，要获得写锁需要等待释放读锁<br>一个线程获得了写锁，要获取读锁需要等待释放写锁<br>相比Synchronized来说运行多个读者同时存在，提高了并发量。<br>** 注意：需要显示调用Lock与unlock操作。** </p>
-<h2 id="Volatile变量"><a href="#Volatile变量" class="headerlink" title="Volatile变量"></a>Volatile变量</h2><p>注意 volatile关键字不会引起线程上下文切换和线程调度。另外volatile还用来解决重排序问题。  </p>
-<h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>指数据被外界修改持保守态度(悲观)，在数据处理过程中，数据处于锁定状态。悲观锁的实现依靠数据库的锁机制。<br>数据库中实现对数据记录操作前，先给记录加排它锁，如果获取锁失败，则说明数据正在被其他线程修改，则等待或者抛出异常。如果加锁成功，则获取记录，对其修改，然后事务提交后释放排它锁。<br>一个例子：select * from 表 where .. for update;</p>
-<p>悲观锁是先加锁再访问策略，处理加锁会让数据库产生额外的开销，还有增加产生死锁的机会，另外在多个线程只读情况下不会产生数据不一致行问题，没必要使用锁，只会增加系统负载，降低并发性，因为当一个事务锁定了该条记录，其他读该记录的事务只能等待。</p>
-<h4 id="悲观锁详细操作"><a href="#悲观锁详细操作" class="headerlink" title="悲观锁详细操作"></a>悲观锁详细操作</h4><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是相对悲观锁来说的，它认为数据一般情况下不会造成冲突，所以在访问记录前不会加排他锁，而是在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，具体说根据update返回的行数让用户决定如何去做。乐观锁并不会使用数据库提供的锁机制，一般在表添加version字段或者使用业务状态来做。  </p>
-<p>乐观锁直到提交的时候才去锁定，所以不会产生任何锁和死锁。  </p>
-<h4 id="乐观锁详细操作"><a href="#乐观锁详细操作" class="headerlink" title="乐观锁详细操作"></a>乐观锁详细操作</h4><h2 id="独占锁与共享锁"><a href="#独占锁与共享锁" class="headerlink" title="独占锁与共享锁"></a>独占锁与共享锁</h2><p>根据锁能够被单个线程还是多个线程共同持有，锁又分为独占锁和共享锁。<br>独占锁保证任何时候都只有一个线程能读写权限，ReentrantLock就是以独占方式实现的互斥锁。<br>共享锁则可以同时有多个读线程，但最多只能有一个写线程，读和写是互斥的，例如ReadWriteLock读写锁。  </p>
-<p>独占锁是一种悲观锁，每次访问资源都先加上互斥锁，这限制了并发性，因为读操作并不会影响数据一致性，而独占锁只允许同时一个线程读取数据，其他线程必须等待当前线程释放锁才能进行读取。</p>
-<p>共享锁则是一种乐观锁，它放宽了加锁的条件，允许多个线程同时进行读操作。  </p>
-<h2 id="公平锁与非公平锁"><a href="#公平锁与非公平锁" class="headerlink" title="公平锁与非公平锁"></a>公平锁与非公平锁</h2><p>根据线程获取锁的抢占机制锁可以分为公平锁和非公平锁。<br>公平锁表示线程获取锁的顺序是按照线程加锁的时间多少来决定的，也就是最早加锁的线程将最早获取锁，也就是先来先得的FIFO顺序。而非公平锁则运行闯入，也就是先来不一定先得。  </p>
-<p>ReentrantLock提供了公平和非公平锁的实现：<br>公平锁ReentrantLock pairLock = new ReentrantLock(true);<br>非公平锁 Reen trantLock pairLock = new ReentrantLock(false);<br>如果构造函数不传递参数，则默认是非公平锁。<br>在没有公平性需求的前提下尽量使用非公平锁，因为公平锁会带来性能开销。  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/20/%E5%89%91%E6%8C%87offer%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">剑指offer算法总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-20T19:47:00+08:00">
-                2020-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03. 数组中重复的数字"></a>03. 数组中重复的数字</h2><p>利用集合的唯一性。</p>
-<pre><code>//重要代码
-Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();
-set.add(value)  </code></pre><ul>
-<li><p>集合中没有返回true</p>
-</li>
-<li><p>集合中已存在，返回false   </p>
-<pre><code>public int findRepeatNumber(int[] nums) {  
-    Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();  
-    for(int num: nums){  
-        if(!set.add(num)){  
-            return num;
-        }
-    }
-    return -1;
-}</code></pre></li>
-</ul>
-<h2 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04. 二维数组中的查找"></a>04. 二维数组中的查找</h2><p>标签：数组，双指针<br>利用题目的特性，找出解题的简便方法，是程序流程变得简单。  </p>
-<pre><code>class Solution {
-    int tar = 0;
-    int n = 0;
-    int m = 0;
-    public boolean findNumberIn2DArray(int[][] matrix, int target) {
-        tar=target;
-        n = matrix.length;
-        if(n == 0){
-            return false;
-        }
-        m = matrix[0].length;
-        if(m == 0){
-            return false;
-        }
-        return bianli(matrix,0,m-1);
-    }
-
-    public boolean bianli(int[][] numss, int i, int j){
-        if(numss[i][j] &lt; tar &amp;&amp; i+1 &lt; n){
-            return bianli(numss, i+1, j);
-        }else if(numss[i][j] == tar){
-            return true;
-        }else if( j-1&gt;=0){
-            return bianli(numss,i,j-1);
-        }
-        return false;
-    }
-}</code></pre><h2 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h2><p>字符数组的使用比字符串拼接（+）快无数倍。  </p>
-<pre><code>//重要代码  
-String s = new String(chars, 0, size);
-
-class Solution {
-    public String replaceSpace(String s) {
-        int len = s.length();
-        char[] chars = new char[len * 3];
-        int size = 0;
-        for(int i = 0; i &lt; len; i++){
-            char c = s.charAt(i);
-            if(c == &apos; &apos;){
-                chars[size++] = &apos;%&apos;;
-                chars[size++] = &apos;2&apos;;
-                chars[size++] = &apos;0&apos;;
-            }else{
-                chars[size++] = c;
-            }
-        }
-        String res = new String(chars, 0, size);
-        return res;
-    }
-}  </code></pre><h2 id="06-从尾到头打印链表-未完成"><a href="#06-从尾到头打印链表-未完成" class="headerlink" title="06. 从尾到头打印链表-未完成"></a>06. 从尾到头打印链表-未完成</h2><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。  </p>
-<pre><code>class Solution {
-    public int[] reversePrint(ListNode head) {
-        //1. 首先使用数组解决，链表我还没有清晰的思路
-        int[] arr = new int[10000];
-        int size = 0;
-        while(head!= null){
-            arr[size] = head.val;
-            size ++;
-            head = head.next;
-        }
-        int [] rearr = new int[size];
-        int i = 0;
-        int j = 0;
-        for(i = size-1,j = 0;i &gt;= 0;i --,j++){
-            rearr[i] = arr[j];
-        }
-        return rearr;
-
-        //2. 使用栈解决
-        // Stack&lt;Integer&gt; stack = new Stack&lt;Integer&gt;();
-        // while(head != null){
-        //     stack.push(head.val);
-        //     head = head.next;
-        // }
-        // int size = stack.size();
-        // int[] rearr = new int[size];
-        // for(int i = 0; i &lt; size; i++){
-        //     rearr[i] = stack.pop();
-        // }
-        // return rearr;
-    }
-}</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2944,7 +2827,7 @@ class Solution {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2966,7 +2849,7 @@ class Solution {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

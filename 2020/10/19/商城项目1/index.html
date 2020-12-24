@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="商城,springclooud,gateway,docker,nacos," />
 
 
 
@@ -81,13 +81,18 @@
 
 <meta name="description" content="项目简介暂时设计B2C，未来项目成熟后，转向C2C。 项目技术特点：前后端分离开发，开发基于vue的后台管理系统 SpringCloud全新的解决方案 应用监控、限流、网关、熔断降级等分布式方案，全方位涉及 分布式事务、分布式锁等分布式系统难题 高并发场景，线程池、异步编排等使用 压力测试，性能优化 各种集群技术使用 CI&#x2F;CD使用 微服务架构微服务：拒绝大型单体应用，基于业务边界进行服务强化拆分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="商城项目">
-<meta property="og:url" content="http://yoursite.com/2020/10/19/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:title" content="商城项目（一）">
+<meta property="og:url" content="http://yoursite.com/2020/10/19/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE1/index.html">
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="项目简介暂时设计B2C，未来项目成熟后，转向C2C。 项目技术特点：前后端分离开发，开发基于vue的后台管理系统 SpringCloud全新的解决方案 应用监控、限流、网关、熔断降级等分布式方案，全方位涉及 分布式事务、分布式锁等分布式系统难题 高并发场景，线程池、异步编排等使用 压力测试，性能优化 各种集群技术使用 CI&#x2F;CD使用 微服务架构微服务：拒绝大型单体应用，基于业务边界进行服务强化拆分">
 <meta property="article:published_time" content="2020-10-19T07:03:00.000Z">
-<meta property="article:modified_time" content="2020-12-22T13:55:40.142Z">
+<meta property="article:modified_time" content="2020-12-24T05:52:36.072Z">
 <meta property="article:author" content="QB">
+<meta property="article:tag" content="商城">
+<meta property="article:tag" content="springclooud">
+<meta property="article:tag" content="gateway">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="nacos">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/10/19/商城项目/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/10/19/商城项目1/"/>
 
 
 
 
 
-  <title>商城项目 | genuine nonage</title>
+  <title>商城项目（一） | genuine nonage</title>
   
 
 
@@ -285,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/19/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/19/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QB">
@@ -302,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">商城项目</h1>
+          <h1 class="post-title" itemprop="name headline">商城项目（一）</h1>
         
 
         <div class="post-meta">
@@ -699,49 +704,74 @@
 <ol>
 <li><p>命名空间：配置隔离：</p>
 <p>默认：public（保留空间）</p>
-<p>基于环境隔离：开发，测试，生产：利用命名空间做环境隔离。</p>
+<p>基于不同环境隔离：开发，测试，生产：利用命名空间做环境隔离。</p>
 <p>注意：在bootstrap.properties中配置</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.cloud.nacos.config.namespace</span>=<span class="string">bf179235-e27b-42e6-b162-8b598e0a2bae</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>基于微服务隔离</strong>：每一个微服务之间互相隔离配置，每一个微服务都创建自己的明明空间，只加载自己明明空间下的所有配置。</p>
+<p><strong>基于微服务隔离</strong>：每一个微服务之间互相隔离配置，每一个微服务都创建自己的命名空间，只加载自己明明空间下的所有配置。</p>
 </li>
 <li><p>配置集：所有的配置的集合。</p>
 </li>
-<li><p>配置集id：类似于文件名。</p>
+<li><p>配置集id：类似于文件名。就是Data ID</p>
 </li>
 <li><p>配置分组：默认所有配置集都属于：DEFAULT_GROUP</p>
-<p>每个微服务创建自己的命名空间，使用配置分组区分环境。</p>
+<p><strong>每个微服务创建自己的命名空间，使用配置分组区分环境。</strong> 分组：dev、prod</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.cloud.nacos.config.group</span>=<span class="string">dev Group名</span></span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ol>
 </li>
+</ol>
+<ol start="7">
 <li><p>同时加载多个配置集</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置集id</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[0].data-id</span>=<span class="string">datasource.yml</span></span><br><span class="line"><span class="comment"># 配置分组</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[0].group</span>=<span class="string">dev</span></span><br><span class="line"><span class="comment"># 启动配置刷新</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[0].refresh</span>=<span class="string">true</span></span><br><span class="line"></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[1].data-id</span>=<span class="string">mybatis.yml</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[1].group</span>=<span class="string">dev</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.ext-config[1].refresh</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">...</span></span><br></pre></td></tr></table></figure>
+
 <ol>
 <li>微服务任何配置信息，任何配置文件都可以放在配置中心中。</li>
 <li>只需要在bootstrap.properties说明加载配置中心的哪些配置文件即可。</li>
+<li>SpringBoot任何方法从配置文件中获取值，都能使用配置中心获取文件。</li>
 </ol>
 </li>
-<li><p><strong>API网关</strong>（每秒能处理三万多的请求，请求到达网关，通过断言，是否符合路由规则，然后经过filter路由到指定地方） </p>
+</ol>
+<h3 id="API网关-Gateway"><a href="#API网关-Gateway" class="headerlink" title="API网关 Gateway"></a>API网关 Gateway</h3><p>分布式开发中需要api网关：</p>
 <ol>
-<li><p>新建网关项目，依赖网关gateway</p>
+<li>实时的接受注册中心的服务是否上线，将请求转发到正确的目标服务。</li>
+<li>不将登录校验的功能分布到每一个服务上，在网关服务上实现。</li>
+</ol>
+<p><strong>Gateway简介</strong>：</p>
+<p>网关作为流量的入口，常用功能包括 <strong>路由转发、权限校验、限流控制等</strong>，而spring cloud gateway 作为SpringCloud官方推出的第二代网关框架，取代了Zuul网关。</p>
+<p>（每秒能处理三万多的请求，请求到达网关，通过断言，是否符合路由规则，然后经过filter路由到指定地方） </p>
+<p>学习Gateway，在官方文档中学习与使用。</p>
+<p>断言：判断请求是否符合路由规则，符合就经过一系列filter过滤后到达指定地点。</p>
+<ol>
+<li><p>新建网关项目，仅依赖网关gateway</p>
+</li>
+<li><p>依赖common工程，注册到common中</p>
+</li>
+<li><p>统一gateway的spring版本与springcloud版本</p>
 </li>
 <li><p>开启服务注册发现（配置服务信息）</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">   # application.properties 配置nacos注册中心</span></span><br><span class="line">   <span class="meta">spring.cloud.nacos.discovery.server-addr</span>=<span class="string">127.0.0.1:8848</span></span><br><span class="line">   <span class="meta">spring.application.name</span>=<span class="string">wmall-gateway</span></span><br><span class="line"><span class="meta">server.port</span>=<span class="string">88</span></span><br></pre></td></tr></table></figure>
+<p>启动类中添加@EnableDiscoveryClient</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># application.properties 配置nacos注册中心</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.discovery.server-addr</span>=<span class="string">127.0.0.1:8848</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">wmall-gateway</span></span><br><span class="line"><span class="meta">server.port</span>=<span class="string">88</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bootstrap.properties 配置nacos配置中心</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.server-addr</span>=<span class="string">127.0.0.1:8848</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.namespace</span>=<span class="string">da468fd0-0579-4ac8-b473-f93211213424</span></span><br><span class="line"><span class="meta">spring.cloud.nacos.config.group</span>=<span class="string">dev</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">wmall-coupon</span></span><br></pre></td></tr></table></figure>
 
+<p>有需要时，在配置中心配置</p>
+<p>启动网关的时候会遇到数据源相关的错误，网关排除掉跟数据库相关的自动配置 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)</p>
+<p>网关是基于Netty启动的。</p>
+<p>请求转发：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">test_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">https://www.baidu.com</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Query=baz</span></span><br><span class="line"></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">qq_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">https://www.qq.com</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Query=url,</span> <span class="string">qq</span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
+<p>浏览器输入localhost:88/?baz 会跳转到百度页面</p>
+<p>输入localhost:88/?url=qq 会跳转到qq页面</p>
 </li>
 </ol>
-</li>
-</ol>
-<h1 id="项目问题待解决"><a href="#项目问题待解决" class="headerlink" title="项目问题待解决"></a>项目问题待解决</h1><h3 id="Maven-plugins-爆红，无法导入"><a href="#Maven-plugins-爆红，无法导入" class="headerlink" title="Maven plugins 爆红，无法导入"></a>Maven plugins 爆红，无法导入</h3><h3 id="springcloud版本问题"><a href="#springcloud版本问题" class="headerlink" title="springcloud版本问题"></a>springcloud版本问题</h3><ol>
+<h1 id="项目问题待解决"><a href="#项目问题待解决" class="headerlink" title="项目问题待解决"></a>项目问题待解决</h1><h3 id="Maven-plugins-爆红，无法导入"><a href="#Maven-plugins-爆红，无法导入" class="headerlink" title="Maven plugins 爆红，无法导入"></a>Maven plugins 爆红，无法导入</h3><h3 id="springcloud版本问题"><a href="#springcloud版本问题" class="headerlink" title="springcloud版本问题"></a>springcloud版本问题</h3><p>已解决，我已经全部换成:</p>
+<p>spring-boot-starter-parent 2.1.3.RELEASE</p>
+<p>spring-cloud.version Greenwich.SR3</p>
+<ol>
 <li><p>gulimall-common</p>
 </li>
 <li><p>gulimall-coupon<br>spring-boot-starter-parent 2.4.1<br>spring-cloud.version 2020.0.0-M6</p>
@@ -758,7 +788,8 @@
 <p>spring-boot-starter-parent 2.4.1<br>spring-cloud.version 2020.0.0-M6</p>
 </li>
 </ol>
-
+<h3 id="Java解决Excel（POI）"><a href="#Java解决Excel（POI）" class="headerlink" title="Java解决Excel（POI）"></a>Java解决Excel（POI）</h3><p>已解决，如果maven阿里云仓库没有最新的依赖，阿里云将会去国外中央仓库下载</p>
+<h3 id="yml的写法语法"><a href="#yml的写法语法" class="headerlink" title="yml的写法语法"></a>yml的写法语法</h3>
       
     </div>
     
@@ -772,6 +803,20 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%95%86%E5%9F%8E/" rel="tag"># 商城</a>
+          
+            <a href="/tags/springclooud/" rel="tag"># springclooud</a>
+          
+            <a href="/tags/gateway/" rel="tag"># gateway</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/nacos/" rel="tag"># nacos</a>
+          
+        </div>
       
 
       
@@ -871,7 +916,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -893,7 +938,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -926,7 +971,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目技术特点："><span class="nav-number">1.1.</span> <span class="nav-text">项目技术特点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务架构"><span class="nav-number">1.2.</span> <span class="nav-text">微服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识"><span class="nav-number">1.3.</span> <span class="nav-text">知识</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目开始"><span class="nav-number">2.</span> <span class="nav-text">项目开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装服务器工具-docker-mysql-redis"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装服务器工具(docker,mysql,redis)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装电脑工具"><span class="nav-number">2.2.</span> <span class="nav-text">2. 安装电脑工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-搭建脚手架"><span class="nav-number">2.3.</span> <span class="nav-text">3. 搭建脚手架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-微服务"><span class="nav-number">2.4.</span> <span class="nav-text">4. 微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nacos注册中心和OpenFeign远程调用"><span class="nav-number">2.4.1.</span> <span class="nav-text">Nacos注册中心和OpenFeign远程调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nacos配置中心"><span class="nav-number">2.4.2.</span> <span class="nav-text">Nacos配置中心</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目问题待解决"><span class="nav-number">3.</span> <span class="nav-text">项目问题待解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-plugins-爆红，无法导入"><span class="nav-number">3.0.1.</span> <span class="nav-text">Maven plugins 爆红，无法导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springcloud版本问题"><span class="nav-number">3.0.2.</span> <span class="nav-text">springcloud版本问题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目简介"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目技术特点："><span class="nav-number">1.1.</span> <span class="nav-text">项目技术特点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务架构"><span class="nav-number">1.2.</span> <span class="nav-text">微服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识"><span class="nav-number">1.3.</span> <span class="nav-text">知识</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目开始"><span class="nav-number">2.</span> <span class="nav-text">项目开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装服务器工具-docker-mysql-redis"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装服务器工具(docker,mysql,redis)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装电脑工具"><span class="nav-number">2.2.</span> <span class="nav-text">2. 安装电脑工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-搭建脚手架"><span class="nav-number">2.3.</span> <span class="nav-text">3. 搭建脚手架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-微服务"><span class="nav-number">2.4.</span> <span class="nav-text">4. 微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nacos注册中心和OpenFeign远程调用"><span class="nav-number">2.4.1.</span> <span class="nav-text">Nacos注册中心和OpenFeign远程调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nacos配置中心"><span class="nav-number">2.4.2.</span> <span class="nav-text">Nacos配置中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API网关-Gateway"><span class="nav-number">2.4.3.</span> <span class="nav-text">API网关 Gateway</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目问题待解决"><span class="nav-number">3.</span> <span class="nav-text">项目问题待解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-plugins-爆红，无法导入"><span class="nav-number">3.0.1.</span> <span class="nav-text">Maven plugins 爆红，无法导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springcloud版本问题"><span class="nav-number">3.0.2.</span> <span class="nav-text">springcloud版本问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java解决Excel（POI）"><span class="nav-number">3.0.3.</span> <span class="nav-text">Java解决Excel（POI）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yml的写法语法"><span class="nav-number">3.0.4.</span> <span class="nav-text">yml的写法语法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
