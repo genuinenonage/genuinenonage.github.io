@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="功能实现先启动前端项目，然后启动Nacos，然后启动 三级分类数据库导入数据。 打开categoryContoller 查出所有分类以及子分类，以树形结构组装起来。 12345678910111213&#x2F;&#x2F;控制类List&lt;CategoryEntity&gt;categoryService.listWithTree();&#x2F;&#x2F;实现类 使用beseMapper，renren-fast使用的bao层自">
 <meta property="article:published_time" content="2020-12-25T10:58:00.000Z">
-<meta property="article:modified_time" content="2020-12-29T01:10:26.294Z">
+<meta property="article:modified_time" content="2020-12-29T14:17:09.402Z">
 <meta property="article:author" content="QB">
 <meta property="article:tag" content="商城">
 <meta name="twitter:card" content="summary">
@@ -403,7 +403,24 @@
 <li><p>下载postman模拟前端调用删除接口。</p>
 </li>
 </ol>
-<h4 id="删除效果细化"><a href="#删除效果细化" class="headerlink" title="删除效果细化"></a>删除效果细化</h4>
+<h4 id="删除效果细化"><a href="#删除效果细化" class="headerlink" title="删除效果细化"></a>删除效果细化</h4><p>实现以下几点功能：</p>
+<ol>
+<li>点击delete，有确认提示框</li>
+<li>删除菜单后，tree状态还是展开的</li>
+<li>点击append(添加)，弹出可输入提示框。</li>
+<li>将输入的数据和默认数据保存到data中</li>
+<li>通过发送请求实现保存功能。</li>
+</ol>
+<h3 id="修改菜单"><a href="#修改菜单" class="headerlink" title="修改菜单"></a>修改菜单</h3><h4 id="基本修改效果"><a href="#基本修改效果" class="headerlink" title="基本修改效果"></a>基本修改效果</h4><ol>
+<li>添加修改按钮</li>
+<li>设置点击提示框</li>
+<li>给提示开给你添加需要修改项可输入框</li>
+<li>发送请求，修改数据。</li>
+<li>注意在点击修改的时候，需要获得数据库最新的数据。</li>
+<li>请求修改成功后，刷新页面时要回显数据（查询一次数据库，将数据给到缓存中的data），防止与数据库字段不同。</li>
+<li>注意在不同操作，对缓存区的数据的修改。必要时，使数据归于默认值。</li>
+</ol>
+
       
     </div>
     
@@ -442,6 +459,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/29/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/" rel="prev" title="https、公钥、私钥、数字证书">
+                https、公钥、私钥、数字证书 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -540,7 +561,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -573,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能实现"><span class="nav-number">1.</span> <span class="nav-text">功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级分类"><span class="nav-number">1.1.</span> <span class="nav-text">三级分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">前端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">跨域问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除菜单"><span class="nav-number">1.2.</span> <span class="nav-text">删除菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面效果"><span class="nav-number">1.2.1.</span> <span class="nav-text">页面效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑删除"><span class="nav-number">1.2.2.</span> <span class="nav-text">逻辑删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除效果细化"><span class="nav-number">1.2.3.</span> <span class="nav-text">删除效果细化</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能实现"><span class="nav-number">1.</span> <span class="nav-text">功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级分类"><span class="nav-number">1.1.</span> <span class="nav-text">三级分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">前端实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">跨域问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除菜单"><span class="nav-number">1.2.</span> <span class="nav-text">删除菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面效果"><span class="nav-number">1.2.1.</span> <span class="nav-text">页面效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑删除"><span class="nav-number">1.2.2.</span> <span class="nav-text">逻辑删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除效果细化"><span class="nav-number">1.2.3.</span> <span class="nav-text">删除效果细化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改菜单"><span class="nav-number">1.3.</span> <span class="nav-text">修改菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本修改效果"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本修改效果</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

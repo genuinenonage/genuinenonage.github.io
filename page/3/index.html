@@ -284,6 +284,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/11/09/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/" itemprop="url">docker安装多种容器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-09T16:39:28+08:00">
+                2020-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>docker 安装kafka</p>
+<ol>
+<li><p>前置条件安装zookeeper</p>
+<blockquote>
+<p>docker run -d –name zookeeper -p 2181:2181 -v /etc/localtime:/etc/localtime wurstmeister/zookeeper</p>
+</blockquote>
+</li>
+<li><p>安装kafka</p>
+<blockquote>
+<p>docker run  -d –name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=39.97.117.252:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://39.97.117.252:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t wurstmeister/kafka</p>
+</blockquote>
+</li>
+<li><p>参数意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-e KAFKA_BROKER_ID&#x3D;0 在kafka集群中，每个kafka都有一个BROKER_ID来区分自己</span><br><span class="line"></span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT&#x3D;10.9.44.11:2181&#x2F;kafka 配置zookeeper管理kafka的路径39.97.117.252:2181&#x2F;kafka</span><br><span class="line"></span><br><span class="line">-e KAFKA_ADVERTISED_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;10.9.44.11:9092 把kafka的地址端口注册给zookeeper</span><br><span class="line"></span><br><span class="line">-e KAFKA_LISTENERS&#x3D;PLAINTEXT:&#x2F;&#x2F;0.0.0.0:9092 配置kafka的监听端口</span><br><span class="line"></span><br><span class="line">-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime 容器时间同步虚拟机的时间</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证kafka是否可以使用</p>
+</li>
+<li><p>失败</p>
+</li>
+</ol>
+</li>
+<li><p>docker安装elasticsearch</p>
+<ol>
+<li><p>下载镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.elastic.co/elasticsearch/elasticsearch:7.4.2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要安装kibana，需要创建网络，名字任意取</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create esnet</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看镜像</p>
+</li>
+<li><p>创建运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name es -p 9200:9200 -p 9300:9300 --network esnet -e "discovery.type=single-node" b1179d41a7b4</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/19/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -463,24 +621,25 @@
 </blockquote>
 </li>
 <li><p>创建my.cnf文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mydata/mysql57/conf/</span><br><span class="line">touch /mydata/mysql57/conf/my.cnf</span><br><span class="line">touch /mydata/mysql57/conf/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /mydata/mysql57/conf/</span><br><span class="line">touch /mydata/mysql57/conf/my.cnf</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   [client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">[mysql]</span><br><span class="line">   default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">   [mysqld]</span><br><span class="line">   init_connect&#x3D;&#39;SET collation_connection&#x3D;utf8_unicode_ci&#39;</span><br><span class="line">   init_connect&#x3D;&#39;SET NAMES utf8&#39;</span><br><span class="line">   character-set-server&#x3D;utf8</span><br><span class="line">   collation-server&#x3D;utf8_unicode_ci</span><br><span class="line">   skip-character-set-client-handshake</span><br><span class="line">   skip-name-resolve</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   [client]</span><br><span class="line">default-character-set&#x3D;utf8</span><br><span class="line">   </span><br><span class="line">[mysql]</span><br><span class="line">   default-character-set&#x3D;utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">   init_connect&#x3D;&#39;SET collation_connection&#x3D;utf8_unicode_ci&#39;</span><br><span class="line">   init_connect&#x3D;&#39;SET NAMES utf8&#39;</span><br><span class="line">   character-set-server&#x3D;utf8</span><br><span class="line">   collation-server&#x3D;utf8_unicode_ci</span><br><span class="line">   skip-character-set-client-handshake</span><br><span class="line">   skip-name-resolve</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装</p>
 <blockquote>
 <p>docker run -p 3306:3306 –name mysql57 <br>-v /mydata/mysql57/log:/var/log/mysql <br>-v /mydata/mysql57/data:/var/lib/mysql <br>-v /mydata/mysql57/conf:/etc/mysql <br>-e MYSQL_ROOT_PASSWORD=root <br>-d mysql:5.7</p>
 </blockquote>
-<ol start="4">
-<li><p>进入容器</p>
-<blockquote>
-<p>docker exec -it mysql57 /bin/bash</p>
-</blockquote>
 </li>
 </ol>
 </li>
+</ol>
+<pre><code>&gt; docker run -p 3306:3306 --name mysql57 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/log:/logs -v $PWD/data:/mysql_data -e MYSQL_ROOT_PASSWORD=Aa19990804 -d mysql:5.7
+
+4. 进入容器
+
+   &gt; docker exec -it mysql57 /bin/bash</code></pre><ol start="2">
 <li><p>mysql8</p>
 <ol>
 <li><p>下载MySQL8.0镜像</p>
@@ -507,7 +666,7 @@
 </ol>
 </li>
 </ol>
-</li>
+<ol start="4">
 <li><p>docker安装redis</p>
 <ol>
 <li><p>下载镜像</p>
@@ -2331,238 +2490,6 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/12/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/12/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url">Java多线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-12T13:25:00+08:00">
-                2020-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="实现多线程"><a href="#实现多线程" class="headerlink" title="实现多线程"></a>实现多线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>正在运行的程序。  </p>
-<ul>
-<li>系统进行资源分配和调用的独立单位。</li>
-<li>有自己的内存空间和系统资源。</li>
-</ul>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>进程中的单个顺序控制流，是一条执行路径。</p>
-<ul>
-<li>单线程：一个进程只有一条执行路径，成为单线程程序。</li>
-<li>多线程：一个进程有多条执行路径，成为多线程程序。</li>
-</ul>
-<p>举例：</p>
-<ul>
-<li>单线程：记事本设置没有完成，不能使用编辑文本。</li>
-<li>多线程：扫雷程序，时间在运行，同时可以游玩。</li>
-</ul>
-<h3 id="多线程的实现方式"><a href="#多线程的实现方式" class="headerlink" title="多线程的实现方式"></a>多线程的实现方式</h3><p>两种方法。</p>
-<h4 id="1-继承Thread类"><a href="#1-继承Thread类" class="headerlink" title="1. 继承Thread类"></a>1. 继承Thread类</h4><pre><code>* 定义一个类MyThread继承Thread类
-* 在MyThread类中重写run()方法
-* 创建MyThread类对象
-* 启动线程</code></pre><h6 id="Thread方法"><a href="#Thread方法" class="headerlink" title="Thread方法"></a>Thread方法</h6><ol>
-<li>public void start()</li>
-<li>public void run()</li>
-<li>public final void setName(String name)</li>
-<li>public final void setPriority(int priority)</li>
-<li>public final void setDaemon(boolean on)</li>
-<li>public final void join(long millisec)  等待该线程终止的时间最长为 millis 毫秒。</li>
-<li>public void interrupt()   中断线程。</li>
-<li>public final boolean isAlive()</li>
-</ol>
-<p>静态方法</p>
-<ol>
-<li>public static void yield()  暂停当前正在执行的线程对象，并执行其他线程。</li>
-<li>public static void sleep(long millisec)</li>
-<li>public static Thread currentThread()  返回对当前正在执行的线程对象的引用。</li>
-</ol>
-<h4 id="2-实现Runnable接口"><a href="#2-实现Runnable接口" class="headerlink" title="2. 实现Runnable接口"></a>2. 实现Runnable接口</h4><pre><code>* 定义一个类MyRunnable实现Runnable接口。
-* 重写run()方法。
-* 创建MyRunnable类对象。
-* 创建Thread类的对象，把MyRunnable对象作为构造方法的参数。
-* 启动线程。</code></pre><h5 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h5><ul>
-<li>为什么要重写run()方法？<ul>
-<li>应为run()用来封装被线程执行的代码。</li>
-</ul>
-</li>
-<li>run()方法和start()方法的区别？<ul>
-<li>run()：封装线程执行的代码，直接调用，相当于普通方法的调用。</li>
-<li>start()：启动线程，然后由JVM调用此线程的run()方法。</li>
-</ul>
-</li>
-<li>实现Runnable接口的好处：<ul>
-<li>避免了Java单继承的局限性，可以继承想要的父类。</li>
-<li>适合多个相同的程序代码去处理同一个资源，把线程和程序代码、数据有效分离，较好的体现了面向对象的设计思想。</li>
-</ul>
-</li>
-</ul>
-<h5 id="设置和获取线程名称"><a href="#设置和获取线程名称" class="headerlink" title="设置和获取线程名称"></a>设置和获取线程名称</h5><p>Thread类中设置和获取线程名称的方法：</p>
-<ul>
-<li>void setName(String name)：将此线程的名称更改为参数name。</li>
-<li>String getName()：返回此线程的名称。</li>
-<li>通过构造方法可以设置线程名称。</li>
-</ul>
-<p>如何获取main()方法所在的线程名称？</p>
-<ul>
-<li>public static Thread currentThread()：返回对当前正在执行的线程对象的引用</li>
-</ul>
-<h4 id="3-Callable和Future创建线程"><a href="#3-Callable和Future创建线程" class="headerlink" title="3. Callable和Future创建线程"></a>3. Callable和Future创建线程</h4><pre><code>1. 创建 Callable 接口的实现类，并实现 call() 方法，该 call() 方法将作为线程执行体，并且有返回值。
-2. 创建 Callable 实现类的实例，使用 FutureTask 类来包装 Callable 对象，该 FutureTask 对象封装了该 Callable 对象的 call() 方法的返回值。
-3. 使用 FutureTask 对象作为 Thread 对象的 target 创建并启动新线程。
-4. 调用 FutureTask 对象的 get() 方法来获得子线程执行结束后的返回值。</code></pre><h3 id="创建线程的三种方式对比"><a href="#创建线程的三种方式对比" class="headerlink" title="创建线程的三种方式对比"></a>创建线程的三种方式对比</h3><ol>
-<li>采用实现 Runnable、Callable 接口的方式创建多线程时，线程类只是实现了 Runnable 接口或 Callable 接口，还可以继承其他类。</li>
-<li>使用继承 Thread 类的方式创建多线程时，编写简单，如果需要访问当前线程，则无需使用 Thread.currentThread() 方法，直接使用 this 即可获得当前线程。</li>
-</ol>
-<h5 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h5><p>线程有两种调度模型  </p>
-<ul>
-<li>分时调度模型：</li>
-<li>抢占式调度模型：</li>
-</ul>
-<p>Java使用的是抢占式调度模型</p>
-<p>Thread类中设置和获取线程优先级的方法（默认线程优先级都为5）</p>
-<ul>
-<li>public final int getPriority()：返回此线程的优先级。</li>
-<li>public findl void setPriority(int newPriority)：更改此线程的优先级。  </li>
-</ul>
-<p>注意事项：</p>
-<ul>
-<li>线程优先级是有范围的（MAX_PRIORITY=10,MIN_PRIORITY=1,NORM_PRIORITY=5）</li>
-<li>线程优先级高，仅仅是获取CPU时间片的几率高。</li>
-</ul>
-<h5 id="线程控制"><a href="#线程控制" class="headerlink" title="线程控制"></a>线程控制</h5><ul>
-<li>static void sleep(long mmillis)：是当前正在执行的线程停留（暂停执行）指定的毫秒数。</li>
-<li>void join()：等待这个线程死亡，join()之后的线程才能执行</li>
-<li>void setDaemon(Boolean on)：此线程标记为守护线程，当运行的线程都是守护线程是，Java虚拟机退出。</li>
-</ul>
-<p>注意事项：</p>
-<ul>
-<li>主线程运行完，守护线程不会立即消失，所以JVM不会立即停止运行。</li>
-<li>join()之后的线程，只有join()对应的线程运行完才会执行。</li>
-</ul>
-<h5 id="线程生命周期"><a href="#线程生命周期" class="headerlink" title="线程生命周期"></a>线程生命周期</h5><p><img src="https://i.loli.net/2020/09/21/hXj6CeZJkxdfHu4.png" alt="Java集合框架图.PNG"></p>
-<ol>
-<li>新建：创建线程对象。</li>
-<li>就绪（仅有执行资格）：start()；其他线程抢走CPU的执行权；sleep()方法时间到/阻塞方式结束。</li>
-<li>运行：抢到CPU的执行权。</li>
-<li>死亡：run()结束；stop()。</li>
-<li>阻塞：sleep()/其他阻塞式方法。</li>
-</ol>
-<h2 id="线程的几个主要概念"><a href="#线程的几个主要概念" class="headerlink" title="线程的几个主要概念"></a>线程的几个主要概念</h2><p>在多线程编程时，你需要了解以下几个概念：</p>
-<ul>
-<li>线程同步</li>
-<li>线程间通信</li>
-<li>线程死锁</li>
-<li>线程控制：挂起、停止和恢复</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2613,7 +2540,7 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2635,7 +2562,7 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
