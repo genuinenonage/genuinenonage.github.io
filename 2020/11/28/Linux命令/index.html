@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="查找文件12find &#x2F; -iname &quot;node&quot;find &#x2F; -type &quot; *.config &quot;  下载资源1wget http:&#x2F;&#x2F;...  解压文件 tar.gz 1tar -xvf xxx    移动文件1mv [源] [目标地址]  删除文件12345rm xxx强制删除rm -f xxx删除文件夹rm -rf xxx  查看剩余空间1free -h  启动软件命令Elasticse">
+<meta name="description" content="常用命令查找文件12find &#x2F; -iname &quot;node&quot;find &#x2F; -type &quot; *.config &quot;  下载资源1wget http:&#x2F;&#x2F;...  解压文件 tar.gz 1tar -xvf xxx    移动文件1mv [源] [目标地址]  删除文件12345rm xxx强制删除rm -f xxx删除文件夹rm -rf xxx  查看剩余空间1free -h  启动软件命令Elast">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux命令">
 <meta property="og:url" content="http://yoursite.com/2020/11/28/Linux%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="genuine nonage">
-<meta property="og:description" content="查找文件12find &#x2F; -iname &quot;node&quot;find &#x2F; -type &quot; *.config &quot;  下载资源1wget http:&#x2F;&#x2F;...  解压文件 tar.gz 1tar -xvf xxx    移动文件1mv [源] [目标地址]  删除文件12345rm xxx强制删除rm -f xxx删除文件夹rm -rf xxx  查看剩余空间1free -h  启动软件命令Elasticse">
+<meta property="og:description" content="常用命令查找文件12find &#x2F; -iname &quot;node&quot;find &#x2F; -type &quot; *.config &quot;  下载资源1wget http:&#x2F;&#x2F;...  解压文件 tar.gz 1tar -xvf xxx    移动文件1mv [源] [目标地址]  删除文件12345rm xxx强制删除rm -f xxx删除文件夹rm -rf xxx  查看剩余空间1free -h  启动软件命令Elast">
 <meta property="og:image" content="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png">
 <meta property="article:published_time" content="2020-11-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-11T03:43:20.351Z">
+<meta property="article:modified_time" content="2021-02-08T07:18:05.460Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png">
@@ -354,7 +354,7 @@
       
 
       
-        <h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -iname "node"</span><br><span class="line">find / -type " *.config "</span><br></pre></td></tr></table></figure>
+        <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -iname "node"</span><br><span class="line">find / -type " *.config "</span><br></pre></td></tr></table></figure>
 
 <h3 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://...</span><br></pre></td></tr></table></figure>
 
@@ -374,7 +374,7 @@
 
 <h4 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户		nohup ./kibana &amp;</span><br></pre></td></tr></table></figure>
 
-<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>查询当前所设定的状态。</p>
+<h2 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h2><h3 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h3><p>查询当前所设定的状态。</p>
 <p>multi-user.target 相当于以前的 level 3，也就是命令行终端；而 graphical.target 相当于以前的 level 5，也就是图形界面。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
 
@@ -384,11 +384,11 @@
 <p>开机以图形界面启动，执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></table></figure>
 
-<h2 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h2><p>启动虚拟机会有两个选项</p>
+<h3 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h3><p>启动虚拟机会有两个选项</p>
 <p><img src="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png" alt="image.png"></p>
 <p>第一个是正常启动</p>
 <p>第二个是修改模式启动（出现问题的时候使用）</p>
-<h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><ol>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ol>
 <li><p>root修改密码</p>
 <p>直接输入passwd修改</p>
 </li>
@@ -430,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/09/MyBatis/" rel="prev" title="MyBatis">
-                MyBatis <i class="fa fa-chevron-right"></i>
+              <a href="/2020/12/09/MyBatis/" rel="prev" title="MyBatis了解">
+                MyBatis了解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +509,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +520,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -531,7 +531,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件"><span class="nav-number">1.</span> <span class="nav-text">查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载资源"><span class="nav-number">2.</span> <span class="nav-text">下载资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件"><span class="nav-number">3.</span> <span class="nav-text">解压文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动文件"><span class="nav-number">4.</span> <span class="nav-text">移动文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">5.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看剩余空间"><span class="nav-number">6.</span> <span class="nav-text">查看剩余空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动软件命令"><span class="nav-number">7.</span> <span class="nav-text">启动软件命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Elasticsearch"><span class="nav-number">7.1.</span> <span class="nav-text">Elasticsearch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kibana"><span class="nav-number">7.2.</span> <span class="nav-text">Kibana</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统操作"><span class="nav-number"></span> <span class="nav-text">系统操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图形界面"><span class="nav-number"></span> <span class="nav-text">图形界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开机选项"><span class="nav-number"></span> <span class="nav-text">开机选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改密码"><span class="nav-number"></span> <span class="nav-text">修改密码</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件"><span class="nav-number">1.1.</span> <span class="nav-text">查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载资源"><span class="nav-number">1.2.</span> <span class="nav-text">下载资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件"><span class="nav-number">1.3.</span> <span class="nav-text">解压文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动文件"><span class="nav-number">1.4.</span> <span class="nav-text">移动文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">1.5.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看剩余空间"><span class="nav-number">1.6.</span> <span class="nav-text">查看剩余空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动软件命令"><span class="nav-number">1.7.</span> <span class="nav-text">启动软件命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Elasticsearch"><span class="nav-number">1.7.1.</span> <span class="nav-text">Elasticsearch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kibana"><span class="nav-number">1.7.2.</span> <span class="nav-text">Kibana</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统操作"><span class="nav-number">2.</span> <span class="nav-text">系统操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图形界面"><span class="nav-number">2.1.</span> <span class="nav-text">图形界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机选项"><span class="nav-number">2.2.</span> <span class="nav-text">开机选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码"><span class="nav-number">2.3.</span> <span class="nav-text">修改密码</span></a></li></ol></li></ol></div>
             
 
           </div>

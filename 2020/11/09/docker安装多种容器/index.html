@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="docker 安装kafka  前置条件安装zookeeper  docker run -d –name zookeeper -p 2181:2181 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime wurstmeister&#x2F;zookeeper   安装kafka  docker run  -d –name kafka -p 9092:9092 -e KAFKA_BROKER_">
+<meta name="description" content="kafka&#x2F;es docker 安装kafka  前置条件安装zookeeper  docker run -d –name zookeeper -p 2181:2181 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime wurstmeister&#x2F;zookeeper   安装kafka  docker run  -d –name kafka -p 9092:9092 -e KAFKA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker安装多种容器">
 <meta property="og:url" content="http://yoursite.com/2020/11/09/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/index.html">
 <meta property="og:site_name" content="genuine nonage">
-<meta property="og:description" content="docker 安装kafka  前置条件安装zookeeper  docker run -d –name zookeeper -p 2181:2181 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime wurstmeister&#x2F;zookeeper   安装kafka  docker run  -d –name kafka -p 9092:9092 -e KAFKA_BROKER_">
+<meta property="og:description" content="kafka&#x2F;es docker 安装kafka  前置条件安装zookeeper  docker run -d –name zookeeper -p 2181:2181 -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime wurstmeister&#x2F;zookeeper   安装kafka  docker run  -d –name kafka -p 9092:9092 -e KAFKA">
 <meta property="article:published_time" content="2020-11-09T08:39:28.611Z">
-<meta property="article:modified_time" content="2020-12-16T03:24:03.588Z">
+<meta property="article:modified_time" content="2021-02-08T07:13:35.263Z">
 <meta property="article:author" content="QB">
 <meta name="twitter:card" content="summary">
 
@@ -352,7 +352,7 @@
       
 
       
-        <ol>
+        <h2 id="kafka-es"><a href="#kafka-es" class="headerlink" title="kafka/es"></a>kafka/es</h2><ol>
 <li><p>docker 安装kafka</p>
 <ol>
 <li><p>前置条件安装zookeeper</p>
@@ -375,20 +375,7 @@
 </ol>
 </li>
 <li><p>docker安装elasticsearch</p>
-<ol>
-<li><p>下载镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.elastic.co/elasticsearch/elasticsearch:7.4.2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要安装kibana，需要创建网络，名字任意取</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create esnet</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看镜像</p>
-</li>
-<li><p>创建运行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name es -p 9200:9200 -p 9300:9300 --network esnet -e "discovery.type=single-node" b1179d41a7b4</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+<p>见商城4关于安装es的部分</p>
 </li>
 </ol>
 
@@ -479,8 +466,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -495,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -506,7 +502,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -517,7 +513,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -540,6 +536,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka-es"><span class="nav-number">1.</span> <span class="nav-text">kafka&#x2F;es</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
