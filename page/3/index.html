@@ -284,6 +284,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/10/%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/11/10/%E4%B8%80%E4%BA%9B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url">一些零散的知识点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-10T00:00:00+08:00">
+                2020-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-一方库、二方库、三方库是什么？"><a href="#1-一方库、二方库、三方库是什么？" class="headerlink" title="1. 一方库、二方库、三方库是什么？"></a>1. 一方库、二方库、三方库是什么？</h3><p>一方库：本工程中的各模块的相互依赖。</p>
+<p>二方库：公司内部的依赖库，一般指公司内部的其他项目发布的jar包</p>
+<p>三方库：公司之外的开源库，比如apache、ibm、google等发布的依赖</p>
+<h3 id="2-Java中-方法签名是什么？"><a href="#2-Java中-方法签名是什么？" class="headerlink" title="2. Java中 方法签名是什么？"></a>2. Java中 方法签名是什么？</h3><p>方法声明的两个组件构成了方法签名：方法的名称和参数类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculateAnswer</span><span class="params">(<span class="keyword">double</span> wingSpan, <span class="keyword">int</span> numberOfEngines,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">double</span> length, <span class="keyword">double</span> grossTons)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//do the calculation here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面方法的签名是:<br><code>calculateAnswer(double, int, double, double)</code></p>
+<h3 id="3-OOM"><a href="#3-OOM" class="headerlink" title="3. OOM"></a>3. OOM</h3><h4 id="什么是OOM？"><a href="#什么是OOM？" class="headerlink" title="什么是OOM？"></a>什么是OOM？</h4><p>OOM，全称”Out Of Memory”—“内存用完了”，来源于java.lang.OutOfMemoryError。</p>
+<p>当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也没有空间可回收时，就会抛出这个error。</p>
+<h4 id="为什么会OOM？"><a href="#为什么会OOM？" class="headerlink" title="为什么会OOM？"></a>为什么会OOM？</h4><ol>
+<li>分配的少了：虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。</li>
+<li>应用用的太多，并且用完没释放，浪费了。此时造成内存泄露或者内存溢出。</li>
+</ol>
+<h4 id="内存泄漏，内存溢出"><a href="#内存泄漏，内存溢出" class="headerlink" title="内存泄漏，内存溢出"></a>内存泄漏，内存溢出</h4><p><strong>内存泄漏</strong>：申请使用完的内存没有释放，导致虚拟机不能再次使用该内存，此时这段内存就泄露了。因为申请者不用了，而又不能被虚拟机分配给别人用。</p>
+<p><strong>内存溢出</strong>：申请的内存超出了JVM能提供的内存大小，此时称之为溢出。</p>
+<p><strong>在Java语言中</strong>，由于存在了垃圾自动回收机制，所以，我们一般不用去主动释放不用的对象所占的内存，也就是理论上来说，是<strong>不会存在“内存泄露”的</strong>。</p>
+<p><strong>如果编码不当</strong>，比如，将某个对象的引用放到了全局的Map中，虽然方法结束了，但是由于垃圾回收器会根据对象的引用情况来回收内存，导致该对象不能被及时的回收。如果该种情况出现次数多了，就<strong>会导致内存溢出</strong>，比如<strong>系统中经常使用的缓存机制。</strong></p>
+<h3 id="4-内部接口的作用？"><a href="#4-内部接口的作用？" class="headerlink" title="4. 内部接口的作用？"></a>4. 内部接口的作用？</h3><p>也被称为嵌套接口，在另一个接口内声明一个接口。</p>
+<ol>
+<li>逻辑分组仅在一个地方使用的接口的一种方式。</li>
+<li>增加了封装。</li>
+<li>更易读和可维护的代码。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/09/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2646,183 +2788,6 @@ interface GreetingService
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/17/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/" itemprop="url">Mysql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-17T11:04:00+08:00">
-                2020-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="索引数据结构红黑树，Hash表，B-Tree"><a href="#索引数据结构红黑树，Hash表，B-Tree" class="headerlink" title="索引数据结构红黑树，Hash表，B+Tree"></a>索引数据结构红黑树，Hash表，B+Tree</h2><p>二叉树，红黑树，Hash表，B-Tree。</p>
-<h3 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h3><p>索引是帮助Mysql高效获取数据的排好序的数据结构。</p>
-<p>红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。</p>
-<p>Hash：哈希算法：哈希散列值结果就是磁盘文件地址。</p>
-<ul>
-<li>不管表记录有多少，都能快速定位表数据的位置。</li>
-<li>但是不能很好解决范围查找。</li>
-</ul>
-<p>B-Tree： </p>
-<ul>
-<li>叶子节点具有相同的深度，存放数据。</li>
-<li>所有索引元素不重复。</li>
-<li>节点中的数据索引从左到右递增排列。</li>
-</ul>
-<p>B+Tree：每个数据节点都能快速找到相邻节点（节点之间双向指针）。</p>
-<ul>
-<li><p>非叶子节点不存储data，只存储索引（非叶子节点冗余索引），可以放更多的索引。</p>
-</li>
-<li><p>叶子界定啊包含所有索引字段</p>
-</li>
-<li><p>叶子节点用指针链接，提高区间访问的性能。</p>
-</li>
-<li><p>提高范围查找的性能。</p>
-</li>
-</ul>
-<h3 id="B-Tree与B-Tree的不同："><a href="#B-Tree与B-Tree的不同：" class="headerlink" title="B-Tree与B+Tree的不同："></a>B-Tree与B+Tree的不同：</h3><ul>
-<li><p>B+Tree叶子节点之间增加双向指针，B-Tree叶子节点之间没有。</p>
-</li>
-<li><p>B+Tree非叶子简单不存放数据，只存放索引（所以造成冗余索引）；B-Tree所有节点都存放数据，没有冗余索引。</p>
-</li>
-<li><p>在树的高度相同的情况下，B+Tree能放的数据更多。</p>
-</li>
-</ul>
-<h2 id="千万级数据表快速查找"><a href="#千万级数据表快速查找" class="headerlink" title="千万级数据表快速查找"></a>千万级数据表快速查找</h2><p>Mysql底层数据结构：B+Tree（B-Tree变种）：多叉查找(x&lt;y&lt;=z]</p>
-<p>B+Tree的索引每个节点大小：16kb</p>
-<p>数据库有存储引擎的概念。表级别的概念。INNODB/MYISAM</p>
-<p>MYISAM（非聚集索引）:</p>
-<pre><code>frm表结构信息
-MYD存储数据
-MYI存储B+Tree的索引。</code></pre><p>INNODB（聚集索引）: </p>
-<pre><code>frm表结构信息
-ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a href="#基于B-Tree高性能索引" class="headerlink" title="基于B+Tree高性能索引"></a>基于B+Tree高性能索引</h2><p>INNODB索引实现（聚集）</p>
-<ul>
-<li>表数据文件本身就是按B+Tree组织的一个索引结构的文件。</li>
-<li>聚集索引：叶子节点包含了完整的数据记录。</li>
-<li>为什么INNODB表必须有主键，并且建议整型自增。<ul>
-<li>如果没有主键，mysql找字段中的唯一字段作为索引，如果都没有，MySQL会创建一个隐藏列。不要增加MySQL的性能负担。</li>
-<li>主键不要使用UUID（UUID不是整形也不是自增），B+树经常比大小，整形比大小快，上产环境高速SSD成本高。</li>
-<li>在B+Tree数据结构中，自增树插入对B+Tree树的分裂小（B+Tree会自动优化分裂树的结构，保证在一定的规范下），随机树插入对B+Tree的分裂大</li>
-</ul>
-</li>
-<li>为什么主键索引结构叶子节点存储的是主键值？（一致性和节省存储空间）</li>
-</ul>
-<h2 id="联合索引底层数据结构"><a href="#联合索引底层数据结构" class="headerlink" title="联合索引底层数据结构"></a>联合索引底层数据结构</h2><p>KEY ‘idx_name_age_position’ （’name’,’age’,’position’) USING BTREE</p>
-<p>根据索引字段的顺序进行比较。先比较name后age后position</p>
-<p><img src="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg" alt="联合索引底层数据结构.jpg"></p>
-<p>最左前缀优化：因为联合索引底层已经实现了</p>
-<pre><code>explain select * from employees where name=&apos;Bill&apos; and age=31;</code></pre><p>还有很多的知识需要学习。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2895,7 +2860,7 @@ ibd索引和数据在一起</code></pre><h2 id="基于B-Tree高性能索引"><a 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
