@@ -284,6 +284,636 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/10/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/10/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url">面试题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-10T07:51:00+08:00">
+                2021-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h4><ol>
+<li>原子性 （atomicity）:强调事务的不可分割.</li>
+<li>一致性 （consistency）:事务的执行的前后数据的完整性保持一致.</li>
+<li>隔离性 （isolation）:一个事务执行的过程中,不应该受到其他事务的干扰</li>
+<li>持久性（durability） :事务一旦结束,数据就持久到数据库</li>
+</ol>
+<h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><ol>
+<li>读未提交<ol>
+<li>脏读：读到了未提交的数据。</li>
+</ol>
+</li>
+<li>读已提交<ol>
+<li>不可重复读：在同一个事务中执行完全相同的select语句时可能看到不一样的结果。</li>
+</ol>
+</li>
+<li>重复读：如果有事务A两次读取表，事务B企图修改表数据，会被阻塞。（不能修改，但是可以新增数据）<ol>
+<li>幻读：当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影” 行</li>
+</ol>
+</li>
+<li>序列化：4个级别可以逐个解决脏读、不可重复读、幻读</li>
+</ol>
+<p><a href="https://imgtu.com/i/cUXvV0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/cUXvV0.png" alt="cUXvV0.png"></a></p>
+<p>MySQL默认隔离级别读已提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#不同的存储引擎支持的索引类型也不一样</span><br><span class="line">InnoDB 支持事务，支持行级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</span><br><span class="line">MyISAM 不支持事务，支持表级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</span><br><span class="line">Memory 不支持事务，支持表级别锁定，支持 B-tree、Hash 等索引，不支持 Full-text 索引；</span><br><span class="line">NDB 支持事务，支持行级别锁定，支持 Hash 索引，不支持 B-tree、Full-text 等索引；</span><br><span class="line">Archive 不支持事务，支持表级别锁定，不支持 B-tree、Hash、Full-text 等索引；</span><br></pre></td></tr></table></figure>
+
+<p>聚集索引的叶节点就是最终的数据节点，而非聚集索引的叶节仍然是索引节点，但它有一个指向最终数据的指针。</p>
+<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><h3 id="浏览器响应状态码"><a href="#浏览器响应状态码" class="headerlink" title="浏览器响应状态码"></a>浏览器响应状态码</h3><p>1xx：信息</p>
+<p>2xx：成功</p>
+<p>200 OK：请求成功</p>
+<p>3xx：重定向</p>
+<p>4xx：客户端错误</p>
+<p>400：服务器为理解请求</p>
+<p>403：请求界面禁止访问</p>
+<p>404：服务器找不到请求界面</p>
+<p>5xx：服务器错误</p>
+<p>500：服务器遇到错误</p>
+<p>503：服务器宕机</p>
+<p>504：网关超时</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>字符串</p>
+<p>哈希</p>
+<p>列表</p>
+<p>集合</p>
+<p>有序集合zset</p>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>持久化就是把内存的数据写到磁盘中去，防止服务宕机了内存数据丢失。</p>
+<p>Redis 提供了两种持久化方式:RDB（默认） 和AOF </p>
+<p><a href="https://imgtu.com/i/caCn0J" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/04/10/caCn0J.png" alt="caCn0J.png"></a></p>
+<h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><h3 id="redis架构模式"><a href="#redis架构模式" class="headerlink" title="redis架构模式"></a>redis架构模式</h3><p>主从复制，读写分离：主一般写数据，从只读数据。</p>
+<p>哨兵：检测主服务是否出错，如果出错，交给从服务器。自动故障迁移。</p>
+<h3 id="redis分布式锁怎么实现"><a href="#redis分布式锁怎么实现" class="headerlink" title="redis分布式锁怎么实现"></a>redis分布式锁怎么实现</h3><p>使用setnx来抢竞争锁 ex给锁加过期时间，防止锁忘记释放。</p>
+<h3 id="单线程快？"><a href="#单线程快？" class="headerlink" title="单线程快？"></a>单线程快？</h3><p>redis保证原子性是因为单线程</p>
+<ol>
+<li>纯内存操作</li>
+<li>单线程操作，避免了频繁的上下文切换</li>
+<li>采用了非阻塞I/O多路复用机制</li>
+</ol>
+<h4 id="非阻塞I-O多路复用特点"><a href="#非阻塞I-O多路复用特点" class="headerlink" title="非阻塞I/O多路复用特点"></a>非阻塞I/O多路复用特点</h4><p>I/O 多路复用的特点是通过一种机制一个进程能同时等待多个文件描述符，而这些文件描述符（套接字描述符）其中的任意一个进入读就绪（readable）状态，select()函数就可以返回。</p>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>非同步，线程不安全</li>
+<li>存取数据快</li>
+<li>底层hash表</li>
+</ol>
+<h4 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h4><p>jdk8后：数组+链表+红黑树</p>
+<h4 id="put实现"><a href="#put实现" class="headerlink" title="put实现"></a>put实现</h4><ol>
+<li><p>计算关于key的hashcode值（与Key.hashCode的高16位做异或运算）</p>
+</li>
+<li><p>如果散列表为空时，调用resize()初始化散列表</p>
+</li>
+<li><p>如果没有发生碰撞，直接添加元素到散列表中去</p>
+</li>
+<li><p>如果发生了碰撞(hashCode值相同)，进行三种判断</p>
+<p>  4.1:若key地址相同或者equals后内容相同，则替换旧值</p>
+<p>  4.2:如果是红黑树结构，就调用树的插入方法</p>
+<p>  4.3:链表结构，循环遍历直到链表中某个节点为空，尾插法进行插入，插入之后判断链表个数是否到达变成红黑树的阙值8；也可以遍历到有节点与插入元素的哈希值和内容相同，进行覆盖。</p>
+</li>
+<li><p>如果桶满了大于阀值，则resize进行扩容</p>
+</li>
+</ol>
+<p>其余请看连接</p>
+<p><a href="https://www.cnblogs.com/zengcongcong/p/11295349.html" target="_blank" rel="noopener">https://www.cnblogs.com/zengcongcong/p/11295349.html</a></p>
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p><a href="https://blog.csdn.net/fromatozhappy/article/details/86515515" target="_blank" rel="noopener">https://blog.csdn.net/fromatozhappy/article/details/86515515</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/06/idea%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/06/idea%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8/" itemprop="url">idea环境使用记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-06T14:46:00+08:00">
+                2021-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="idea的配置使用"><a href="#idea的配置使用" class="headerlink" title="idea的配置使用"></a>idea的配置使用</h2><h3 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h3><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
+<p>步骤：加入要隐藏.idea文件</p>
+<ol>
+<li>打开file–》settings–》editor—-&gt;file types</li>
+<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
+<li>点击应用，点击ok</li>
+</ol>
+<ol start="4">
+<li>我们可以发现，idea文件被隐藏</li>
+<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
+</ol>
+<p>我添加了如下想要隐藏的文件</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/05/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/05/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE7/" itemprop="url">商城项目七</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-05T18:18:00+08:00">
+                2021-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="购物车"><a href="#购物车" class="headerlink" title="购物车"></a>购物车</h1><p>临时（离线）购物车与登录购物车</p>
+<p>ThreadLocal-同一个线程共享数据 </p>
+<p>RedirectAttribute ra</p>
+<p>​    ra.addFlashAttribute();将数据放在session里面，可以在页面中取出，看是只能取一次。</p>
+<p>​    ra.addAttribute(“skuId”,skuId);将数据放在url后面</p>
+<h1 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h1><p>分布式系统中的常见作用：</p>
+<ol>
+<li>异步处理：通过中间件处理程序的异步任务，不用程序等待异步任务执行完成。</li>
+<li>应用解耦：服务间通信，通过中间件交换数据。</li>
+<li>流量处理：大量请求放入中间件。</li>
+</ol>
+<p>概述：</p>
+<p>概念：消息代理和目的地</p>
+<p>目的地两种形式：</p>
+<ol>
+<li>队列：点对点通信。</li>
+<li>主题：发布/订阅消息通信。</li>
+</ol>
+<p>docker安装RabbitMQ</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name rabbitmq -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:25672 -p 15671:15671 -p 15672:15672 rabbitmq:management</span><br><span class="line"></span><br><span class="line">docker updata rabbitmq --restart=always</span><br></pre></td></tr></table></figure>
+
+<p>web访问默认端口15672：</p>
+<p>账户与密码：guest</p>
+<p>交换机类型</p>
+<p>Exchange:</p>
+<ol>
+<li>direct：1-1  直接交换机，一个交换机对1个队列</li>
+<li>fanout：广播所有队列</li>
+<li>topic：可以给任意部分队列</li>
+<li>headers：与direct相同，性能很差</li>
+</ol>
+<h2 id="当端口被占用时"><a href="#当端口被占用时" class="headerlink" title="当端口被占用时"></a>当端口被占用时</h2><p>在cmd中输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano|</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找9000端口</span></span><br><span class="line">netstat -ano|findstr 9000</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有进程</span></span><br><span class="line">tasklist</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看被占用端口号进程</span></span><br><span class="line">tasklist|findstr 19796</span><br></pre></td></tr></table></figure>
+
+<p>用一个消息，只能被一个服务监听获取。</p>
+<p>只有一个消息处理完成下一个消息再接收。</p>
+<p>@RabbitListener：类+方法上（监听那些队列即可）</p>
+<p>@RabbitHandler：标在方法上（重载区分不同的消息）</p>
+<p>RabbitMQ消息确认机制-可靠抵达</p>
+<ol>
+<li>服务收到消息就回调</li>
+<li>消息正确敌法队列进行回调</li>
+<li>消费端确认ack</li>
+</ol>
+<h1 id="订单"><a href="#订单" class="headerlink" title="订单"></a>订单</h1><p>Feign远程调用丢失请求头问题</p>
+<p>浏览器发送（请求头自动带了cookie）</p>
+<p>feign远程调用，会创建一个新的request（没有任何请求头）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/02/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/02/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" itemprop="url">三次握手和四次挥手</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-02T16:47:00+08:00">
+                2021-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>建立客户端与服务器的tcp连接。</p>
+<ol>
+<li>建立连接，客户端发送syn包（seq=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
+<li>服务器收到syn包，确认客户端的SYN(ack=j+1)，同时也发送一个SYN包（seq=k），即SYN+ACK包，此时服务器进入SYN_RECV状态。</li>
+<li>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，词包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手 。</li>
+</ol>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>终止客户端与服务器的tcp连接</p>
+<ol>
+<li>TCP客户端发送一个FIN（带有FIN附加标记的报文段），用来关闭客户到服务器的数据传送。</li>
+<li>服务器收到FIN，发挥一个ACK，确认序号为收到序号加1。和SYN一样，一个FIN将占用一个序号。（先发送ACK的目的是为了防止这段时间内，对方重传FIN报文段）</li>
+<li>服务器关闭客户端的连接，发送一个FIN给客户端。</li>
+<li>客户端发送ACK报文确认，并将确认序号设置为序号加1。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -389,7 +1019,7 @@
 <h4 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h4><p>原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
 <h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><ul>
 <li>对于一些设置了过期时间的key，如果这些key可能会在某些时间点被超高并发地访问，是一种非常“热点”的数据。</li>
-<li>如果这个key在大量请求同时进来前证号失效，那么所有对这个key的数据查询都落到db，我们称为缓存击穿。</li>
+<li>如果这个key在大量请求同时进来前刚好失效，那么所有对这个key的数据查询都落到db，我们称为缓存击穿。</li>
 </ul>
 <h4 id="解决-2"><a href="#解决-2" class="headerlink" title="解决"></a>解决</h4><p>加锁：大量并发只让一个去查，其他人等待，查到以后释放锁，其他人获取到锁，先查缓存，就会有数据，不用去db</p>
 <h3 id="整体解决方案"><a href="#整体解决方案" class="headerlink" title="整体解决方案"></a>整体解决方案</h3><ol>
@@ -401,6 +1031,108 @@
 <p>本地锁：synchronized，JUC（lock），在分布式情况下，想要锁住所有，必须使用分布式锁</p>
 <h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p>redis中使用 SET …… NX 不存在才放</p>
 <p>map中的数据都是放到内存中的，如果使用map作为缓存，成为本地缓存。</p>
+<p>Redission是一个在Redis的基础上实现的Java驻内存数据网格。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Redission锁的自动续期，如果业务超长，运行期间自动给锁续上新的<span class="number">30</span>s。（看门狗机制）</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用redis模拟分布式锁"><a href="#使用redis模拟分布式锁" class="headerlink" title="使用redis模拟分布式锁"></a>使用redis模拟分布式锁</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用redis 使用分布式锁  加锁保证原子性，解锁保证原子性</span></span><br><span class="line"><span class="keyword">public</span> Map&lt;String, List&lt;Catelog2Vo&gt;&gt; getCatalogJsonFromDbWithRedisLock() &#123;</span><br><span class="line">    <span class="comment">//1. 占分布式锁，去redis占坑</span></span><br><span class="line">    String uuid = UUID.randomUUID().toString();</span><br><span class="line">    <span class="comment">// set lock 1111 EX 300 NX    EX: 设置过期时间；NX: 不存在插入</span></span><br><span class="line">    Boolean lock = redisTemplate.opsForValue().setIfAbsent(<span class="string">"lock"</span>, uuid, <span class="number">300</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (lock) &#123;</span><br><span class="line">        System.out.println(<span class="string">"获取分布式锁成功"</span>);</span><br><span class="line">        <span class="comment">//加锁成功。。。执行业务</span></span><br><span class="line">        <span class="comment">//2. 设置过期时间，必须和加锁是同步的，原子的</span></span><br><span class="line">        <span class="comment">//            redisTemplate.expire("lock", 30, TimeUnit.SECONDS);// 30秒过期时间</span></span><br><span class="line">        Map&lt;String, List&lt;Catelog2Vo&gt;&gt; fromDb = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fromDb = getCatalogJsonFromDb();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            String script = <span class="string">"if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end"</span>;</span><br><span class="line">            <span class="comment">//删除锁</span></span><br><span class="line">            Long lock1 = redisTemplate.execute(new DefaultRedisScript&lt;Long&gt;(script, Long.class), Arrays.asList("lock"), uuid);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//            redisTemplate.delete("lock");//删除锁</span></span><br><span class="line">        <span class="comment">// 获取值 + 删除锁 = 必须原子性操作   lua脚本解锁</span></span><br><span class="line">        <span class="comment">//            String lockValue = redisTemplate.opsForValue().get("lock");</span></span><br><span class="line">        <span class="comment">//            if (uuid.equals(lockValue)) &#123;</span></span><br><span class="line">        <span class="comment">//                //删除自己的锁</span></span><br><span class="line">        <span class="comment">//                redisTemplate.delete("lock");</span></span><br><span class="line">        <span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> fromDb;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//加锁失败。。。重试</span></span><br><span class="line">        System.out.println(<span class="string">"获取分布式锁失败。。。等待重试"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">200</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> getCatalogJsonFromDbWithRedisLock(); <span class="comment">//自旋方式</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="整合Redission"><a href="#整合Redission" class="headerlink" title="整合Redission"></a>整合Redission</h2><h3 id="导入redission依赖"><a href="#导入redission依赖" class="headerlink" title="导入redission依赖"></a>导入redission依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.redisson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>redisson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p> 编写配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRedissonConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 所有对Redisson的使用通过RedissonClient对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span>(destroyMethod = <span class="string">"shutdown"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedissonClient <span class="title">redisson</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 创建配置</span></span><br><span class="line">        Config config = <span class="keyword">new</span> Config();</span><br><span class="line">        config.useSingleServer().setAddress(<span class="string">"redis://81.70.204.157:6379"</span>);</span><br><span class="line">        <span class="comment">//2. 根据Config创建出RedissonClient示例</span></span><br><span class="line">        <span class="keyword">return</span> Redisson.create(config);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可重入锁介绍"><a href="#可重入锁介绍" class="headerlink" title="可重入锁介绍"></a>可重入锁介绍</h3><p>有多个带锁的方法，他们需相互调用，如果他们的锁是同一个可重入锁，即可进入锁的方法中。</p>
+<p>如果不是可重入锁，只能进一次锁。</p>
+<h3 id="该节记录知识点"><a href="#该节记录知识点" class="headerlink" title="该节记录知识点"></a>该节记录知识点</h3><ol>
+<li>JUC:  java.util.concurrent</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 获取一把锁</span></span><br><span class="line">RLock lock = redisson.getLock(<span class="string">"my-lock"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 加锁</span></span><br><span class="line"><span class="comment">// lock.lock();  //阻塞时等待。默认加的锁都是三十秒</span></span><br><span class="line"><span class="comment">//2.1 锁的自动续期，如果业务超长，运行期间自动给锁续上新的30s。不用担心业务时间长，锁被删掉</span></span><br><span class="line"><span class="comment">//2.2 加锁的业务只要运行完成，就不会给当前锁续期，即使不手动解锁，锁默认30s后自动删除</span></span><br><span class="line"><span class="comment">//    看门狗锁续期时间/3=10s  10s后自动续期</span></span><br><span class="line"></span><br><span class="line">lock.lock(<span class="number">10</span>, TimeUnit.SECONDS); <span class="comment">//1. 时间到了后不会自动续期 //2. 10秒自动解锁，自动解锁时间要大于业务时间</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"加锁成功，执行业务..."</span>+Thread.currentThread().getId());</span><br><span class="line">    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//3. 解锁</span></span><br><span class="line">    lock.unlock();</span><br><span class="line">    System.out.println(<span class="string">"释放锁..."</span>+Thread.currentThread().getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h3><p>公平锁（默认非公平锁）：先发起请求，先获取锁，后来的请求，按顺序获取锁。</p>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁：并发读不受影响，并发写需依次等待执行。写时 锁住 读锁。</p>
+<p>保证一定能读到最新数据，修改期间，写锁是一个排他锁（互斥锁，独享锁）。读锁是一个共享锁。</p>
+<p>写锁没释放 读就必须等待；读锁没释放 写就必须等待。</p>
+<p>读+读：相当于无锁，并发读。当前所有读锁，都会同时加载成功。</p>
+<p>写+读：读等待写锁释放</p>
+<p>写+写：阻塞方式，后写等待前写释放</p>
+<p>读+写：写等待读锁释放</p>
+<h3 id="闭锁"><a href="#闭锁" class="headerlink" title="闭锁"></a>闭锁</h3><p>设置等待数，通过减一，当等待数完成后，解锁</p>
+<p>实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 放假，闭锁</span></span><br><span class="line"><span class="comment"> * 5个班全部走完，锁大门</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/lockDoor"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">lockDoor</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    RCountDownLatch door = redisson.getCountDownLatch(<span class="string">"door"</span>);</span><br><span class="line">    door.trySetCount(<span class="number">5</span>);</span><br><span class="line">    door.await(); <span class="comment">//等待闭锁都完成</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"放假了。。。"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">""</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">gogogo</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span>&#123;</span><br><span class="line">    RCountDownLatch door = redisson.getCountDownLatch(<span class="string">"door"</span>);</span><br><span class="line">    door.countDown();  <span class="comment">//闭锁，计数减 1</span></span><br><span class="line">    <span class="keyword">return</span> id+<span class="string">"班的人都走了。。。"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车库停车</span></span><br><span class="line"><span class="comment"> * 3车位</span></span><br><span class="line"><span class="comment"> * 信号量 也可以用作分布式 限流</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">park</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    RSemaphore park = redisson.getSemaphore(<span class="string">"park"</span>);</span><br><span class="line">    park.acquire(); <span class="comment">// 阻塞时等待：获取一个信号，获取一个值,占一个车位</span></span><br><span class="line">    <span class="keyword">boolean</span> b = park.tryAcquire();</span><br><span class="line">    <span class="keyword">if</span> (b) &#123;</span><br><span class="line">        <span class="comment">//执行业务</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"error"</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"ok=&gt;"</span>+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">go</span><span class="params">()</span></span>&#123;</span><br><span class="line">    RSemaphore park = redisson.getSemaphore(<span class="string">"park"</span>);</span><br><span class="line">    park.release(); <span class="comment">// 释放一个车位</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"ok"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><ol>
+<li>双写模式：数据库写，修改redis</li>
+<li>失效模式：数据库写，删除redis，读取时第一次从数据库读，写入redis</li>
+</ol>
+<p>可以使用Canal更新缓存（Canal阿里开发的中间件，可以保证缓存一致性：生成一个记录数据库更新数据的日志，来解决缓存不一致问题）</p>
+<p>数据异构：比如每个人的商城首页展示的商品是不同的。原理：用户访问记录与商品信息表通过Canal生成一个异构系统用户推荐表，首页的数据在推荐表中查找。</p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li>缓存的所有数据都有过期时间，数据过期下一次查询触发主动更新。</li>
+<li>使用分布式的读写锁。</li>
+</ol>
+<h1 id="Spring-Cache"><a href="#Spring-Cache" class="headerlink" title="Spring Cache"></a>Spring Cache</h1><p>简介：用来统一不同缓存的技术。</p>
+<h2 id="整合-简化缓存开发"><a href="#整合-简化缓存开发" class="headerlink" title="整合-简化缓存开发"></a>整合-简化缓存开发</h2><ol>
+<li><p>引入依赖</p>
+<ol>
+<li>spring-boot-starter-cache</li>
+<li>spring-boot-starter-data-redis</li>
+</ol>
+</li>
+<li><p>写配置</p>
+<ol>
+<li><p>自动配置了哪些</p>
+<ol>
+<li>自动配好了缓存管理器</li>
+</ol>
+</li>
+<li><p>我们配置什么</p>
+<ol>
+<li><p>配置使用redis作为缓存</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.cache.type</span>=<span class="string">redis</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>测试使用缓存</p>
+<ol>
+<li>@Cacheable：触发将数据保存到缓存的操作</li>
+<li>@CacheEvict：触发将数据从缓存删除的操作</li>
+<li>@CachePut：不影响方法执行更新缓存</li>
+<li>@Caching：组合以上多个操作</li>
+<li>@CacheConig：在类级别共享缓存的相同配置</li>
+</ol>
+</li>
+<li><p>开启缓存功能</p>
+<p>@EnableCaching</p>
+</li>
+<li><p>只需使用注解就能完成缓存的操作</p>
+<ol>
+<li>每一个需要缓存的数据我们都要指定放到那个名字的缓存。【缓存的分区(按照业务类型分)】</li>
+<li>@Cacheable({“category”})</li>
+<li>当前方法的解决需要缓存，如果缓存中有，方法不用调用；如果缓存中没有，会调用方法，最后将方法的结果放入缓存。</li>
+</ol>
+</li>
+<li><pre><code>spring.cache.type=redis
+#spring.cache.cache-names=qq,
+#设置存活时间
+spring.cache.redis.time-to-live=60000
+#默认分区名作为前缀
+#spring.cache.redis.key-prefix=CACHE_
+spring.cache.redis.use-key-prefix=true
+#是否缓存空值  解决缓存穿透问题
+spring.cache.redis.cache-null-values=true
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. 自定义缓存配置</span><br><span class="line"></span><br><span class="line">   &#96;&#96;&#96;properties</span><br><span class="line">   spring.cache.type&#x3D;redis</span><br><span class="line">   #spring.cache.cache-names&#x3D;qq,</span><br><span class="line">   #设置存活时间</span><br><span class="line">   spring.cache.redis.time-to-live&#x3D;60000</span><br><span class="line">   spring.cache.redis.key-prefix&#x3D;CACHE_</span><br><span class="line">   spring.cache.redis.use-key-prefix&#x3D;true</span><br><span class="line">   #是否缓存空值  解决缓存穿透问题</span><br><span class="line">   spring.cache.redis.cache-null-values&#x3D;true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties</span>(CacheProperties<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MyCacheConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">RedisCacheConfiguration <span class="title">redisCacheConfiguration</span><span class="params">(CacheProperties cacheProperties)</span></span>&#123;</span><br><span class="line">        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();</span><br><span class="line"><span class="comment">//        config = config.entryTtl();</span></span><br><span class="line">        config = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="keyword">new</span> StringRedisSerializer()));</span><br><span class="line">        config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="keyword">new</span> GenericJackson2JsonRedisSerializer()));</span><br><span class="line">        <span class="comment">// 将配置文件中的所有配置都生效</span></span><br><span class="line">        CacheProperties.Redis redisProperties = cacheProperties.getRedis();</span><br><span class="line">        <span class="keyword">if</span> (redisProperties.getTimeToLive() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            config = config.entryTtl(redisProperties.getTimeToLive());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (redisProperties.getKeyPrefix() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            config = config.prefixKeysWith(redisProperties.getKeyPrefix());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!redisProperties.isCacheNullValues()) &#123;</span><br><span class="line">            config = config.disableCachingNullValues();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!redisProperties.isUseKeyPrefix()) &#123;</span><br><span class="line">            config = config.disableKeyPrefix();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</code></pre></li>
+</ol>
 
           
         
@@ -726,6 +1458,255 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/22/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/22/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/" itemprop="url">商城项目六</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-22T14:15:00+08:00">
+                2021-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><ol>
+<li><p>初始化线程的4种方式</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 继承Thread</span><br><span class="line">2. 实现Runable接口</span><br><span class="line">3. 实现Callable接口 + FutureTask(可以拿到结果，可以处理异常)</span><br><span class="line">4. 线程池 给线程池直接提交任务</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">1，2不能得到返回值，3可以获得返回值</span><br><span class="line">1，2，3都不能控制资源</span><br><span class="line">4可以控制资源，性能稳定。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="4种实现方式"><a href="#4种实现方式" class="headerlink" title="4种实现方式"></a>4种实现方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">Thread01 thread01 = <span class="keyword">new</span> Thread01();</span><br><span class="line">thread01.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">Runable01 runable01 = <span class="keyword">new</span> Runable01();</span><br><span class="line"><span class="keyword">new</span> Thread(runable01).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.1</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> Callable01());</span><br><span class="line"><span class="keyword">new</span> Thread(futureTask).start();</span><br><span class="line"><span class="comment">//3.2</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> Callable01());</span><br><span class="line"><span class="keyword">new</span> Thread(futureTask).start();</span><br><span class="line"><span class="comment">//阻塞 等待整个线程执行完成，获取返回结果</span></span><br><span class="line">Integer integer = futureTask.get();</span><br><span class="line">System.out.println(<span class="string">"返回结果："</span>+integer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="comment">//当前系统中池只有一两个，每个异步任务，提交给线程池</span></span><br><span class="line"><span class="comment">//创建全局类变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//4.1</span></span><br><span class="line">service.execute(<span class="keyword">new</span> Runable01());</span><br><span class="line"><span class="comment">//4.2 使用原生线程池</span></span><br><span class="line">ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">                <span class="number">5</span>,</span><br><span class="line">                <span class="number">200</span>,</span><br><span class="line">                <span class="number">10</span>,</span><br><span class="line">                TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;(<span class="number">1000000</span>),</span><br><span class="line">                Executors.defaultThreadFactory(),</span><br><span class="line">                <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程池介绍"><a href="#线程池介绍" class="headerlink" title="线程池介绍"></a>线程池介绍</h3><h4 id="原生线程池"><a href="#原生线程池" class="headerlink" title="原生线程池"></a>原生线程池</h4><h5 id="有7大参数"><a href="#有7大参数" class="headerlink" title="有7大参数"></a>有7大参数</h5><ol>
+<li>corePoolSize 核心线程池：线程池创建好就准备就绪的线程数量，等待接收异步任务去执行。</li>
+<li>maximumPoolSize 最大线程数。</li>
+<li>keepAliveTime 存活时间。释放空闲线程，只要空闲线程大于核心线程。</li>
+<li>unit 时间单位。</li>
+<li>workQueue 阻塞队列。</li>
+<li>threadFactory 线程的创建工厂。</li>
+<li>handler 如果队列满了，按照指定的拒绝策略拒绝执行任务。</li>
+</ol>
+<h5 id="工作顺序"><a href="#工作顺序" class="headerlink" title="工作顺序"></a>工作顺序</h5><pre><code>1. 线程池创建，准备好core数量的核心线程。
+    1.1 核心满了，再进阻塞队列，空闲的回去阻塞队列获取任务
+    1.2 阻塞队列满了，就开新线程执行，最大额能开到max指定的数量
+    1.3 max满了就用拒绝任务
+    1.4 max都执行完成了，有很多空闲，在指定时间以后，就释放多余线程。
+    new LinkedBlockingDeque&lt;&gt;() 默认时Integer的最大值，会造成内存不够</code></pre><h5 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h5><p>一个线程池core7，max20，queue50，100并发进来怎么分配？<br>          7个立即执行，50个进入队列，13个开新线程执行。剩下30个使用拒绝策略。<br>          如果不想抛弃还要执行。new ThreadPoolExecutor.CallerRunsPolicy() 使用同步执行的拒绝策略</p>
+<h4 id="常见4种线程池"><a href="#常见4种线程池" class="headerlink" title="常见4种线程池"></a>常见4种线程池</h4><ol>
+<li>Executors.newCachedThreadPool(); //core是0，所有都可回收</li>
+<li>Executors.newFixedThreadPool(); //固定大小，core=max，所有都不可回收</li>
+<li>Executors.newScheduledThreadPool();  //定时任务的线程池，可传递一个线程开始运行的时间</li>
+<li>Executors.newScheduledThreadPool(); //单线程线程池，后台从队列里面获取任务，依次执行，是同步的</li>
+</ol>
+<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><p>实现了Future接口，Future可以获取异步结果。</p>
+<p>当多个线程池运行，可以设置之间相互关系。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先创建一个线程池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService executor = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="简单异步运行"><a href="#简单异步运行" class="headerlink" title="简单异步运行"></a>简单异步运行</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.runAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行结果："</span> + i);</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步运行获取返回值"><a href="#异步运行获取返回值" class="headerlink" title="异步运行获取返回值"></a>异步运行获取返回值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.1</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行结果："</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line">Integer integer = future.get();</span><br><span class="line">System.out.println(<span class="string">"返回值："</span>+integer);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步完成时回调"><a href="#异步完成时回调" class="headerlink" title="异步完成时回调"></a>异步完成时回调</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.2 计算完成时回调</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行结果："</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).whenComplete((res,excption)-&gt;&#123;</span><br><span class="line">    <span class="comment">//虽然能得到异常信息，但是没法修改返回数据</span></span><br><span class="line">    System.out.println(<span class="string">"异步任务完成了。。。结果是："</span>+res+<span class="string">"；异常是："</span>+excption);</span><br><span class="line">&#125;).exceptionally(throwable -&gt; &#123;</span><br><span class="line">    <span class="comment">//可以感知异常，同时返回默认值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步完成后再处理"><a href="#异步完成后再处理" class="headerlink" title="异步完成后再处理"></a>异步完成后再处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.3 方法完成后的处理</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行结果："</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).handle((res,thr)-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (res!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (thr!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程串行化"><a href="#线程串行化" class="headerlink" title="线程串行化"></a>线程串行化</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thenRunAsync:不能获取到上一步的执行结果，无返回值</span><br><span class="line">thenAcceptAsync 能接受上一步结果，但无返回值</span><br><span class="line">thenApplyAsync 能接受上一步结果，有返回值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//thenRunAsync：</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行结果："</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).thenRunAsync(()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"任务2启动了。。。"</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<h3 id="两任务组合关系"><a href="#两任务组合关系" class="headerlink" title="两任务组合关系"></a>两任务组合关系</h3><p>首先创建两个异步线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture&lt;Object&gt; future01 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前1线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">"运行1结果："</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"></span><br><span class="line">CompletableFuture&lt;Object&gt; future02 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">"当前2线程id："</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"运行2结束"</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello"</span>;</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
+
+<h4 id="两任务都完成，再执行三任务"><a href="#两任务都完成，再执行三任务" class="headerlink" title="两任务都完成，再执行三任务"></a>两任务都完成，再执行三任务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 不能获取两次执行结果</span></span><br><span class="line">future01.runAfterBothAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"任务3开始。。。"</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2 能获取两次执行结果，但没有返回值</span></span><br><span class="line">future01.thenAcceptBothAsync(future02,(f1,f2)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"任务3开始。。。之前的结果："</span>+f1+<span class="string">"--&gt;"</span>+f2);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3 能获取两次执行结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.thenCombineAsync(future02, (f1, f2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> f1 + <span class="string">":"</span> + f2 + <span class="string">"-&gt;end"</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">"结果返回："</span>+future.get());</span><br></pre></td></tr></table></figure>
+
+<h4 id="两任务任一完成，执行三任务"><a href="#两任务任一完成，执行三任务" class="headerlink" title="两任务任一完成，执行三任务"></a>两任务任一完成，执行三任务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 不感知结果，没有返回值</span></span><br><span class="line">future01.runAfterEitherAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"任务3开始。。。"</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2 感知结果，没有返回值</span></span><br><span class="line">future01.acceptEitherAsync(future02,(res)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"任务3开始。。。之前的结果："</span>+res);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3 感知结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.applyToEitherAsync(future02, res -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> res.toString() + <span class="string">"-&gt;哈哈"</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">"结果返回："</span>+future.get());</span><br></pre></td></tr></table></figure>
+
+<h3 id="多任务组合关系"><a href="#多任务组合关系" class="headerlink" title="多任务组合关系"></a>多任务组合关系</h3><p>首先创建多个异步任务，这里创建了3个异步任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待所有结果都完成</span></span><br><span class="line">CompletableFuture&lt;Void&gt; allOf = CompletableFuture.allOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">allOf.get();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待任意一个任务执行完成，获得那个任务的返回值。</span></span><br><span class="line">CompletableFuture&lt;Object&gt; anyOf = CompletableFuture.anyOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">anyOf.get();</span><br></pre></td></tr></table></figure>
+
+<h2 id="MD5-amp-MD5盐值加密"><a href="#MD5-amp-MD5盐值加密" class="headerlink" title="MD5&amp;MD5盐值加密"></a>MD5&amp;MD5盐值加密</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>Message Digest algorithm 5：信息概要算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = DigestUtils.md5Hex(<span class="string">"123456"</span>);</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>任意长度数据，MD5值的长度都是固定的。</li>
+<li>容易计算。</li>
+<li>对原数据进行任何修改，哪怕只修改1个字节，MD5值都区别很大。</li>
+<li>很难找到不同的数据，具有相同的MD5值。</li>
+</ol>
+<h3 id="加盐"><a href="#加盐" class="headerlink" title="加盐"></a>加盐</h3><p>通过生成随机数与MD5生成字符串组合。</p>
+<p>数据库据同时存储MD5值和salt值（随机数）。验证正确性时使用salt进行MD5即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//盐值加密</span></span><br><span class="line">String s1 = Md5Crypt.md5Crypt(<span class="string">"123456"</span>.getBytes());</span><br><span class="line">String s2 = Md5Crypt.md5Crypt(<span class="string">"123456"</span>.getBytes(), <span class="string">"$1$aaaaa"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="spring密码加密器"><a href="#spring密码加密器" class="headerlink" title="spring密码加密器"></a>spring密码加密器</h3><p>使用的盐值加密</p>
+<p>每次加密出来的encode都不同</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BCryptPasswordEncoder passwordEncoder = <span class="keyword">new</span> BCryptPasswordEncoder();</span><br><span class="line">String encode = passwordEncoder.encode(<span class="string">"123456"</span>);</span><br><span class="line">System.out.println(encode);</span><br></pre></td></tr></table></figure>
+
+<p>每次可以让密码跟旧encode种比较，会从旧encode中获取到盐值。</p>
+<p>虽然每次的encode不同，但是都会跟原密码匹配。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BCryptPasswordEncoder passwordEncoder = <span class="keyword">new</span> BCryptPasswordEncoder();</span><br><span class="line"><span class="keyword">boolean</span> matches = passwordEncoder.matches(<span class="string">"123456"</span>, <span class="string">"$2a$10$fZU3lFnAGKStM8JAqQtJVu1BHOF99PfK9LCNkGLal0tt.xCWky7rG"</span>);</span><br><span class="line">System.out.println(matches);</span><br></pre></td></tr></table></figure>
+
+<h2 id="社交登录"><a href="#社交登录" class="headerlink" title="社交登录"></a>社交登录</h2><h3 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h3><p>第三方应用使用社交账号登录。</p>
+<ol>
+<li>向用户申请请求认证</li>
+<li>用户输入自己社交账号的账号密码</li>
+<li>使用上步授权，进行认证（QQ服务器）</li>
+<li>认证通过，返回访问令牌（QQ服务器）</li>
+<li>使用访问令牌，获取开放保护信息。</li>
+<li>认证令牌，返回受保护信息。</li>
+</ol>
+<h3 id="使用微博账号登录"><a href="#使用微博账号登录" class="headerlink" title="使用微博账号登录"></a>使用微博账号登录</h3><p>微博中使用code换取accesstoken，code只能用一次。</p>
+<p>短时间一个用户的acesstoken一段时间内是不会变化的</p>
+<p>授权回调页：<a href="http://gulimall.com/oauth2.0/weibo/success" target="_blank" rel="noopener">http://gulimall.com/oauth2.0/weibo/success</a></p>
+<p>取消授权回调页：<a href="http://gulimall.com/fail" target="_blank" rel="noopener">http://gulimall.com/fail</a></p>
+<p><a href="https://imgtu.com/i/cStzXF" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/03/28/cStzXF.jpg" alt="cStzXF.jpg"></a></p>
+<h2 id="新技术"><a href="#新技术" class="headerlink" title="新技术"></a>新技术</h2><h3 id="Session共享问题解决"><a href="#Session共享问题解决" class="headerlink" title="Session共享问题解决"></a>Session共享问题解决</h3><ul>
+<li>统一存储</li>
+<li>子域session共享</li>
+</ul>
+<p>SpringSession原理</p>
+<h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><p>多系统情况下，一个地方登录，所有系统通用。</p>
+<p>gitee开源项目：xxl-sso克隆下来</p>
+<p>编写host文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192.168.226.128	gulimall.com</span><br><span class="line">192.168.226.128	search.gulimall.com</span><br><span class="line">192.168.226.128	item.gulimall.com</span><br><span class="line">192.168.226.128	auth.gulimall.com</span><br><span class="line"></span><br><span class="line">127.0.0.1 ssoserver.com</span><br><span class="line">127.0.0.1 client1.com</span><br><span class="line">127.0.0.1 client2.com</span><br></pre></td></tr></table></figure>
+
+<p>运行服务器命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">目录地址\xxl-sso&gt; mvn clean package -Dmaven.skip.test=true</span><br><span class="line">cd xxl-sso-server\target</span><br><span class="line">java -jar xxl-sso-server-1.1.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>运行成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">浏览器sso登录地址</span><br><span class="line">http:&#x2F;&#x2F;ssoserver.com:8080&#x2F;xxl-sso-server&#x2F;login</span><br></pre></td></tr></table></figure>
+
+<p>运行2个客户端命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8081</span><br><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8082</span><br></pre></td></tr></table></figure>
+
+<p>运行成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">客户端地址</span><br><span class="line">http://client1.com:8081/xxl-sso-web-sample-springboot</span><br><span class="line">http://client2.com:8082/xxl-sso-web-sample-springboot</span><br></pre></td></tr></table></figure>
+
+<p>核心：三个系统域名不同，但是能给三个系统同步同一个用户票据。</p>
+<ol>
+<li>中央认证服务器：ssoserver.com</li>
+<li>其它系统，想要登录去ssoserver.com的登录，登录成功跳转回来。</li>
+<li>只要一个登录，其他都不用登录</li>
+<li>全系统统一一个sso-sessionid。所有系统可能域名都不相同</li>
+</ol>
+<h4 id="单点登录功能以后再做"><a href="#单点登录功能以后再做" class="headerlink" title="单点登录功能以后再做"></a>单点登录功能以后再做</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/04/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -799,7 +1780,7 @@
           
             <h1 id="商城项目高级篇"><a href="#商城项目高级篇" class="headerlink" title="商城项目高级篇"></a>商城项目高级篇</h1><h2 id="1-ElasticSearch"><a href="#1-ElasticSearch" class="headerlink" title="1. ElasticSearch"></a>1. ElasticSearch</h2><p>所有数据都是json格式的文档( &lt;- 类型 &lt;- 索引)</p>
 <h3 id="安装ElasticSearch和Kibana"><a href="#安装ElasticSearch和Kibana" class="headerlink" title="安装ElasticSearch和Kibana"></a>安装ElasticSearch和Kibana</h3><p>步骤一：docker安装：ElasticSearch和Kibana</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.4.2</span><br><span class="line">docker pull kibana:7.4.2</span><br><span class="line"></span><br><span class="line">mkdir -p /mydata/elasticsearch/config</span><br><span class="line">mkdir -p /mydata/elasticsearch/date</span><br><span class="line"></span><br><span class="line">docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \</span><br><span class="line">-e "discovery.type=single-node" \</span><br><span class="line">-e ES_JAVA_OPTS="-Xms64m -Xmx512m" \</span><br><span class="line">-v /mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \</span><br><span class="line">-v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line">-v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line">-d elasticsearch:7.4.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看日志</span></span><br><span class="line">docker logs elasticsearch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 赋权限</span></span><br><span class="line">chmod -R 777 /mydata/elasticsearch/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装Kibana</span></span><br><span class="line">docker run --name kibana -e ELASTICSEARCH_HOSTS=http://81.70.204.157:9200 -p 5601:5601 \</span><br><span class="line">-d kibana:7.4.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.4.2</span><br><span class="line">docker pull kibana:7.4.2</span><br><span class="line"></span><br><span class="line">mkdir -p /mydata/elasticsearch/config</span><br><span class="line">mkdir -p /mydata/elasticsearch/date</span><br><span class="line"></span><br><span class="line">docker run --name elasticsearch -p 9222:9200 -p 9333:9300 \</span><br><span class="line">-e "discovery.type=single-node" \</span><br><span class="line">-e ES_JAVA_OPTS="-Xms64m -Xmx512m" \</span><br><span class="line">-v /mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \</span><br><span class="line">-v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line">-v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line">-d elasticsearch:7.4.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看日志</span></span><br><span class="line">docker logs elasticsearch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 赋权限</span></span><br><span class="line">chmod -R 777 /mydata/elasticsearch/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装Kibana</span></span><br><span class="line">docker run --name kibana -e ELASTICSEARCH_HOSTS=http://81.70.204.157:9222 -p 5601:5601 \</span><br><span class="line">-d kibana:7.4.2</span><br></pre></td></tr></table></figure>
 
 
 
@@ -823,7 +1804,7 @@
 <p>ik分词器-自定义扩展词库</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  "analyzer": "ik_smart",</span><br><span class="line">  "text": "我是中国人"</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  "analyzer": "ik_max_word",</span><br><span class="line">  "text": "我是中国人"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 随便启动一个nginx实例，只为了复制出配置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 没有镜像docker会自动下载</span></span><br><span class="line">docker run -p 80:80 --name nginx -d nginx:1.10</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建nginx文件夹，并复制配置文件</span></span><br><span class="line">mkfir nginx</span><br><span class="line">docker container cp nginx:/etc/nginx .</span><br><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br><span class="line">mv nginx conf</span><br><span class="line">mkfir nginx</span><br><span class="line">mv conf/ nginx/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动nginx</span></span><br><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-v /mydata/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /mydata/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /mydata/nginx/conf:/etc/nginx \</span><br><span class="line">-d nginx:1.10</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置neginx的主页</span></span><br><span class="line">cd nginx/conf/html</span><br><span class="line">vi index.html</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 自定义分词器的内容</span></span><br><span class="line">mkdir es</span><br><span class="line">cd /mydata/nginx/conf/html/es/</span><br><span class="line">vi fenci.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑数据</span></span><br><span class="line">尚硅谷</span><br><span class="line">乔碧罗</span><br><span class="line"></span><br><span class="line">cd /mydata/elasticsearch/plugins/ik/config/</span><br><span class="line">vi IKAnalyzer.cfg.xml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑：取消远程扩展字典的注释，并使用自己设置的nginx的自定义分词器的内容</span></span><br><span class="line">&lt;!--用户可以在这里配置远程扩展字典 --&gt;</span><br><span class="line">&lt;entry key="remote_ext_dict"&gt;http://81.70.204.157/es/fenci.txt&lt;/entry&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启es</span></span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 随便启动一个nginx实例，只为了复制出配置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 没有镜像docker会自动下载</span></span><br><span class="line">docker run -p 80:80 --name nginx -d nginx:1.10</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建nginx文件夹，并复制配置文件</span></span><br><span class="line">mkdir nginx</span><br><span class="line">docker container cp nginx:/etc/nginx .</span><br><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br><span class="line">mv nginx conf</span><br><span class="line">mkdir nginx</span><br><span class="line">mv conf/ nginx/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动nginx</span></span><br><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-v /mydata/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /mydata/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /mydata/nginx/conf:/etc/nginx \</span><br><span class="line">-d nginx:1.10</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置nginx的主页</span></span><br><span class="line">cd nginx/html</span><br><span class="line">vi index.html</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置nginx容器开机自启</span></span><br><span class="line">docker update --restart=always nginx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 自定义分词器的内容</span></span><br><span class="line">mkdir es</span><br><span class="line">cd /mydata/nginx/conf/html/es/</span><br><span class="line">vi fenci.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑数据</span></span><br><span class="line">尚硅谷</span><br><span class="line">乔碧罗</span><br><span class="line"></span><br><span class="line">cd /mydata/elasticsearch/plugins/ik/config/</span><br><span class="line">vi IKAnalyzer.cfg.xml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑：取消远程扩展字典的注释，并使用自己设置的nginx的自定义分词器的内容</span></span><br><span class="line">&lt;!--用户可以在这里配置远程扩展字典 --&gt;</span><br><span class="line">&lt;entry key="remote_ext_dict"&gt;http://81.70.204.157/es/fenci.txt&lt;/entry&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启es</span></span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
 
 <p>测试</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  "analyzer": "ik_max_word",</span><br><span class="line">  "text": "乔碧罗殿下"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -832,7 +1813,7 @@
 
 <h3 id="使用Rest-High-Level-Client"><a href="#使用Rest-High-Level-Client" class="headerlink" title="使用Rest High Level Client"></a>使用Rest High Level Client</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">GulimallSearchApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	RestHighLevelClient client;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchData</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//1. 创建检索请求</span></span><br><span class="line">		SearchRequest searchRequest = <span class="keyword">new</span> SearchRequest();</span><br><span class="line">		<span class="comment">//指定索引</span></span><br><span class="line">		searchRequest.indices(<span class="string">"bank"</span>);</span><br><span class="line">		<span class="comment">//指定DSL，检索条件</span></span><br><span class="line">		SearchSourceBuilder sourceBuilder = <span class="keyword">new</span> SearchSourceBuilder();</span><br><span class="line">		<span class="comment">//构造检索条件</span></span><br><span class="line">		sourceBuilder.query(QueryBuilders.matchQuery(<span class="string">"address"</span>, <span class="string">"mill"</span>));</span><br><span class="line">		<span class="comment">// 按照年龄的值分布进行聚合</span></span><br><span class="line">		TermsAggregationBuilder ageAgg = AggregationBuilders.terms(<span class="string">"agaAgg"</span>).field(<span class="string">"age"</span>).size(<span class="number">10</span>);</span><br><span class="line">		sourceBuilder.aggregation(ageAgg);</span><br><span class="line">		<span class="comment">// 计算平均薪资</span></span><br><span class="line">		AvgAggregationBuilder balanceAvg = AggregationBuilders.avg(<span class="string">"balanceAvg"</span>).field(<span class="string">"balance"</span>);</span><br><span class="line">		sourceBuilder.aggregation(balanceAvg);</span><br><span class="line"><span class="comment">//		sourceBuilder.query(QueryBuilders.matchAllQuery());</span></span><br><span class="line"><span class="comment">//		sourceBuilder.from();</span></span><br><span class="line"><span class="comment">//		sourceBuilder.size();</span></span><br><span class="line"><span class="comment">//		sourceBuilder.aggregation();</span></span><br><span class="line">		searchRequest.source(sourceBuilder);</span><br><span class="line">		SearchResponse searchResponse = client.search(searchRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);</span><br><span class="line">		System.out.println(searchResponse.toString());</span><br><span class="line">		<span class="comment">//获取所有查到的数据</span></span><br><span class="line">		SearchHits hits = searchResponse.getHits();</span><br><span class="line">		SearchHit[] searchHits = hits.getHits();</span><br><span class="line">		<span class="keyword">for</span> (SearchHit hit : searchHits) &#123;</span><br><span class="line">			<span class="keyword">float</span> score = hit.getScore();</span><br><span class="line">			String id = hit.getId();</span><br><span class="line"><span class="comment">//			Map&lt;String, Object&gt; sourceAsMap = hit.getSourceAsMap();</span></span><br><span class="line">			String sourceAsString = hit.getSourceAsString();</span><br><span class="line">			Accout accout = JSON.parseObject(sourceAsString, Accout<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">			System.out.println(accout);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//获取这次检索到的分析信息</span></span><br><span class="line">		Aggregations aggregations = searchResponse.getAggregations();</span><br><span class="line">		Terms agaAgg1 = aggregations.get(<span class="string">"agaAgg"</span>);</span><br><span class="line">		<span class="keyword">for</span> (Terms.Bucket bucket : agaAgg1.getBuckets()) &#123;</span><br><span class="line">			String keyAsString = bucket.getKeyAsString();</span><br><span class="line">			System.out.println(<span class="string">"年龄："</span> + keyAsString + <span class="string">"==&gt;"</span> + bucket.getDocCount());</span><br><span class="line">		&#125;</span><br><span class="line">		Avg balanceAvg1 = aggregations.get(<span class="string">"balanceAvg"</span>);</span><br><span class="line">		System.out.println(<span class="string">"平均薪资："</span> + balanceAvg1.getValue());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 测试存储数据到es</span></span><br><span class="line"><span class="comment">	 * 保存和更新都可以</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">indexData</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		IndexRequest indexRequest = <span class="keyword">new</span> IndexRequest(<span class="string">"users"</span>);</span><br><span class="line">		<span class="comment">// id全部字符串</span></span><br><span class="line">		indexRequest.id(<span class="string">"1"</span>);</span><br><span class="line">		<span class="comment">//1-1. 键值对保存</span></span><br><span class="line"><span class="comment">//		indexRequest.source("userName", "zhangsan", "age", 18, "gender", "男");</span></span><br><span class="line">		<span class="comment">//1-2. json保存</span></span><br><span class="line">		User user = <span class="keyword">new</span> User();</span><br><span class="line">		user.setUserName(<span class="string">"zhangsan"</span>);</span><br><span class="line">		user.setAge(<span class="number">18</span>);</span><br><span class="line">		user.setGender(<span class="string">"男"</span>);</span><br><span class="line">		String jsonString = JSON.toJSONString(user);</span><br><span class="line">		indexRequest.source(jsonString, XContentType.JSON);</span><br><span class="line">		<span class="comment">//执行操作</span></span><br><span class="line">		IndexResponse index = client.index(indexRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);</span><br><span class="line">		System.out.println(index);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@ToString</span></span><br><span class="line">	<span class="meta">@Data</span></span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Accout</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> account_number;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> balance;</span><br><span class="line">		<span class="keyword">private</span> String firstname;</span><br><span class="line">		<span class="keyword">private</span> String lastname;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">		<span class="keyword">private</span> String gender;</span><br><span class="line">		<span class="keyword">private</span> String address;</span><br><span class="line">		<span class="keyword">private</span> String employer;</span><br><span class="line">		<span class="keyword">private</span> String email;</span><br><span class="line">		<span class="keyword">private</span> String city;</span><br><span class="line">		<span class="keyword">private</span> String state;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Data</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String userName;</span><br><span class="line">		<span class="keyword">private</span> String gender;</span><br><span class="line">		<span class="keyword">private</span> Integer age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(client);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="构建es索引库"><a href="#构建es索引库" class="headerlink" title="构建es索引库"></a>构建es索引库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">PUT product</span><br><span class="line">&#123;</span><br><span class="line">  "mappings": &#123;</span><br><span class="line">    "properties": &#123;</span><br><span class="line">      "skuId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "spuId":&#123;</span><br><span class="line">        "type": "keyword"</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      # 使用id_smart的分词方法</span><br><span class="line">      "skuTitle":&#123;</span><br><span class="line">        "type": "text",</span><br><span class="line">        "analyzer": "ik_smart"</span><br><span class="line">      &#125;,</span><br><span class="line">      "skuPrice":&#123;</span><br><span class="line">        "type": "keyword"</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      //冗余字段 不进行索引，不对字段数据进行聚合处理</span><br><span class="line">      "skuImg":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "saleCount":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "hasStock":&#123;</span><br><span class="line">        "type": "boolean"</span><br><span class="line">      &#125;,</span><br><span class="line">      "hotScore":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "catalogId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandName":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandImg":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "catalogName":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "attrs":&#123;</span><br><span class="line">      </span><br><span class="line">      	# 为应对es数据扁平化，使该对象的属性嵌套在一个对象中。 扁平化：想要查询满足多个属性的对象，但是查询的结果为满足任意查询条件的多个对象。这是因为es对该对象处理的问题。对于es来说，这个对象的多个属性没有被看作整体。</span><br><span class="line">        "type": "nested",</span><br><span class="line">        "properties": &#123;</span><br><span class="line">          "attrId":&#123;</span><br><span class="line">            "type": "long"</span><br><span class="line">          &#125;,</span><br><span class="line">          "attrName":&#123;</span><br><span class="line">            "type": "keyword",</span><br><span class="line">            "index": false,</span><br><span class="line">            "doc_values": false</span><br><span class="line">          &#125;,</span><br><span class="line">          "attrValue":&#123;</span><br><span class="line">            "type":"keyword"</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构建es索引库"><a href="#构建es索引库" class="headerlink" title="构建es索引库"></a>构建es索引库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">PUT product</span><br><span class="line">&#123;</span><br><span class="line">  "mappings": &#123;</span><br><span class="line">    "properties": &#123;</span><br><span class="line">      "skuId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "spuId":&#123;</span><br><span class="line">        "type": "keyword"</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      # 使用id_smart的分词方法</span><br><span class="line">      "skuTitle":&#123;</span><br><span class="line">        "type": "text",</span><br><span class="line">        "analyzer": "ik_smart"</span><br><span class="line">      &#125;,</span><br><span class="line">      "skuPrice":&#123;</span><br><span class="line">        "type": "keyword"</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      #冗余字段 不进行索引，不对字段数据进行聚合处理</span><br><span class="line">      "skuImg":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "saleCount":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "hasStock":&#123;</span><br><span class="line">        "type": "boolean"</span><br><span class="line">      &#125;,</span><br><span class="line">      "hotScore":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "catalogId":&#123;</span><br><span class="line">        "type": "long"</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandName":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "brandImg":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "catalogName":&#123;</span><br><span class="line">        "type": "keyword",</span><br><span class="line">        "index": false,</span><br><span class="line">        "doc_values": false</span><br><span class="line">      &#125;,</span><br><span class="line">      "attrs":&#123;</span><br><span class="line">      </span><br><span class="line">      	# 为应对es数据扁平化，使该对象的属性嵌套在一个对象中。 扁平化：想要查询满足多个属性的对象，但是查询的结果为满足任意查询条件的多个对象。这是因为es对该对象处理的问题。对于es来说，这个对象的多个属性没有被看作整体。</span><br><span class="line">        "type": "nested",</span><br><span class="line">        "properties": &#123;</span><br><span class="line">          "attrId":&#123;</span><br><span class="line">            "type": "long"</span><br><span class="line">          &#125;,</span><br><span class="line">          "attrName":&#123;</span><br><span class="line">            "type": "keyword",</span><br><span class="line">            "index": false,</span><br><span class="line">            "doc_values": false</span><br><span class="line">          &#125;,</span><br><span class="line">          "attrValue":&#123;</span><br><span class="line">            "type":"keyword"</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-后台编写商品上架功能"><a href="#2-后台编写商品上架功能" class="headerlink" title="2. 后台编写商品上架功能"></a>2. 后台编写商品上架功能</h2><h2 id="3-整合thymeleaf实现前端渲染"><a href="#3-整合thymeleaf实现前端渲染" class="headerlink" title="3. 整合thymeleaf实现前端渲染"></a>3. 整合thymeleaf实现前端渲染</h2><ol>
 <li>引入：thymeleaf-starter：关闭缓存</li>
@@ -1105,997 +2086,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/30/%E8%BF%90%E7%AE%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/30/%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url">运算符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-30T00:00:00+08:00">
-                2020-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>与：&amp;</p>
-<p>或：|</p>
-<p>非：~（输入1，返回0；输入0，返回1）</p>
-<p>异或：^（两个不同返回1，相同返回0）</p>
-<h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><p>左移位运算符：&lt;&lt;（运算对象向左移动指定位数，在低位补0）。</p>
-<p>右移位运算符：&gt;&gt;（值为正，在高位插0；值为负，在高位插1）。</p>
-<p>不分正负的右移位运算符：&gt;&gt;&gt;（无论正负，高位插0），这运算符C/C++没有。</p>
-<p>二进制加减法：</p>
-<p>加法直接两数二进制相加；</p>
-<p>减法变为 加 负数。</p>
-<p>负数二进制怎么求：正数二进制 先取反 然后 加1 求的负数。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/29/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/29/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/" itemprop="url">https、公钥、私钥、数字证书</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-29T09:40:00+08:00">
-                2020-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="https通信的完整流程"><a href="#https通信的完整流程" class="headerlink" title="https通信的完整流程"></a>https通信的完整流程</h3><p>浏览器请求服务器，首先发送请求，服务器返回数字证书，数字证书中有3个东西（证书内容、加密密文、加密算法），当证书内容转变为hash值与密文通过CA机构的公钥解密获得的hash值相同时，表明该证书合法，并且从数字证书的证书内容中获得服务器端公钥。由于非对称密钥的加解密耗时，所以客户端会使用自己的对称密钥通过服务器公钥加密后发送给服务器，之后服务器通过自己的私钥进行解密，获得对称密钥，之后服务器和客户端通过对称密钥进行通信</p>
-<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>两把密匙：公钥和私钥</p>
-<p>使用公钥加密时，用私钥解密。</p>
-<p>使用私钥加密时，用公钥解密。</p>
-<p>私钥：由服务器保留。</p>
-<p>公钥：服务器发送给客户端使用 。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/25/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/25/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/" itemprop="url">商城项目（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-25T18:58:00+08:00">
-                2020-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="功能实现一"><a href="#功能实现一" class="headerlink" title="功能实现一"></a>功能实现一</h1><p>先启动前端项目，然后启动Nacos，然后启动</p>
-<h2 id="三级分类"><a href="#三级分类" class="headerlink" title="三级分类"></a>三级分类</h2><p>数据库导入数据。</p>
-<p>打开categoryContoller</p>
-<p>查出所有分类以及子分类，以树形结构组装起来。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制类</span></span><br><span class="line">List&lt;CategoryEntity&gt;categoryService.listWithTree();</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现类 使用beseMapper，renren-fast使用的bao层自动继承baseMapper</span></span><br><span class="line">baseMapper == Dao</span><br><span class="line">    </span><br><span class="line"><span class="comment">//1. 查出所有分类</span></span><br><span class="line">entities = baseMapper.selectList(<span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//2. 组装成所有的父子分类</span></span><br><span class="line"><span class="comment">//2.1. 找到所有的一级分类</span></span><br><span class="line">entities。stream().filter((categoryEntity) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> categoryEntity.getParentCid == <span class="number">0</span>;</span><br><span class="line">&#125;).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
-
-<p>在实体中添加属性children</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表明在数据表中不存在</span></span><br><span class="line"><span class="meta">@TableField</span>(exist=<span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">private</span> List&lt;CategoryEntity&gt; children;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a>前端实现</h4><ol>
-<li><p>新建product/category.vue文件，使菜单知道新建的vue文件下。</p>
-</li>
-<li><p>在ElementUI中使用树形组件</p>
-</li>
-<li><p>前端向后端发送请求</p>
-</li>
-</ol>
-<h4 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h4><ol>
-<li><p>在gateway服务中编写配置类，在网关里面配置统一跨域</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GulimallCorsConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 加入到容器中</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CorsWebFilter <span class="title">corsWebFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        UrlBasedCorsConfigurationSource source = <span class="keyword">new</span> UrlBasedCorsConfigurationSource();</span><br><span class="line">        CorsConfiguration corsConfiguration = <span class="keyword">new</span> CorsConfiguration();</span><br><span class="line">        <span class="comment">//配置跨域  头，方法，来源，携带cookie</span></span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.setAllowCredentials(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 任意路径</span></span><br><span class="line">        source.registerCorsConfiguration(<span class="string">"/**"</span>,corsConfiguration);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CorsWebFilter(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写配置文件，使用filter</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">product_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://gulimall-product</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/product/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/$\&#123;segment&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">admin_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://renren-fast</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/renren-fast/$\&#123;segment&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取消renren-fast项目的跨域配置类的设置。</p>
-</li>
-<li><p>确认后端返回的参数，准确接收。</p>
-</li>
-</ol>
-<h3 id="删除-添加菜单"><a href="#删除-添加菜单" class="headerlink" title="删除/添加菜单"></a>删除/添加菜单</h3><h4 id="页面效果"><a href="#页面效果" class="headerlink" title="页面效果"></a>页面效果</h4><ol>
-<li><p>使用ElementUI的自定义节点内容功能，使用其中的scoped slot功能。</p>
-</li>
-<li><p>导入需要的组件</p>
-<p>node-key:唯一主键</p>
-<p>show-checkbox:是否显示复选框</p>
-<p>expand-on-click-node:点击非箭头位置，是否展开关闭树</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-tree</span><br><span class="line">    :data&#x3D;&quot;menus&quot;</span><br><span class="line">    :props&#x3D;&quot;defaultProps&quot;</span><br><span class="line">    show-checkbox&#x3D;&quot;true&quot;</span><br><span class="line">    node-key&#x3D;&quot;catId&quot;</span><br><span class="line">    :expand-on-click-node&#x3D;&quot;false&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;!-- vue slot 的插槽机制 --&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;custom-tree-node&quot; slot-scope&#x3D;&quot;&#123; node, data &#125;&quot;&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123; node.label &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if&#x3D;&quot;node.level &lt;&#x3D; 2&quot;</span><br><span class="line">          type&#x3D;&quot;text&quot;</span><br><span class="line">          size&#x3D;&quot;mini&quot;</span><br><span class="line">          @click&#x3D;&quot;() &#x3D;&gt; append(data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Append</span><br><span class="line">        &lt;&#x2F;el-button&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if&#x3D;&quot;node.childNodes.length &#x3D;&#x3D; 0&quot;</span><br><span class="line">          type&#x3D;&quot;text&quot;</span><br><span class="line">          size&#x3D;&quot;mini&quot;</span><br><span class="line">          @click&#x3D;&quot;() &#x3D;&gt; remove(node, data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Delete</span><br><span class="line">        &lt;&#x2F;el-button&gt;</span><br><span class="line">      &lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;el-tree&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h4><ol>
-<li><p>对逻辑删除字段使用@TableLogic(value = “1”, delval = “0”) 注解，并表明删除规则。</p>
-</li>
-<li><p>编写删除方法。</p>
-</li>
-<li><p>下载postman模拟前端调用删除接口。</p>
-</li>
-</ol>
-<h4 id="删除效果细化-添加菜单"><a href="#删除效果细化-添加菜单" class="headerlink" title="删除效果细化/添加菜单"></a>删除效果细化/添加菜单</h4><p>实现以下几点功能：</p>
-<ol>
-<li>点击delete，有确认提示框</li>
-<li>删除菜单后，tree状态还是展开的</li>
-<li>点击append(添加)，弹出可输入提示框。</li>
-<li>将输入的数据和默认数据保存到data中</li>
-<li>通过发送请求实现保存功能。</li>
-</ol>
-<h3 id="修改-批量删除菜单"><a href="#修改-批量删除菜单" class="headerlink" title="修改/批量删除菜单"></a>修改/批量删除菜单</h3><h4 id="基本修改效果"><a href="#基本修改效果" class="headerlink" title="基本修改效果"></a>基本修改效果</h4><ol>
-<li>添加修改按钮</li>
-<li>设置点击提示框</li>
-<li>给提示开给你添加需要修改项可输入框</li>
-<li>发送请求，修改数据。</li>
-<li>注意在点击修改的时候，需要获得数据库最新的数据。</li>
-<li>请求修改成功后，刷新页面时要回显数据（查询一次数据库，将数据给到缓存中的data），防止与数据库字段不同。</li>
-<li>注意在不同操作，对缓存区的数据的修改。必要时，使数据归于默认值。</li>
-</ol>
-<h4 id="修改拖拽效果"><a href="#修改拖拽效果" class="headerlink" title="修改拖拽效果"></a>修改拖拽效果</h4><ol>
-<li>实现可拖拽效果</li>
-<li>实现switch选择按钮</li>
-<li>记录拖拽菜单的id和父id</li>
-<li>记录菜单的id和子id</li>
-<li>实现批量拖动的点击按钮</li>
-<li>菜单移动，设置限制，不允许超过3级菜单</li>
-<li>检查，菜单拖动还有什么问题</li>
-</ol>
-<h4 id="批量删除菜单"><a href="#批量删除菜单" class="headerlink" title="批量删除菜单"></a>批量删除菜单</h4><ol>
-<li><p>使用Element-UI的设置，获得批量选中的菜单id</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-tree</span> <span class="attr">ref</span>=<span class="string">"menuTree"</span></span></span><br><span class="line"><span class="tag">         &gt;</span><span class="tag">&lt;/<span class="name">el-tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选中的菜单的node</span></span><br><span class="line"><span class="keyword">let</span> checkedNodes = <span class="keyword">this</span>.$refs.menuTree.getCheckedNodes();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送请求处理</p>
-</li>
-<li><p>设置批量删除的确认按钮</p>
-</li>
-</ol>
-<h2 id="品牌管理"><a href="#品牌管理" class="headerlink" title="品牌管理"></a>品牌管理</h2><h3 id="逆向生成的代码完成前端"><a href="#逆向生成的代码完成前端" class="headerlink" title="逆向生成的代码完成前端"></a>逆向生成的代码完成前端</h3><ol>
-<li>添加品牌管理菜单</li>
-<li>将生成的前端代码放到对应位置。</li>
-<li>运行程序</li>
-</ol>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
-<li><p>显示状态 使用switch按钮</p>
-</li>
-<li><p>图片上传使用OSS对象存储</p>
-</li>
-<li><p>表格图片显示，使用原生img</p>
-</li>
-<li><p>前端数据校验使用 vue rule</p>
-</li>
-<li><p>后端数据校验使用JSR303</p>
-<ol>
-<li><p>使用javax.validation.constraints包下的多个校验注解</p>
-</li>
-<li><p>如果要开启校验功能，必须再接口上使用@Valid注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">save</span><span class="params">(@Valid @RequestBody BrandEntity brand)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给校验的bean后紧跟BindingResult，封装了校验结果。</p>
-</li>
-<li><p>数据校验与分组校验</p>
-<ol>
-<li>创建标识接口</li>
-<li>@Valid注解更改为@Valided(对应的标识接口)注解</li>
-<li>在校验注解上添加groups={对应的标识接口}</li>
-<li>注意：只要使用了分组校验，未添加 groups 的校验注解将无效。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>自定义校验</p>
-<ol>
-<li>编写自定义的校验注解</li>
-<li>编写自定义的校验器</li>
-<li>关联自定义的校验器和自定义的校验注解</li>
-</ol>
-</li>
-<li><p>做统一异常处理</p>
-</li>
-</ol>
-<h1 id="取消vue的报错提示"><a href="#取消vue的报错提示" class="headerlink" title="取消vue的报错提示"></a>取消vue的报错提示</h1><p>编写文件并没有错误，是vue的错误检查要求太高了，在build/webpack.base.conf.js文件中的createLintingRule方法中的方法提全部注释掉，重启就可以了。</p>
-<h1 id="OSS-阿里云对象存储"><a href="#OSS-阿里云对象存储" class="headerlink" title="OSS 阿里云对象存储"></a>OSS 阿里云对象存储</h1><ol>
-<li>Bucket：存储空间</li>
-<li>Object：对象/文件</li>
-<li>Rejion：地域</li>
-<li>Endpoint：访问域名</li>
-<li>AccessKey：密钥（包括钥匙id和密码：AccessKeyId，AccessKeySecret）</li>
-</ol>
-<p>使用步骤：</p>
-<ol>
-<li>引入oss-starter</li>
-<li>配置key、endpoint相关信息</li>
-<li>使用OSSClient 自动注入，进行相关操作</li>
-<li>使用web签名获得相应的签名传给前端。</li>
-</ol>
-<h1 id="功能实现二"><a href="#功能实现二" class="headerlink" title="功能实现二"></a>功能实现二</h1><h2 id="SPU与SKU"><a href="#SPU与SKU" class="headerlink" title="SPU与SKU"></a>SPU与SKU</h2><p>规格属性（不变）与销售属性（可变）</p>
-<h3 id="属性分组"><a href="#属性分组" class="headerlink" title="属性分组"></a>属性分组</h3><ol>
-<li><p>将category的分类菜单，提取为组件</p>
-</li>
-<li><p>在attrgroup.vue中使用，导入组件</p>
-</li>
-<li><p>将自动生成的attrgroup.vue的前端代码导入到自己编写的vue中。</p>
-</li>
-<li><p>使用Vue 高级功能–父子组件传递数据（子给父数据，通过 <strong>事件机制</strong>，子给父发送事件，携带数据）</p>
-<ol>
-<li><p>在子组件中使用 @node-click=”事件方法名”</p>
-</li>
-<li><p>在methods中，实现方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nodeclick(data,node,component)&#123;</span><br><span class="line">    <span class="keyword">this</span>.$emit(<span class="string">"tree-node-click"</span>,data,node,component) <span class="comment">// 发送事件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在父组件调用事件名 @tree-node-click=”treenodeclick”</p>
-</li>
-<li><p>编写方法获得数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">treenodeclick(data,node,component)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"attrgroup感知到节点被点击"</span>,data,node,component)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"被点击的菜单id"</span>,data.catId)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-</li>
-</ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/24/Vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/24/Vue/" itemprop="url">Vue</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-24T19:08:17+08:00">
-                2020-12-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Vue实例"><a href="#Vue实例" class="headerlink" title="Vue实例"></a>Vue实例</h2><ol>
-<li><p>创建Vue实例</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// 选项</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p> Vue没有完全遵循MVVM模型。</p>
-</li>
-<li><p>数据与方法</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据对象</span></span><br><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//加入到Vue实例中</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: data	<span class="comment">//前面的data是vue对象的属性，后面的data是上面的数据对象。</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.a == data.a</span><br><span class="line"></span><br><span class="line">vm.a = <span class="number">2</span> <span class="comment">// data.a 也会同样改变</span></span><br></pre></td></tr></table></figure>
-
-<p> 当这些数据改变时，视图会重渲染。注意：只有当实例被创建时就已经存在于data中的property才是<strong>响应式</strong>的。如果数据一开始不存在，是不会进行响应式的。</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.freeze() <span class="comment">//阻止修改现有Vue实例的property，表示相应系统无法再追踪。</span></span><br></pre></td></tr></table></figure>
-
-<p> 比如：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'bar'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.freeze(obj)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: obj</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; foo &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 这里的 `foo` 不会更新！ --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"foo = 'baz'"</span>&gt;</span>Change it<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p> Vue实例有一些有用的property与方法。他们都有前缀$，与用于自定义的property分开。</p>
-<p> 比如：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#example'</span>,</span><br><span class="line">    data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.$data === data <span class="comment">// =》 true</span></span><br><span class="line">vm.$el === <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>) <span class="comment">// =&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $watch 是一个实例方法</span></span><br><span class="line">vm.$watch(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">newValue, oldValue</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 这个回调在'vm.a'改变后调用</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实例生命周期钩子</p>
-</li>
-</ol>
-<p>在实例生命周期的不同阶段被调用。如created、mounted（被挂载后调用）、updated、destroyed。生命周期钩子使用this上下文指向调用它的Vue实例。</p>
-<p>不用在选项property或回调上使用箭头函数。箭头函数并没有this,this会作为变量一直向上级词法作用域查找，直至找到为止，经常导致。\</p>
-<p><img src="https://i.loli.net/2020/12/24/uMRrPF1edjyDvS3.png" alt="生命周期图示"></p>
-<h2 id="语法模板"><a href="#语法模板" class="headerlink" title="语法模板"></a>语法模板</h2><p>Vue.js使用基于HTML的模板语法。</p>
-<h3 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h3><h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><p>数据绑定最常见的形式就是文本插值：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Message: &#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过v-once指令，只能执行一次性的插值，当数据改变时，插值处的内容不会更更新。</p>
-<h4 id="原始HTML"><a href="#原始HTML" class="headerlink" title="原始HTML"></a>原始HTML</h4><p>双大括号回将数据解释为普通文本，如果要输出真正的HTML，需要使用v-html指令：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Using mustaches: &#123;&#123; rawHtml &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!-- 会输出原始的HTML代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Using v-html directive: <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-html</span>=<span class="string">"rawHtml"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：动态渲染的任意HTML可能有危险，很容易倒置XSS攻击。绝对不要对用户提供的内容使用插值。</p>
-<h4 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h4><p>Mustache 语法不能作用在 HTML attribute 上，遇到这种情况应该使用v-bind 指令：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">"dynamicId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>对于布尔attribute（存在其值就为true），v-bind 工作起来略有不同。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">"isButtonDisabled"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果 <code>isButtonDisabled</code> 的值是 <code>null</code>、<code>undefined</code> 或 <code>false</code>，则 <code>disabled</code> attribute 甚至不会被包含在渲染出来的 <code>&lt;button&gt;</code> 元素中。</p>
-<h4 id="使用JavaScript表达式"><a href="#使用JavaScript表达式" class="headerlink" title="使用JavaScript表达式"></a>使用JavaScript表达式</h4><p>对于所有的数据绑定，Vue.js提供包含单个JavaScript表达式。</p>
-<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>指令（Directives）是带有v-前缀的特殊attribute。</p>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>一些指令能接受一个”参数”，在指令名称之后以冒号表示。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在这里 <code>href</code> 是参数，告知 <code>v-bind</code> 指令将该元素的 <code>href</code> attribute 与表达式 <code>url</code> 的值绑定。</p>
-<h4 id="动态参数"><a href="#动态参数" class="headerlink" title="动态参数"></a>动态参数</h4><blockquote>
-<p>2.6.0新增</p>
-</blockquote>
-<p>可以用方括号的JavaScript表达式作为一个指令的参数：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:</span>[<span class="attr">attributeName</span>]=<span class="string">"url"</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>动态参数的要求约束：</p>
-<ol>
-<li><p>动态参数预期求出一个字符串，如果为 <code>null</code> 可以被显性的用于移除绑定。任何非字符串类型的值都将会触发一个警告。</p>
-</li>
-<li><p>某些字符，如空格和引号在HTML arrtibue名里是无效的。比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这会触发一个编译警告 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:</span>['<span class="attr">foo</span>' + <span class="attr">bar</span>]=<span class="string">"value"</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>避免使用大写字符来命名键名，因为浏览器会把 attribute 名全部强制转为小写。</p>
-</li>
-</ol>
-<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>修饰符 (modifier) 是以半角句号 <code>.</code> 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><p>Vue仅仅为 <code>v-bind</code> 和 <code>b-on</code> 最常用的指令提供特定的简写。</p>
-<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a><code>v-bind</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 动态参数的缩写 (2.6.0+) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:</span>[<span class="attr">key</span>]=<span class="string">"url"</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a><code>v-on</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 动态参数的缩写 (2.6.0+) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> @[<span class="attr">event</span>]=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="计算属性和侦听器"><a href="#计算属性和侦听器" class="headerlink" title="计算属性和侦听器"></a>计算属性和侦听器</h2><h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>在模板中放入太多的逻辑会让模板过重且难以维护。</p>
-<p>对于任何复杂逻辑，应当使用<strong>计算属性</strong>。</p>
-<h4 id="基础例子"><a href="#基础例子" class="headerlink" title="基础例子"></a>基础例子</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Original message: "&#123;&#123; message &#125;&#125;"<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Computed reversed message: "&#123;&#123; reversedMessage &#125;&#125;"<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#example'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">'Hello'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        <span class="comment">// 计算属性的getter</span></span><br><span class="line">        reversedmessage: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// this 指向vm实例</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.message.sqlit(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>结果</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Original message: "Hello"</span><br><span class="line">Computed reversed message: "olleH"</span><br></pre></td></tr></table></figure>
-
-<p>当声明一个计算属性reverseMessage时，函数将用作property 的getter函数。</p>
-<p>Vue知道vm。reversedMessage依赖于vm.message。当vm.message发生改变时，所以来vm.reversedMessage的绑定也会更新。</p>
-<h4 id="计算属性缓存-vs-方法"><a href="#计算属性缓存-vs-方法" class="headerlink" title="计算属性缓存 vs 方法"></a>计算属性缓存 vs 方法</h4><p>在表达式中调用方法也可以达到相同的效果。（已验证，确实可以）</p>
-<p>不同点：</p>
-<ul>
-<li><strong>计算属性</strong>基于<strong>响应式依赖进行缓存</strong>的。当响应式发生改变时才会重新求值。</li>
-<li>每当重新渲染时，调用方法总会再次执行函数。</li>
-</ul>
-<p>比如：</p>
-<p>下面的计算属性将不再更新，因为 <code>Date.now()</code> 不是响应式依赖：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    now() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="计算属性vs侦听属性"><a href="#计算属性vs侦听属性" class="headerlink" title="计算属性vs侦听属性"></a>计算属性vs侦听属性</h4><p>侦听属性是 <code>watch</code>。</p>
-<p>使用计算属性，代码更加简介易懂。</p>
-<p>比如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span>&#123;&#123; fullName &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#demo'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: <span class="string">'Foo'</span>,</span><br><span class="line">    lastName: <span class="string">'Bar'</span>,</span><br><span class="line">    fullName: <span class="string">'Foo Bar'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    firstName: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fullName = val + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</span><br><span class="line">    &#125;,</span><br><span class="line">    lastName: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fullName = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + val</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    fullName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="计算属性的setter"><a href="#计算属性的setter" class="headerlink" title="计算属性的setter"></a>计算属性的setter</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">computed: &#123;</span><br><span class="line">  fullName: &#123;</span><br><span class="line">    <span class="comment">// getter</span></span><br><span class="line">    <span class="keyword">get</span>: function () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> + <span class="keyword">this</span>.lastName</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// setter</span></span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123;</span><br><span class="line">      <span class="keyword">var</span> names = newValue.split(<span class="string">' '</span>)</span><br><span class="line">      <span class="keyword">this</span>.firstName = names[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">this</span>.lastName = names[names.length - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h3><p>当需要在数据变化时，执行异步或开销较大的操作时，<code>watch</code> 方式时最有用的。</p>
-<p>除了 <code>watch</code> 选项之外，还可以使用命令式的 <a href="https://cn.vuejs.org/v2/api/#vm-watch" target="_blank" rel="noopener">vm.$watch API</a>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    <span class="comment">// 如果 `question` 发生改变，这个函数就会运行</span></span><br><span class="line">    question: <span class="function"><span class="keyword">function</span> (<span class="params">newQuestion, oldQuestion</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.answer = <span class="string">'Waiting for you to stop typing...'</span></span><br><span class="line">        <span class="keyword">this</span>.debouncedGetAnswer()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Class与Style绑定"><a href="#Class与Style绑定" class="headerlink" title="Class与Style绑定"></a>Class与Style绑定</h2><p>HTML的class元素可以引入style样式。</p>
-<h3 id="绑定HTML-Class"><a href="#绑定HTML-Class" class="headerlink" title="绑定HTML Class"></a>绑定HTML Class</h3><h4 id="对象语法"><a href="#对象语法" class="headerlink" title="对象语法"></a>对象语法</h4><ol>
-<li><p><code>active</code> 这个 class 存在与否将取决于数据 property <code>isActive</code> 是否为真。</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">"static"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-bind:class</span>=<span class="string">"&#123; active: isActive, 'text-danger': hasError &#125;"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isActive: <span class="literal">true</span>,</span><br><span class="line">  hasError: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 渲染的结果为：</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"static active"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以将绑定的样式数据对象放在一个对象中。</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">"classObject"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  classObject: &#123;</span><br><span class="line">    active: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'text-danger'</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>绑定一个返回对象的计算属性。这是一个常用且强大的模式：</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isActive: <span class="literal">true</span>,</span><br><span class="line">  error: <span class="literal">null</span></span><br><span class="line">&#125;,</span><br><span class="line">computed: &#123;</span><br><span class="line">  classObject: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      active: <span class="keyword">this</span>.isActive &amp;&amp; !<span class="keyword">this</span>.error,</span><br><span class="line">      <span class="string">'text-danger'</span>: <span class="keyword">this</span>.error &amp;&amp; <span class="keyword">this</span>.error.type === <span class="string">'fatal'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="数组语法"><a href="#数组语法" class="headerlink" title="数组语法"></a>数组语法</h4><p>可以把一个数组传给 <code>v-bind:class</code> ，一应用一个class列表：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">"[activeCalss, errorClass]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    activeClass: <span class="string">'active'</span>,</span><br><span class="line">    errorClass: <span class="string">'text-danger'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>根据条件切换列表中的class，使用<strong>三元表达式</strong>：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">"[isActive ? activeClass : '', errorClass]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以在数组语法中使用对象语法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">"[&#123; active: isActive &#125;, errorClass]"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="用在组件上"><a href="#用在组件上" class="headerlink" title="用在组件上"></a>用在组件上</h4><p>自定义组件上使用 <code>class</code>时,class 将被添加到该组件的根元素上面。</p>
-<p>如果声明了组件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">    template: <span class="string">'&lt;p class="foo bar"&gt;Hi&lt;/p&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>在使用时可以添加一些class：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">class</span>=<span class="string">"baz boo"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>HTML将被渲染为：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"foo bar baz boo"</span>&gt;</span>Hi<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>对于带数据绑定 class 也同样适用：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h3><h4 id="对象语法-1"><a href="#对象语法-1" class="headerlink" title="对象语法"></a>对象语法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">"&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeColor: <span class="string">'red'</span>,</span><br><span class="line">  fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>直接绑定一个样式对象，模板会更加清晰：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">"styleObject"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  styleObject: &#123;</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">    fontSize: <span class="string">'13px'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="数组语法-1"><a href="#数组语法-1" class="headerlink" title="数组语法"></a>数组语法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">"[baseStyles, overridingStyles]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>此外还有：自动添加前缀、多重值的功能，再次不多做阐述。</p>
-<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><h3 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h3><p><code>v-if</code> 指令用于条件性地渲染一块内容。只会在指令的表达式返回<code>truthy</code>值的时候被渲染。</p>
-<p>也可以用<code>v-else</code>添加一个”else块”：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">"awesome"</span>&gt;</span>Vue is awesome!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>Oh no<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="在-lt-template-gt-元素上使用v-if条件渲染分组"><a href="#在-lt-template-gt-元素上使用v-if条件渲染分组" class="headerlink" title="在&lt;template&gt;元素上使用v-if条件渲染分组"></a>在<code>&lt;template&gt;</code>元素上使用v-if条件渲染分组</h3><p>如果想切换多个元素，可以把<code>&lt;template&gt;</code>元素当作包裹元素，在上面使用v-if。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"ok"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="v-else、v-else-if"><a href="#v-else、v-else-if" class="headerlink" title="v-else、v-else-if"></a><code>v-else</code>、<code>v-else-if</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"type === 'A'"</span>&gt;</span></span><br><span class="line">  A</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">"type === 'B'"</span>&gt;</span></span><br><span class="line">  B</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">"type === 'C'"</span>&gt;</span></span><br><span class="line">  C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  Not A/B/C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="使用-key-管理可复用的元素"><a href="#使用-key-管理可复用的元素" class="headerlink" title="使用 key 管理可复用的元素"></a>使用 key 管理可复用的元素</h3><p>Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。</p>
-<p>例如，允许用户在不同的登录方式之间切换：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your username"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your email address"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果需要使，这两个元素完全独立，不要复用它们。只需添加一个具有唯一值的 <code>key</code> attribute 即可。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your username"</span> <span class="attr">key</span>=<span class="string">"username-input"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"Enter your email address"</span> <span class="attr">key</span>=<span class="string">"email-input"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h3><p>始终会被渲染并保留在 DOM 中。只是简单地切换元素的 CSS property <code>display</code>。</p>
-<h3 id="v-if-vs-v-show"><a href="#v-if-vs-v-show" class="headerlink" title="v-if  vs  v-show"></a>v-if  vs  v-show</h3><p>v-if：会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。</p>
-<p>v-if：<strong>惰性的</strong>，在初始渲染时条件为假，则什么也不做直到条件第一次变为真时，才会开始渲染条件块。</p>
-<p>v-show：不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。</p>
-<p>总结：</p>
-<p><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 <code>v-show</code> 较好；如果在运行时条件很少改变，则使用 <code>v-if</code> 较好。</p>
-<h2 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h2><h3 id="v-for-结合列表"><a href="#v-for-结合列表" class="headerlink" title="v-for 结合列表"></a>v-for 结合列表</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"example-1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.message"</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/24/javaScript%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="QB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/24/javaScript%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url">javaScript知识点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-24T18:45:00+08:00">
-                2020-12-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="”-“与“-”的区别"><a href="#”-“与“-”的区别" class="headerlink" title="”==“与“===”的区别"></a>”==“与“===”的区别</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>== ： 两边值类型不同的时候，首先进行类型转换，再比较。</p>
-<p>=== ： 不做类型转换，类型不同一定不等</p>
-<h3 id="分别说明"><a href="#分别说明" class="headerlink" title="分别说明"></a>分别说明</h3><p>“===” 的规则：</p>
-<ol>
-<li>类型不同就不相等。</li>
-<li>如果两个都是数值，同一个值，相等；如果其中至少一个是NaN，不相等（判断一个值是否为NaN，只能用isNaN()来判断）</li>
-<li>两个都是字符串，每个位置的字符都一样，相等</li>
-<li>两个值都是true，或者都是false，相等</li>
-<li>两个值都引用同一个对象或函数，相等</li>
-<li>两个值都是null，或者都是undefined，相等</li>
-<li>否则不相等。</li>
-</ol>
-<p>“==” 的规则：如果两个值类型不同，他们可能相等。根据下面的规则进行类型转换再比较。</p>
-<ol>
-<li>如果一个是null、一个是undefined，那么相等</li>
-<li>如果一个是字符串，一个是数值，把字符串转换成数值再进行比较</li>
-<li>如果任一值是 true/false，把它转换成 1/0 再比较</li>
-<li>如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值在比较。对象转换利用的是toString或者valueOf方法。js核心内酯类，会尝试valueOf先于toString。</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>“==”它是值之间的比较；”===”是值和类型同时比较（要完全一直才相等）。</p>
-<h2 id="Truthy（真值）是什么"><a href="#Truthy（真值）是什么" class="headerlink" title="Truthy（真值）是什么"></a>Truthy（真值）是什么</h2><p>在JavaScript中，truthy（真值）指的是在布尔值上下文中，转换后的值是真的值。所有值都是真值，除非被定义为假值（即除 <code>false</code>、<code>0</code>、<code>-0</code>、<code>0n</code>、<code>“”</code>、<code>null</code>、<code>undefined</code>、<code>Nall</code> 以外皆为真值）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2146,7 +2136,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2168,7 +2158,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
