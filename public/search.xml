@@ -5,11 +5,19 @@
     
     <entry>
       <title>详解@Qualifer注解</title>
-      <link href="/2021/04/12/spring/%E6%B3%A8%E8%A7%A3/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/"/>
-      <url>/2021/04/12/spring/%E6%B3%A8%E8%A7%A3/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/</url>
+      <link href="/2021/04/12/spring/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/"/>
+      <url>/2021/04/12/spring/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/</url>
       
         <content type="html"><![CDATA[<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>了解Spring框架的<strong>@Qualifier</strong>注解</p>]]></content>
       
+      
+      <categories>
+          
+          <category> spring </category>
+          
+          <category> 注解 </category>
+          
+      </categories>
       
       
         <tags>
