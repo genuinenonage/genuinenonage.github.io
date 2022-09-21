@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="在我看来：脚手架就是搭建的能直接从事业务开发的项目框架。比如整合并配置完成了：AOP&#x2F;Swagger&#x2F;Mybatis&#x2F;Druid&#x2F;通用工具类等。 脚手架指的是两种技术：  与某些MVC 框架中的数据库访问相关的代码生成技术 由各种工具支持的项目生成技术  脚手架是一种由一些 model–view–controller 框架支持的技术，程序员可以在其中指定应用程序数据库的使用方式。该编译器或框架使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是脚手架">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="在我看来：脚手架就是搭建的能直接从事业务开发的项目框架。比如整合并配置完成了：AOP&#x2F;Swagger&#x2F;Mybatis&#x2F;Druid&#x2F;通用工具类等。 脚手架指的是两种技术：  与某些MVC 框架中的数据库访问相关的代码生成技术 由各种工具支持的项目生成技术  脚手架是一种由一些 model–view–controller 框架支持的技术，程序员可以在其中指定应用程序数据库的使用方式。该编译器或框架使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-20T22:43:00.000Z">
+<meta property="article:modified_time" content="2020-09-20T22:50:35.597Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="脚手架">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/","path":"2020/09/21/什么是脚手架/","title":"什么是脚手架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>什么是脚手架 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%88%91%E7%9C%8B%E6%9D%A5%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">在我看来：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%89%8B%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">脚手架</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="什么是脚手架 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          什么是脚手架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-09-21 06:43:00 / 修改时间：06:50:35" itemprop="dateCreated datePublished" datetime="2020-09-21T06:43:00+08:00">2020-09-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="在我看来："><a href="#在我看来：" class="headerlink" title="在我看来："></a>在我看来：</h3><p>脚手架就是搭建的能直接从事业务开发的项目框架。比如整合并配置完成了：AOP/Swagger/Mybatis/Druid/通用工具类等。</p>
+<h3 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h3><p>指的是两种技术：</p>
+<ol>
+<li>与某些MVC 框架中的数据库访问相关的代码生成技术</li>
+<li>由各种工具支持的项目生成技术</li>
+</ol>
+<p>脚手架是一种由一些 model–view–controller 框架支持的技术，程序员可以在其中指定应用程序数据库的使用方式。该编译器或框架使用说明书中，与预先定义的代码模板在一起，产生最终代码的应用程序可以使用它来创建，读取，更新和删除数据库条目，有效治疗模板作为“ 支架 ”上建立更强大的应用程序。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E8%84%9A%E6%89%8B%E6%9E%B6/" rel="tag"># 脚手架</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/18/spring/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/" rel="prev" title="SpringMVC框架">
+                  <i class="fa fa-chevron-left"></i> SpringMVC框架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/" rel="next" title="Java8的新特性">
+                  Java8的新特性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

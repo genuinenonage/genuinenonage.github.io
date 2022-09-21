@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="新增了非常多的特性，主要有：  Lambad表达式：Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。 方法引用：可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合，使语言的构造更紧凑简洁，减少冗余代码。 默认方法：默认方法就是一个在接口里面有了一个实现的方法。 StreamAPI：新添加的Stream API（java.util.stream） 把真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java8的新特性">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="新增了非常多的特性，主要有：  Lambad表达式：Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。 方法引用：可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合，使语言的构造更紧凑简洁，减少冗余代码。 默认方法：默认方法就是一个在接口里面有了一个实现的方法。 StreamAPI：新添加的Stream API（java.util.stream） 把真">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-20T23:31:00.000Z">
+<meta property="article:modified_time" content="2021-02-08T07:51:01.902Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="java8">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/","path":"2020/09/21/java/Java8的新特性/","title":"Java8的新特性"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java8的新特性 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">方法引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">静态默认方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stream"><span class="nav-number">5.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Stream%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">什么是 Stream？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%B5%81"><span class="nav-number">5.2.</span> <span class="nav-text">生成流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional%E7%B1%BB"><span class="nav-number">6.</span> <span class="nav-text">Optional类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4API"><span class="nav-number">7.</span> <span class="nav-text">日期时间API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%8C%96%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4API"><span class="nav-number">7.1.</span> <span class="nav-text">本地化日期时间API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9FAPI"><span class="nav-number">7.2.</span> <span class="nav-text">时区的时间日期API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64"><span class="nav-number">8.</span> <span class="nav-text">Base64</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%B5%8C%E7%B1%BB"><span class="nav-number">8.1.</span> <span class="nav-text">内嵌类</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java8的新特性 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java8的新特性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-21 07:31:00" itemprop="dateCreated datePublished" datetime="2020-09-21T07:31:00+08:00">2020-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-08 15:51:01" itemprop="dateModified" datetime="2021-02-08T15:51:01+08:00">2021-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>新增了非常多的特性，主要有：</p>
+<ul>
+<li><strong>Lambad表达式</strong>：Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。</li>
+<li><strong>方法引用</strong>：可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合，使语言的构造更紧凑简洁，减少冗余代码。</li>
+<li><strong>默认方法</strong>：默认方法就是一个在接口里面有了一个实现的方法。</li>
+<li><strong>StreamAPI</strong>：新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。</li>
+<li><strong>DateTimeAPI</strong>：加强对日期与时间的处理。</li>
+<li><strong>Optional类</strong>：Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。</li>
+<li><strong>Nashorn，JavaScript引擎</strong>：Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。</li>
+</ul>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。</p>
+<p>Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
+<ol>
+<li><p>接收2个int型整数,返回他们的和<br>(int x, int y) -&gt; x + y  </p>
+</li>
+<li><p>接受2个参数(数字),并返回他们的差值<br>(x, y) -&gt; x – y  </p>
+</li>
+<li><p>接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)<br>(String s) -&gt; System.out.print(s)</p>
+<pre><code> public class Java8Tester &#123;
+    public static void main(String args[])&#123;
+       Java8Tester tester = new Java8Tester();
+         
+       // 类型声明
+       MathOperation addition = (int a, int b) -&gt; a + b;
+         
+       // 不用类型声明
+       MathOperation subtraction = (a, b) -&gt; a - b;
+         
+       // 大括号中的返回语句
+       MathOperation multiplication = (int a, int b) -&gt; &#123; return a * b; &#125;;
+         
+       // 没有大括号及返回语句
+       MathOperation division = (int a, int b) -&gt; a / b;
+         
+       System.out.println(&quot;10 + 5 = &quot; + tester.operate(10, 5, addition));
+       System.out.println(&quot;10 - 5 = &quot; + tester.operate(10, 5, subtraction));
+       System.out.println(&quot;10 x 5 = &quot; + tester.operate(10, 5, multiplication));
+       System.out.println(&quot;10 / 5 = &quot; + tester.operate(10, 5, division));
+         
+       // 不用括号
+       GreetingService greetService1 = message -&gt;
+       System.out.println(&quot;Hello &quot; + message);
+         
+       // 用括号
+       GreetingService greetService2 = (message) -&gt;
+       System.out.println(&quot;Hello &quot; + message);
+         
+       greetService1.sayMessage(&quot;Runoob&quot;);
+       greetService2.sayMessage(&quot;Google&quot;);
+    &#125;
+     
+    interface MathOperation &#123;
+       int operation(int a, int b);
+    &#125;
+     
+    interface GreetingService &#123;
+       void sayMessage(String message);
+    &#125;
+     
+    private int operate(int a, int b, MathOperation mathOperation)&#123;
+       return mathOperation.operation(a, b);
+    &#125;
+ &#125;
+</code></pre>
+</li>
+</ol>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>方法引用通过方法的名字来指向一个方法。</p>
+<p>方法引用使用一对冒号 :: 。</p>
+<ul>
+<li><p>构造器引用：它的语法是Class::new，或者更一般的Class&lt; T &gt;::new</p>
+<ul>
+<li>实例如下：<br>final Car car = Car.create( Car::new );<br>final List&lt; Car &gt; cars = Arrays.asList( car );</li>
+</ul>
+</li>
+<li><p>静态方法引用：它的语法是Class::static_method</p>
+<ul>
+<li>实例如下：<br>cars.forEach( Car::collide );</li>
+</ul>
+</li>
+<li><p>特定类的任意对象的方法引用：它的语法是Class::method</p>
+<ul>
+<li>实例如下：<br>cars.forEach( Car::repair );</li>
+</ul>
+</li>
+<li><p>特定对象的方法引用：它的语法是instance::method</p>
+<ul>
+<li><p>实例如下：<br>final Car police = Car.create( Car::new );<br>cars.forEach( police::follow );</p>
+<pre><code>  public class Java8Tester &#123;
+     public static void main(String args[])&#123;
+        List names = new ArrayList();
+          
+        names.add(&quot;Google&quot;);
+        names.add(&quot;Runoob&quot;);
+        names.add(&quot;Taobao&quot;);
+        names.add(&quot;Baidu&quot;);
+        names.add(&quot;Sina&quot;);
+          
+        names.forEach(System.out::println);
+     &#125;
+  &#125;
+  实例中我们将 System.out::println 方法作为静态方法来引用。
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>函数式接口(Functional Interface)就是一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。</p>
+<p>函数式接口可以被隐式转换为 lambda 表达式。</p>
+<pre><code>@FunctionalInterface
+interface GreetingService 
+&#123;
+    void sayMessage(String message);
+&#125;
+</code></pre>
+<p>使用Lambda表达式来表示该接口的一个实现(注：JAVA 8 之前一般是用匿名类实现的)：</p>
+<pre><code>GreetingService greetService1 = message -&gt; System.out.println(&quot;Hello &quot; + message);
+</code></pre>
+<h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>新增了接口的默认方法。</p>
+<p>接口可以有实现方法，不需要实现类去实现其方法。</p>
+<p>只需在方法名前面加个 default 关键字即可实现默认方法。</p>
+<h4 id="静态默认方法"><a href="#静态默认方法" class="headerlink" title="静态默认方法"></a>静态默认方法</h4><p>Java 8 的另一个特性是接口可以声明（并且可以提供实现）静态方法。</p>
+<pre><code>public interface Vehicle &#123;
+   default void print()&#123;
+      System.out.println(&quot;我是一辆车!&quot;);
+   &#125;
+    // 静态方法
+   static void blowHorn()&#123;
+      System.out.println(&quot;按喇叭!!!&quot;);
+   &#125;
+&#125;
+</code></pre>
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</p>
+<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。</p>
+<h4 id="什么是-Stream？"><a href="#什么是-Stream？" class="headerlink" title="什么是 Stream？"></a>什么是 Stream？</h4><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作。</p>
+<ul>
+<li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
+<li>数据源 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
+<li>聚合操作 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</li>
+<li>Pipelining: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。</li>
+<li>内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
+</ul>
+<h4 id="生成流"><a href="#生成流" class="headerlink" title="生成流"></a>生成流</h4><p>在 Java 8 中, 集合接口有两个方法来生成流：</p>
+<ul>
+<li>stream()  为集合创建串行流。</li>
+<li>parallelStream()  为集合创建并行流。</li>
+</ul>
+<h3 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h3><ul>
+<li>一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</li>
+<li>Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。 </li>
+<li>Optional 类的引入很好的解决空指针异常。</li>
+</ul>
+<h3 id="日期时间API"><a href="#日期时间API" class="headerlink" title="日期时间API"></a>日期时间API</h3><p>通过发布新的Date-Time API  加强对日期与时间的处理。 </p>
+<p>旧版日期时间API问题：</p>
+<ul>
+<li>非线程安全：java.util.Date 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一。</li>
+<li>设计很差：Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字。</li>
+<li>时区处理麻烦：日期类并不提供国际化，没有时区支持。</li>
+</ul>
+<p>Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较重要的 API：</p>
+<ul>
+<li>Local(本地) − 简化了日期时间的处理，没有时区的问题。</li>
+<li>Zoned(时区) − 通过制定的时区处理日期时间。</li>
+</ul>
+<h4 id="本地化日期时间API"><a href="#本地化日期时间API" class="headerlink" title="本地化日期时间API"></a>本地化日期时间API</h4><p>LocalDate/LocalTime 和 LocalDateTime 类可以在处理时区不是必须的情况。</p>
+<h4 id="时区的时间日期API"><a href="#时区的时间日期API" class="headerlink" title="时区的时间日期API"></a>时区的时间日期API</h4><p>需要考虑到时区，就可以使用时区的日期时间API。</p>
+<pre><code>public void testZonedDateTime()&#123;
+    
+  // 获取当前时间日期
+  ZonedDateTime date1 = ZonedDateTime.parse(&quot;2015-12-03T10:15:30+05:30[Asia/Shanghai]&quot;);
+  System.out.println(&quot;date1: &quot; + date1);
+    
+  ZoneId id = ZoneId.of(&quot;Europe/Paris&quot;);
+  System.out.println(&quot;ZoneId: &quot; + id);
+    
+  ZoneId currentZone = ZoneId.systemDefault();
+  System.out.println(&quot;当期时区: &quot; + currentZone);
+</code></pre>
+<p>   }</p>
+<h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><p>在Java 8中，Base64编码已经成为Java类库的标准。</p>
+<p>Java 8 内置了 Base64 编码的编码器和解码器。</p>
+<p>Base64工具类提供了一套静态方法获取下面三种BASE64编解码器：</p>
+<ul>
+<li>基本：输出被映射到一组字符A-Za-z0-9+/，编码不添加任何行标，输出的解码仅支持A-Za-z0-9+/。</li>
+<li>URL：输出映射到一组字符A-Za-z0-9+_，输出是URL和文件。</li>
+<li>MIME：输出隐射到MIME友好格式。输出每行不超过76字符，并且使用’\r’并跟随’\n’作为分割。编码输出最后没有行分割。</li>
+</ul>
+<h4 id="内嵌类"><a href="#内嵌类" class="headerlink" title="内嵌类"></a>内嵌类</h4><ol>
+<li>static class Base64.Decoder  该类实现一个解码器用于，使用 Base64 编码来解码字节数据。</li>
+<li>static class Base64.Encoder  该类实现一个编码器，使用 Base64 编码来编码字节数据。</li>
+</ol>
+<p>有多个get方法使用。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/java/" rel="tag"># java</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/java8/" rel="tag"># java8</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/" rel="prev" title="什么是脚手架">
+                  <i class="fa fa-chevron-left"></i> 什么是脚手架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/10/12/Tomcat%E9%97%AE%E9%A2%98/" rel="next" title="tomcat问题">
+                  tomcat问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

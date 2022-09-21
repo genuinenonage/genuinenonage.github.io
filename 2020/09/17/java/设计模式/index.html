@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="简介为什么需要设计模式设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。 新增功能（可扩展性），维护（可读性，规范性）项目变得容易程序可靠，代码可重用。  为什么学习设计模式如今程序员门槛越来越高。 在实际模式中使用过什么设计模式，怎样使用的，解决了什么问题。 设计模式在软件的哪里面向对象（OO）&#x3D;&gt; 功能模块[设计模式+算法（数据结构）] &#x3D;&gt; 框架[使用到多种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式（策略与单例）">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/17/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="简介为什么需要设计模式设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。 新增功能（可扩展性），维护（可读性，规范性）项目变得容易程序可靠，代码可重用。  为什么学习设计模式如今程序员门槛越来越高。 在实际模式中使用过什么设计模式，怎样使用的，解决了什么问题。 设计模式在软件的哪里面向对象（OO）&#x3D;&gt; 功能模块[设计模式+算法（数据结构）] &#x3D;&gt; 框架[使用到多种">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/09/27/mpQvHI34kNJ9q7X.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/lfCRadB4TONp9bG.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/lwTHAduB6DvfpZK.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/28DIqLhlwWSpyEe.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/swJWAPpTCrdvgbz.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/Zhz2mljsDw1iRCJ.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/qxPXbRVd4sa9kDG.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/f3aWYZM5xbEV1go.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/CVc3qFDhETH9pO1.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/28/leuQHjMXGkDYF2A.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/09/17/N4b3qvGBMWDZoLu.jpg">
+<meta property="article:published_time" content="2020-09-17T09:04:00.000Z">
+<meta property="article:modified_time" content="2021-02-08T07:33:43.577Z">
+<meta property="article:author" content="QB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/09/27/mpQvHI34kNJ9q7X.jpg">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/17/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/17/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/","path":"2020/09/17/java/设计模式/","title":"设计模式（策略与单例）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>设计模式（策略与单例） | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">为什么学习设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%93%AA%E9%87%8C"><span class="nav-number">1.3.</span> <span class="nav-text">设计模式在软件的哪里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.4.</span> <span class="nav-text">如何学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">2.1.</span> <span class="nav-text">设计模式的目的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%91%E5%8F%A5"><span class="nav-number">2.1.1.</span> <span class="nav-text">金句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">设计模式的七大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.1.</span> <span class="nav-text">单一职责原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E5%92%8C%E7%BB%86%E8%8A%82"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">注意事项和细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.2.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.3.</span> <span class="nav-text">依赖倒转原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E4%B8%8E%E7%BB%86%E8%8A%82"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">注意事项与细节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E4%BC%A0%E9%80%92%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">依赖关系传递的三种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">应用实例分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.4.</span> <span class="nav-text">里氏替换原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">继承的弊端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">基本介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.5.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="nav-number">2.2.6.</span> <span class="nav-text">迪米特法则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E5%92%8C%E7%BB%86%E8%8A%82-1"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">注意事项和细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.7.</span> <span class="nav-text">合成复用原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.3.</span> <span class="nav-text">设计原则的核心思想</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UML%E7%B1%BB%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">UML类图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML%E5%9B%BE%E5%88%86%E7%B1%BB"><span class="nav-number">3.0.2.</span> <span class="nav-text">UML图分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML%E7%B1%BB%E5%9B%BE-1"><span class="nav-number">3.1.</span> <span class="nav-text">UML类图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB-Dependence"><span class="nav-number">3.1.1.</span> <span class="nav-text">依赖关系(Dependence)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%E5%85%B3%E7%B3%BB%EF%BC%88Generalization%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">泛化关系（Generalization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB%EF%BC%88Implementation%EF%BC%8CRealization%EF%BC%89"><span class="nav-number">3.1.3.</span> <span class="nav-text">实现关系（Implementation，Realization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB%EF%BC%88Association%EF%BC%89"><span class="nav-number">3.1.4.</span> <span class="nav-text">关联关系（Association）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB"><span class="nav-number">3.1.5.</span> <span class="nav-text">聚合关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB"><span class="nav-number">3.1.6.</span> <span class="nav-text">组合关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1"><span class="nav-number">4.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">设计模式的概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%8C%E6%8F%A1%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="nav-number">4.1.1.</span> <span class="nav-text">掌握设计模式的层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.1.2.</span> <span class="nav-text">设计模式的类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-%E7%9C%8Bstudy-java%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98%E9%83%A8%E5%88%86"><span class="nav-number">4.2.</span> <span class="nav-text">单例模式-看study-java的面试题部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E6%9C%89%E5%85%AB%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.1.</span> <span class="nav-text">单例模式有八种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%EF%BC%88%E9%9D%99%E6%80%81%E5%B8%B8%E9%87%8F%EF%BC%89"><span class="nav-number">4.2.2.</span> <span class="nav-text">饿汉式（静态常量）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A5%BF%E6%B1%89%E5%BC%8F%EF%BC%88%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%EF%BC%89"><span class="nav-number">4.2.3.</span> <span class="nav-text">饿汉式（静态代码块）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%EF%BC%88%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">4.2.4.</span> <span class="nav-text">懒汉式（线程不安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-2"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%EF%BC%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%8C%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%EF%BC%89"><span class="nav-number">4.2.5.</span> <span class="nav-text">懒汉式（线程安全，同步方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-3"><span class="nav-number">4.2.5.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E6%B1%89%E5%BC%8F%EF%BC%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%8C%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97%EF%BC%89"><span class="nav-number">4.2.6.</span> <span class="nav-text">懒汉式（线程安全，同步代码块）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-4"><span class="nav-number">4.2.6.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E9%87%8D%E6%A3%80%E6%9F%A5"><span class="nav-number">4.2.7.</span> <span class="nav-text">双重检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-5"><span class="nav-number">4.2.7.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">4.2.8.</span> <span class="nav-text">静态内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-6"><span class="nav-number">4.2.8.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE"><span class="nav-number">4.2.9.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-7"><span class="nav-number">4.2.9.1.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.2.10.</span> <span class="nav-text">单例模式注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">5.0.1.</span> <span class="nav-text">设计策略模式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">5.0.2.</span> <span class="nav-text">设计原则</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/09/17/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="设计模式（策略与单例） | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          设计模式（策略与单例）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-17 17:04:00" itemprop="dateCreated datePublished" datetime="2020-09-17T17:04:00+08:00">2020-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-08 15:33:43" itemprop="dateModified" datetime="2021-02-08T15:33:43+08:00">2021-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="为什么需要设计模式"><a href="#为什么需要设计模式" class="headerlink" title="为什么需要设计模式"></a>为什么需要设计模式</h2><p>设计模式是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。</p>
+<p>新增功能（可扩展性），维护（可读性，规范性）项目变得容易<br>程序可靠，代码可重用。 </p>
+<h2 id="为什么学习设计模式"><a href="#为什么学习设计模式" class="headerlink" title="为什么学习设计模式"></a>为什么学习设计模式</h2><p>如今程序员门槛越来越高。</p>
+<p>在实际模式中使用过什么设计模式，怎样使用的，解决了什么问题。</p>
+<h2 id="设计模式在软件的哪里"><a href="#设计模式在软件的哪里" class="headerlink" title="设计模式在软件的哪里"></a>设计模式在软件的哪里</h2><p>面向对象（OO）=&gt; 功能模块[设计模式+算法（数据结构）] =&gt; 框架[使用到多种设计模式] =&gt; 架构[服务器集群]</p>
+<p>项目的某个功能用到设计模式，</p>
+<h2 id="如何学习"><a href="#如何学习" class="headerlink" title="如何学习"></a>如何学习</h2><p>应用场景 -&gt; 设计模式 -&gt; 刨析原理 -&gt; 分析实现步骤步骤（图解） -&gt; 代码实现（对比） -&gt; 框架或项目源码分析（找到使用的地方）</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式的目的"><a href="#设计模式的目的" class="headerlink" title="设计模式的目的"></a>设计模式的目的</h2><ol>
+<li><strong>代码重用性</strong>（相同功能的代码，不用多次编写）</li>
+<li><strong>可读性高</strong>（编程规范性）</li>
+<li><strong>可扩展性</strong>（增加新功能时，非常的方便）</li>
+<li><strong>可靠性</strong>（增加功能，对原功能没有影响）</li>
+<li><strong>程序高内聚，低耦合</strong>（AB模块的依赖性低）</li>
+</ol>
+<h3 id="金句"><a href="#金句" class="headerlink" title="金句"></a>金句</h3><p>懂了设计模式：就懂了面向对象分析和设计（OOA/D）的精要</p>
+<h2 id="设计模式的七大原则"><a href="#设计模式的七大原则" class="headerlink" title="设计模式的七大原则"></a>设计模式的七大原则</h2><ol>
+<li>单一职责原则</li>
+<li>接口隔离原则</li>
+<li>依赖倒转原则</li>
+<li>里氏替换原则</li>
+<li>开闭原则</li>
+<li>迪米特法则（最少知道原则）</li>
+<li>复用合成原则</li>
+</ol>
+<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>一个类应该只负责<strong>一项职责</strong>。如果负责两个不同的职责，职责1需求变更改变类时，可能造成职责2执行错误。</p>
+<p>在类或方法上遵守单一职责原则。</p>
+<h4 id="注意事项和细节"><a href="#注意事项和细节" class="headerlink" title="注意事项和细节"></a>注意事项和细节</h4><ol>
+<li>降低类的复杂度</li>
+<li>提高类的可读性，可维护性</li>
+<li>降低变更的风险</li>
+<li>通常应当遵守单一职责原则，只有逻辑足够简单，才可以在代码级违反单一职责原则；只有类中方法足够少，才可以在方法级别保持单一职责原则。</li>
+</ol>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖建立在最小的接口上。</p>
+<p>改进：将接口Interface1 <strong>拆分成为独立的几个接口</strong>，类与他们需要的接口建立依赖关系，也就是采用接口隔离原则。</p>
+<h3 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h3><ol>
+<li>高层模块不应该依赖底层模块，都应该依赖其抽象。</li>
+<li>抽象不因该依赖细节，细节应该依赖抽象。</li>
+<li>依赖倒转（倒置）的中心思想时<strong>面向接口编程</strong>。</li>
+<li><strong>设计理念：相对于细节（实现类）的多变性，抽象（接口或抽象类）的东西要稳定的多</strong>。</li>
+<li>使用接口或抽象类的目的是<strong>指定好规范</strong>，不涉及任何具体操作，把展现细节的任务交给实现类去完成。</li>
+</ol>
+<h4 id="注意事项与细节"><a href="#注意事项与细节" class="headerlink" title="注意事项与细节"></a>注意事项与细节</h4><ol>
+<li>底层模块尽量要有抽象类或接口，或者两者都有，程序稳定性更好。</li>
+<li>变量的声明类型尽量都是抽象类或接口，这样变量引用和实际对象间，存在一个缓冲层，利于程序扩展和优化。</li>
+<li>继承时遵循里氏替换原则。</li>
+</ol>
+<h4 id="依赖关系传递的三种方式"><a href="#依赖关系传递的三种方式" class="headerlink" title="依赖关系传递的三种方式"></a>依赖关系传递的三种方式</h4><ol>
+<li>接口传递：方法参数声明类型尽量都是抽象类或接口，实现类实现方法。</li>
+<li>构造方法传递：（创建一个接口成员）构造器给接口声明类型传递对象。</li>
+<li>setter方法传递：（创建一个接口成员）setter给接口声明类型传递对象。</li>
+</ol>
+<h4 id="应用实例分析"><a href="#应用实例分析" class="headerlink" title="应用实例分析"></a>应用实例分析</h4><ol>
+<li>如果我们获取的对象是微信，短信等等，则新增类，同时Perons也要增加相应的接受方法</li>
+<li>解决思路，引入一个抽象的接口IReceiver，表示接收者，这样Person类与接口发送，因为Email，WeiXin 等等属于接受的范围，他们各自实现IReceiver接口就ok，这样我们就符合依赖倒转原则。</li>
+</ol>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><h4 id="继承的弊端"><a href="#继承的弊端" class="headerlink" title="继承的弊端"></a>继承的弊端</h4><ol>
+<li>父类中已经实现好的方法，是在设定规范和契约，如果子类对这些方法任意修改，可能会对整个继承体系造成破环。</li>
+<li>继承会给程序带来侵入性，程序的可移植性降低，增加对象间的耦合性，父类修改，必须考虑到所有的子类。</li>
+</ol>
+<h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><p>使用继承时，遵循里氏替换原则，在子类中尽量不要重写父类的方法。</p>
+<p>继承实际上让两个类耦合性增强，在适当的情况下，可以通过<strong>聚合，组合，依赖</strong>来解决问题。</p>
+<pre><code>如果父类A 子类B B 继承自 A
+如果要修改父类A中的方法
+让A类 与 B类 都继承刚高级的 C类。在C类中创建新方法
+</code></pre>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>编程中最基础，最重要的设计原则</p>
+<p>扩展开放，修改关闭。</p>
+<p><strong>当软件需要变化时，扩展软件实体的行为来变化。而不是通过修改已有的代码。</strong></p>
+<p>编程中遵循其他原则，以及使用设计模式的目的就是遵循开闭原则</p>
+<h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3><p>别名：直接朋友原则，最少知道原则</p>
+<p>一个类<strong>对自己依赖的类知道的越少越好</strong>，被依赖的类不管多麽复杂，都尽量将逻辑封装在类的内部，对外除了提供public方法，不对外泄露任何信息。</p>
+<p><strong>直接朋友</strong>：每个对象都会与其他对象有耦合关系即为朋友关系。耦合的方式有很多，依赖，关联，组合，聚合等。我们称出现成员变量，方法参数，方法返回值中的类为直接的朋友，出现在局部变量中的类不是直接朋友，不是直接朋友最好不要以局部变量的形式出现在类的内部。</p>
+<p><strong>不要再其他类中的方法中使用自己的类构造的对象，可以在自己类中设计出这个方法。</strong></p>
+<h4 id="注意事项和细节-1"><a href="#注意事项和细节-1" class="headerlink" title="注意事项和细节"></a>注意事项和细节</h4><ol>
+<li>核心：降低类之间的耦合。</li>
+<li>每个类都减少了不必要的依赖。（必要的依赖为直接的朋友）</li>
+</ol>
+<h3 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h3><p>尽量使用合成/聚合的方式，而不是使用继承。</p>
+<p>依赖（类似合成）：B类中方法使用A类作为参数。<br>组合：B类成员变量直接newA类<br>聚合：B类成员变量setA类</p>
+<h2 id="设计原则的核心思想"><a href="#设计原则的核心思想" class="headerlink" title="设计原则的核心思想"></a>设计原则的核心思想</h2><ol>
+<li>找出应用中可能需要变化之处独立出来。</li>
+<li>针对接口编程。</li>
+<li>为了交互对象之间的松耦合设计而努力。</li>
+</ol>
+<h1 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h1><h3 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h3><ol>
+<li>UML–unified modeling language(统一建模语言)是一种用于软件系统分析和设计的语言工具。</li>
+<li>UML本身是一套符号的规定，用于描述软件模型中的各个元素和他们之间的关系，比如类，接口，实现，泛化，依赖，组合，聚合等。</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/27/mpQvHI34kNJ9q7X.jpg" alt="UML类图的符号意义.jpg"> </p>
+<h3 id="UML图分类"><a href="#UML图分类" class="headerlink" title="UML图分类"></a>UML图分类</h3><ol>
+<li>用例图</li>
+<li>静态结构图：类图，对象图，包图，组件图，部署图</li>
+<li>动态行为图：交互图（时序图与协作图），状态图，活动图</li>
+</ol>
+<h2 id="UML类图-1"><a href="#UML类图-1" class="headerlink" title="UML类图"></a>UML类图</h2><ol>
+<li>用于描述系统中的类（对象）本身的组成和类（对象）之间的各种静态关系。</li>
+<li>类之间的关系：依赖，泛化（继承），实现，关联，聚合与组合</li>
+</ol>
+<h3 id="依赖关系-Dependence"><a href="#依赖关系-Dependence" class="headerlink" title="依赖关系(Dependence)"></a>依赖关系(Dependence)</h3><ol>
+<li>类中用到了对方，就存在依赖关系。</li>
+<li>可以是类的成员属性</li>
+<li>可以是方法的返回类型</li>
+<li>可以是方法接收的参数类型</li>
+<li>方法中使用到</li>
+</ol>
+<h3 id="泛化关系（Generalization）"><a href="#泛化关系（Generalization）" class="headerlink" title="泛化关系（Generalization）"></a>泛化关系（Generalization）</h3><p>其实就是继承关系，是依赖关系的特例。</p>
+<h3 id="实现关系（Implementation，Realization）"><a href="#实现关系（Implementation，Realization）" class="headerlink" title="实现关系（Implementation，Realization）"></a>实现关系（Implementation，Realization）</h3><p>A类实现B类，是依赖关系的特例。</p>
+<h3 id="关联关系（Association）"><a href="#关联关系（Association）" class="headerlink" title="关联关系（Association）"></a>关联关系（Association）</h3><p>是类与类之间的联系，是依赖关系的特例。</p>
+<p>关联具有到航性：即双向关系或单项关系</p>
+<p>关系具有多重性：1表示有且仅有一个，0…表示0个或多个，“0，1”表示0个多一个，“n…m”表示n到m个都可以，“m…”表示至少m个。</p>
+<h3 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h3><p>表示的是整体和部分的关系，整体与部分是可以分开的。是关联关系的特例，具有关联的导航性与多重性。</p>
+<p>类似定义成员变量和set方法。</p>
+<h3 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h3><p>整体和部分是不可分离的，升级为组合关系。</p>
+<p>类似成员变量new对象。</p>
+<h1 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式的概述"><a href="#设计模式的概述" class="headerlink" title="设计模式的概述"></a>设计模式的概述</h2><p>设计模式分三种类型，共23种设计模式。</p>
+<h3 id="掌握设计模式的层次"><a href="#掌握设计模式的层次" class="headerlink" title="掌握设计模式的层次"></a>掌握设计模式的层次</h3><p><img src="https://i.loli.net/2020/09/28/lfCRadB4TONp9bG.jpg" alt="掌握设计模式的层次.jpg"></p>
+<h3 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h3><ol>
+<li>创建型模式：单例模式，抽象工厂模式，原型模式，建造者模式，工厂模式。</li>
+<li>结构型模式：适配器模式，桥接模式，装饰模式，组合模式，外观模式，享元模式，代理模式。</li>
+<li>行为型模式：模板方法模式，命令模式，访问者模式，迭代器模式，观察者模式，中介者模式，备忘录模式，解释器模式，状态模式，策略模式，职责链模式（责任链模式）</li>
+</ol>
+<h2 id="单例模式-看study-java的面试题部分"><a href="#单例模式-看study-java的面试题部分" class="headerlink" title="单例模式-看study-java的面试题部分"></a>单例模式-看study-java的面试题部分</h2><p>保证在整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法（静态方法）。</p>
+<h3 id="单例模式有八种方式"><a href="#单例模式有八种方式" class="headerlink" title="单例模式有八种方式"></a>单例模式有八种方式</h3><ol>
+<li><strong>饿汉式（静态常量）</strong></li>
+<li><strong>饿汉式（静态代码块）</strong></li>
+<li>懒汉式（线程不安全）</li>
+<li>懒汉式（线程安全，同步方法）</li>
+<li>懒汉式（线程安全，同步代码块）</li>
+<li><strong>双重检查</strong></li>
+<li><strong>静态内部类</strong></li>
+<li><strong>枚举</strong></li>
+</ol>
+<h3 id="饿汉式（静态常量）"><a href="#饿汉式（静态常量）" class="headerlink" title="饿汉式（静态常量）"></a>饿汉式（静态常量）</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>构造器私有化（防止new）</li>
+<li>类的内部创建对象</li>
+<li>向外暴露一个静态的公共方法</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/lwTHAduB6DvfpZK.jpg" alt="饿汉式-静态变量.jpg"></p>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>优点：写法简单，在类装载是完成实例化。避免了线程公布问题</li>
+<li>缺点：在类装载时完成实例化，没有达到懒加载（Lazy Loading）的效果。如果从始至终从未使用过实例，会造成内存的浪费。</li>
+<li>结论：可用，但是可能会造成内存浪费。</li>
+</ol>
+<h3 id="饿汉式（静态代码块）"><a href="#饿汉式（静态代码块）" class="headerlink" title="饿汉式（静态代码块）"></a>饿汉式（静态代码块）</h3><ol>
+<li>构造器私有化（防止new）</li>
+<li>类的内部创建对象变量</li>
+<li>在静态代码块中，实例化对象</li>
+<li>向外暴露一个静态的公共方法</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/28DIqLhlwWSpyEe.jpg" alt="饿汉式-静态代码块.jpg"></p>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>与上面方式类似，只不过将类的实例化放在静态代码块中，也是在类装载时执行静态代码块中的代码，初始化类的实例。优缺点与上面相同。</li>
+<li>结论：可用，但是可能内存浪费。</li>
+</ol>
+<h3 id="懒汉式（线程不安全）"><a href="#懒汉式（线程不安全）" class="headerlink" title="懒汉式（线程不安全）"></a>懒汉式（线程不安全）</h3><ol>
+<li>构造器私有化</li>
+<li>本类内部创建变量</li>
+<li>共有的静态方法，当使用到该方法时，才去创建instance，返回实例对象</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/swJWAPpTCrdvgbz.jpg" alt="懒汉式-线程不安全.jpg"></p>
+<h4 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>起到了Lazy Loading的效果，但是只能在单线程下使用。</li>
+<li>结论：在实际开发中，不要使用这种方式。</li>
+</ol>
+<h3 id="懒汉式（线程安全，同步方法）"><a href="#懒汉式（线程安全，同步方法）" class="headerlink" title="懒汉式（线程安全，同步方法）"></a>懒汉式（线程安全，同步方法）</h3><ol>
+<li>构造私有化</li>
+<li>本类内部创建变量</li>
+<li>共有的静态方法，加入同步处理的代码，当使用到该方法时，才去创建instance，返回实例对象</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/Zhz2mljsDw1iRCJ.jpg" alt="懒汉式-线程安全同步方法.jpg"></p>
+<h4 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>解决了线程不安全问题</li>
+<li>效率太低，每次执行getInstance()方法都要同步。</li>
+<li>结论：在实际开发中，不推荐使用这种方式。</li>
+</ol>
+<h3 id="懒汉式（线程安全，同步代码块）"><a href="#懒汉式（线程安全，同步代码块）" class="headerlink" title="懒汉式（线程安全，同步代码块）"></a>懒汉式（线程安全，同步代码块）</h3><ol>
+<li>构造私有化</li>
+<li>本类内部创建变量</li>
+<li>共有的静态方法，加入同步处理的代码块，当使用到该方法时，才去创建instance，返回实例对象</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/qxPXbRVd4sa9kDG.jpg" alt="懒汉式-同步代码块.jpg"></p>
+<h4 id="优缺点-4"><a href="#优缺点-4" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>这种同步比更不能起到线程同步的作用。假如一个线程进入了if判断语句块，另一个线程通过了这个判断语句，便会产生多个实例。</li>
+<li>结论：在实际开发中，不能使用这种方式。</li>
+</ol>
+<h3 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h3><ol>
+<li>构造私有化</li>
+<li>本类内部创建变量，使用volatile修饰，有修改直接到主存里面</li>
+<li>共有的静态方法，双重检查，解决线程安全，同时解决懒加载。</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/f3aWYZM5xbEV1go.jpg" alt="双重检查.jpg"></p>
+<p>使用volatile修饰成员变量。</p>
+<h4 id="优缺点-5"><a href="#优缺点-5" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>Double-Check概念是多线程开发中常使用到的。可以保证线程安全。</li>
+<li>线程安全，延迟加载，效率较高。</li>
+<li>结论：在实际开发中，推荐使用这种单例设计模式。</li>
+</ol>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><ol>
+<li>构造私有化</li>
+<li>静态内部类，一个静态属性Singleton</li>
+<li>静态共有方法直接返回SingletonInstance.INSTANCE。</li>
+</ol>
+<p><img src="https://i.loli.net/2020/09/28/CVc3qFDhETH9pO1.jpg" alt="单例-静态内部类.jpg"></p>
+<p>类装载的时候，内部类不会被装载。只有调用内部类的时候才会装载一次。</p>
+<h4 id="优缺点-6"><a href="#优缺点-6" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>采用类装载机制保证初始化实例时只有一个线程。</li>
+<li>类的静态属性只会在第一次加载类的时候初始化，JVM保证线程安全。</li>
+<li>优点：线程安全，利用静态内部类实现延迟加载，效率高。</li>
+<li>结论：推荐使用。</li>
+</ol>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p><img src="https://i.loli.net/2020/09/28/leuQHjMXGkDYF2A.jpg" alt="单例-枚举.jpg"></p>
+<h4 id="优缺点-7"><a href="#优缺点-7" class="headerlink" title="优缺点"></a>优缺点</h4><ol>
+<li>借助JDK1.5中添加的枚举来实现单例模式，避免多线程同步，还能防止反序列化才重新创建新的对象。</li>
+<li>结论：推荐使用。</li>
+</ol>
+<h3 id="单例模式注意事项"><a href="#单例模式注意事项" class="headerlink" title="单例模式注意事项"></a>单例模式注意事项</h3><ol>
+<li>单例模式保证了系统内存中，该类只存在一个对象。对于一些频繁创建销毁的对象，单例模式可以提高系统性能。</li>
+<li>实例化单例类时，要使用相应的获取对象的方法。</li>
+<li>单例模式使用场景：频繁的进行创建和销毁的对象，创建对象时耗时过多或耗费资源过多（重量级对象），但又经常用到的对象、工具类对象、频繁访问数据库或文件的对象（比如数据源、session工厂等）</li>
+</ol>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>定义一个创建对象的类，来封装实例化对象的行为。</p>
+<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式：将可变的部分从程序中抽象出来分离成算法接口，在该接口下分别封装一系列算法实现。</p>
+<p><img src="https://i.loli.net/2020/09/17/N4b3qvGBMWDZoLu.jpg" alt="策略模式.jpg"></p>
+<h3 id="设计策略模式："><a href="#设计策略模式：" class="headerlink" title="设计策略模式："></a>设计策略模式：</h3><p>Hero抽象类：</p>
+<pre><code>public abstract class Hero &#123;
+    //英雄的名称
+    private String heroName;
+    //英雄的召唤师技能的接口（组合关系,需要使用时，需要传入一个具体的技能对象）
+    private ISkill iSkill;
+
+    //自我介绍的方法
+    public abstract void display();
+    //普通攻击的方法
+    public abstract void normalAttack();
+    //召唤师技能的使用方法
+    public void skill()&#123;
+        iSkill.useSkill();
+    &#125;
+</code></pre>
+<p>HouYi实现类：</p>
+<pre><code>public class HouYi extends Hero&#123;
+    //编写构造方法
+    public HouYi() &#123;
+        super.setHeroName(&quot;后羿&quot;);
+    &#125;
+</code></pre>
+<p>ISkill接口：</p>
+<pre><code>public interface ISkill &#123;
+    //使用召唤师技能的方法
+    public abstract void useSkill();
+&#125;
+</code></pre>
+<p>JiPao接口实现类：</p>
+<pre><code>public class JiPao implements ISkill &#123;
+    @Override
+    public void useSkill() &#123;
+        System.out.println(&quot;疾跑技能。增加移速。&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>调用：</p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ol>
+<li>找出需要变化的部分，独立出来做成算法接口。</li>
+<li>面向接口编程，而不是面向实现。</li>
+<li>多用组合，少用继承。</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li><strong>使用组合</strong>，而不单单继承，使得架构更加灵活。</li>
+<li>富有弹性，<strong>可以较好的应对未来的变化</strong>。（开-闭原则）</li>
+<li>更好的代码复用性。（相对于继承）</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>增加了对象的数量（每个接口都做成一个对象）。</li>
+</ol>
+<p>​    </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/17/mysql/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/" rel="prev" title="Mysql">
+                  <i class="fa fa-chevron-left"></i> Mysql
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/17/MQ%E4%BB%8B%E7%BB%8D/" rel="next" title="MQ介绍">
+                  MQ介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

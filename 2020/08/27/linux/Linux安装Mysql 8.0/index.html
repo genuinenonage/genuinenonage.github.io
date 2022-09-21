@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;xiexinxx0225&#x2F;article&#x2F;details&#x2F;107665316   卸载MariaDBMariaDB是Linux默认数据库，需先卸载。    使用 yum list installed | grep mariadb 检查MariaDB是否安装。 使用 yum -y remove mariadb* 命令 卸载  删除MySQL对应的文件夹 w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux安装Mysql 8.0">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/08/27/linux/Linux%E5%AE%89%E8%A3%85Mysql%208.0/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="https:&#x2F;&#x2F;blog.csdn.net&#x2F;xiexinxx0225&#x2F;article&#x2F;details&#x2F;107665316   卸载MariaDBMariaDB是Linux默认数据库，需先卸载。    使用 yum list installed | grep mariadb 检查MariaDB是否安装。 使用 yum -y remove mariadb* 命令 卸载  删除MySQL对应的文件夹 w">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-27T02:42:00.000Z">
+<meta property="article:modified_time" content="2020-08-29T03:21:55.169Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="安装">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/08/27/linux/Linux%E5%AE%89%E8%A3%85Mysql%208.0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2020/08/27/linux/Linux%E5%AE%89%E8%A3%85Mysql%208.0/","path":"2020/08/27/linux/Linux安装Mysql 8.0/","title":"Linux安装Mysql 8.0"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux安装Mysql 8.0 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDMariaDB"><span class="nav-number">1.</span> <span class="nav-text">卸载MariaDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4MySQL%E5%AF%B9%E5%BA%94%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">2.</span> <span class="nav-text">删除MySQL对应的文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5MySQL%E7%94%A8%E6%88%B7%E7%BB%84%E5%92%8C%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%EF%BC%8C%E5%88%99%E5%88%9B%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">检查MySQL用户组和用户是否存在，如果没有，则创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E4%B8%8B%E8%BD%BDLinux%E7%9A%84Mysql%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">命令下载Linux的Mysql安装包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MySQL"><span class="nav-number"></span> <span class="nav-text">安装MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">解压安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">操作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/08/27/linux/Linux%E5%AE%89%E8%A3%85Mysql%208.0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux安装Mysql 8.0 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux安装Mysql 8.0
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-27 10:42:00" itemprop="dateCreated datePublished" datetime="2020-08-27T10:42:00+08:00">2020-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-08-29 11:21:55" itemprop="dateModified" datetime="2020-08-29T11:21:55+08:00">2020-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/%E5%AE%89%E8%A3%85/" itemprop="url" rel="index"><span itemprop="name">安装</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiexinxx0225/article/details/107665316" title="参考连接">https://blog.csdn.net/xiexinxx0225/article/details/107665316</a>  </p>
+<h2 id="卸载MariaDB"><a href="#卸载MariaDB" class="headerlink" title="卸载MariaDB"></a>卸载MariaDB</h2><p>MariaDB是Linux默认数据库，需先卸载。  </p>
+<ol>
+<li>使用 yum list installed | grep mariadb 检查MariaDB是否安装。</li>
+<li>使用 yum -y remove mariadb* 命令 卸载</li>
+</ol>
+<h2 id="删除MySQL对应的文件夹"><a href="#删除MySQL对应的文件夹" class="headerlink" title="删除MySQL对应的文件夹"></a>删除MySQL对应的文件夹</h2><ol>
+<li><p>whereis mysql</p>
+</li>
+<li><p>find / -name musql</p>
+<pre><code> [root@localhost /]# whereis mysql
+ mysql: /usr/bin/mysql /usr/include/mysql
+ [root@localhost lib]# find / -name mysql
+ /data/mysql
+ /data/mysql/mysql
+</code></pre>
+</li>
+</ol>
+<ol start="3">
+<li><p>删除上两条命令查询出来的相关目录或文件。</p>
+<pre><code> [root@localhost /]#  rm -rf /usr/bin/mysql /usr/include/mysql /data/mysql /data/mysql/mysql 
+</code></pre>
+</li>
+<li><p>重复输入1、2命令，是否删除完毕。</p>
+</li>
+</ol>
+<h2 id="检查MySQL用户组和用户是否存在，如果没有，则创建"><a href="#检查MySQL用户组和用户是否存在，如果没有，则创建" class="headerlink" title="检查MySQL用户组和用户是否存在，如果没有，则创建"></a>检查MySQL用户组和用户是否存在，如果没有，则创建</h2><pre><code>[root@localhost /]# cat /etc/group | grep mysql
+[root@localhost /]# cat /etc/passwd |grep mysql
+[root@localhost /]# groupadd mysql
+[root@localhost /]# useradd -r -g mysql mysql
+[root@localhost /]#
+</code></pre>
+<h2 id="命令下载Linux的Mysql安装包"><a href="#命令下载Linux的Mysql安装包" class="headerlink" title="命令下载Linux的Mysql安装包"></a>命令下载Linux的Mysql安装包</h2><pre><code>[root@localhost ~]#  wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
+</code></pre>
+<h1 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h1><h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><pre><code>[root@localhost /]#  tar xvf mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
+[root@localhost /]# ls
+mysql-8.0.19-linux-glibc2.12-x86_64
+mysql-8.0.19-linux-glibc2.12-x86_64.tar.xz
+</code></pre>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>首先确保/usr/local/下没有mysql文件夹，如果有就删除  </li>
+<li>执行移动命令  <pre><code> [root@localhost ~]# mv mysql-8.0.19-linux-glibc2.12-x86_64 /usr/local/mysql
+</code></pre>
+</li>
+</ol>
+<ol start="3">
+<li><p>在/usr/local/mysql目录下创建data目录  </p>
+<pre><code> [root@localhost /]# mkdir /usr/local/mysql/data
+</code></pre>
+</li>
+<li><p>更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限  </p>
+<pre><code> [root@localhost /]# chown -R mysql:mysql /usr/local/mysql
+ [root@localhost /]# chmod -R 755 /usr/local/mysql 
+</code></pre>
+</li>
+<li><p>下载链接库文件  </p>
+<pre><code> [root@localhost bin]#  yum -y install libaio-devel.x86_64
+</code></pre>
+</li>
+<li><p>编译安装并初始化mysql,务必记住初始化输出日志末尾的密码（数据库管理员临时密码）  </p>
+<pre><code> [root@localhost /]# cd /usr/local/mysql/bin
+ [root@localhost bin]# ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql
+</code></pre>
+</li>
+<li><p>编辑配置文件my.cnf，添加配置如下</p>
+<pre><code> [root@localhost bin]#  vi /etc/my.cnf
+
+ [mysqld]
+ datadir=/usr/local/mysql/data
+ port=3306
+ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+ symbolic-links=0
+ max_connections=600
+ innodb_file_per_table=1
+ log-error=/usr/local/mysql/data/error.log
+</code></pre>
+</li>
+<li><p>测试启动mysql服务器</p>
+<pre><code> [root@localhost /]# /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+</li>
+<li><p>添加软连接，并重启mysql服务</p>
+<pre><code> [root@localhost /]#  ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql 
+ [root@localhost /]#  ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+ [root@localhost /]#  service mysql restart  
+</code></pre>
+</li>
+<li><p>登录mysql，修改密码(密码为步骤6生成的临时密码)</p>
+<pre><code>[root@localhost /]#  mysql -u root -p
+Enter password:
+mysql&gt;ALTER USER USER() IDENTIFIED BY &#39;yourpass&#39;;
+mysql&gt;flush privileges;
+</code></pre>
+</li>
+<li><p>开放远程连接  </p>
+<pre><code>mysql&gt;use mysql;
+msyql&gt;update user set user.Host=&#39;%&#39; where user.User=&#39;root&#39;;
+mysql&gt;flush privileges; 
+</code></pre>
+</li>
+</ol>
+<ol start="12">
+<li><p>必须修改加密规则  </p>
+<pre><code>1.输入 use mysql; 出现Database changed
+2.输入select user,host from user; 目的为了查看user的root 对应host是什么  我对应的是 %
+3.修改加密规则：输入ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;;
+
+root:为数据库用户名
+123456：为数据库密码
+</code></pre>
+</li>
+</ol>
+<ol start="13">
+<li><p>可以自由设置开机自动启动</p>
+<pre><code>1、将服务文件拷贝到init.d下，并重命名为mysql
+[root@localhost /]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+2、赋予可执行权限
+[root@localhost /]# chmod +x /etc/init.d/mysqld
+3、添加服务
+[root@localhost /]# chkconfig --add mysqld
+4、显示服务列表
+[root@localhost /]# chkconfig --list
+</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E5%AE%89%E8%A3%85/" rel="tag"># 安装</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/08/24/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80-%E6%9C%AA%E5%AE%8C%E6%88%90/" rel="prev" title="并发编程基础">
+                  <i class="fa fa-chevron-left"></i> 并发编程基础
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/09/10/spring/spring%E5%AD%A6%E4%B9%A0/" rel="next" title="spring学习">
+                  spring学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="Nginx1. 简介Nginx是一个高性能的HTTP和反向代理web服务器，也提供IMAP&#x2F;POP3&#x2F;SMTP服务。 是一款轻量级的Web服务器&#x2F;反向代理服务器及电子邮件（IMA&#x2F;POP3）代理服务器。 BSD-like协议下发行 1.1 特点占有内存少，并发能力强 支持热部署，可以支持7*24不间断运行。 1.2 作为web服务器Nginx可以作为静态页面的web服务器，同时还支持CGI协议的动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx使用">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/11/28/Nginx/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="Nginx1. 简介Nginx是一个高性能的HTTP和反向代理web服务器，也提供IMAP&#x2F;POP3&#x2F;SMTP服务。 是一款轻量级的Web服务器&#x2F;反向代理服务器及电子邮件（IMA&#x2F;POP3）代理服务器。 BSD-like协议下发行 1.1 特点占有内存少，并发能力强 支持热部署，可以支持7*24不间断运行。 1.2 作为web服务器Nginx可以作为静态页面的web服务器，同时还支持CGI协议的动">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/28/qrwxmknuNspSYeV.png">
+<meta property="article:published_time" content="2020-11-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-17T02:44:52.813Z">
+<meta property="article:author" content="QB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/11/28/Nginx/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2020/11/28/Nginx/","path":"2020/11/28/Nginx/","title":"Nginx使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Nginx使用 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BD%9C%E4%B8%BAweb%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 作为web服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%BD%9C%E4%B8%BAHTTP%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 作为HTTP服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.4.1 正向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">1.4.2 反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">1.4.3 负载均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">1.4.4 动静分离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Nginx%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">2. Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85pcre%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装pcre依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85openssl%E5%92%8Czlib"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 安装openssl和zlib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E4%B8%8A%E9%9D%A2%E4%B8%89%E4%B8%AA%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">一键安装上面三个依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.2.4.</span> <span class="nav-text">3. 安装nginx</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">3. Nginx常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Nginx%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">4. Nginx的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%9D%97"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">全局块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#events%E5%9D%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">events块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E5%9D%97"><span class="nav-number">1.4.2.</span> <span class="nav-text">http块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http%E5%85%A8%E5%B1%80%E5%9D%97"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">http全局块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server%E5%9D%97"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">server块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%A8%E5%B1%80server%E5%9D%97"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">全局server块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#location%E5%9D%97"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">location块</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">Nginx配置实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">2.2.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="nav-number">2.3.</span> <span class="nav-text">动静分离</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">Nginx原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E8%A1%A5%E5%85%85"><span class="nav-number">4.</span> <span class="nav-text">未来补充</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2020/11/28/Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Nginx使用 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Nginx使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-28T00:00:00+08:00">2020-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-12-17 10:44:52" itemprop="dateModified" datetime="2020-12-17T10:44:52+08:00">2020-12-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Nginx是一个高性能的HTTP和反向代理web服务器，也提供IMAP/POP3/SMTP服务。</p>
+<p>是一款轻量级的Web服务器/反向代理服务器及电子邮件（IMA/POP3）代理服务器。</p>
+<p>BSD-like协议下发行</p>
+<h3 id="1-1-特点"><a href="#1-1-特点" class="headerlink" title="1.1 特点"></a>1.1 特点</h3><p>占有内存少，并发能力强</p>
+<p>支持热部署，可以支持7*24不间断运行。</p>
+<h3 id="1-2-作为web服务器"><a href="#1-2-作为web服务器" class="headerlink" title="1.2 作为web服务器"></a>1.2 作为web服务器</h3><p>Nginx可以作为静态页面的web服务器，同时还支持CGI协议的动态语言，比如perl、php等。但是不支持Java。Java程序只能通过tomcat配合完成。</p>
+<p>Nginx转为性能优化而开发，实现上非常注重效率。</p>
+<p>能经受高负载的考验，有报告表明能支持高达50000个并发连接数。</p>
+<h3 id="1-3-作为HTTP服务器"><a href="#1-3-作为HTTP服务器" class="headerlink" title="1.3 作为HTTP服务器"></a>1.3 作为HTTP服务器</h3><ul>
+<li>处理静态文件，索引文件以及自动索引：打开文件描述符缓冲。</li>
+<li>无缓冲的反向代理加速，简单的负载均衡和容错。</li>
+<li>FastCGI，简单的负载均衡和容错。</li>
+<li>模块化结构</li>
+<li>支持SSL 和 TLSSNI</li>
+</ul>
+<h3 id="1-4-基本概念"><a href="#1-4-基本概念" class="headerlink" title="1.4 基本概念"></a>1.4 基本概念</h3><h4 id="1-4-1-正向代理"><a href="#1-4-1-正向代理" class="headerlink" title="1.4.1 正向代理"></a>1.4.1 正向代理</h4><p>Nginx能用作正向代理来进行上网等功能。</p>
+<p>正向代理：如果把局域网外的Internet看作一个巨大的资源库，则局域网中的客户端要访问Internet，则需要通过代理服务器来访问（在客户端（浏览器）配置代理服务器），这种代理服务称为正向代理。</p>
+<h4 id="1-4-2-反向代理"><a href="#1-4-2-反向代理" class="headerlink" title="1.4.2 反向代理"></a>1.4.2 反向代理</h4><p>由于客户端对代理是无感知的，客户端不需要任何配置就可以访问</p>
+<p>我们只需要将请求发送到反向代理服务器，有反向代理服务器去选择目标服务器获取数据后，再返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器IP地址。</p>
+<h4 id="1-4-3-负载均衡"><a href="#1-4-3-负载均衡" class="headerlink" title="1.4.3 负载均衡"></a>1.4.3 负载均衡</h4><p><img src="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png" alt="image.png"></p>
+<h4 id="1-4-4-动静分离"><a href="#1-4-4-动静分离" class="headerlink" title="1.4.4 动静分离"></a>1.4.4 动静分离</h4><p>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
+<h2 id="2-Nginx安装"><a href="#2-Nginx安装" class="headerlink" title="2. Nginx安装"></a>2. Nginx安装</h2><p>镜像位置：/mydata/jingxiang/</p>
+<p>版本：</p>
+<p>pcre-8.37.tar.gz</p>
+<p>openssl-1.0.1t.tar.gz</p>
+<p>zlib-1.2.8.tar.gz</p>
+<p>nginx-1.12.2.tar.gz</p>
+<h3 id="1-安装pcre依赖"><a href="#1-安装pcre依赖" class="headerlink" title="1. 安装pcre依赖"></a>1. 安装pcre依赖</h3><p>下载压缩文件</p>
+<p>解压压缩文件</p>
+<p>进入目录执行 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p>使用命令编译和安装 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>查看版本号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcre-config --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装openssl和zlib"><a href="#2-安装openssl和zlib" class="headerlink" title="2. 安装openssl和zlib"></a>2. 安装openssl和zlib</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="一键安装上面三个依赖"><a href="#一键安装上面三个依赖" class="headerlink" title="一键安装上面三个依赖"></a>一键安装上面三个依赖</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3. 安装nginx"></a>3. 安装nginx</h3><p>下载压缩文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.12.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>解压压缩文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf nginx-1.12.2.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>进入解压目录执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p>执行命令编译和安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，会在/usr/local/文件夹下自动创建一个nginx文件夹  </p>
+<p>/usr/local/nginx/sbin 中有启动脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line">会发现两个进程</span><br></pre></td></tr></table></figure>
+
+<p>编辑配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lcoal/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">	server&#123;</span><br><span class="line">		listen			80; #端口号</span><br><span class="line">		server_name		localhost; #ip地址</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看开放的端口号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br><span class="line"></span><br><span class="line">设置开放端口号</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">firewall-cmd --add-service=http -permanent</span></span><br><span class="line">sudo firewall-cmd --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line">重启防火墙</span><br><span class="line">firewall-cmd -reload</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Nginx常用命令"><a href="#3-Nginx常用命令" class="headerlink" title="3. Nginx常用命令"></a>3. Nginx常用命令</h2><p>前提条件：必须进入nginx的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line"></span><br><span class="line">查看ngins版本号</span><br><span class="line">./nginx -v</span><br><span class="line"></span><br><span class="line">启动nginx</span><br><span class="line">./nginx</span><br><span class="line">查看验证</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"></span><br><span class="line">关闭nginx</span><br><span class="line">./nginx -s stop</span><br><span class="line">查看验证</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"></span><br><span class="line">重新加载nginx命令，比如：需要重新加载nginx的配置文件</span><br><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx -s reload</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Nginx的配置文件"><a href="#4-Nginx的配置文件" class="headerlink" title="4. Nginx的配置文件"></a>4. Nginx的配置文件</h2><p>/usr/local/nginx/conf/</p>
+<p>由三部分组成</p>
+<h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><p>从配置文件开始到events块之间，设置一些影响nginx服务器整体运行的配置指令</p>
+<p>主要包括配置运行Nginx服务器的用户（组）、允许生成的worker process数，进程PID存放路径、日志存放路径和类型以及配置文件的引入等</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker_processes	1; # 值越大，可以支持的并发处理量也越多，不能超过cpu核数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h3><p>影响Nginx服务器与用户的网络连接。</p>
+<p>常用的设置包括 是否开启对多work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种时间驱动模型来处理连接请求，每个 word process 可以同时支持的最大连接数等。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">	worker_connections	1024; # 支持最大连接数 1024 对Nginx影响较大</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h3><p>Nginx服务器配置中最频繁的部分</p>
+<p>代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。</p>
+<p>http块也可以包括http全局快、server块。</p>
+<h4 id="http全局块"><a href="#http全局块" class="headerlink" title="http全局块"></a>http全局块</h4><p>包括文件引入、MIME-TYPE定义、日志自定义、连接超时时间、单链接请求数上限等。</p>
+<h4 id="server块"><a href="#server块" class="headerlink" title="server块"></a>server块</h4><p>和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，为了节约互联网服务器硬件成本。</p>
+<p>每个http块可以包含多个server块，而每个server块相当于一个虚拟主机</p>
+<p>每个server块可以分为全局server块，以及可以同时包含多个location块</p>
+<h5 id="全局server块"><a href="#全局server块" class="headerlink" title="全局server块"></a>全局server块</h5><p>本虚拟主机的监听配置和本虚拟主机的名称或IP配置。</p>
+<h5 id="location块"><a href="#location块" class="headerlink" title="location块"></a>location块</h5><p>一个server开可以配置多个localtion块。</p>
+<p>主要作用是基于Nginx服务器接收到的请求字符串（例如server_name/uri-string），对虚拟主机名称（或IP别名）之外的字符串（例如/uri-string）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也可以在这里进行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	server &#123;</span><br><span class="line">		listen	80;</span><br><span class="line">		server_name	localhost;</span><br><span class="line">		location / &#123;</span><br><span class="line">  			root	html;</span><br><span class="line">  			index	index.html	index.html;</span><br><span class="line">		&#125;</span><br><span class="line">		error_page	500	502	503	504	/50x.html;</span><br><span class="line">		location = /50x.html &#123;</span><br><span class="line">			root	html;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Nginx配置实例"><a href="#Nginx配置实例" class="headerlink" title="Nginx配置实例"></a>Nginx配置实例</h1><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>实现效果</p>
+<p>准备工作</p>
+<p>安装tomcat，使用默认端口8080</p>
+<p>下载tomcat压缩包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.bfsu.edu.cn/apache/tomcat/tomcat-7/v7.0.107/bin/apache-tomcat-7.0.107.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>解压tomcat</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf apache-tomcat-7.0.107.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>安装JDK</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44538107/article/details/88683530">Linux安装jdk详细步骤_农村小白的博客-CSDN博客_linux安装jdk</a></p>
+<p>java -version</p>
+<p>启动tomcat</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd apache-tomcat-xxx</span><br><span class="line">cd bin</span><br><span class="line">./startup.sh </span><br><span class="line"></span><br><span class="line">启动成功，进入日志</span><br><span class="line">cd ../logs</span><br><span class="line"></span><br><span class="line">查看日志</span><br><span class="line">tail -f catalina.out</span><br></pre></td></tr></table></figure>
+
+<p>对外开放端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd -add-port=8080/tcp --permanent</span><br><span class="line">firewall-cmd -add-port=8081/tcp --permanent</span><br><span class="line">firewall-cmd -reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+
+<p>再windwos中浏览器访问</p>
+<p><a target="_blank" rel="noopener" href="http://x.x.x.x:8080/">http://x.x.x.x:8080/</a></p>
+<p><img src="https://i.loli.net/2020/11/28/qrwxmknuNspSYeV.png" alt="image.png"></p>
+<p>小知识：浏览器请求url ：首先会再windows的host文件中找对应域名–》的对应ip地址。如果没有，会去网络的域名解析器查找。</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><h2 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h2><p>为了让请求更高效，把动态跟静态请求分开。</p>
+<p>使用Nginx处理静态页面，tomcat处理动态页面。</p>
+<p>实现方式有两种：</p>
+<ol>
+<li>把静态文件独立成单独的域名，放在独立的服务器上，也是主流的方案。</li>
+<li>动态跟静态文件混合在一起发布，通过通过Nginx分开。</li>
+</ol>
+<p>通过location来指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以是浏览器缓存过期时间，减少与服务器之前的请求和流量。</p>
+<p>具体Expires定义：给一个资源设定一个过期时间，无需去服务端验证，直接</p>
+<h1 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h1><h1 id="未来补充"><a href="#未来补充" class="headerlink" title="未来补充"></a>未来补充</h1><p>安装，常用命令和配置文件</p>
+<p>在Linux系统中安装nginx</p>
+<p>nginx配置实例</p>
+<p>反向代理</p>
+<p>nginx配置实例</p>
+<p>负载均衡</p>
+<p>nginx配置实例</p>
+<p>动静分离</p>
+<p>nginx配置高可用的集群</p>
+<p>nginx原理</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux命令">
+                  <i class="fa fa-chevron-left"></i> Linux命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2020/12/09/mybatis/MyBatis/" rel="next" title="MyBatis了解">
+                  MyBatis了解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="秒杀（高并发）系统关注的问题 服务单一职责+独立部署（秒杀服务） 秒杀连接加密（秒杀之前防止秒杀连接暴露） 库存预热+快速扣减（使用缓存redis，把数据放入redis中，使用扣信号量处理库存） 动静分离（nginx动静分离） 恶意请求拦截（网关层，登录拦截） 流量错峰 限流&amp;熔断&amp;降级（Alibaba的Sentinel） 队列削峰（秒杀成功的请求进入队列，慢慢创建订单）  Spr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="商城项目（九）">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/05/31/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE9/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="秒杀（高并发）系统关注的问题 服务单一职责+独立部署（秒杀服务） 秒杀连接加密（秒杀之前防止秒杀连接暴露） 库存预热+快速扣减（使用缓存redis，把数据放入redis中，使用扣信号量处理库存） 动静分离（nginx动静分离） 恶意请求拦截（网关层，登录拦截） 流量错峰 限流&amp;熔断&amp;降级（Alibaba的Sentinel） 队列削峰（秒杀成功的请求进入队列，慢慢创建订单）  Spr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-31T06:21:00.000Z">
+<meta property="article:modified_time" content="2021-05-31T07:54:57.868Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="商城">
+<meta property="article:tag" content="秒杀">
+<meta property="article:tag" content="高并发">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/05/31/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE9/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2021/05/31/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE9/","path":"2021/05/31/项目/商城项目9/","title":"商城项目（九）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>商城项目（九） | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A7%92%E6%9D%80%EF%BC%88%E9%AB%98%E5%B9%B6%E5%8F%91%EF%BC%89%E7%B3%BB%E7%BB%9F%E5%85%B3%E6%B3%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">秒杀（高并发）系统关注的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-Alibaba-Sentinel"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Cloud Alibaba-Sentinel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%94%E6%96%AD%E9%99%8D%E7%BA%A7%E9%99%90%E6%B5%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">熔断降级限流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%86%94%E6%96%AD"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">什么是熔断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%99%8D%E7%BA%A7"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">什么是降级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%90%8C%EF%BC%9A"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">异同：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%99%90%E6%B5%81"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">什么是限流</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/05/31/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="商城项目（九） | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          商城项目（九）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-31 14:21:00 / 修改时间：15:54:57" itemprop="dateCreated datePublished" datetime="2021-05-31T14:21:00+08:00">2021-05-31</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="秒杀（高并发）系统关注的问题"><a href="#秒杀（高并发）系统关注的问题" class="headerlink" title="秒杀（高并发）系统关注的问题"></a>秒杀（高并发）系统关注的问题</h1><ol>
+<li>服务单一职责+独立部署（秒杀服务）</li>
+<li>秒杀连接加密（秒杀之前防止秒杀连接暴露）</li>
+<li>库存预热+快速扣减（使用缓存redis，把数据放入redis中，使用扣信号量处理库存）</li>
+<li>动静分离（nginx动静分离）</li>
+<li>恶意请求拦截（网关层，登录拦截）</li>
+<li>流量错峰</li>
+<li>限流&amp;熔断&amp;降级（Alibaba的Sentinel）</li>
+<li>队列削峰（秒杀成功的请求进入队列，慢慢创建订单）</li>
+</ol>
+<h2 id="Spring-Cloud-Alibaba-Sentinel"><a href="#Spring-Cloud-Alibaba-Sentinel" class="headerlink" title="Spring Cloud Alibaba-Sentinel"></a>Spring Cloud Alibaba-Sentinel</h2><h3 id="熔断降级限流"><a href="#熔断降级限流" class="headerlink" title="熔断降级限流"></a>熔断降级限流</h3><h4 id="什么是熔断"><a href="#什么是熔断" class="headerlink" title="什么是熔断"></a>什么是熔断</h4><p>A服务调用B服务的某个功能，由于网络不稳定问题，或者B服务卡机，导致功能时间超长。如果这样子次数太多，可以直接将B短路了（A不在请求B接口），凡是调用B的直接返回降级数据，不必等待B的超长执行。这样B的故障问题，就不会级联影响到A。</p>
+<h4 id="什么是降级"><a href="#什么是降级" class="headerlink" title="什么是降级"></a>什么是降级</h4><p>整个网站处于流量高峰期，服务器压力剧增。根据当前业务情况及流量，对一些服务和页面进行有策略的降级（停止服务，所有的调用直接返回降级数据）。缓解服务器资源的压力，以保证核心业务的正常运行，同时也保持了大部分客户得到正确的响应。</p>
+<h4 id="异同："><a href="#异同：" class="headerlink" title="异同："></a>异同：</h4><p>相同点：</p>
+<ol>
+<li>为了保证集群大部分服务的可用性和可靠性，防止崩溃，牺牲小我。</li>
+<li>用户最终都是体验到某个功能不可用。</li>
+</ol>
+<p>不同点：</p>
+<ol>
+<li>熔断是被调用方故障，触发的系统主动规则。</li>
+<li>降级是基于全局考虑，停止一些正常服务，释放资源。（一般是认为的）</li>
+</ol>
+<h4 id="什么是限流"><a href="#什么是限流" class="headerlink" title="什么是限流"></a>什么是限流</h4><p>对打入服务的请求流量进行控制，使服务能够承担不超过自己额能力的流量压力。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E5%95%86%E5%9F%8E/" rel="tag"># 商城</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E7%A7%92%E6%9D%80/" rel="tag"># 秒杀</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" rel="tag"># 高并发</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/05/31/%E4%B9%A6%E7%B1%8D/20210531-%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" rel="prev" title="《Java编程思想》知识点总结">
+                  <i class="fa fa-chevron-left"></i> 《Java编程思想》知识点总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/06/21/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95%E9%A2%982/" rel="next" title="面试题2">
+                  面试题2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

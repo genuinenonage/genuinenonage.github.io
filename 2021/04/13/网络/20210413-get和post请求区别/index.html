@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="get与post区别浏览器的get和postget反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。 get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。 post请求让服务器做一件事。往往是有副作用的，不幂等的。页面标签会定义一个表单。点击其中的submit元素会发送post请求。 不幂等意味着不能多次执行，不能做缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="get和post请求区别">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="get与post区别浏览器的get和postget反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。 get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。 post请求让服务器做一件事。往往是有副作用的，不幂等的。页面标签会定义一个表单。点击其中的submit元素会发送post请求。 不幂等意味着不能多次执行，不能做缓存">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-13T08:15:00.000Z">
+<meta property="article:modified_time" content="2021-04-13T08:34:26.934Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="http">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="get">
+<meta property="article:tag" content="post">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/","path":"2021/04/13/网络/20210413-get和post请求区别/","title":"get和post请求区别"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>get和post请求区别 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#get%E4%B8%8Epost%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">get与post区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84get%E5%92%8Cpost"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器的get和post</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E4%B8%AD%E7%9A%84get%E5%92%8Cpost"><span class="nav-number">1.2.</span> <span class="nav-text">接口中的get和post</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">关于安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%BC%96%E7%A0%81"><span class="nav-number">1.4.</span> <span class="nav-text">关于编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84POST%E9%9C%80%E8%A6%81%E5%8F%91%E4%B8%A4%E4%B8%AA%E8%AF%B7%E6%B1%82%E5%90%97%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">浏览器的POST需要发两个请求吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E7%AE%97%E8%AF%B7%E6%B1%82%E4%BD%93"><span class="nav-number">1.6.</span> <span class="nav-text">什么算请求体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Eurl%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">1.7.</span> <span class="nav-text">关于url的长度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E5%95%A5%E8%A6%81%E9%99%90%E5%88%B6%E5%91%A2%EF%BC%9F"><span class="nav-number">1.7.1.</span> <span class="nav-text">为啥要限制呢？</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="get和post请求区别 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          get和post请求区别
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-13 16:15:00 / 修改时间：16:34:26" itemprop="dateCreated datePublished" datetime="2021-04-13T16:15:00+08:00">2021-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="get与post区别"><a href="#get与post区别" class="headerlink" title="get与post区别"></a>get与post区别</h3><h4 id="浏览器的get和post"><a href="#浏览器的get和post" class="headerlink" title="浏览器的get和post"></a>浏览器的get和post</h4><p>get反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。</p>
+<p>get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。</p>
+<p>post请求让服务器做一件事。往往是有副作用的，不幂等的。页面<form>标签会定义一个表单。点击其中的submit元素会发送post请求。</p>
+<p>不幂等意味着不能多次执行，不能做缓存。</p>
+<p><strong>并不是说get不能有body，posturl不能放querystring。</strong></p>
+<h4 id="接口中的get和post"><a href="#接口中的get和post" class="headerlink" title="接口中的get和post"></a>接口中的get和post</h4><p>rest风格只是为了统一可以随意使用的请求方式，规定get参数放在url，post参数放在body中。这样使用，只是为了前后端方便。</p>
+<h4 id="关于安全性"><a href="#关于安全性" class="headerlink" title="关于安全性"></a>关于安全性</h4><p>POST用body传输数据，而GET用url传输，更加容易看到。</p>
+<p>但从攻击的角度，get和post都不够安全，因为HTTP本身是明文协议。每个http请求和响应的每个byte都会在网络上明文传输，不管是url、header还是body。完全不是一个“是否容易在浏览器地址栏上看到”的问题。</p>
+<p>为避免传输中数据被窃取，<strong>必须做从客户端到服务器的端端加密。业界的通行做法就是https</strong>。</p>
+<p>如果请求要经过不信任的公网，避免泄密的<strong>唯一手段就是https</strong>。</p>
+<h4 id="关于编码"><a href="#关于编码" class="headerlink" title="关于编码"></a>关于编码</h4><p>url只能支持ASCII编码，body能支持任意binary。</p>
+<p>所以，rest风格下，get的参数只能支持ASCII编码，post能支持任意binary。</p>
+<p>浏览器发出的POST请求就是表单提交，application/x-www-form-urlencoded针对简单的key-value场景；multipart/form-data，针对只有文件提交，或者同时有文件和key-value的混合提交表单的场景。</p>
+<h4 id="浏览器的POST需要发两个请求吗？"><a href="#浏览器的POST需要发两个请求吗？" class="headerlink" title="浏览器的POST需要发两个请求吗？"></a>浏览器的POST需要发两个请求吗？</h4><p>比如一个上传文件的服务，请求url中包含了文件名称，请求体中是个尺寸为几百兆的压缩二进制流。服务器端接收到请求后，就可以先拿到请求头部，查看用户是不是有权限上传，文件名是不是符合规范等。如果不符合，就不再处理请求体的数据了，直接丢弃。而不用等到整个请求都处理完了再拒绝。</p>
+<p>为了进一步优化，客户端可以利用HTTP的Continued协议来这样做：客户端总是先发送所有请求头给服务器，让服务器校验。如果通过了，服务器回复“100 - Continue”，客户端再把剩下的数据发给服务器。如果请求被拒了，服务器就回复个400之类的错误，这个交互就终止了。这样，就可以避免浪费带宽传请求体。但是代价就是会多一次Round Trip。如果刚好请求体的数据也不多，那么一次性全部发给服务器可能反而更好。</p>
+<p>基于此，客户端就能做一些优化，比如内部设定一次POST的数据超过1KB就先只发“请求头”，否则就一次性全发。客户端甚至还可以做一些Adaptive的策略，统计发送成功率，如果成功率很高，就总是全部发等等。不同浏览器，不同的客户端（curl，postman）可以有各自的不同的方案。不管怎样做，优化目的总是在提高数据吞吐和降低带宽浪费上做一个折衷。</p>
+<p>因此到底是发一次还是发N次，客户端可以很灵活的决定。因为不管怎么发都是符合HTTP协议的，因此我们应该视为这种优化是一种实现细节，而不用扯到GET和POST本身的区别上。更不要当个什么世纪大发现。</p>
+<h4 id="什么算请求体"><a href="#什么算请求体" class="headerlink" title="什么算请求体"></a>什么算请求体</h4><h4 id="关于url的长度"><a href="#关于url的长度" class="headerlink" title="关于url的长度"></a>关于url的长度</h4><p>常说的“GET数据有长度限制“其实是指”URL的长度限制“。</p>
+<p>HTTP协议本身对URL长度并没有做任何规定。实际的限制是由客户端/浏览器以及服务器端决定的。</p>
+<p>比如我们常说的2048个字符的限制，其实是IE8的限制。并且原始文档的说的其实是“URL的最大长度是2083个字符，path的部分最长是2048个字符“。新的IE已经开始使用Chrome的内核了，也就意味着“浏览器端URL的长度限制为2048字符”这种说法会慢慢成为历史。</p>
+<p>其他的客户端，比如Java的，js的http client大多数也并没有限制URL最大有多长。</p>
+<p>apache实际上限制的是HTTP请求第一行“Request Line“的长度，即<METHOD><URL> <VERSION>那一行。</p>
+<p>Tomcat的限制是web.xml里maxHttpHeaderSize来设置的，控制的是整个“请求头”的总长度。</p>
+<h5 id="为啥要限制呢？"><a href="#为啥要限制呢？" class="headerlink" title="为啥要限制呢？"></a>为啥要限制呢？</h5><p>如果写过解析一段字符串的代码就能明白，解析的时候要分配内存。对于一个字节流的解析，必须分配buffer来保存所有要存储的数据。而URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；同时，超长URL的好处并不多，我也只有处理老系统的URL时因为不敢碰原来的逻辑，又得追加更多数据，才会使用超长URL。</p>
+<p>对于开发者来说，使用超长的URL完全是给自己埋坑，需要同时要考虑前后端，以及中间代理每一个环节的配置。此外，超长URL会影响搜索引擎的爬虫，有些爬虫甚至无法处理超过2000个字节的URL。这也就意味着这些URL无法被搜到，坑爹啊。</p>
+<p>原文地址：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28586791">https://www.zhihu.com/question/28586791</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/http/" rel="tag"># http</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/get/" rel="tag"># get</a>
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/post/" rel="tag"># post</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/04/13/mysql/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/" rel="prev" title="MySQL中text类型">
+                  <i class="fa fa-chevron-left"></i> MySQL中text类型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/04/13/mysql/20210413-MySQL%E8%8C%83%E5%BC%8F/" rel="next" title="MySQL范式">
+                  MySQL范式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

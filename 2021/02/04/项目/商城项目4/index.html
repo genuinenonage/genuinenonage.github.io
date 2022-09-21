@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+
+    <meta name="description" content="商城项目高级篇1. ElasticSearch所有数据都是json格式的文档( &lt;- 类型 &lt;- 索引) 安装ElasticSearch和Kibana步骤一：docker安装：ElasticSearch和Kibana 123456789101112131415161718192021222324docker pull elasticsearch:7.4.2docker pull kib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="商城项目四">
+<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/02/04/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE4/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="商城项目高级篇1. ElasticSearch所有数据都是json格式的文档( &lt;- 类型 &lt;- 索引) 安装ElasticSearch和Kibana步骤一：docker安装：ElasticSearch和Kibana 123456789101112131415161718192021222324docker pull elasticsearch:7.4.2docker pull kib">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/23/QgLVwBv6bUFohJG.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/25/8RVOXzYatSrjJFT.png">
+<meta property="article:published_time" content="2021-02-04T12:53:00.000Z">
+<meta property="article:modified_time" content="2021-06-25T05:57:15.479Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="商城">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/23/QgLVwBv6bUFohJG.png">
+
+
+<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/02/04/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2021/02/04/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE4/","path":"2021/02/04/项目/商城项目4/","title":"商城项目四"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>商城项目四 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE%E9%AB%98%E7%BA%A7%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">商城项目高级篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ElasticSearch"><span class="nav-number">1.1.</span> <span class="nav-text">1. ElasticSearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ElasticSearch%E5%92%8CKibana"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装ElasticSearch和Kibana</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">初步使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ik%E5%88%86%E8%AF%8D%E5%99%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">安装ik分词器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="nav-number">1.1.4.</span> <span class="nav-text">安装Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Rest-High-Level-Client"><span class="nav-number">1.1.5.</span> <span class="nav-text">使用Rest High Level Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAes%E7%B4%A2%E5%BC%95%E5%BA%93"><span class="nav-number">1.1.6.</span> <span class="nav-text">构建es索引库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%90%8E%E5%8F%B0%E7%BC%96%E5%86%99%E5%95%86%E5%93%81%E4%B8%8A%E6%9E%B6%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.</span> <span class="nav-text">2. 后台编写商品上架功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B4%E5%90%88thymeleaf%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.</span> <span class="nav-text">3. 整合thymeleaf实现前端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-nginx%E6%90%AD%E5%BB%BA%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE%E7%8E%AF%E5%A2%83%EF%BC%88%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. nginx搭建域名访问环境（反向代理配置）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B"><span class="nav-number">1.5.</span> <span class="nav-text">5. 性能压测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.1.</span> <span class="nav-text">性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JMeter"><span class="nav-number">1.5.2.</span> <span class="nav-text">JMeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jvisualvm"><span class="nav-number">1.5.3.</span> <span class="nav-text">jvisualvm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.4.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="nav-number">1.5.5.</span> <span class="nav-text">Nginx动静分离</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/02/04/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="商城项目四 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          商城项目四
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-04 20:53:00" itemprop="dateCreated datePublished" datetime="2021-02-04T20:53:00+08:00">2021-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-06-25 13:57:15" itemprop="dateModified" datetime="2021-06-25T13:57:15+08:00">2021-06-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="商城项目高级篇"><a href="#商城项目高级篇" class="headerlink" title="商城项目高级篇"></a>商城项目高级篇</h1><h2 id="1-ElasticSearch"><a href="#1-ElasticSearch" class="headerlink" title="1. ElasticSearch"></a>1. ElasticSearch</h2><p>所有数据都是json格式的文档( &lt;- 类型 &lt;- 索引)</p>
+<h3 id="安装ElasticSearch和Kibana"><a href="#安装ElasticSearch和Kibana" class="headerlink" title="安装ElasticSearch和Kibana"></a>安装ElasticSearch和Kibana</h3><p>步骤一：docker安装：ElasticSearch和Kibana</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:7.4.2</span><br><span class="line">docker pull kibana:7.4.2</span><br><span class="line"></span><br><span class="line">mkdir -p /mydata/elasticsearch/config</span><br><span class="line">mkdir -p /mydata/elasticsearch/date</span><br><span class="line"></span><br><span class="line">docker run --name elasticsearch -p 9222:9200 -p 9333:9300 \</span><br><span class="line">-e &quot;discovery.type=single-node&quot; \</span><br><span class="line">-e ES_JAVA_OPTS=&quot;-Xms64m -Xmx512m&quot; \</span><br><span class="line">-v /mydata/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \</span><br><span class="line">-v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \</span><br><span class="line">-v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \</span><br><span class="line">-d elasticsearch:7.4.2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">docker logs elasticsearch</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋权限</span></span><br><span class="line">chmod -R 777 /mydata/elasticsearch/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装Kibana</span></span><br><span class="line">docker run --name kibana -e ELASTICSEARCH_HOSTS=http://81.70.204.157:9222 -p 5601:5601 \</span><br><span class="line">-d kibana:7.4.2</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="初步使用"><a href="#初步使用" class="headerlink" title="初步使用"></a>初步使用</h3><p>批量导入数据</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">GET _search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;match_all&quot;</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">POST /customer/<span class="keyword">external</span>/_bulk</span><br><span class="line">&#123;<span class="string">&quot;index&quot;</span>:&#123;<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;John Doe&quot;</span> &#125;</span><br><span class="line">&#123;<span class="string">&quot;index&quot;</span>:&#123;<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;2&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Jane Doe&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">POST /_bulk</span><br><span class="line">&#123;<span class="string">&quot;delete&quot;</span>:&#123;<span class="string">&quot;_index&quot;</span>:<span class="string">&quot;website&quot;</span>,<span class="string">&quot;_type&quot;</span>:<span class="string">&quot;blog&quot;</span>,<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;create&quot;</span>:&#123;<span class="string">&quot;_index&quot;</span>:<span class="string">&quot;website&quot;</span>,<span class="string">&quot;_type&quot;</span>:<span class="string">&quot;blog&quot;</span>,<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;My first blog post&quot;</span>&#125;</span><br><span class="line">&#123;<span class="string">&quot;index&quot;</span>:&#123;<span class="string">&quot;_index&quot;</span>:<span class="string">&quot;website&quot;</span>,<span class="string">&quot;_type&quot;</span>:<span class="string">&quot;blog&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;My second blog post&quot;</span>&#125;</span><br><span class="line">&#123;<span class="string">&quot;update&quot;</span>:&#123;<span class="string">&quot;_index&quot;</span>:<span class="string">&quot;website&quot;</span>,<span class="string">&quot;_type&quot;</span>:<span class="string">&quot;blog&quot;</span>,<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;123&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;doc&quot;</span>:&#123;<span class="string">&quot;title&quot;</span>:<span class="string">&quot;My updated blog post&quot;</span>&#125;&#125;</span><br><span class="line"></span><br><span class="line">POST /bank/account/_bulk</span><br><span class="line">&#123;<span class="string">&quot;index&quot;</span>:&#123;<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;1&quot;</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">&quot;account_number&quot;</span>:<span class="number">1</span>,<span class="string">&quot;balance&quot;</span>:<span class="number">39225</span>,<span class="string">&quot;firstname&quot;</span>:<span class="string">&quot;Amber&quot;</span>,<span class="string">&quot;lastname&quot;</span>:<span class="string">&quot;Duke&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">32</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;M&quot;</span>,<span class="string">&quot;address&quot;</span>:<span class="string">&quot;880 Holmes Lane&quot;</span>,<span class="string">&quot;employer&quot;</span>:<span class="string">&quot;Pyrami&quot;</span>,<span class="string">&quot;email&quot;</span>:<span class="string">&quot;amberduke@pyrami.com&quot;</span>,<span class="string">&quot;city&quot;</span>:<span class="string">&quot;Brogan&quot;</span>,<span class="string">&quot;state&quot;</span>:<span class="string">&quot;IL&quot;</span>&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>进阶检索</p>
+<p>查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">## 查询</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search?q<span class="operator">=</span><span class="operator">*</span><span class="operator">&amp;</span>sort<span class="operator">=</span>account_number:<span class="keyword">asc</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;sort&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;account_number&quot;: &quot;asc&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;balance&quot;: &quot;desc&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;sort&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;balance&quot;: &#123;</span><br><span class="line">        &quot;order&quot;: &quot;desc&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;from&quot;: <span class="number">5</span>,</span><br><span class="line">  &quot;size&quot;: <span class="number">5</span>,</span><br><span class="line">  &quot;_source&quot;: [&quot;balance&quot;,&quot;firstname&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## <span class="keyword">match</span> 模糊匹配，条件分词，用于文本字段 字段.keyword精确匹配，精确查找不会分词</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;address&quot;: &quot;mill lane&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;address.keyword&quot;: &quot;789 Madison Street&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 全文检索根据评分排序，会对检索条件进行分词匹配</span><br><span class="line"></span><br><span class="line">## match_phrase 短语匹配，条件不分词</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_phrase&quot;: &#123;</span><br><span class="line">      &quot;address&quot;: &quot;mill lane&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## multi_match 多字段匹配，条件分词，谁匹配都行</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;multi_match&quot;: &#123;</span><br><span class="line">      &quot;query&quot;: &quot;mill movico&quot;,</span><br><span class="line">      &quot;fields&quot;: [&quot;address&quot;,&quot;city&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## bool 复合查询 must必须满足 must_not必须不满足 should可不满足，满足了得分高</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;bool&quot;: &#123;</span><br><span class="line">      &quot;must&quot;: [</span><br><span class="line">        &#123;&quot;match&quot;: &#123;</span><br><span class="line">          &quot;gender&quot;: &quot;M&quot;</span><br><span class="line">        &#125;&#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;match&quot;: &#123;</span><br><span class="line">            &quot;address&quot;: &quot;mill&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      &quot;must_not&quot;: [</span><br><span class="line">        &#123;&quot;match&quot;: &#123;</span><br><span class="line">          &quot;age&quot;: &quot;18&quot;</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      ],</span><br><span class="line">      &quot;should&quot;: [</span><br><span class="line">        &#123;&quot;match&quot;: &#123;</span><br><span class="line">          &quot;lastname&quot;: &quot;Wallace&quot;</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## <span class="keyword">filter</span> 结果过滤 使用与must相同，但不会计算得分</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;bool&quot;: &#123;</span><br><span class="line">      &quot;must&quot;: [</span><br><span class="line">        &#123;&quot;range&quot;: &#123;</span><br><span class="line">          &quot;age&quot;: &#123;</span><br><span class="line">            &quot;gte&quot;: <span class="number">18</span>,</span><br><span class="line">            &quot;lte&quot;: <span class="number">30</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;bool&quot;: &#123;</span><br><span class="line">      &quot;filter&quot;: &#123;</span><br><span class="line">        &quot;range&quot;: &#123;</span><br><span class="line">          &quot;age&quot;: &#123;</span><br><span class="line">            &quot;gte&quot;: <span class="number">18</span>,</span><br><span class="line">            &quot;lte&quot;: <span class="number">30</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## term与<span class="keyword">match</span>相同，用于精确字段，非文本字段查询</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;term&quot;: &#123;</span><br><span class="line">      &quot;age&quot;: &quot;28&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Aggregations(聚合)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">## 搜索address中包含mill的所有人的年龄分布以及平均年龄</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;address&quot;: &quot;mill&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;ageAgg&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;age&quot;,</span><br><span class="line">        &quot;size&quot;: <span class="number">10</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;ageAvg&quot;:&#123;</span><br><span class="line">      &quot;avg&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;age&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;balanceAvg&quot;:&#123;</span><br><span class="line">      &quot;avg&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;balance&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;size&quot;: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## 按照年龄聚合，并且请求这些年龄段的这些人的平均薪资</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;ageAgg&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;age&quot;,</span><br><span class="line">        &quot;size&quot;: <span class="number">100</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;aggs&quot;: &#123;</span><br><span class="line">        &quot;ageAvg&quot;: &#123;</span><br><span class="line">          &quot;avg&quot;: &#123;</span><br><span class="line">            &quot;field&quot;: &quot;balance&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## 查出所有年龄分布，并且这些年龄段中M的平均薪资和F的平均薪资以及这个年龄段的总体平均薪资</span><br><span class="line"><span class="keyword">GET</span> bank<span class="operator">/</span>_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;ageAgg&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;age&quot;,</span><br><span class="line">        &quot;size&quot;: <span class="number">100</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;aggs&quot;:&#123;</span><br><span class="line">        &quot;genderAgg&quot;:&#123;</span><br><span class="line">          &quot;terms&quot;: &#123;</span><br><span class="line">            &quot;field&quot;: &quot;gender.keyword&quot;,</span><br><span class="line">            &quot;size&quot;: <span class="number">10</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;aggs&quot;: &#123;</span><br><span class="line">            &quot;balanceAvg&quot;: &#123;</span><br><span class="line">              &quot;avg&quot;: &#123;</span><br><span class="line">                &quot;field&quot;: &quot;balance&quot;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ageBalance&quot;:&#123;</span><br><span class="line">          &quot;avg&quot;: &#123;</span><br><span class="line">            &quot;field&quot;: &quot;balance&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>映射</p>
+<p>在es6.0版本之后，索引被es丢弃了，不建议设置</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>bank<span class="operator">/</span>_mapping</span><br><span class="line"></span><br><span class="line">## 新建索引并且字段映射</span><br><span class="line">PUT <span class="operator">/</span>my_index</span><br><span class="line">&#123;</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;properties&quot;: &#123;</span><br><span class="line">      &quot;age&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;integer&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;email&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;name&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;text&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">## 添加新的字段映射</span><br><span class="line">PUT <span class="operator">/</span>my_index<span class="operator">/</span>_mapping</span><br><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;:&#123;</span><br><span class="line">    &quot;employee-id&quot;:&#123;</span><br><span class="line">      &quot;type&quot;:&quot;text&quot;,</span><br><span class="line">      &quot;index&quot;: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>bank<span class="operator">/</span>_mapping</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>my_index<span class="operator">/</span>_mapping</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>newbank</span><br><span class="line"></span><br><span class="line">## 如果修改字段映射，选择新建一个索引库，导入旧数据</span><br><span class="line">## 旧版本的导入旧数据</span><br><span class="line">POST _reindex</span><br><span class="line">&#123;</span><br><span class="line">  &quot;source&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;bank&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;account&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dest&quot;: &#123;</span><br><span class="line">    &quot;index&quot;: &quot;newbank&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>newbank<span class="operator">/</span>_search</span><br><span class="line"><span class="keyword">GET</span> <span class="operator">/</span>bank<span class="operator">/</span>_search</span><br><span class="line"></span><br><span class="line">## 新版本导入旧数据，不用type</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装ik分词器"><a href="#安装ik分词器" class="headerlink" title="安装ik分词器"></a>安装ik分词器</h3><p>在es的plugin/目录下解压ik分词器的压缩包后，重启es容器。</p>
+<p>ik分词器-自定义扩展词库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;ik_smart&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;我是中国人&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;我是中国人&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">随便启动一个nginx实例，只为了复制出配置</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">没有镜像docker会自动下载</span></span><br><span class="line">docker run -p 80:80 --name nginx -d nginx:1.10</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建nginx文件夹，并复制配置文件</span></span><br><span class="line">mkdir nginx</span><br><span class="line">docker container cp nginx:/etc/nginx .</span><br><span class="line">docker stop nginx</span><br><span class="line">docker rm nginx</span><br><span class="line">mv nginx conf</span><br><span class="line">mkdir nginx</span><br><span class="line">mv conf/ nginx/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动nginx</span></span><br><span class="line">docker run -p 80:80 --name nginx \</span><br><span class="line">-v /mydata/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /mydata/nginx/logs:/var/log/nginx \</span><br><span class="line">-v /mydata/nginx/conf:/etc/nginx \</span><br><span class="line">-d nginx:1.10</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置nginx的主页</span></span><br><span class="line">cd nginx/html</span><br><span class="line">vi index.html</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置nginx容器开机自启</span></span><br><span class="line">docker update --restart=always nginx</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">自定义分词器的内容</span></span><br><span class="line">mkdir es</span><br><span class="line">cd /mydata/nginx/conf/html/es/</span><br><span class="line">vi fenci.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑数据</span></span><br><span class="line">尚硅谷</span><br><span class="line">乔碧罗</span><br><span class="line"></span><br><span class="line">cd /mydata/elasticsearch/plugins/ik/config/</span><br><span class="line">vi IKAnalyzer.cfg.xml</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑：取消远程扩展字典的注释，并使用自己设置的nginx的自定义分词器的内容</span></span><br><span class="line">&lt;!--用户可以在这里配置远程扩展字典 --&gt;</span><br><span class="line">&lt;entry key=&quot;remote_ext_dict&quot;&gt;http://81.70.204.157/es/fenci.txt&lt;/entry&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启es</span></span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;ik_max_word&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;乔碧罗殿下&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用Rest-High-Level-Client"><a href="#使用Rest-High-Level-Client" class="headerlink" title="使用Rest High Level Client"></a>使用Rest High Level Client</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GulimallSearchApplicationTests</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	RestHighLevelClient client;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">searchData</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="comment">//1. 创建检索请求</span></span><br><span class="line">		<span class="type">SearchRequest</span> <span class="variable">searchRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SearchRequest</span>();</span><br><span class="line">		<span class="comment">//指定索引</span></span><br><span class="line">		searchRequest.indices(<span class="string">&quot;bank&quot;</span>);</span><br><span class="line">		<span class="comment">//指定DSL，检索条件</span></span><br><span class="line">		<span class="type">SearchSourceBuilder</span> <span class="variable">sourceBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SearchSourceBuilder</span>();</span><br><span class="line">		<span class="comment">//构造检索条件</span></span><br><span class="line">		sourceBuilder.query(QueryBuilders.matchQuery(<span class="string">&quot;address&quot;</span>, <span class="string">&quot;mill&quot;</span>));</span><br><span class="line">		<span class="comment">// 按照年龄的值分布进行聚合</span></span><br><span class="line">		<span class="type">TermsAggregationBuilder</span> <span class="variable">ageAgg</span> <span class="operator">=</span> AggregationBuilders.terms(<span class="string">&quot;agaAgg&quot;</span>).field(<span class="string">&quot;age&quot;</span>).size(<span class="number">10</span>);</span><br><span class="line">		sourceBuilder.aggregation(ageAgg);</span><br><span class="line">		<span class="comment">// 计算平均薪资</span></span><br><span class="line">		<span class="type">AvgAggregationBuilder</span> <span class="variable">balanceAvg</span> <span class="operator">=</span> AggregationBuilders.avg(<span class="string">&quot;balanceAvg&quot;</span>).field(<span class="string">&quot;balance&quot;</span>);</span><br><span class="line">		sourceBuilder.aggregation(balanceAvg);</span><br><span class="line"><span class="comment">//		sourceBuilder.query(QueryBuilders.matchAllQuery());</span></span><br><span class="line"><span class="comment">//		sourceBuilder.from();</span></span><br><span class="line"><span class="comment">//		sourceBuilder.size();</span></span><br><span class="line"><span class="comment">//		sourceBuilder.aggregation();</span></span><br><span class="line">		searchRequest.source(sourceBuilder);</span><br><span class="line">		<span class="type">SearchResponse</span> <span class="variable">searchResponse</span> <span class="operator">=</span> client.search(searchRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);</span><br><span class="line">		System.out.println(searchResponse.toString());</span><br><span class="line">		<span class="comment">//获取所有查到的数据</span></span><br><span class="line">		<span class="type">SearchHits</span> <span class="variable">hits</span> <span class="operator">=</span> searchResponse.getHits();</span><br><span class="line">		SearchHit[] searchHits = hits.getHits();</span><br><span class="line">		<span class="keyword">for</span> (SearchHit hit : searchHits) &#123;</span><br><span class="line">			<span class="type">float</span> <span class="variable">score</span> <span class="operator">=</span> hit.getScore();</span><br><span class="line">			<span class="type">String</span> <span class="variable">id</span> <span class="operator">=</span> hit.getId();</span><br><span class="line"><span class="comment">//			Map&lt;String, Object&gt; sourceAsMap = hit.getSourceAsMap();</span></span><br><span class="line">			<span class="type">String</span> <span class="variable">sourceAsString</span> <span class="operator">=</span> hit.getSourceAsString();</span><br><span class="line">			<span class="type">Accout</span> <span class="variable">accout</span> <span class="operator">=</span> JSON.parseObject(sourceAsString, Accout.class);</span><br><span class="line">			System.out.println(accout);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//获取这次检索到的分析信息</span></span><br><span class="line">		<span class="type">Aggregations</span> <span class="variable">aggregations</span> <span class="operator">=</span> searchResponse.getAggregations();</span><br><span class="line">		<span class="type">Terms</span> <span class="variable">agaAgg1</span> <span class="operator">=</span> aggregations.get(<span class="string">&quot;agaAgg&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span> (Terms.Bucket bucket : agaAgg1.getBuckets()) &#123;</span><br><span class="line">			<span class="type">String</span> <span class="variable">keyAsString</span> <span class="operator">=</span> bucket.getKeyAsString();</span><br><span class="line">			System.out.println(<span class="string">&quot;年龄：&quot;</span> + keyAsString + <span class="string">&quot;==&gt;&quot;</span> + bucket.getDocCount());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">Avg</span> <span class="variable">balanceAvg1</span> <span class="operator">=</span> aggregations.get(<span class="string">&quot;balanceAvg&quot;</span>);</span><br><span class="line">		System.out.println(<span class="string">&quot;平均薪资：&quot;</span> + balanceAvg1.getValue());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 测试存储数据到es</span></span><br><span class="line"><span class="comment">	 * 保存和更新都可以</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">indexData</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">		<span class="type">IndexRequest</span> <span class="variable">indexRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IndexRequest</span>(<span class="string">&quot;users&quot;</span>);</span><br><span class="line">		<span class="comment">// id全部字符串</span></span><br><span class="line">		indexRequest.id(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">		<span class="comment">//1-1. 键值对保存</span></span><br><span class="line"><span class="comment">//		indexRequest.source(&quot;userName&quot;, &quot;zhangsan&quot;, &quot;age&quot;, 18, &quot;gender&quot;, &quot;男&quot;);</span></span><br><span class="line">		<span class="comment">//1-2. json保存</span></span><br><span class="line">		<span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">		user.setUserName(<span class="string">&quot;zhangsan&quot;</span>);</span><br><span class="line">		user.setAge(<span class="number">18</span>);</span><br><span class="line">		user.setGender(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">jsonString</span> <span class="operator">=</span> JSON.toJSONString(user);</span><br><span class="line">		indexRequest.source(jsonString, XContentType.JSON);</span><br><span class="line">		<span class="comment">//执行操作</span></span><br><span class="line">		<span class="type">IndexResponse</span> <span class="variable">index</span> <span class="operator">=</span> client.index(indexRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);</span><br><span class="line">		System.out.println(index);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@ToString</span></span><br><span class="line">	<span class="meta">@Data</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Accout</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="type">int</span> account_number;</span><br><span class="line">		<span class="keyword">private</span> <span class="type">int</span> balance;</span><br><span class="line">		<span class="keyword">private</span> String firstname;</span><br><span class="line">		<span class="keyword">private</span> String lastname;</span><br><span class="line">		<span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">		<span class="keyword">private</span> String gender;</span><br><span class="line">		<span class="keyword">private</span> String address;</span><br><span class="line">		<span class="keyword">private</span> String employer;</span><br><span class="line">		<span class="keyword">private</span> String email;</span><br><span class="line">		<span class="keyword">private</span> String city;</span><br><span class="line">		<span class="keyword">private</span> String state;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Data</span></span><br><span class="line">	<span class="keyword">class</span> <span class="title class_">User</span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String userName;</span><br><span class="line">		<span class="keyword">private</span> String gender;</span><br><span class="line">		<span class="keyword">private</span> Integer age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">		System.out.println(client);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建es索引库"><a href="#构建es索引库" class="headerlink" title="构建es索引库"></a>构建es索引库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">PUT product</span><br><span class="line">&#123;</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;properties&quot;: &#123;</span><br><span class="line">      &quot;skuId&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;long&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;spuId&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      # 使用id_smart的分词方法</span><br><span class="line">      &quot;skuTitle&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;text&quot;,</span><br><span class="line">        &quot;analyzer&quot;: &quot;ik_smart&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;skuPrice&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      </span><br><span class="line">      #冗余字段 不进行索引，不对字段数据进行聚合处理</span><br><span class="line">      &quot;skuImg&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;,</span><br><span class="line">        &quot;index&quot;: false,</span><br><span class="line">        &quot;doc_values&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;saleCount&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;long&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;hasStock&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;boolean&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;hotScore&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;long&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;brandId&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;long&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;catalogId&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;long&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;brandName&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;,</span><br><span class="line">        &quot;index&quot;: false,</span><br><span class="line">        &quot;doc_values&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;brandImg&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;,</span><br><span class="line">        &quot;index&quot;: false,</span><br><span class="line">        &quot;doc_values&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;catalogName&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;keyword&quot;,</span><br><span class="line">        &quot;index&quot;: false,</span><br><span class="line">        &quot;doc_values&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;attrs&quot;:&#123;</span><br><span class="line">      </span><br><span class="line">      	# 为应对es数据扁平化，使该对象的属性嵌套在一个对象中。 扁平化：想要查询满足多个属性的对象，但是查询的结果为满足任意查询条件的多个对象。这是因为es对该对象处理的问题。对于es来说，这个对象的多个属性没有被看作整体。</span><br><span class="line">        &quot;type&quot;: &quot;nested&quot;,</span><br><span class="line">        &quot;properties&quot;: &#123;</span><br><span class="line">          &quot;attrId&quot;:&#123;</span><br><span class="line">            &quot;type&quot;: &quot;long&quot;</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;attrName&quot;:&#123;</span><br><span class="line">            &quot;type&quot;: &quot;keyword&quot;,</span><br><span class="line">            &quot;index&quot;: false,</span><br><span class="line">            &quot;doc_values&quot;: false</span><br><span class="line">          &#125;,</span><br><span class="line">          &quot;attrValue&quot;:&#123;</span><br><span class="line">            &quot;type&quot;:&quot;keyword&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-后台编写商品上架功能"><a href="#2-后台编写商品上架功能" class="headerlink" title="2. 后台编写商品上架功能"></a>2. 后台编写商品上架功能</h2><h2 id="3-整合thymeleaf实现前端渲染"><a href="#3-整合thymeleaf实现前端渲染" class="headerlink" title="3. 整合thymeleaf实现前端渲染"></a>3. 整合thymeleaf实现前端渲染</h2><ol>
+<li>引入：thymeleaf-starter：关闭缓存</li>
+<li>静态资源static文件夹下，直接访问</li>
+<li>页面放在templates下，直接访问</li>
+<li>页面修改实时更新<ol>
+<li>引入dev-tools</li>
+<li>修改完页面使用ctrl+shift+F9 重新编译下页面，代码配置推荐重启</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-nginx搭建域名访问环境（反向代理配置）"><a href="#4-nginx搭建域名访问环境（反向代理配置）" class="headerlink" title="4. nginx搭建域名访问环境（反向代理配置）"></a>4. nginx搭建域名访问环境（反向代理配置）</h2><p>正向代理：隐藏客户端信息（科学上网）</p>
+<p>反向代理：隐藏服务端信息（负载均衡访问，屏蔽内网服务器信息）</p>
+<p>域名映射效果</p>
+<ul>
+<li>接口请求 gulimall.com</li>
+<li>请求页面 gulimall.com</li>
+</ul>
+<p>nginx直接代理网关，网关判断</p>
+<ul>
+<li>如果/api/****， 转交给对应的服务器</li>
+<li>如果是 满足域名，转交给对应的服务</li>
+</ul>
+<p><img src="https://i.loli.net/2021/02/23/QgLVwBv6bUFohJG.png" alt="image.png"></p>
+<h2 id="5-性能压测"><a href="#5-性能压测" class="headerlink" title="5. 性能压测"></a>5. 性能压测</h2><h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
+<li><p>响应时间：发送请求到响应结束</p>
+</li>
+<li><p>HPS：每秒点击次数，次/秒</p>
+</li>
+<li><p>TPS：每秒处理交易数，笔/秒</p>
+</li>
+<li><p>QPS：每秒处理查询次数，次/秒</p>
+</li>
+<li><p>最大响应时间</p>
+</li>
+<li><p>最小响应时间</p>
+</li>
+<li><p>90%响应时间：所有用户的响应时间排序，第90%的相应时间</p>
+</li>
+<li><p>从外部看，性能测试主要关注如下三个指标</p>
+<ul>
+<li>吞吐量：每秒系统能够处理的请求数、任务数。（高并发）</li>
+<li>响应时间：处理一个请求或一个任务的耗时。（高性能）</li>
+<li>错误率：一批请求中结果出错的请求所占比例。</li>
+</ul>
+</li>
+</ul>
+<h3 id="JMeter"><a href="#JMeter" class="headerlink" title="JMeter"></a>JMeter</h3><p>用于压力测试</p>
+<p>创建线程组：使用HTTP请求，查看结果树，汇总报告，聚合报告，汇总图</p>
+<h3 id="jvisualvm"><a href="#jvisualvm" class="headerlink" title="jvisualvm"></a>jvisualvm</h3><p>用于性能监控</p>
+<p>运行：正在运行</p>
+<p>休眠：sleep</p>
+<p>等待：wait</p>
+<p>驻留：线程池里面的空闲线程</p>
+<p>监视：阻塞的线程，正在等待锁</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ul>
+<li><p>中间件越多，性能损失越大，大多都损失在网络交互中。</p>
+</li>
+<li><p>业务（最需要优化）：</p>
+<ul>
+<li>Db（MySQL优化）<ul>
+<li>给字段加索引（可能：提升一倍多倍）</li>
+<li>关日志（提高日志级别：error）</li>
+</ul>
+</li>
+<li>模板的渲染速度（缓存）<ul>
+<li>开缓存（略微提升）</li>
+</ul>
+</li>
+<li>静态资源<ul>
+<li>Nginx动静分离</li>
+</ul>
+</li>
+<li>优化三级分类数据获取（优化业务逻辑，使用redis）</li>
+</ul>
+</li>
+<li><p>jvm优化：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xmx1024m -Xms1024m -Xmn512m</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Nginx动静分离"><a href="#Nginx动静分离" class="headerlink" title="Nginx动静分离"></a>Nginx动静分离</h3><p><img src="https://i.loli.net/2021/02/25/8RVOXzYatSrjJFT.png" alt="image.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E5%95%86%E5%9F%8E/" rel="tag"># 商城</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/01/14/java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/" rel="prev" title="Java并发编程的艺术">
+                  <i class="fa fa-chevron-left"></i> Java并发编程的艺术
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/genuinenonage/genuinenonage.github.io.git/2021/02/08/%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3/" rel="next" title="技术了解">
+                  技术了解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
