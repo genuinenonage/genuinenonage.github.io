@@ -7,24 +7,24 @@
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/genuinenonage/genuinenonage.github.io.git/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/genuinenonage/genuinenonage.github.io.git/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/genuinenonage/genuinenonage.github.io.git/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"github.com","root":"/genuinenonage/genuinenonage.github.io.git/","images":"/genuinenonage/genuinenonage.github.io.git/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/genuinenonage/genuinenonage.github.io.git/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/genuinenonage/genuinenonage.github.io.git/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="get与post区别浏览器的get和postget反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。 get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。 post请求让服务器做一件事。往往是有副作用的，不幂等的。页面标签会定义一个表单。点击其中的submit元素会发送post请求。 不幂等意味着不能多次执行，不能做缓存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="get和post请求区别">
-<meta property="og:url" content="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:url" content="http://example.com/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="genuine nonage">
 <meta property="og:description" content="get与post区别浏览器的get和postget反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。 get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。 post请求让服务器做一件事。往往是有副作用的，不幂等的。页面标签会定义一个表单。点击其中的submit元素会发送post请求。 不幂等意味着不能多次执行，不能做缓存">
 <meta property="og:locale" content="zh_CN">
@@ -38,11 +38,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
+<link rel="canonical" href="http://example.com/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/","path":"2021/04/13/网络/20210413-get和post请求区别/","title":"get和post请求区别"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/","path":"2021/04/13/网络/20210413-get和post请求区别/","title":"get和post请求区别"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>get和post请求区别 | genuine nonage</title>
@@ -54,7 +54,7 @@
 
 
   <noscript>
-    <link rel="stylesheet" href="/genuinenonage/genuinenonage.github.io.git/css/noscript.css">
+    <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
 </head>
 
@@ -74,7 +74,7 @@
 
   <div class="site-meta">
 
-    <a href="/genuinenonage/genuinenonage.github.io.git/" class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
       <p class="site-title">genuine nonage</p>
       <i class="logo-line"></i>
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/genuinenonage/genuinenonage.github.io.git/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/genuinenonage/genuinenonage.github.io.git/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/genuinenonage/genuinenonage.github.io.git/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/genuinenonage/genuinenonage.github.io.git/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -160,18 +160,18 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        <a href="/genuinenonage/genuinenonage.github.io.git/archives/">
+        <a href="/archives/">
           <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-          <a href="/genuinenonage/genuinenonage.github.io.git/categories/">
+          <a href="/categories/">
         <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-          <a href="/genuinenonage/genuinenonage.github.io.git/tags/">
+          <a href="/tags/">
         <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
@@ -211,10 +211,10 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://github.com/genuinenonage/genuinenonage.github.io.git/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/genuinenonage/genuinenonage.github.io.git/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="QB">
     </span>
 
@@ -249,7 +249,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/genuinenonage/genuinenonage.github.io.git/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+          <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
         </span>
     </span>
 
@@ -298,22 +298,22 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/genuinenonage/genuinenonage.github.io.git/tags/http/" rel="tag"># http</a>
-              <a href="/genuinenonage/genuinenonage.github.io.git/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
-              <a href="/genuinenonage/genuinenonage.github.io.git/tags/get/" rel="tag"># get</a>
-              <a href="/genuinenonage/genuinenonage.github.io.git/tags/post/" rel="tag"># post</a>
+              <a href="/tags/http/" rel="tag"># http</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/tags/get/" rel="tag"># get</a>
+              <a href="/tags/post/" rel="tag"># post</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/genuinenonage/genuinenonage.github.io.git/2021/04/13/mysql/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/" rel="prev" title="MySQL中text类型">
+                <a href="/2021/04/13/mysql/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/" rel="prev" title="MySQL中text类型">
                   <i class="fa fa-chevron-left"></i> MySQL中text类型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/genuinenonage/genuinenonage.github.io.git/2021/04/13/mysql/20210413-MySQL%E8%8C%83%E5%BC%8F/" rel="next" title="MySQL范式">
+                <a href="/2021/04/13/mysql/20210413-MySQL%E8%8C%83%E5%BC%8F/" rel="next" title="MySQL范式">
                   MySQL范式 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -351,11 +351,11 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/genuinenonage/genuinenonage.github.io.git/js/comments.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/utils.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/motion.js"></script><script src="/genuinenonage/genuinenonage.github.io.git/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/search/local-search.js"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
@@ -367,7 +367,7 @@
 
 
 <script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
-<script src="/genuinenonage/genuinenonage.github.io.git/js/third-party/comments/utterances.js"></script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>
