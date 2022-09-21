@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -194,112 +194,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">Oracle数据库恢复与备份</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-07-14 19:24:00" itemprop="dateCreated datePublished" datetime="2020-07-14T19:24:00+08:00">2020-07-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-08-29 11:21:55" itemprop="dateModified" datetime="2020-08-29T11:21:55+08:00">2020-08-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nolog
-conn /as sysdba
-//或
-sqlplus / as sysdba
-</code></pre>
-<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
-<li>在本地创建表空间<blockquote>
-<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
-</blockquote>
-</li>
-<li>创建用户<blockquote>
-<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
-</blockquote>
-</li>
-<li>给用户授权：<blockquote>
-<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
-</blockquote>
-</li>
-<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
-<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
-</blockquote>
-</li>
-<li>cmd导入库数据泵  <blockquote>
-<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
-</blockquote>
-<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
-<li>cmd导出数据库<blockquote>
-<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
-</blockquote>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
