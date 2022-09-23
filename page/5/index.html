@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,235 +195,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-28T00:00:00+08:00">2020-11-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-13 10:59:13" itemprop="dateModified" datetime="2021-04-13T10:59:13+08:00">2021-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -iname &quot;node&quot;</span><br><span class="line">find / -type &quot; *.config &quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://...</span><br></pre></td></tr></table></figure>
-
-<h2 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h2><ul>
-<li><p>tar.gz</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf xxx</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [源] [目标地址]</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rm xxx</span><br><span class="line">强制删除</span><br><span class="line">rm -f xxx</span><br><span class="line">删除文件夹</span><br><span class="line">rm -rf xxx</span><br><span class="line"></span><br><span class="line">排除显示当前文件夹的文件并未被排除的文件</span><br><span class="line">ls | grep -v cJKmhpmERdSoFhCX_Fm9yw | grep -v x9kg3vvoQZSzTLSt4m9BuQ | grep -v VVNb4OKkSoOTinXw7vSMsQ | grep -v pZrsvW6TRNqs_qXigFYkpA | grep -v yd4BNfvSS1enINMdeWNAyg |  xargs rm -rf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="查看剩余空间"><a href="#查看剩余空间" class="headerlink" title="查看剩余空间"></a>查看剩余空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动软件命令"><a href="#启动软件命令" class="headerlink" title="启动软件命令"></a>启动软件命令</h2><h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户     ./elasticsearch -d</span><br></pre></td></tr></table></figure>
-
-<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户		nohup ./kibana &amp;</span><br></pre></td></tr></table></figure>
-
-<h1 id="重要命令"><a href="#重要命令" class="headerlink" title="重要命令"></a>重要命令</h1><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>Linux grep 命令用于查找文件里符合条件的字符串。</p>
-<p>grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把<strong>含有范本样式</strong>的那<strong>一列显示</strong>出来。若不指定任何文件名称，或是所给予的文件名为 **-**，则 grep 指令会从标准输入设备读取数据。</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [-abcEFGhHilLnqrsvVwxy][-A&lt;显示行数&gt;][-B&lt;显示列数&gt;][-C&lt;显示列数&gt;][-d&lt;进行动作&gt;][-e&lt;范本样式&gt;][-f&lt;范本文件&gt;][--help][范本样式][文件或目录...]</span><br></pre></td></tr></table></figure>
-
-<p><strong>该命令经常以管道的方式使用：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat default.conf | grep -n  &quot;is&quot; | grep 127</span><br></pre></td></tr></table></figure>
-
-<p>管道的意思就是将<code>|</code>前面命令的结果作为后面命令的输入内容。</p>
-<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><ul>
-<li><strong>-n 或 –line-number</strong> : 在显示符合样式的那一行之前，标示出该行的列数编号。</li>
-<li><strong>-o 或 –only-matching</strong> : 只显示匹配PATTERN 部分。</li>
-<li><strong>-v 或 –invert-match</strong> : 显示不包含匹配文本的所有行。</li>
-</ul>
-<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>查询当前所设定的状态。</p>
-<p>multi-user.target 相当于以前的 level 3，也就是命令行终端；而 graphical.target 相当于以前的 level 5，也就是图形界面。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
-
-<p>开机以命令模式启动，执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>开机以图形界面启动，执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></table></figure>
-
-<h3 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h3><p>启动虚拟机会有两个选项</p>
-<p><img src="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png" alt="image.png"></p>
-<p>第一个是正常启动</p>
-<p>第二个是修改模式启动（出现问题的时候使用）</p>
-<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ol>
-<li><p>root修改密码</p>
-<p>直接输入passwd修改</p>
-</li>
-<li><p>用户修改密码</p>
-<p>root用户输入passwd 用户名</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">编程技巧</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-25 11:43:00" itemprop="dateCreated datePublished" datetime="2020-11-25T11:43:00+08:00">2020-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-08 15:15:27" itemprop="dateModified" datetime="2021-02-08T15:15:27+08:00">2021-02-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="两个实体相同字段赋值"><a href="#两个实体相同字段赋值" class="headerlink" title="两个实体相同字段赋值"></a>两个实体相同字段赋值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanUtils.copyProperties(map, addEntity);</span><br></pre></td></tr></table></figure>
-
-<h3 id="遍历实体非空传入map"><a href="#遍历实体非空传入map" class="headerlink" title="遍历实体非空传入map"></a>遍历实体非空传入map</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();</span><br><span class="line">Field[] fields = addEntity.getClass().getDeclaredFields();</span><br><span class="line">for (Field f: fields) &#123;</span><br><span class="line">    f.setAccessible(true);</span><br><span class="line">    f.getName();</span><br><span class="line">    try &#123;</span><br><span class="line">        Object ob = f.get(addEntity);</span><br><span class="line">        if (null != ob)&#123;</span><br><span class="line">            properties.put(f.getName(), ob.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><p>注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ParamsCheck &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此注解校验必传字段，判断需要字段是否为空</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    String <span class="title function_">attributeName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实体调用接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="meta">@ParamsCheck(attributeName = &quot;用户名&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ParamsCheck(attributeName = &quot;用户ID&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接口的使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CheckPointParamsHandler</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Class clazz;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Field[] fields;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T t;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CheckPointParamsHandler</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.t = t;</span><br><span class="line">        <span class="built_in">this</span>.clazz = t.getClass();</span><br><span class="line">        <span class="comment">//getDeclaredFields()返回Class中所有的字段，包括私有字段</span></span><br><span class="line">        <span class="comment">//getFields() 只返回公共字段，即有public修改的字段</span></span><br><span class="line">        <span class="built_in">this</span>.fields = t.getClass().getDeclaredFields();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断已经注解的字段是否为空</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">getParamChecksResults</span><span class="params">()</span> &#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">R</span> <span class="variable">res</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">R</span>();</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">for</span> (Field field :</span><br><span class="line">                fields) &#123;</span><br><span class="line">            <span class="comment">// 使用注解的必要字段不能为空--如果没有注解直接跳过</span></span><br><span class="line">            <span class="type">ParamsCheck</span> <span class="variable">annotation</span> <span class="operator">=</span> field.getAnnotation(ParamsCheck.class);</span><br><span class="line">            <span class="keyword">if</span> (annotation == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断使用注解的字段是否为空</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> field.getName();</span><br><span class="line">            <span class="type">char</span>[] tempChar = name.toCharArray();</span><br><span class="line">            tempChar[<span class="number">0</span>] -= <span class="number">32</span>;</span><br><span class="line">            <span class="comment">//获得方法名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">tempStr</span> <span class="operator">=</span> <span class="string">&quot;get&quot;</span> + String.valueOf(tempChar);</span><br><span class="line">            <span class="comment">//方法名为key，标签属性attributeName为value</span></span><br><span class="line">            map.put(tempStr, annotation.attributeName());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry :</span><br><span class="line">                map.entrySet()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">            <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 获得方法的对象</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(key);</span><br><span class="line">                <span class="comment">// 运行方法 获得属性的值</span></span><br><span class="line">                <span class="type">Object</span> <span class="variable">invoke</span> <span class="operator">=</span> method.invoke(t);</span><br><span class="line">                <span class="comment">// 校验属性的值是否为空</span></span><br><span class="line">                <span class="keyword">if</span> (invoke == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(invoke)) &#123;</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                    sb.append(<span class="string">&quot;,&quot;</span>).append(value + <span class="string">&quot;不能为空&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="literal">false</span>) &#123;</span><br><span class="line">            res = <span class="keyword">new</span> <span class="title class_">R</span>(sb.toString().substring(<span class="number">1</span>), <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res = <span class="keyword">new</span> <span class="title class_">R</span>(<span class="string">&quot;校验成功&quot;</span>, <span class="string">&quot;0&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="HashMap初始化多少"><a href="#HashMap初始化多少" class="headerlink" title="HashMap初始化多少"></a>HashMap初始化多少</h3><p>为避免扩容提高性能。</p>
-<p>初始化的值为2的幂次方，并且需要注意负载因子（默认为0.75：如果输入7个，就不能初始化为8，应该为16）。</p>
-<h2 id="Arango"><a href="#Arango" class="headerlink" title="Arango"></a>Arango</h2><h3 id="arange中查询数据"><a href="#arange中查询数据" class="headerlink" title="arange中查询数据"></a>arange中查询数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> organization</span><br><span class="line"><span class="keyword">filter</span> c.uuid<span class="operator">=</span><span class="operator">=</span>&quot;528971722846769152&quot;</span><br><span class="line"><span class="keyword">return</span> c</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -736,7 +507,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/mybatis/MyBatis-Plus%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -754,7 +525,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/11/18/mybatis/MyBatis-Plus%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MyBatis-Plus使用</a>
+          <a href="/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">MyBatis-Plus的学习</a>
         </h2>
 
         <div class="post-meta-container">
@@ -772,7 +543,20 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-08 15:21:04" itemprop="dateModified" datetime="2021-02-08T15:21:04+08:00">2021-02-08</time>
+      <time title="修改时间：2022-09-23 22:51:34" itemprop="dateModified" datetime="2022-09-23T22:51:34+08:00">2022-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBatis/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+        </span>
     </span>
 
   
@@ -790,7 +574,6 @@
 <li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响</li>
 <li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
 <li><strong>强大的 CRUD 操作</strong>：内置通用Mapper、通用Service，仅仅通过少量配置即可实现单表大部分CRUD操作，强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
 <li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
 <li>。。。</li>
 </ul>
@@ -2425,6 +2208,171 @@ interface GreetingService
 <li>static class Base64.Encoder  该类实现一个编码器，使用 Base64 编码来编码字节数据。</li>
 </ol>
 <p>有多个get方法使用。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/09/21/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%9A%E6%89%8B%E6%9E%B6/" class="post-title-link" itemprop="url">什么是脚手架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-09-21 06:43:00 / 修改时间：06:50:35" itemprop="dateCreated datePublished" datetime="2020-09-21T06:43:00+08:00">2020-09-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="在我看来："><a href="#在我看来：" class="headerlink" title="在我看来："></a>在我看来：</h3><p>脚手架就是搭建的能直接从事业务开发的项目框架。比如整合并配置完成了：AOP/Swagger/Mybatis/Druid/通用工具类等。</p>
+<h3 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h3><p>指的是两种技术：</p>
+<ol>
+<li>与某些MVC 框架中的数据库访问相关的代码生成技术</li>
+<li>由各种工具支持的项目生成技术</li>
+</ol>
+<p>脚手架是一种由一些 model–view–controller 框架支持的技术，程序员可以在其中指定应用程序数据库的使用方式。该编译器或框架使用说明书中，与预先定义的代码模板在一起，产生最终代码的应用程序可以使用它来创建，读取，更新和删除数据库条目，有效治疗模板作为“ 支架 ”上建立更强大的应用程序。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/18/spring/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/09/18/spring/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/" class="post-title-link" itemprop="url">SpringMVC框架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-18 18:33:00" itemprop="dateCreated datePublished" datetime="2020-09-18T18:33:00+08:00">2020-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-08 15:34:08" itemprop="dateModified" datetime="2021-02-08T15:34:08+08:00">2021-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="SpringMVC框架"><a href="#SpringMVC框架" class="headerlink" title="SpringMVC框架"></a>SpringMVC框架</h1><p>springmvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p>
+<p>springmvc是一个基于mvc的web框架。</p>
+<h3 id="什么是mvc"><a href="#什么是mvc" class="headerlink" title="什么是mvc"></a>什么是mvc</h3><p>mvc是一个设计模式。</p>
+<h4 id="mvc在b-s系统下的应用"><a href="#mvc在b-s系统下的应用" class="headerlink" title="mvc在b/s系统下的应用"></a>mvc在b/s系统下的应用</h4><p><img src="https://i.loli.net/2020/09/18/L4xKMIndoywCD1q.jpg" alt="mvc在bs系统下的应用.jpg"></p>
+<h4 id="springmvc的框架"><a href="#springmvc的框架" class="headerlink" title="springmvc的框架"></a>springmvc的框架</h4><p><img src="https://i.loli.net/2020/09/21/cETUaj26e9LoM5O.png" alt="springmvc框架1.PNG"><br><img src="https://i.loli.net/2020/09/21/BLzTq9XCuEKQdpP.jpg" alt="springmvc框架2.jpg"></p>
+<p>组件：</p>
+<ol>
+<li>前端控制器 Dispatcherservlet：作用接受请求，响应结果，相当于转发器(非常重要)。</li>
+<li>处理器映射器 HandlerMapping：根据请求的url查找Handler</li>
+<li>处理器适配器 HandlerAdapter：按特定的规则执行Handler</li>
+<li>处理器Handler（需要开发）:编写Handler按照HandlerAdapter的要求去做</li>
+<li>视图解析器 View reolver：进行视图解析，根据逻辑视图名解析成真正的视图（view）</li>
+<li>视图View（需要开发）：View是一个接口，实现类支持不同的View类型（jsp,freemarker,pdf…）</li>
+</ol>
 
       
     </div>

@@ -22,51 +22,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Next 主题的标签、分类、搜索的配置</title>
-    <url>/2020/07/29/Hexo%20Next%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E6%90%9C%E7%B4%A2%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="学习Next的配置"><a href="#学习Next的配置" class="headerlink" title="学习Next的配置"></a>学习Next的配置</h2><h3 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h3><ol>
-<li>新建页面<br> hexo new page tags  </li>
-<li>设置页面类型<br> title： 标签<br> data: 2020/7/29 22/33/00<br> type: “tags”  </li>
-<li>修改菜单<br> menu:  <pre><code> home: /  
- archives: /archives  
- tags: /tags  
-</code></pre>
-<h3 id="分类标签"><a href="#分类标签" class="headerlink" title="分类标签"></a>分类标签</h3></li>
-<li>新建页面<br> hexo new page categories  </li>
-<li>设置页面类型<br> title： 分类<br> data: 2020/7/29 22/33/00<br> type: “categories”  </li>
-<li>修改菜单<br> menu:  <pre><code> home: /  
- archives: /archives  
- tags: /categories  
-</code></pre>
-<h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3></li>
-<li>本地安装搜索插件hexo-generator-search<br> npm install hexo-generator-search –save<br>安装之后会在站点目录的public文件夹下创建search.xml文件。  </li>
-<li>修改站点配置文件<br>在站点配置文件_config.yml中添加如下内容：<br> search:  <pre><code> path: ./public/search.xml  
- field: post  
- format: html  
- limit: 10000    
-</code></pre>
-<ul>
-<li>path：索引文件的路径，相对与站点根目录</li>
-<li>field：搜索范围，默认是post  </li>
-<li>limit：限制搜索的条目数  </li>
-</ul>
-</li>
-<li>修改主题配置文件<br> local_serach:  <pre><code> enable: true  
- trigger: auto  
- top_n_per_article: 1  
-</code></pre>
-确保修改enable设成true。<br>top_n_per_article字段表示在每篇文章中显示的搜索结果数量，设成-1会显示每篇文章的所有搜索结果数量。<br>然后，需要 hexo g 生成一下本地静态文件，即可使用本地搜索功能了。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Kafka学习-未完成</title>
     <url>/2020/12/10/Kafka/</url>
     <content><![CDATA[<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>定义</p>
@@ -346,42 +301,6 @@
 <p>动静分离</p>
 <p>nginx配置高可用的集群</p>
 <p>nginx原理</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Oracle数据库恢复与备份</title>
-    <url>/2020/07/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E4%B8%8E%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nolog
-conn /as sysdba
-//或
-sqlplus / as sysdba
-</code></pre>
-<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
-<li>在本地创建表空间<blockquote>
-<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
-</blockquote>
-</li>
-<li>创建用户<blockquote>
-<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
-</blockquote>
-</li>
-<li>给用户授权：<blockquote>
-<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
-</blockquote>
-</li>
-<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
-<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
-</blockquote>
-</li>
-<li>cmd导入库数据泵  <blockquote>
-<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
-</blockquote>
-<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
-<li>cmd导出数据库<blockquote>
-<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
-</blockquote>
-</li>
-</ol>
 ]]></content>
   </entry>
   <entry>
@@ -670,29 +589,6 @@ sqlplus / as sysdba
 <h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull mobz/elasticsearch-head:5</span><br><span class="line">docker run -d -p 9100:9100 docker.io/mobz/elasticsearch-head:5</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
-    <title>idea环境使用记录</title>
-    <url>/2021/04/06/idea%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="idea的配置使用"><a href="#idea的配置使用" class="headerlink" title="idea的配置使用"></a>idea的配置使用</h2><h3 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h3><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
-<p>步骤：加入要隐藏.idea文件</p>
-<ol>
-<li>打开file–》settings–》editor—-&gt;file types</li>
-<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
-<li>点击应用，点击ok</li>
-</ol>
-<ol start="4">
-<li>我们可以发现，idea文件被隐藏</li>
-<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
-</ol>
-<p>我添加了如下想要隐藏的文件</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
-
-<h2 id="遇到idea过期怎么办"><a href="#遇到idea过期怎么办" class="headerlink" title="遇到idea过期怎么办"></a>遇到idea过期怎么办</h2><p>打开<code>BetterIntelliJ</code>插件后，重启，点击插件reset功能，查看idea可使用截止日期在一个月以后，关闭插件即可。</p>
-]]></content>
-      <tags>
-        <tag>idea</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javaScript知识点</title>
     <url>/2020/12/24/javaScript%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
     <content><![CDATA[<h2 id="”-“与“-”的区别"><a href="#”-“与“-”的区别" class="headerlink" title="”==“与“===”的区别"></a>”==“与“===”的区别</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>== ： 两边值类型不同的时候，首先进行类型转换，再比较。</p>
@@ -804,7 +700,7 @@ sqlplus / as sysdba
       </tags>
   </entry>
   <entry>
-    <title>如何搭建hexo个人博客</title>
+    <title>搭建hexo个人博客</title>
     <url>/2020/07/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="简要搭建hexo个人博客"><a href="#简要搭建hexo个人博客" class="headerlink" title="简要搭建hexo个人博客"></a>简要搭建hexo个人博客</h2><ul>
 <li>首先电脑里要有Node.js(要选择安装upm)和git的应用程序。<br>接下来在cmd中操作即可。</li>
@@ -855,43 +751,12 @@ sqlplus / as sysdba
 <li>部署成功，浏览器访问 你的昵称.github.io</li>
 </ul>
 <h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><ul>
-<li>卸载hexo<br>  npm uninstall hexo-cli -g<br>然后再文件夹中的blog，手动卸载。<br>注意：进行重装之前，如果还是在原来的位置上，必须手动清理了才能再次安装。</li>
+<li>卸载hexo<br>  npm uninstall hexo-cli -g<br>  然后再文件夹中的blog，手动卸载。<br>  注意：进行重装之前，如果还是在原来的位置上，必须手动清理了才能再次安装。</li>
 </ul>
-<h2 id="部署到云服务器"><a href="#部署到云服务器" class="headerlink" title="部署到云服务器"></a>部署到云服务器</h2><h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><ol>
-<li><p>node js安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install gcc-c++ make</span><br><span class="line">yum -y install nodejs</span><br></pre></td></tr></table></figure>
-
-<p>验证：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li>
-<li><p>安装git、nginx</p>
-<p>Git 用于版本管理和部署，Nginx 用于静态博客托管。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install git nginx -y</span><br></pre></td></tr></table></figure></li>
-<li><p>安装hexo</p>
-<p>我们使用 Node.js 的包管理器 npm 安装 hexo-cli 和 hexo-server</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli hexo-server -g</span><br></pre></td></tr></table></figure>
-
-<p>hexo-cli 是 Hexo 的命令行工具，可用于快速新建、发布、部署博客；hexo-server 是 Hexo 的内建服务器，可用于部署前的预览和测试。-g 选项，表示全局安装。</p>
-<p>验证</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建git环境"><a href="#创建git环境" class="headerlink" title="创建git环境"></a>创建git环境</h3></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git:x:1001:1001::/home/git:/bin/bash</span><br><span class="line">改为</span><br><span class="line">git:x:1001:1001::/home/git:/usr/bin/git-shell</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>hexo安装到位置</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/usr/bin/hexo -&gt; /usr/lib/node_modules/hexo-cli/bin/hexo</span><br><span class="line">/usr/lib</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
+<h2 id="再次搭建博客"><a href="#再次搭建博客" class="headerlink" title="再次搭建博客"></a>再次搭建博客</h2><p>通过npm搭建博客</p>
+<p>通过npm安装主题，选择的NexT</p>
+<p>评论开始使用的手机号登录的畅言，后来换成了github的小插件 utterances</p>
+<p>在next文档中，查看，添加本地缓存</p>
 ]]></content>
       <categories>
         <category>hexo</category>
@@ -2026,186 +1891,6 @@ interface GreetingService
       </tags>
   </entry>
   <entry>
-    <title>MySQL备忘录</title>
-    <url>/2020/12/16/mysql/MySQL/</url>
-    <content><![CDATA[<h3 id="查看创建表结构"><a href="#查看创建表结构" class="headerlink" title="查看创建表结构"></a>查看创建表结构</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
-
-<h3 id="多字段中文排序"><a href="#多字段中文排序" class="headerlink" title="多字段中文排序"></a>多字段中文排序</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select t1.value,t2.chinese_name</span><br><span class="line">from dictionary as t1 </span><br><span class="line">right join website as t2 on t1.uuid=t2.country</span><br><span class="line">where t1.type=&quot;country&quot;</span><br><span class="line">ORDER BY CONVERT(t1.value USING gbk), CONVERT(t2.chinese_name USING gbk)</span><br></pre></td></tr></table></figure>
-
-<h3 id="存在主表不在另一个表中的数据"><a href="#存在主表不在另一个表中的数据" class="headerlink" title="存在主表不在另一个表中的数据"></a>存在主表不在另一个表中的数据</h3><p>三种实现方式：</p>
-<ol>
-<li><p>使用not in，容易理解，效率最低</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> A.ID <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> ID <span class="keyword">from</span> B)</span><br></pre></td></tr></table></figure></li>
-<li><p>使用左连接字段为空的记录</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> A.ID <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B A.ID <span class="operator">=</span> B.ID <span class="keyword">where</span> B.ID <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>逻辑复杂，速度最快</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> num <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="operator">=</span> B.ID ) <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="高级MySQL"><a href="#高级MySQL" class="headerlink" title="高级MySQL"></a>高级MySQL</h1><p>MySQL架构：连接层-（服务层）处理层-引擎层-存储层</p>
-<p>业务逻辑处理层包括：连接池-管理服务与工具-SQL处理接口-解析转换-优化器-缓存和缓冲。</p>
-<p>存储引擎相关命令：show engines;</p>
-<p>MyISAM与InnoDB数据库引擎对比：</p>
-<p><img src="https://i.loli.net/2021/06/28/AnZBQPNa29ToCf4.png" alt="image-20210628143712555"></p>
-<p>SQL性能下降原因：</p>
-<ol>
-<li>性能下降了SQL慢；执行时间长；等待时间长；<ol>
-<li>查询语句写的烂</li>
-<li>索引失效（单值、符合）</li>
-<li>关联太多join（设计缺陷或不得已的需求）</li>
-<li>服务器调优及各个参数设置（缓冲、线程数等）</li>
-</ol>
-</li>
-</ol>
-<p>创建索引命令：create index idx_user_name on user(name, email)</p>
-<p>SQL的Join查询：</p>
-<ol>
-<li><p>SQL执行顺序：</p>
-<ol>
-<li><p>手写顺序</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span> <span class="keyword">on</span> <span class="operator">&lt;</span>公有部分用来配对<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>机读顺序</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">on</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line"><span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>Join图：left join; right join; inner join; full outer join(全外连接：a.key is null or b.key is null)</p>
-</li>
-</ol>
-<p>索引简介：索引（Index）帮助MySQL高效获取数据的数据结构。</p>
-<ol>
-<li><p>B数（多路搜索树）索引，B+树索引，哈希索引</p>
-</li>
-<li><p>索引优势：</p>
-<ol>
-<li>提高数据检索的效率，降低数据库的IO成本；</li>
-<li>降低数据排序的成本，降低了CPU的消耗。</li>
-</ol>
-</li>
-<li><p>索引劣势：</p>
-<ol>
-<li>索引也是一张表，保存了主键与索引字段，并指向实体库的记录。占空间。</li>
-<li>提高了查询速度，却降低了更新表的速度</li>
-<li>索引只是提高效率的一个因素，如果MySQL有大数据量的表，需要花时间研究建立最优秀的索引或优化查询。</li>
-</ol>
-</li>
-</ol>
-<p>索引分类：</p>
-<ol>
-<li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引。</li>
-<li>唯一索引：索引列的值必须唯一，但允许有空值。</li>
-<li>复合索引：一个索引包含多个列。</li>
-<li>基本语法：<ol>
-<li>创建：<ol>
-<li>create &lt;&gt; index indexName ON mytable(columnname(length))</li>
-<li>alter mytable ADD &lt;&gt; index [indexName] ON (columnname(length))</li>
-</ol>
-</li>
-<li>删除：drop index [indexName] ON mytable;</li>
-<li>查看：show index from tableName;</li>
-</ol>
-</li>
-</ol>
-<p>mysql索引结构包括：BTree；Hash索引；full-text全文索引；R-Tree索引。</p>
-<p>BTree树图形结构：</p>
-<p><a href="https://imgtu.com/i/RUkTTH"><img src="https://z3.ax1x.com/2021/06/28/RUkTTH.png" alt="RUkTTH.png"></a></p>
-<p>需要创建索引的情况：</p>
-<ol>
-<li>主键自动创建唯一索引。</li>
-<li>频繁作为查找条件的字段应创建索引。</li>
-<li>查询中与其他表关联的字段，外键关系建立索引。</li>
-<li>频繁更新的字段不适合创建索引</li>
-<li>where条件里用不到的字段不创建索引。</li>
-<li>单键/组合索引选择？（高并发倾向组合索引）</li>
-<li>排序字段若通过索引去访问将提高排序速度。</li>
-<li>查询中统计或者分组字段</li>
-</ol>
-<p>不需要创建索引的情况：</p>
-<ol>
-<li>表记录太少</li>
-<li>经常增删改的表</li>
-<li>某数据列包含许多重复的内容</li>
-</ol>
-<p>性能分析：</p>
-<ol>
-<li><p>MySQL常见瓶颈：</p>
-<ol>
-<li>CPU：CPU在饱和的时候一般发生在数据装入内存或从磁盘上读取数据时</li>
-<li>IO：发生在装入数据远大于内存容量的时候</li>
-<li>服务器硬件的性能瓶颈</li>
-</ol>
-</li>
-<li><p>Explain</p>
-<ol>
-<li><p>是什么：执行计划。</p>
-</li>
-<li><p>干什么： </p>
-<p><a href="https://imgtu.com/i/RUmSFe"><img src="https://z3.ax1x.com/2021/06/28/RUmSFe.png" alt="RUmSFe.png"></a></p>
-</li>
-<li><p>怎么用：</p>
-<ol>
-<li>explain+SQL语句</li>
-<li>执行计划包含的信息：id  select_type  table  type  possible_keys  key  key_len  ref  rows  Extra</li>
-</ol>
-</li>
-<li><p>名词解释：</p>
-<ol>
-<li>id：查询的序列号<ol>
-<li>id相同：执行顺序由上至下</li>
-<li>id不同：id越大优先级越高</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>select_type：查询的类型，用于区别普通、联合、子查询等的复杂情况。</p>
-<pre><code>  1. simple：简单查询，不包括子查询或者union
-  2. primary：查询中包含子查询，最外层的查询
-  3. subquery：子查询
-  4. derived：子查询作为衍生，结果放到临时表
-  5. union：第二个select出现在union之后，别被纪委union。若union包还在from子句的子查询中，外层select将被标记为derived。
-  6. union result：从union表获取结果的select
-</code></pre>
-<ol start="3">
-<li>table：哪张表</li>
-<li>type：<ol>
-<li>显示查询使用的了何种类型</li>
-<li>从最好到最差依次是：system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;ALL</li>
-<li>system：表只有一行记录</li>
-<li>const：通过索引能找到唯一记录。（主键或唯一索引）</li>
-<li>eq_ref：唯一性索引扫描，每个索引键，表中只有一条记录与之匹配。</li>
-<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行。</li>
-<li>range：之间所指定范围的行，使用一个索引来选择行。</li>
-<li>index：全索引扫描，读取索引中的数据。索引文件比数据文件小。</li>
-<li>ALL：遍历所有数据</li>
-</ol>
-</li>
-<li>possible_keys：显示可能应用在这张表中的索引。</li>
-<li>key：实际查询时，使用的索引。</li>
-<li>key_len：索引使用的字节数。查询中使用的索引的长度。长度越短越好。</li>
-<li>ref：显示索引那一列被使用了。</li>
-<li>rows：找到记录读取的行数。</li>
-<li>Extra：包含不在其他列的重要的信息<ol>
-<li><strong>Using filesort</strong>：不好；mysql没有使用索引排序，使用的外部排序。（文件排序）</li>
-<li><strong>Using temportry</strong>：不好；使用了临时表。</li>
-<li><strong>Using index</strong>：很好；（覆盖索引 Covering Index select节u功德数据从索引中取得，不必根据索引读取数据文件）</li>
-<li>Using where：使用罗where过滤；</li>
-<li>using join buffer：使用了连接缓存；</li>
-<li>impossible where：where的结果总是false；</li>
-<li>distinct：找到第一个匹配，不再找相同的。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p>union操作符：用于合并两个或多个select语句的结果集。默认选取不同的值。如果允许重复，使用union all。</p>
-<p>索引优化：</p>
-<p>两表优化方案，左连接查询，给右表建立索引。右连接查询，给左表建立索引。</p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL范式</title>
     <url>/2021/04/13/mysql/20210413-MySQL%E8%8C%83%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><ol>
@@ -2359,37 +2044,6 @@ ibd索引和数据在一起
 </code></pre>
 <p>还有很多的知识需要学习。</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Web连接MySQL的配置</title>
-    <url>/2021/05/26/mysql/Web%E8%BF%9E%E6%8E%A5MySQL%E7%9A%84%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="useSSL"><a href="#useSSL" class="headerlink" title="useSSL"></a>useSSL</h2><h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。</p>
-<p>TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
-<p>SSL协议提供服务主要：</p>
-<ol>
-<li>认证用户服务器，确保数据发送到正确的服务器；</li>
-<li>加密数据，防止数据传输途中被窃取使用；</li>
-<li>维护数据完整性，验证数据在传输过程中是否丢失；</li>
-</ol>
-<h3 id="useSSL-false-true"><a href="#useSSL-false-true" class="headerlink" title="useSSL=false / true"></a>useSSL=false / true</h3><p>MySQL在高版本需要指明是否进行SSL连接</p>
-<ol>
-<li>true 需要连接</li>
-<li>false 不需要连接</li>
-</ol>
-<p>web应用中连接mysql数据库时后台会出现这样的提示：</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+,</span><br><span class="line">5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</span><br></pre></td></tr></table></figure>
-
-<p>解决</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">url=jdbc:mysql://127.0.0.1:3306/xxx?useSSL=false</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
   </entry>
   <entry>
     <title>Linux命令</title>
@@ -2625,315 +2279,6 @@ root:为数据库用户名
       </categories>
       <tags>
         <tag>图数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MyBatis-Plus使用</title>
-    <url>/2020/11/18/mybatis/MyBatis-Plus%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MyBatis-Plus(简称MP)是一个MyBatis的增强工具，在MyBatis的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用Mapper、通用Service，仅仅通过少量配置即可实现单表大部分CRUD操作，强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li>。。。</li>
-</ul>
-<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg" alt="framework"></p>
-<h3 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h3><ul>
-<li><a href="https://www.imooc.com/learn/1130">MyBatis-Plus 入门 - 视频教程 - 慕课网</a></li>
-<li><a href="https://www.imooc.com/learn/1171">MyBatis-Plus 进阶 - 视频教程 - 慕课网</a></li>
-</ul>
-<h2 id="快速开发"><a href="#快速开发" class="headerlink" title="快速开发"></a>快速开发</h2><p><a href="https://baomidou.com/guide/quick-start.html">快速开发链接</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全新的 <code>MyBatis-Plus</code> 3.0 版本基于 JDK8，提供了 <code>lambda</code> 形式的调用，所以安装集成 MP3.0 要求如下：</p>
-<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><p>Maven：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><p>Maven:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Spring Boot 工程：</p>
-<ul>
-<li><p>配置 MapperScan 注解</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>Spring MVC 工程：</p>
-<ul>
-<li><p>配置 MapperScan</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>调整 SqlSessionFactory 为 MyBatis-Plus 的 SqlSessionFactory</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><ul>
-<li>@TableName</li>
-<li>@TableId</li>
-<li>@TableField</li>
-<li>@Version</li>
-<li>@EnumValue</li>
-<li>@TableLogic</li>
-<li>@SqlParser</li>
-<li>@KeySequence</li>
-</ul>
-<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h2><p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
-<p><a href="https://baomidou.com/guide/generator.html">代码生成器使用教程链接</a></p>
-<h2 id="CRUD接口"><a href="#CRUD接口" class="headerlink" title="CRUD接口"></a>CRUD接口</h2><p><a href="https://baomidou.com/guide/crud-interface.html">CRUD接口官方文档链接</a></p>
-<ul>
-<li>Service CRUD接口</li>
-<li>Mapper CRUD 接口</li>
-<li>mapper 层 选装件</li>
-</ul>
-<h2 id="条件构造器"><a href="#条件构造器" class="headerlink" title="条件构造器"></a>条件构造器</h2><p>说明：</p>
-<blockquote>
-<ul>
-<li><p>出现的第一个入参<code>boolean condition</code>表示该条件<strong>是否</strong>加入最后生成的sql中</p>
-</li>
-<li><p>代码块内的多个方法均为从上往下补全个别<code>boolean</code>类型的入参,默认为<code>true</code></p>
-</li>
-<li><p>出现的泛型<code>Param</code>均为<code>Wrapper</code>的子类实例(均具有<code>AbstractWrapper</code>的所有方法)</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="AbsractWrapper"><a href="#AbsractWrapper" class="headerlink" title="AbsractWrapper"></a>AbsractWrapper</h3><p>QueryWrapper(LambdaQueryWrapper) 和 UpdateWrapper(LambdaUpdateWrapper) 的父类<br>用于生成 sql 的 where 条件,entity属性也用于生成sql的where条件</p>
-<p>注意：entity生成的where条件与使用各个api生成的where条件<strong>没有任何关联行为</strong></p>
-<h4 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(Map&lt;R, V&gt; params)</span><br><span class="line">allEq(Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>全部<a href="https://baomidou.com/guide/wrapper.html#eq">eq</a>(或个别<a href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a>)</li>
-</ul>
-<blockquote>
-<p>个别参数说明:</p>
-<p><code>params</code> : <code>key</code>为数据库字段名,<code>value</code>为字段值<br><code>null2IsNull</code> : 为<code>true</code>则在<code>map</code>的<code>value</code>为<code>null</code>时调用 <a href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a> 方法,为<code>false</code>时则忽略<code>value</code>为<code>null</code>的</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="eq"><a href="#eq" class="headerlink" title="eq"></a>eq</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">eq(R column, Object val)</span><br><span class="line">eq(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>等于 =</li>
-<li>例: <code>eq(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name = &#39;老王&#39;</code></li>
-</ul>
-<h4 id="ne"><a href="#ne" class="headerlink" title="ne"></a>ne</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ne(R column, Object val)</span><br><span class="line">ne(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>不等于 &lt;&gt;</li>
-<li>例: <code>ne(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name &lt;&gt; &#39;老王&#39;</code></li>
-</ul>
-<h4 id="gt"><a href="#gt" class="headerlink" title="gt"></a>gt</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">gt(R column, Object val)</span><br><span class="line">gt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>大于 &gt;</li>
-<li>例: <code>gt(&quot;age&quot;, 18)</code>—&gt;<code>age &gt; 18</code></li>
-</ul>
-<h4 id="ge"><a href="#ge" class="headerlink" title="ge"></a>ge</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ge(R column, Object val)</span><br><span class="line">ge(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>大于等于 &gt;=</li>
-<li>例: <code>ge(&quot;age&quot;, 18)</code>—&gt;<code>age &gt;= 18</code></li>
-</ul>
-<h4 id="lt"><a href="#lt" class="headerlink" title="lt"></a>lt</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">lt(R column, Object val)</span><br><span class="line">lt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>小于 &lt;</li>
-<li>例: <code>lt(&quot;age&quot;, 18)</code>—&gt;<code>age &lt; 18</code></li>
-</ul>
-<h4 id="le"><a href="#le" class="headerlink" title="le"></a>le</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">le(R column, Object val)</span><br><span class="line">le(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>小于等于 &lt;=</li>
-<li>例: <code>le(&quot;age&quot;, 18)</code>—&gt;<code>age &lt;= 18</code></li>
-</ul>
-<h4 id="between"><a href="#between" class="headerlink" title="between"></a>between</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">between(R column, Object val1, Object val2)</span><br><span class="line">between(<span class="type">boolean</span> condition, R column, Object val1, Object val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>BETWEEN 值1 AND 值2</li>
-<li>例: <code>between(&quot;age&quot;, 18, 30)</code>—&gt;<code>age between 18 and 30</code></li>
-</ul>
-<h4 id="…"><a href="#…" class="headerlink" title="…."></a>….</h4><ul>
-<li>notBetween</li>
-<li>like</li>
-<li>notLike</li>
-<li>likeLeft</li>
-<li>likeRight</li>
-<li>isNull</li>
-<li>isNotNull</li>
-<li>in</li>
-<li>notIn</li>
-<li>inSql</li>
-<li>notInSql</li>
-<li>groupBy</li>
-<li>orderByAsc</li>
-<li>orderByDesc</li>
-<li>orderBy</li>
-<li>having</li>
-<li>func</li>
-<li>or</li>
-<li>and</li>
-<li>nested</li>
-<li>apply</li>
-<li>last</li>
-<li>exists</li>
-<li>notExists</li>
-</ul>
-<h3 id="QueryWrapper"><a href="#QueryWrapper" class="headerlink" title="QueryWrapper"></a>QueryWrapper</h3><blockquote>
-<p>说明：</p>
-<p>继承自 AbstractWrapper ,自身的内部属性 entity 也用于生成 where 条件及 LambdaQueryWrapper, 可以通过 new QueryWrapper().lambda() 方法获取</p>
-</blockquote>
-<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">select(String... sqlSelect)</span><br><span class="line">select(Predicate&lt;TableFieldInfo&gt; predicate)</span><br><span class="line">select(Class&lt;T&gt; entityClass, Predicate&lt;TableFieldInfo&gt; predicate)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置查询字段</li>
-</ul>
-<blockquote>
-<p>说明:</p>
-<p>以上方法分为两类.<br>第二类方法为:过滤查询字段(主键除外),入参不包含 class 的调用前需要<code>wrapper</code>内的<code>entity</code>属性有值! 这两类方法重复调用以最后一次为准</p>
-</blockquote>
-<ul>
-<li>例: <code>select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;)</code></li>
-<li>例: <code>select(i -&gt; i.getProperty().startsWith(&quot;test&quot;))</code></li>
-</ul>
-<h3 id="UpdateWrapper"><a href="#UpdateWrapper" class="headerlink" title="UpdateWrapper"></a>UpdateWrapper</h3><blockquote>
-<p>说明：</p>
-<p>继承自 <code>AbstractWrapper</code> ,自身的内部属性 <code>entity</code> 也用于生成 where 条件及 <code>LambdaUpdateWrapper</code>, 可以通过 <code>new UpdateWrapper().lambda()</code> 方法获取</p>
-</blockquote>
-<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">set(String column, Object val)</span><br><span class="line">set(<span class="type">boolean</span> condition, String column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>SQL SET 字段</li>
-<li>例: <code>set(&quot;name&quot;, &quot;老李头&quot;)</code></li>
-<li>例: <code>set(&quot;name&quot;, &quot;&quot;)</code>—&gt;数据库字段值变为<strong>空字符串</strong></li>
-<li>例: <code>set(&quot;name&quot;, null)</code>—&gt;数据库字段值变为<code>null</code></li>
-</ul>
-<h4 id="setSql"><a href="#setSql" class="headerlink" title="setSql"></a>setSql</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">setSql(String sql)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置 SET 部分 SQL</li>
-<li>例: <code>setSql(&quot;name = &#39;老李头&#39;&quot;)</code></li>
-</ul>
-<h4 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h4><ul>
-<li>获取 <code>LambdaWrapper</code><br>在<code>QueryWrapper</code>中是获取<code>LambdaQueryWrapper</code><br>在<code>UpdateWrapper</code>中是获取<code>LambdaUpdateWrapper</code></li>
-</ul>
-<h3 id="使用Wrapper自定义SQL"><a href="#使用Wrapper自定义SQL" class="headerlink" title="使用Wrapper自定义SQL"></a>使用Wrapper自定义SQL</h3><blockquote>
-<p>需求来源:</p>
-<p>在使用了<code>mybatis-plus</code>之后, 自定义SQL的同时也想使用<code>Wrapper</code>的便利应该怎么办？ 在<code>mybatis-plus</code>版本<code>3.0.7</code>得到了完美解决 版本需要大于或等于<code>3.0.7</code>, 以下两种方案取其一即可</p>
-</blockquote>
-<h4 id="Service-java"><a href="#Service-java" class="headerlink" title="Service.java"></a>Service.java</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mysqlMapper.getAll(Wrappers.&lt;MysqlData&gt;lambdaQuery().eq(MysqlData::getGroup, <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
-
-<h4 id="方案一-注解方式-Mapper-java"><a href="#方案一-注解方式-Mapper-java" class="headerlink" title="方案一 注解方式 Mapper.java"></a>方案一 注解方式 Mapper.java</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from mysql_data $&#123;ew.customSqlSegment&#125;&quot;)</span></span><br><span class="line">List&lt;MysqlData&gt; <span class="title function_">getAll</span><span class="params">(<span class="meta">@Param(Constants.WRAPPER)</span> Wrapper wrapper)</span>;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方案二-XML形式-Mapper-xml"><a href="#方案二-XML形式-Mapper-xml" class="headerlink" title="方案二 XML形式 Mapper.xml"></a>方案二 XML形式 Mapper.xml</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;MysqlData&quot;</span>&gt;</span></span><br><span class="line">	SELECT * FROM mysql_data $&#123;ew.customSqlSegment&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="kotlin使用wrapper"><a href="#kotlin使用wrapper" class="headerlink" title="kotlin使用wrapper"></a>kotlin使用wrapper</h4><blockquote>
-<p>kotlin 可以使用 <code>QueryWrapper</code> 和 <code>UpdateWrapper</code> 但无法使用 <code>LambdaQueryWrapper</code> 和 <code>LambdaUpdateWrapper</code><br>如果想使用 lambda 方式的 wrapper 请使用 <code>KtQueryWrapper</code> 和 <code>KtUpdateWrapper</code></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mybatis-plus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MyBatis了解</title>
-    <url>/2020/12/09/mybatis/MyBatis/</url>
-    <content><![CDATA[<h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h3><p>缓存可以极大的提高查询效率。</p>
-<p>两级缓存：</p>
-<ol>
-<li><p>一级缓存：（本地缓存）</p>
-<ol>
-<li>默认作用域：sqlSession</li>
-<li>与数据库一次会话期间查询到的数据会放到本地缓存中。以后如果需要获取相同的数据，直接从缓存中拿。</li>
-</ol>
-</li>
-<li><p>二级缓存：（全局缓存）</p>
-<ol>
-<li><p>默认不开启，需要手动配置</p>
-</li>
-<li><p>使用步骤</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">– 1、全局配置文件中开启二级缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">*</span>&quot;<span class="attr">cacheEnabled</span>&quot; <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>*</span><br><span class="line">– 2、需要使用二级缓存的映射文件处使用cache配置缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">cache</span> /&gt;</span></span><br><span class="line">– 3、注意：POJO需要实现Serializable接口</span><br></pre></td></tr></table></figure></li>
-<li><p>缓存相关属性</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">• eviction=“FIFO”：缓存回收策略：</span><br><span class="line">	• LRU – 最近最少使用的：移除最长时间不被使用的对象。</span><br><span class="line">    • FIFO – 先进先出：按对象进入缓存的顺序来移除它们。</span><br><span class="line">    • SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</span><br><span class="line">    • WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</span><br><span class="line">    • 默认的是 LRU。 </span><br><span class="line">• flushInterval：刷新间隔，单位毫秒</span><br><span class="line">	• 默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新</span><br><span class="line">• size：引用数目，正整数</span><br><span class="line">	• 代表缓存最多可以存储多少个对象，太大容易导致内存溢出</span><br><span class="line">• readOnly：只读，true/false</span><br><span class="line">    • true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。</span><br><span class="line">    • false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是 false。</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>spring</category>
-        <category>mybatis</category>
-      </categories>
-      <tags>
-        <tag>mybatis</tag>
-        <tag>缓存机制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mybatis的懒加载与分布查询</title>
-    <url>/2020/08/19/mybatis/mybatis%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%88%86%E5%B8%83%E6%9F%A5%E8%AF%A2/</url>
-    <content><![CDATA[<h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>延迟加载，也叫懒加载，但是懒加载往往与分布查询同时使用  </p>
-<h2 id="分布查询"><a href="#分布查询" class="headerlink" title="分布查询"></a>分布查询</h2><p>先查询主表，通过主表的道德信息将作为参数传递给关联表，查询关联表的信息。  </p>
-<pre><code>&lt;resultMap id=&quot;MystudentStep&quot; type=&quot;com.tulun.bean.Student&quot;&gt;  
-    &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;  
-    &lt;result column=&quot;name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;  
-    &lt;result column=&quot;passward&quot; property=&quot;passward&quot;&gt;&lt;/result&gt;  
-    &lt;!--
-        association:定义关联对象的封装规则
-        select:表明当前属性是调用select 指定的方法查出的结果
-        column:指定将哪一列的值传给这个方法
-        流程：使用select 指定的方法（传入column 指定的这列参数的值）查出对象，
-                并封装给property 指定的属性
-    --&gt;
-    &lt;association property=&quot;dept&quot;
-                 select=&quot;com.tulun.dao.DeptMapper.getDeptById&quot;
-                 column=&quot;d_id&quot;&gt;
-    &lt;/association&gt;
-&lt;/resultMap&gt;  
-
-
-&lt;select id=&quot;getStuByIdStep&quot; resultMap=&quot;MystudentStep&quot;&gt;
-    select * from student where id = #&#123;id&#125;
-&lt;/select&gt;
-&lt;select id=&quot;getDeptById&quot; resultType=&quot;com.tulun.bean.Dept&quot;&gt;
-     select * from dept where id = #&#123;id&#125;
-&lt;/select&gt;
-</code></pre>
-<h2 id="延迟加载-1"><a href="#延迟加载-1" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>MyBatis中的延迟加载，也称为懒加载，是指在进行关联查询时，按照设置延迟规则推迟对关联对象的select查询。延迟加载可以有效的减少数据库压力。</p>
-<p>Mybatis 根据关联对象查询Select 语句的查询时机分为：直接加载、侵入式加载、深度延迟性加载。  </p>
-<ol>
-<li>直接加载<br>执行完主加载对象的select语句，马上执行关联对象的Select语句</li>
-<li>侵入式加载<br>执行完主加载对象查询后不会马上执行关联对象查询，但是当访问主加载对象时，就会加载关联对象的查询。即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
-<li>深度延迟加载<br>执行主对象的查询时不会执行关联对象的执行，访问主对象详情时也不会执行关联对象的查询，只有当访问关联对象时才会对其进行查询 </li>
-</ol>
-]]></content>
-      <categories>
-        <category>spring</category>
-      </categories>
-      <tags>
-        <tag>mybatis</tag>
-        <tag>懒加载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mybatis-plus分页查询</title>
-    <url>/2021/02/24/mybatis/mybatis-plus%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>配置类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> PaginationInterceptor <span class="title function_">paginationInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PaginationInterceptor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>业务层</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebsiteServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">WebsiteService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebsiteMapper websiteMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PageUtils <span class="title function_">list</span><span class="params">(Integer limit, Integer page)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用Mybatis-plus分页插件</span></span><br><span class="line">        Page&lt;WebsiteDto&gt; pageSet = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(page, limit);</span><br><span class="line">        IPage&lt;WebsiteDto&gt; iPage = websiteMapper.list(pageSet);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PageUtils</span>(iPage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>数据传输层</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">WebsiteMapper</span> <span class="keyword">extends</span> <span class="title class_">OsiiapWebsiteDao</span> &#123;</span><br><span class="line">    IPage&lt;WebsiteDto&gt; <span class="title function_">list</span><span class="params">(IPage&lt;WebsiteDto&gt; pageSet)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>mapping</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.kedian.osiiap.console.dao.WebsiteMapper&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;websiteDto&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.kedian.osiiap.console.dto.WebsiteDto&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;uuid&quot;</span> <span class="attr">column</span>=<span class="string">&quot;uuid&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;originalName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;original_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;chineseName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;chinese_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;website&quot;</span> <span class="attr">column</span>=<span class="string">&quot;website&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;image&quot;</span> <span class="attr">column</span>=<span class="string">&quot;image&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;brief&quot;</span> <span class="attr">column</span>=<span class="string">&quot;brief&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;word&quot;</span> <span class="attr">column</span>=<span class="string">&quot;word&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;insertTime&quot;</span> <span class="attr">column</span>=<span class="string">&quot;insert_time&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;country&quot;</span> <span class="attr">column</span>=<span class="string">&quot;country&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;language&quot;</span> <span class="attr">column</span>=<span class="string">&quot;language&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;status&quot;</span> <span class="attr">column</span>=<span class="string">&quot;status&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;sourceType&quot;</span> <span class="attr">column</span>=<span class="string">&quot;source_type&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;list&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.kedian.osiiap.console.dto.WebsiteDto&quot;</span>&gt;</span></span><br><span class="line">        SELECT web.uuid, web.original_name,  web.chinese_name, web.website, web.word, web.source_type,</span><br><span class="line">            dict1.`value` country, dict2.`value` `language`, web.image, web.brief, web.`status`, web.insert_time</span><br><span class="line">        FROM `osiiap_website` web</span><br><span class="line">        LEFT JOIN osiiap_dictionary dict1 on web.country = dict1.uuid</span><br><span class="line">        LEFT JOIN osiiap_dictionary dict2 on web.`language` = dict2.uuid</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>配置</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath*:/mapping/*.xml</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>mybatis</tag>
-        <tag>分页</tag>
       </tags>
   </entry>
   <entry>
@@ -6094,7 +5439,7 @@ root:为数据库用户名
   </entry>
   <entry>
     <title>Git的使用</title>
-    <url>/2020/07/15/git%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2020/07/15/Git/</url>
     <content><![CDATA[<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p><img src="https://i.loli.net/2020/12/14/VyaOrLifJoc4Hth.png" alt="image.png"></p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ol>
 <li>初始化本地仓库  <blockquote>
@@ -6215,6 +5560,32 @@ root:为数据库用户名
 <li><p>把本地库的内容推送到远程</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></li>
 </ol>
+<h3 id="Git配置SSH"><a href="#Git配置SSH" class="headerlink" title="Git配置SSH"></a>Git配置SSH</h3><ol>
+<li>首先预装Git和OpenSSH，检查系统是否存在</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置Git用户的用户名和邮箱</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用ssh-kengen生成key pari</li>
+</ol>
+<p>“-t rsa”表示使用密钥的加密类型，还可以为dsa；-C设置注释文字，比如你的邮箱“YourEmail”</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t -rsa -C <span class="string">&quot;2429872493@qq.com&quot;</span></span><br><span class="line"><span class="comment"># 直接回车</span></span><br><span class="line"><span class="comment"># 输入该密钥的授权密码 可以不写为空，直接回车</span></span><br><span class="line"><span class="comment"># 确认该密钥的授权密码</span></span><br></pre></td></tr></table></figure>
+
+<p>identification保存在~/.ssh/id_rsa</p>
+<p>public key保存在~/.ssh/id_rsa.pub</p>
+<ol start="4">
+<li>拷贝输出的所有ssh公钥信息</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>在github等代码托管平台上，为当前账号添加新的SSH公钥，相当于注册到github服务器的授信任列表中，该列表可以添加多个SSH客户端的公钥，title用于区分识别多个SSH Key</li>
+</ol>
 <h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="Git-commit规范"><a href="#Git-commit规范" class="headerlink" title="Git commit规范"></a>Git commit规范</h3><p><img src="https://i.loli.net/2021/02/26/y7fiPpJlIHxkTmh.png" alt="image.png"></p>
 ]]></content>
       <categories>
@@ -6222,6 +5593,608 @@ root:为数据库用户名
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA的使用</title>
+    <url>/2021/04/06/IDEA%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><h2 id="包围代码"><a href="#包围代码" class="headerlink" title="包围代码"></a>包围代码</h2><p><code>option + command + T</code>快速生成 try/catch/finally if/else do/while synchronized 等包围代码</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>例如 <code>_a</code> 替换成 <code>A</code> </p>
+<h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><p>通过 <code>_([a-z])</code>选中 <code>_a</code> ，通过<code>\u$1</code>替换成<code>A</code></p>
+<p>每一个<code>()</code>都代表一个捕获组，使用<code>$n</code>进行分组，注意下标不能乱</p>
+<h4 id="大小写如何转换"><a href="#大小写如何转换" class="headerlink" title="大小写如何转换"></a>大小写如何转换</h4><p><code>\l</code>将一个字符更改为小写</p>
+<p><code>\u</code>将一个字符更改为大写</p>
+<p><code>\L</code>将所有字符更改为小写</p>
+<p><code>\U</code>将所有字符更改为大写</p>
+<h2 id="删除了iml文件怎么恢复"><a href="#删除了iml文件怎么恢复" class="headerlink" title="删除了iml文件怎么恢复"></a>删除了iml文件怎么恢复</h2><p>idea中项目服务的iml文件可以删除，想要重新生成，重新通过idea的maven插件加载对应服务的pom.xml文件就好了</p>
+<h2 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h2><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
+<p>步骤：加入要隐藏.idea文件</p>
+<ol>
+<li>打开file–》settings–》editor—-&gt;file types</li>
+<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
+<li>点击应用，点击ok</li>
+</ol>
+<ol start="4">
+<li>我们可以发现，idea文件被隐藏</li>
+<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
+</ol>
+<p>我添加了如下想要隐藏的文件</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到idea过期怎么办"><a href="#遇到idea过期怎么办" class="headerlink" title="遇到idea过期怎么办"></a>遇到idea过期怎么办</h2><p>打开<code>BetterIntelliJ</code>插件后，重启，点击插件reset功能，查看idea可使用截止日期在一个月以后，关闭插件即可。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+        <category>IDEA</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oracle的使用</title>
+    <url>/2020/07/14/Oracle%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>查看触发器</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text <span class="keyword">from</span> all_source <span class="keyword">where</span> type <span class="operator">=</span> <span class="string">&#x27;TRIGGER&#x27;</span> <span class="keyword">and</span> name <span class="operator">=</span> <span class="string">&#x27;TR_T00HM009_AFT_T00HZ004&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>启用/禁用触发器</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 enable <span class="keyword">all</span> triggers; <span class="comment">-- 启用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 disable <span class="keyword">all</span> triggers; <span class="comment">-- 禁用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> enable; <span class="comment">-- 启用指定触发器</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> disable; <span class="comment">-- 禁用指定触发器</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>查看存储过程</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text form user_source <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;%T00HZ004_PKG%&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Oracle数据库恢复与备份"><a href="#Oracle数据库恢复与备份" class="headerlink" title="Oracle数据库恢复与备份"></a>Oracle数据库恢复与备份</h2><h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nolog
+conn /as sysdba
+//或
+sqlplus / as sysdba
+</code></pre>
+<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
+<li>在本地创建表空间<blockquote>
+<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
+</blockquote>
+</li>
+<li>创建用户<blockquote>
+<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
+</blockquote>
+</li>
+<li>给用户授权：<blockquote>
+<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
+</blockquote>
+</li>
+<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
+<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
+</blockquote>
+</li>
+<li>cmd导入库数据泵  <blockquote>
+<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
+</blockquote>
+<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
+<li>cmd导出数据库<blockquote>
+<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Oracle</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL的使用</title>
+    <url>/2020/12/16/mysql/MySQL%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="查看创建表结构"><a href="#查看创建表结构" class="headerlink" title="查看创建表结构"></a>查看创建表结构</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
+
+<h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="多字段中文排序"><a href="#多字段中文排序" class="headerlink" title="多字段中文排序"></a>多字段中文排序</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select t1.value,t2.chinese_name</span><br><span class="line">from dictionary as t1 </span><br><span class="line">right join website as t2 on t1.uuid=t2.country</span><br><span class="line">where t1.type=&quot;country&quot;</span><br><span class="line">ORDER BY CONVERT(t1.value USING gbk), CONVERT(t2.chinese_name USING gbk)</span><br></pre></td></tr></table></figure>
+
+<h3 id="存在主表不在另一个表中的数据"><a href="#存在主表不在另一个表中的数据" class="headerlink" title="存在主表不在另一个表中的数据"></a>存在主表不在另一个表中的数据</h3><p>三种实现方式：</p>
+<ol>
+<li><p>使用not in，容易理解，效率最低</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> A.ID <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> ID <span class="keyword">from</span> B)</span><br></pre></td></tr></table></figure></li>
+<li><p>使用左连接字段为空的记录</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> A.ID <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B A.ID <span class="operator">=</span> B.ID <span class="keyword">where</span> B.ID <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>逻辑复杂，速度最快</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> num <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="operator">=</span> B.ID ) <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="useSSL"><a href="#useSSL" class="headerlink" title="useSSL"></a>useSSL</h2><h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。</p>
+<p>TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
+<p>SSL协议提供服务主要：</p>
+<ol>
+<li>认证用户服务器，确保数据发送到正确的服务器；</li>
+<li>加密数据，防止数据传输途中被窃取使用；</li>
+<li>维护数据完整性，验证数据在传输过程中是否丢失；</li>
+</ol>
+<h3 id="useSSL-false-true"><a href="#useSSL-false-true" class="headerlink" title="useSSL=false / true"></a>useSSL=false / true</h3><p><strong>mysql连接中是否要设置成useSSL=true / false 与数据库中的用户的设置有关，每个数据库的用户都有一个sslType属性，如果设置了值，就需要useSSL设置成true，如果没有设置值，useSS设置成false。</strong></p>
+<p><strong>SSL协议的作用，用于对敏感的数据进行加密，类似http与https的区别。</strong></p>
+<p>MySQL在高版本需要指明是否进行SSL连接</p>
+<ol>
+<li>true 需要连接</li>
+<li>false 不需要连接</li>
+</ol>
+<p>web应用中连接mysql数据库时后台会出现这样的提示：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+,</span><br><span class="line">5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</span><br></pre></td></tr></table></figure>
+
+<p>解决</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">url=jdbc:mysql://127.0.0.1:3306/xxx?useSSL=false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="数据库对象"><a href="#数据库对象" class="headerlink" title="数据库对象"></a>数据库对象</h2><ol>
+<li>表</li>
+<li>数据字典：系统表</li>
+<li>约束：保证数据的完整性</li>
+<li>视图</li>
+<li>索引</li>
+<li>存储过程</li>
+<li>存储函数</li>
+<li>触发器 </li>
+</ol>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>使用表的一部分，针对不用的用户指定不同的查询视图。视图为虚拟表，可以理解为存储起来的select语句。</p>
+<p>create view 视图名 as select</p>
+<p>对视图中的数据进行增加删除修改操作，数据库相应发生变化。优点：控制数据访问的权限。</p>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>一组经过预先编译的sql封装。</p>
+<p>函数一定会有返回值。存储过程可以没有返回值。</p>
+<p>好处：</p>
+<ol>
+<li>提高sql语句的重用性</li>
+<li>减少操作失误，提高效率</li>
+<li>减少网络传输量</li>
+<li>减少sql语句网络暴露的网上风险，提高数据查询的安全性。</li>
+</ol>
+<p>与视图的区别：视图偏向于查询看重成是一张表，存储过程用来存储sql，结构更加复杂，看中sql逻辑。</p>
+<h1 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h1><p>MySQL架构：连接层-（服务层）处理层-引擎层-存储层</p>
+<p>业务逻辑处理层包括：连接池-管理服务与工具-SQL处理接口-解析转换-优化器-缓存和缓冲。</p>
+<p>存储引擎相关命令：show engines;</p>
+<p>MyISAM与InnoDB数据库引擎对比：</p>
+<p><img src="https://i.loli.net/2021/06/28/AnZBQPNa29ToCf4.png" alt="image-20210628143712555"></p>
+<p>SQL性能下降原因：</p>
+<ol>
+<li>性能下降了SQL慢；执行时间长；等待时间长；<ol>
+<li>查询语句写的烂</li>
+<li>索引失效（单值、符合）</li>
+<li>关联太多join（设计缺陷或不得已的需求）</li>
+<li>服务器调优及各个参数设置（缓冲、线程数等）</li>
+</ol>
+</li>
+</ol>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>创建索引命令：create index idx_user_name on user(name, email)</p>
+<p>SQL的Join查询：</p>
+<ol>
+<li><p>SQL执行顺序：</p>
+<ol>
+<li><p>手写顺序</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span> <span class="keyword">on</span> <span class="operator">&lt;</span>公有部分用来配对<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>机读顺序</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">on</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line"><span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>Join图：left join; right join; inner join; full outer join(全外连接：a.key is null or b.key is null)</p>
+</li>
+</ol>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>索引简介：索引（Index）帮助MySQL高效获取数据的数据结构。</p>
+<ol>
+<li><p>B数（多路搜索树）索引，B+树索引，哈希索引</p>
+</li>
+<li><p>索引优势：</p>
+<ol>
+<li>提高数据检索的效率，降低数据库的IO成本；</li>
+<li>降低数据排序的成本，降低了CPU的消耗。</li>
+</ol>
+</li>
+<li><p>索引劣势：</p>
+<ol>
+<li>索引也是一张表，保存了主键与索引字段，并指向实体库的记录。占空间。</li>
+<li>提高了查询速度，却降低了更新表的速度</li>
+<li>索引只是提高效率的一个因素，如果MySQL有大数据量的表，需要花时间研究建立最优秀的索引或优化查询。</li>
+</ol>
+</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>索引分类：</p>
+<ol>
+<li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引。</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值。</li>
+<li>复合索引：一个索引包含多个列。</li>
+<li>基本语法：<ol>
+<li>创建：<ol>
+<li>create &lt;&gt; index indexName ON mytable(columnname(length))</li>
+<li>alter mytable ADD &lt;&gt; index [indexName] ON (columnname(length))</li>
+</ol>
+</li>
+<li>删除：drop index [indexName] ON mytable;</li>
+<li>查看：show index from tableName;</li>
+</ol>
+</li>
+</ol>
+<p>mysql索引结构包括：BTree；Hash索引；full-text全文索引；R-Tree索引。</p>
+<p>BTree树图形结构：</p>
+<p><a href="https://imgtu.com/i/RUkTTH"><img src="https://z3.ax1x.com/2021/06/28/RUkTTH.png" alt="RUkTTH.png"></a></p>
+<p>需要创建索引的情况：</p>
+<ol>
+<li>主键自动创建唯一索引。</li>
+<li>频繁作为查找条件的字段应创建索引。</li>
+<li>查询中与其他表关联的字段，外键关系建立索引。</li>
+<li>频繁更新的字段不适合创建索引</li>
+<li>where条件里用不到的字段不创建索引。</li>
+<li>单键/组合索引选择？（高并发倾向组合索引）</li>
+<li>排序字段若通过索引去访问将提高排序速度。</li>
+<li>查询中统计或者分组字段</li>
+</ol>
+<p>不需要创建索引的情况：</p>
+<ol>
+<li>表记录太少</li>
+<li>经常增删改的表</li>
+<li>某数据列包含许多重复的内容</li>
+</ol>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>性能分析：</p>
+<ol>
+<li><p>MySQL常见瓶颈：</p>
+<ol>
+<li>CPU：CPU在饱和的时候一般发生在数据装入内存或从磁盘上读取数据时</li>
+<li>IO：发生在装入数据远大于内存容量的时候</li>
+<li>服务器硬件的性能瓶颈</li>
+</ol>
+</li>
+<li><p>Explain</p>
+<ol>
+<li><p>是什么：执行计划。</p>
+</li>
+<li><p>干什么： </p>
+<p><a href="https://imgtu.com/i/RUmSFe"><img src="https://z3.ax1x.com/2021/06/28/RUmSFe.png" alt="RUmSFe.png"></a></p>
+</li>
+<li><p>怎么用：</p>
+<ol>
+<li>explain+SQL语句</li>
+<li>执行计划包含的信息：id  select_type  table  type  possible_keys  key  key_len  ref  rows  Extra</li>
+</ol>
+</li>
+<li><p>名词解释：</p>
+<ol>
+<li>id：查询的序列号<ol>
+<li>id相同：执行顺序由上至下</li>
+<li>id不同：id越大优先级越高</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>select_type：查询的类型，用于区别普通、联合、子查询等的复杂情况。</p>
+<pre><code>  1. simple：简单查询，不包括子查询或者union
+  2. primary：查询中包含子查询，最外层的查询
+  3. subquery：子查询
+  4. derived：子查询作为衍生，结果放到临时表
+  5. union：第二个select出现在union之后，别被纪委union。若union包还在from子句的子查询中，外层select将被标记为derived。
+  6. union result：从union表获取结果的select
+</code></pre>
+<ol start="3">
+<li>table：哪张表</li>
+<li>type：<ol>
+<li>显示查询使用的了何种类型</li>
+<li>从最好到最差依次是：system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;ALL</li>
+<li>system：表只有一行记录</li>
+<li>const：通过索引能找到唯一记录。（主键或唯一索引）</li>
+<li>eq_ref：唯一性索引扫描，每个索引键，表中只有一条记录与之匹配。</li>
+<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行。</li>
+<li>range：之间所指定范围的行，使用一个索引来选择行。</li>
+<li>index：全索引扫描，读取索引中的数据。索引文件比数据文件小。</li>
+<li>ALL：遍历所有数据</li>
+</ol>
+</li>
+<li>possible_keys：显示可能应用在这张表中的索引。</li>
+<li>key：实际查询时，使用的索引。</li>
+<li>key_len：索引使用的字节数。查询中使用的索引的长度。长度越短越好。</li>
+<li>ref：显示索引那一列被使用了。</li>
+<li>rows：找到记录读取的行数。</li>
+<li>Extra：包含不在其他列的重要的信息<ol>
+<li><strong>Using filesort</strong>：不好；mysql没有使用索引排序，使用的外部排序。（文件排序）</li>
+<li><strong>Using temportry</strong>：不好；使用了临时表。</li>
+<li><strong>Using index</strong>：很好；（覆盖索引 Covering Index select节u功德数据从索引中取得，不必根据索引读取数据文件）</li>
+<li>Using where：使用罗where过滤；</li>
+<li>using join buffer：使用了连接缓存；</li>
+<li>impossible where：where的结果总是false；</li>
+<li>distinct：找到第一个匹配，不再找相同的。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>union操作符：用于合并两个或多个select语句的结果集。默认选取不同的值。如果允许重复，使用union all。</p>
+<p>索引优化：</p>
+<p>两表优化方案，左连接查询，给右表建立索引。右连接查询，给左表建立索引。</p>
+<h2 id="面试名词"><a href="#面试名词" class="headerlink" title="面试名词"></a>面试名词</h2><h3 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h3><p>一个索引无法把数据查询出来，需要通过前几个索引最后再次查询逐渐索引才能把select的所有数据都查询出来。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>学习</tag>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis-Plus的使用</title>
+    <url>/2021/02/24/MyBatis/MyBatis-Plus%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="max、sum"><a href="#max、sum" class="headerlink" title="max、sum"></a>max、sum</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">QueryWrapper</span>&lt;Bean&gt;().select(“max(level_sort) as levelSort”);</span><br></pre></td></tr></table></figure>
+
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="表映射实体新增字段"><a href="#表映射实体新增字段" class="headerlink" title="表映射实体新增字段"></a>表映射实体新增字段</h3><p>需要在新增的冗余字段上增加注解<code>@TableField(exist = false)</code>,便不会再影响<code>MyBatis-Plus</code>查询方法的使用</p>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>配置类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> PaginationInterceptor <span class="title function_">paginationInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PaginationInterceptor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>业务层</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebsiteServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">WebsiteService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebsiteMapper websiteMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PageUtils <span class="title function_">list</span><span class="params">(Integer limit, Integer page)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用Mybatis-plus分页插件</span></span><br><span class="line">        Page&lt;WebsiteDto&gt; pageSet = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(page, limit);</span><br><span class="line">        IPage&lt;WebsiteDto&gt; iPage = websiteMapper.list(pageSet);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">PageUtils</span>(iPage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据传输层</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">WebsiteMapper</span> <span class="keyword">extends</span> <span class="title class_">OsiiapWebsiteDao</span> &#123;</span><br><span class="line">    IPage&lt;WebsiteDto&gt; <span class="title function_">list</span><span class="params">(IPage&lt;WebsiteDto&gt; pageSet)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mapping</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.kedian.osiiap.console.dao.WebsiteMapper&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;websiteDto&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.kedian.osiiap.console.dto.WebsiteDto&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;uuid&quot;</span> <span class="attr">column</span>=<span class="string">&quot;uuid&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;originalName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;original_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;chineseName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;chinese_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;website&quot;</span> <span class="attr">column</span>=<span class="string">&quot;website&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;image&quot;</span> <span class="attr">column</span>=<span class="string">&quot;image&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;brief&quot;</span> <span class="attr">column</span>=<span class="string">&quot;brief&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;word&quot;</span> <span class="attr">column</span>=<span class="string">&quot;word&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;insertTime&quot;</span> <span class="attr">column</span>=<span class="string">&quot;insert_time&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;country&quot;</span> <span class="attr">column</span>=<span class="string">&quot;country&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;language&quot;</span> <span class="attr">column</span>=<span class="string">&quot;language&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;status&quot;</span> <span class="attr">column</span>=<span class="string">&quot;status&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;sourceType&quot;</span> <span class="attr">column</span>=<span class="string">&quot;source_type&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;list&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.kedian.osiiap.console.dto.WebsiteDto&quot;</span>&gt;</span></span><br><span class="line">        SELECT web.uuid, web.original_name,  web.chinese_name, web.website, web.word, web.source_type,</span><br><span class="line">            dict1.`value` country, dict2.`value` `language`, web.image, web.brief, web.`status`, web.insert_time</span><br><span class="line">        FROM `osiiap_website` web</span><br><span class="line">        LEFT JOIN osiiap_dictionary dict1 on web.country = dict1.uuid</span><br><span class="line">        LEFT JOIN osiiap_dictionary dict2 on web.`language` = dict2.uuid</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath*:/mapping/*.xml</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>MyBatis</category>
+        <category>MyBatis-Plus</category>
+      </categories>
+      <tags>
+        <tag>分页</tag>
+        <tag>MyBatis-Plus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis-Plus的学习</title>
+    <url>/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MyBatis-Plus(简称MP)是一个MyBatis的增强工具，在MyBatis的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用Mapper、通用Service，仅仅通过少量配置即可实现单表大部分CRUD操作，强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li>。。。</li>
+</ul>
+<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg" alt="framework"></p>
+<h3 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h3><ul>
+<li><a href="https://www.imooc.com/learn/1130">MyBatis-Plus 入门 - 视频教程 - 慕课网</a></li>
+<li><a href="https://www.imooc.com/learn/1171">MyBatis-Plus 进阶 - 视频教程 - 慕课网</a></li>
+</ul>
+<h2 id="快速开发"><a href="#快速开发" class="headerlink" title="快速开发"></a>快速开发</h2><p><a href="https://baomidou.com/guide/quick-start.html">快速开发链接</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全新的 <code>MyBatis-Plus</code> 3.0 版本基于 JDK8，提供了 <code>lambda</code> 形式的调用，所以安装集成 MP3.0 要求如下：</p>
+<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><p>Maven：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><p>Maven:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Spring Boot 工程：</p>
+<ul>
+<li><p>配置 MapperScan 注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Spring MVC 工程：</p>
+<ul>
+<li><p>配置 MapperScan</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>调整 SqlSessionFactory 为 MyBatis-Plus 的 SqlSessionFactory</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><ul>
+<li>@TableName</li>
+<li>@TableId</li>
+<li>@TableField</li>
+<li>@Version</li>
+<li>@EnumValue</li>
+<li>@TableLogic</li>
+<li>@SqlParser</li>
+<li>@KeySequence</li>
+</ul>
+<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h2><p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
+<p><a href="https://baomidou.com/guide/generator.html">代码生成器使用教程链接</a></p>
+<h2 id="CRUD接口"><a href="#CRUD接口" class="headerlink" title="CRUD接口"></a>CRUD接口</h2><p><a href="https://baomidou.com/guide/crud-interface.html">CRUD接口官方文档链接</a></p>
+<ul>
+<li>Service CRUD接口</li>
+<li>Mapper CRUD 接口</li>
+<li>mapper 层 选装件</li>
+</ul>
+<h2 id="条件构造器"><a href="#条件构造器" class="headerlink" title="条件构造器"></a>条件构造器</h2><p>说明：</p>
+<blockquote>
+<ul>
+<li><p>出现的第一个入参<code>boolean condition</code>表示该条件<strong>是否</strong>加入最后生成的sql中</p>
+</li>
+<li><p>代码块内的多个方法均为从上往下补全个别<code>boolean</code>类型的入参,默认为<code>true</code></p>
+</li>
+<li><p>出现的泛型<code>Param</code>均为<code>Wrapper</code>的子类实例(均具有<code>AbstractWrapper</code>的所有方法)</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="AbsractWrapper"><a href="#AbsractWrapper" class="headerlink" title="AbsractWrapper"></a>AbsractWrapper</h3><p>QueryWrapper(LambdaQueryWrapper) 和 UpdateWrapper(LambdaUpdateWrapper) 的父类<br>用于生成 sql 的 where 条件,entity属性也用于生成sql的where条件</p>
+<p>注意：entity生成的where条件与使用各个api生成的where条件<strong>没有任何关联行为</strong></p>
+<h4 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(Map&lt;R, V&gt; params)</span><br><span class="line">allEq(Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全部<a href="https://baomidou.com/guide/wrapper.html#eq">eq</a>(或个别<a href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a>)</li>
+</ul>
+<blockquote>
+<p>个别参数说明:</p>
+<p><code>params</code> : <code>key</code>为数据库字段名,<code>value</code>为字段值<br><code>null2IsNull</code> : 为<code>true</code>则在<code>map</code>的<code>value</code>为<code>null</code>时调用 <a href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a> 方法,为<code>false</code>时则忽略<code>value</code>为<code>null</code>的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="eq"><a href="#eq" class="headerlink" title="eq"></a>eq</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">eq(R column, Object val)</span><br><span class="line">eq(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>等于 =</li>
+<li>例: <code>eq(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name = &#39;老王&#39;</code></li>
+</ul>
+<h4 id="ne"><a href="#ne" class="headerlink" title="ne"></a>ne</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ne(R column, Object val)</span><br><span class="line">ne(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不等于 &lt;&gt;</li>
+<li>例: <code>ne(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name &lt;&gt; &#39;老王&#39;</code></li>
+</ul>
+<h4 id="gt"><a href="#gt" class="headerlink" title="gt"></a>gt</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">gt(R column, Object val)</span><br><span class="line">gt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大于 &gt;</li>
+<li>例: <code>gt(&quot;age&quot;, 18)</code>—&gt;<code>age &gt; 18</code></li>
+</ul>
+<h4 id="ge"><a href="#ge" class="headerlink" title="ge"></a>ge</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ge(R column, Object val)</span><br><span class="line">ge(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大于等于 &gt;=</li>
+<li>例: <code>ge(&quot;age&quot;, 18)</code>—&gt;<code>age &gt;= 18</code></li>
+</ul>
+<h4 id="lt"><a href="#lt" class="headerlink" title="lt"></a>lt</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">lt(R column, Object val)</span><br><span class="line">lt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小于 &lt;</li>
+<li>例: <code>lt(&quot;age&quot;, 18)</code>—&gt;<code>age &lt; 18</code></li>
+</ul>
+<h4 id="le"><a href="#le" class="headerlink" title="le"></a>le</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">le(R column, Object val)</span><br><span class="line">le(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小于等于 &lt;=</li>
+<li>例: <code>le(&quot;age&quot;, 18)</code>—&gt;<code>age &lt;= 18</code></li>
+</ul>
+<h4 id="between"><a href="#between" class="headerlink" title="between"></a>between</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">between(R column, Object val1, Object val2)</span><br><span class="line">between(<span class="type">boolean</span> condition, R column, Object val1, Object val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>BETWEEN 值1 AND 值2</li>
+<li>例: <code>between(&quot;age&quot;, 18, 30)</code>—&gt;<code>age between 18 and 30</code></li>
+</ul>
+<h4 id="…"><a href="#…" class="headerlink" title="…."></a>….</h4><ul>
+<li>notBetween</li>
+<li>like</li>
+<li>notLike</li>
+<li>likeLeft</li>
+<li>likeRight</li>
+<li>isNull</li>
+<li>isNotNull</li>
+<li>in</li>
+<li>notIn</li>
+<li>inSql</li>
+<li>notInSql</li>
+<li>groupBy</li>
+<li>orderByAsc</li>
+<li>orderByDesc</li>
+<li>orderBy</li>
+<li>having</li>
+<li>func</li>
+<li>or</li>
+<li>and</li>
+<li>nested</li>
+<li>apply</li>
+<li>last</li>
+<li>exists</li>
+<li>notExists</li>
+</ul>
+<h3 id="QueryWrapper"><a href="#QueryWrapper" class="headerlink" title="QueryWrapper"></a>QueryWrapper</h3><blockquote>
+<p>说明：</p>
+<p>继承自 AbstractWrapper ,自身的内部属性 entity 也用于生成 where 条件及 LambdaQueryWrapper, 可以通过 new QueryWrapper().lambda() 方法获取</p>
+</blockquote>
+<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">select(String... sqlSelect)</span><br><span class="line">select(Predicate&lt;TableFieldInfo&gt; predicate)</span><br><span class="line">select(Class&lt;T&gt; entityClass, Predicate&lt;TableFieldInfo&gt; predicate)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置查询字段</li>
+</ul>
+<blockquote>
+<p>说明:</p>
+<p>以上方法分为两类.<br>第二类方法为:过滤查询字段(主键除外),入参不包含 class 的调用前需要<code>wrapper</code>内的<code>entity</code>属性有值! 这两类方法重复调用以最后一次为准</p>
+</blockquote>
+<ul>
+<li>例: <code>select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;)</code></li>
+<li>例: <code>select(i -&gt; i.getProperty().startsWith(&quot;test&quot;))</code></li>
+</ul>
+<h3 id="UpdateWrapper"><a href="#UpdateWrapper" class="headerlink" title="UpdateWrapper"></a>UpdateWrapper</h3><blockquote>
+<p>说明：</p>
+<p>继承自 <code>AbstractWrapper</code> ,自身的内部属性 <code>entity</code> 也用于生成 where 条件及 <code>LambdaUpdateWrapper</code>, 可以通过 <code>new UpdateWrapper().lambda()</code> 方法获取</p>
+</blockquote>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">set(String column, Object val)</span><br><span class="line">set(<span class="type">boolean</span> condition, String column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SQL SET 字段</li>
+<li>例: <code>set(&quot;name&quot;, &quot;老李头&quot;)</code></li>
+<li>例: <code>set(&quot;name&quot;, &quot;&quot;)</code>—&gt;数据库字段值变为<strong>空字符串</strong></li>
+<li>例: <code>set(&quot;name&quot;, null)</code>—&gt;数据库字段值变为<code>null</code></li>
+</ul>
+<h4 id="setSql"><a href="#setSql" class="headerlink" title="setSql"></a>setSql</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">setSql(String sql)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置 SET 部分 SQL</li>
+<li>例: <code>setSql(&quot;name = &#39;老李头&#39;&quot;)</code></li>
+</ul>
+<h4 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h4><ul>
+<li>获取 <code>LambdaWrapper</code><br>在<code>QueryWrapper</code>中是获取<code>LambdaQueryWrapper</code><br>在<code>UpdateWrapper</code>中是获取<code>LambdaUpdateWrapper</code></li>
+</ul>
+<h3 id="使用Wrapper自定义SQL"><a href="#使用Wrapper自定义SQL" class="headerlink" title="使用Wrapper自定义SQL"></a>使用Wrapper自定义SQL</h3><blockquote>
+<p>需求来源:</p>
+<p>在使用了<code>mybatis-plus</code>之后, 自定义SQL的同时也想使用<code>Wrapper</code>的便利应该怎么办？ 在<code>mybatis-plus</code>版本<code>3.0.7</code>得到了完美解决 版本需要大于或等于<code>3.0.7</code>, 以下两种方案取其一即可</p>
+</blockquote>
+<h4 id="Service-java"><a href="#Service-java" class="headerlink" title="Service.java"></a>Service.java</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mysqlMapper.getAll(Wrappers.&lt;MysqlData&gt;lambdaQuery().eq(MysqlData::getGroup, <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案一-注解方式-Mapper-java"><a href="#方案一-注解方式-Mapper-java" class="headerlink" title="方案一 注解方式 Mapper.java"></a>方案一 注解方式 Mapper.java</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from mysql_data $&#123;ew.customSqlSegment&#125;&quot;)</span></span><br><span class="line">List&lt;MysqlData&gt; <span class="title function_">getAll</span><span class="params">(<span class="meta">@Param(Constants.WRAPPER)</span> Wrapper wrapper)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案二-XML形式-Mapper-xml"><a href="#方案二-XML形式-Mapper-xml" class="headerlink" title="方案二 XML形式 Mapper.xml"></a>方案二 XML形式 Mapper.xml</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;MysqlData&quot;</span>&gt;</span></span><br><span class="line">	SELECT * FROM mysql_data $&#123;ew.customSqlSegment&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="kotlin使用wrapper"><a href="#kotlin使用wrapper" class="headerlink" title="kotlin使用wrapper"></a>kotlin使用wrapper</h4><blockquote>
+<p>kotlin 可以使用 <code>QueryWrapper</code> 和 <code>UpdateWrapper</code> 但无法使用 <code>LambdaQueryWrapper</code> 和 <code>LambdaUpdateWrapper</code><br>如果想使用 lambda 方式的 wrapper 请使用 <code>KtQueryWrapper</code> 和 <code>KtUpdateWrapper</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>MyBatis</category>
+        <category>Mybatis-Plus</category>
+      </categories>
+      <tags>
+        <tag>MyBatis-Plus</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MyBatis的使用</title>
+    <url>/2020/08/19/MyBatis/MyBatis%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h1><h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h3 id="注意一级缓存"><a href="#注意一级缓存" class="headerlink" title="注意一级缓存"></a>注意一级缓存</h3><p>在一个事务中，重复查询数据库，只会查询一次，其余走缓存，并且，如果数据进行了修改，将会把指向缓存的对象进行修改。导致，引用该对象的变量，发现数据莫名其妙的改变了。应该养成禁止修改数据库查询的数据后进行反复的修改和引用等操作，及时进行数据库修改操作，刷新缓存。</p>
+<h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h3><p>缓存可以极大的提高查询效率。</p>
+<p>两级缓存：</p>
+<h4 id="一级缓存：（本地缓存）"><a href="#一级缓存：（本地缓存）" class="headerlink" title="一级缓存：（本地缓存）"></a>一级缓存：（本地缓存）</h4><ol>
+<li>默认作用域：sqlSession</li>
+<li>与数据库一次会话期间查询到的数据会放到本地缓存中。以后如果需要获取相同的数据，直接从缓存中拿。</li>
+</ol>
+<h4 id="二级缓存：（全局缓存）"><a href="#二级缓存：（全局缓存）" class="headerlink" title="二级缓存：（全局缓存）"></a>二级缓存：（全局缓存）</h4><ol>
+<li><p>默认不开启，需要手动配置</p>
+</li>
+<li><p>使用步骤</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">– 1、全局配置文件中开启二级缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">*</span>&quot;<span class="attr">cacheEnabled</span>&quot; <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>*</span><br><span class="line">– 2、需要使用二级缓存的映射文件处使用cache配置缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">cache</span> /&gt;</span></span><br><span class="line">– 3、注意：POJO需要实现Serializable接口</span><br></pre></td></tr></table></figure></li>
+<li><p>缓存相关属性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">• eviction=“FIFO”：缓存回收策略：</span><br><span class="line">	• LRU – 最近最少使用的：移除最长时间不被使用的对象。</span><br><span class="line">    • FIFO – 先进先出：按对象进入缓存的顺序来移除它们。</span><br><span class="line">    • SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</span><br><span class="line">    • WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</span><br><span class="line">    • 默认的是 LRU。 </span><br><span class="line">• flushInterval：刷新间隔，单位毫秒</span><br><span class="line">	• 默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新</span><br><span class="line">• size：引用数目，正整数</span><br><span class="line">	• 代表缓存最多可以存储多少个对象，太大容易导致内存溢出</span><br><span class="line">• readOnly：只读，true/false</span><br><span class="line">    • true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。</span><br><span class="line">    • false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是 false。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>延迟加载，也叫懒加载，但是懒加载往往与分布查询同时使用  </p>
+<h3 id="分布查询"><a href="#分布查询" class="headerlink" title="分布查询"></a>分布查询</h3><p>先查询主表，通过主表的结果信息将作为参数传递给关联表，查询关联表的信息。  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;resultMap id=&quot;MystudentStep&quot; type=&quot;com.tulun.bean.Student&quot;&gt;  </span><br><span class="line">    &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;  </span><br><span class="line">    &lt;result column=&quot;name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;  </span><br><span class="line">    &lt;result column=&quot;passward&quot; property=&quot;passward&quot;&gt;&lt;/result&gt;  </span><br><span class="line">    &lt;!--</span><br><span class="line">        association:定义关联对象的封装规则</span><br><span class="line">        select:表明当前属性是调用select 指定的方法查出的结果</span><br><span class="line">        column:指定将哪一列的值传给这个方法</span><br><span class="line">        流程：使用select 指定的方法（传入column 指定的这列参数的值）查出对象，</span><br><span class="line">                并封装给property 指定的属性</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;association property=&quot;dept&quot;</span><br><span class="line">                 select=&quot;com.tulun.dao.DeptMapper.getDeptById&quot;</span><br><span class="line">                 column=&quot;d_id&quot;&gt;</span><br><span class="line">    &lt;/association&gt;</span><br><span class="line">&lt;/resultMap&gt;  </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;select id=&quot;getStuByIdStep&quot; resultMap=&quot;MystudentStep&quot;&gt;</span><br><span class="line">    select * from student where id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;select id=&quot;getDeptById&quot; resultType=&quot;com.tulun.bean.Dept&quot;&gt;</span><br><span class="line"> 	select * from dept where id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="延迟加载-1"><a href="#延迟加载-1" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>MyBatis中的延迟加载，也称为懒加载，是指在进行关联查询时，按照设置延迟规则推迟对关联对象的select查询。延迟加载可以有效的减少数据库压力。</p>
+<p>Mybatis 根据关联对象查询Select 语句的查询时机分为：直接加载、侵入式加载、深度延迟性加载。  </p>
+<ol>
+<li>直接加载<br>执行完主加载对象的select语句，马上执行关联对象的Select语句</li>
+<li>侵入式加载<br>执行完主加载对象查询后不会马上执行关联对象查询，但是当访问主加载对象时，就会加载关联对象的查询。即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
+<li>深度延迟加载<br>执行主对象的查询时不会执行关联对象的执行，访问主对象详情时也不会执行关联对象的查询，只有当访问关联对象时才会对其进行查询 </li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>缓存机制</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
 </search>

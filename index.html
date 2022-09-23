@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -608,98 +608,6 @@
 <li>Execption是可以被抛出的基本类型。</li>
 </ol>
 <h2 id="第13章字符串"><a href="#第13章字符串" class="headerlink" title="第13章字符串"></a>第13章字符串</h2>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/26/mysql/Web%E8%BF%9E%E6%8E%A5MySQL%E7%9A%84%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/26/mysql/Web%E8%BF%9E%E6%8E%A5MySQL%E7%9A%84%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Web连接MySQL的配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-05-26 10:52:00 / 修改时间：11:06:43" itemprop="dateCreated datePublished" datetime="2021-05-26T10:52:00+08:00">2021-05-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="useSSL"><a href="#useSSL" class="headerlink" title="useSSL"></a>useSSL</h2><h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。</p>
-<p>TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
-<p>SSL协议提供服务主要：</p>
-<ol>
-<li>认证用户服务器，确保数据发送到正确的服务器；</li>
-<li>加密数据，防止数据传输途中被窃取使用；</li>
-<li>维护数据完整性，验证数据在传输过程中是否丢失；</li>
-</ol>
-<h3 id="useSSL-false-true"><a href="#useSSL-false-true" class="headerlink" title="useSSL=false / true"></a>useSSL=false / true</h3><p>MySQL在高版本需要指明是否进行SSL连接</p>
-<ol>
-<li>true 需要连接</li>
-<li>false 不需要连接</li>
-</ol>
-<p>web应用中连接mysql数据库时后台会出现这样的提示：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+,</span><br><span class="line">5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</span><br></pre></td></tr></table></figure>
-
-<p>解决</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url=jdbc:mysql://127.0.0.1:3306/xxx?useSSL=false</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
       
     </div>
 
@@ -1311,6 +1219,94 @@
 <h2 id="嵌入式Servlet-Web容器"><a href="#嵌入式Servlet-Web容器" class="headerlink" title="嵌入式Servlet Web容器"></a>嵌入式Servlet Web容器</h2><p><strong>Spring Boot 2.0</strong>支持三种嵌入式**Servlet 3.1+**容器。</p>
 <p>包括：<strong>Tomcat</strong>、<strong>Jetty</strong>、<strong>Undertow</strong></p>
 <h3 id="Tomcat作为嵌入式Servlet-Web容器"><a href="#Tomcat作为嵌入式Servlet-Web容器" class="headerlink" title="Tomcat作为嵌入式Servlet Web容器"></a>Tomcat作为嵌入式Servlet Web容器</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/20210414-Powerdesigner%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/14/20210414-Powerdesigner%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Powerdesigner使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-14 22:20:00 / 修改时间：22:28:19" itemprop="dateCreated datePublished" datetime="2021-04-14T22:20:00+08:00">2021-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="E-R-CDM-PDM"><a href="#E-R-CDM-PDM" class="headerlink" title="E-R/CDM/PDM"></a>E-R/CDM/PDM</h3><p>概念数据模型也称信息模型，以实体-联系（entity-relationShip，简称E-R）理论为基础。从用户的观点出发对信息进行建模，主要用于数据库的概念级设计。</p>
+<p>将现实世界中的客观对象抽象为实体和联系。它不依赖于具体的计算机系统或某个DBMS系统，这种模型就是CDM。</p>
+<p>将CDM转换为计算机上某个DBMS所支持的数据库模型，即物理数据模型PDM。</p>
+<h3 id="PDM模型和CDM模型之间的相互转换"><a href="#PDM模型和CDM模型之间的相互转换" class="headerlink" title="PDM模型和CDM模型之间的相互转换"></a>PDM模型和CDM模型之间的相互转换</h3><p>菜单Tool 里面的Generate to Conceptual Data Models上面也有快捷键：</p>
+<ul>
+<li><p>如果pdm转cdm：ctrl＋shift＋c </p>
+</li>
+<li><p>如果cdm转pdm：ctrl＋shift＋p</p>
+</li>
+</ul>
+
       
     </div>
 

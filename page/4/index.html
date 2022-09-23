@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,241 +195,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/25/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/25/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/" class="post-title-link" itemprop="url">商城项目（三）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-25 18:58:00" itemprop="dateCreated datePublished" datetime="2020-12-25T18:58:00+08:00">2020-12-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-01-07 17:50:00" itemprop="dateModified" datetime="2021-01-07T17:50:00+08:00">2021-01-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="功能实现一"><a href="#功能实现一" class="headerlink" title="功能实现一"></a>功能实现一</h1><p>先启动前端项目，然后启动Nacos，然后启动</p>
-<h2 id="三级分类"><a href="#三级分类" class="headerlink" title="三级分类"></a>三级分类</h2><p>数据库导入数据。</p>
-<p>打开categoryContoller</p>
-<p>查出所有分类以及子分类，以树形结构组装起来。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制类</span></span><br><span class="line">List&lt;CategoryEntity&gt;categoryService.listWithTree();</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现类 使用beseMapper，renren-fast使用的bao层自动继承baseMapper</span></span><br><span class="line">baseMapper == Dao</span><br><span class="line">    </span><br><span class="line"><span class="comment">//1. 查出所有分类</span></span><br><span class="line">entities = baseMapper.selectList(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//2. 组装成所有的父子分类</span></span><br><span class="line"><span class="comment">//2.1. 找到所有的一级分类</span></span><br><span class="line">entities。stream().filter((categoryEntity) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> categoryEntity.getParentCid == <span class="number">0</span>;</span><br><span class="line">&#125;).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
-
-<p>在实体中添加属性children</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表明在数据表中不存在</span></span><br><span class="line"><span class="meta">@TableField(exist=false)</span></span><br><span class="line"><span class="keyword">private</span> List&lt;CategoryEntity&gt; children;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a>前端实现</h4><ol>
-<li><p>新建product/category.vue文件，使菜单知道新建的vue文件下。</p>
-</li>
-<li><p>在ElementUI中使用树形组件</p>
-</li>
-<li><p>前端向后端发送请求</p>
-</li>
-</ol>
-<h4 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h4><ol>
-<li><p>在gateway服务中编写配置类，在网关里面配置统一跨域</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GulimallCorsConfiguration</span> &#123;</span><br><span class="line">    <span class="comment">// 加入到容器中</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> CorsWebFilter <span class="title function_">corsWebFilter</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UrlBasedCorsConfigurationSource</span> <span class="variable">source</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UrlBasedCorsConfigurationSource</span>();</span><br><span class="line">        <span class="type">CorsConfiguration</span> <span class="variable">corsConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorsConfiguration</span>();</span><br><span class="line">        <span class="comment">//配置跨域  头，方法，来源，携带cookie</span></span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.setAllowCredentials(<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">// 任意路径</span></span><br><span class="line">        source.registerCorsConfiguration(<span class="string">&quot;/**&quot;</span>,corsConfiguration);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CorsWebFilter</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>编写配置文件，使用filter</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">product_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://gulimall-product</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/product/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/$\&#123;segment&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">admin_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://renren-fast</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/renren-fast/$\&#123;segment&#125;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>取消renren-fast项目的跨域配置类的设置。</p>
-</li>
-<li><p>确认后端返回的参数，准确接收。</p>
-</li>
-</ol>
-<h3 id="删除-添加菜单"><a href="#删除-添加菜单" class="headerlink" title="删除/添加菜单"></a>删除/添加菜单</h3><h4 id="页面效果"><a href="#页面效果" class="headerlink" title="页面效果"></a>页面效果</h4><ol>
-<li><p>使用ElementUI的自定义节点内容功能，使用其中的scoped slot功能。</p>
-</li>
-<li><p>导入需要的组件</p>
-<p>node-key:唯一主键</p>
-<p>show-checkbox:是否显示复选框</p>
-<p>expand-on-click-node:点击非箭头位置，是否展开关闭树</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-tree</span><br><span class="line">    :data=&quot;menus&quot;</span><br><span class="line">    :props=&quot;defaultProps&quot;</span><br><span class="line">    show-checkbox=&quot;true&quot;</span><br><span class="line">    node-key=&quot;catId&quot;</span><br><span class="line">    :expand-on-click-node=&quot;false&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;!-- vue slot 的插槽机制 --&gt;</span><br><span class="line">    &lt;span class=&quot;custom-tree-node&quot; slot-scope=&quot;&#123; node, data &#125;&quot;&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123; node.label &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if=&quot;node.level &lt;= 2&quot;</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          size=&quot;mini&quot;</span><br><span class="line">          @click=&quot;() =&gt; append(data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Append</span><br><span class="line">        &lt;/el-button&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if=&quot;node.childNodes.length == 0&quot;</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          size=&quot;mini&quot;</span><br><span class="line">          @click=&quot;() =&gt; remove(node, data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Delete</span><br><span class="line">        &lt;/el-button&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  &lt;/el-tree&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h4><ol>
-<li><p>对逻辑删除字段使用@TableLogic(value = “1”, delval = “0”) 注解，并表明删除规则。</p>
-</li>
-<li><p>编写删除方法。</p>
-</li>
-<li><p>下载postman模拟前端调用删除接口。</p>
-</li>
-</ol>
-<h4 id="删除效果细化-添加菜单"><a href="#删除效果细化-添加菜单" class="headerlink" title="删除效果细化/添加菜单"></a>删除效果细化/添加菜单</h4><p>实现以下几点功能：</p>
-<ol>
-<li>点击delete，有确认提示框</li>
-<li>删除菜单后，tree状态还是展开的</li>
-<li>点击append(添加)，弹出可输入提示框。</li>
-<li>将输入的数据和默认数据保存到data中</li>
-<li>通过发送请求实现保存功能。</li>
-</ol>
-<h3 id="修改-批量删除菜单"><a href="#修改-批量删除菜单" class="headerlink" title="修改/批量删除菜单"></a>修改/批量删除菜单</h3><h4 id="基本修改效果"><a href="#基本修改效果" class="headerlink" title="基本修改效果"></a>基本修改效果</h4><ol>
-<li>添加修改按钮</li>
-<li>设置点击提示框</li>
-<li>给提示开给你添加需要修改项可输入框</li>
-<li>发送请求，修改数据。</li>
-<li>注意在点击修改的时候，需要获得数据库最新的数据。</li>
-<li>请求修改成功后，刷新页面时要回显数据（查询一次数据库，将数据给到缓存中的data），防止与数据库字段不同。</li>
-<li>注意在不同操作，对缓存区的数据的修改。必要时，使数据归于默认值。</li>
-</ol>
-<h4 id="修改拖拽效果"><a href="#修改拖拽效果" class="headerlink" title="修改拖拽效果"></a>修改拖拽效果</h4><ol>
-<li>实现可拖拽效果</li>
-<li>实现switch选择按钮</li>
-<li>记录拖拽菜单的id和父id</li>
-<li>记录菜单的id和子id</li>
-<li>实现批量拖动的点击按钮</li>
-<li>菜单移动，设置限制，不允许超过3级菜单</li>
-<li>检查，菜单拖动还有什么问题</li>
-</ol>
-<h4 id="批量删除菜单"><a href="#批量删除菜单" class="headerlink" title="批量删除菜单"></a>批量删除菜单</h4><ol>
-<li><p>使用Element-UI的设置，获得批量选中的菜单id</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-tree</span> <span class="attr">ref</span>=<span class="string">&quot;menuTree&quot;</span></span></span><br><span class="line"><span class="tag">         &gt;</span><span class="tag">&lt;/<span class="name">el-tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选中的菜单的node</span></span><br><span class="line"><span class="keyword">let</span> checkedNodes = <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">menuTree</span>.<span class="title function_">getCheckedNodes</span>();</span><br></pre></td></tr></table></figure></li>
-<li><p>发送请求处理</p>
-</li>
-<li><p>设置批量删除的确认按钮</p>
-</li>
-</ol>
-<h2 id="品牌管理"><a href="#品牌管理" class="headerlink" title="品牌管理"></a>品牌管理</h2><h3 id="逆向生成的代码完成前端"><a href="#逆向生成的代码完成前端" class="headerlink" title="逆向生成的代码完成前端"></a>逆向生成的代码完成前端</h3><ol>
-<li>添加品牌管理菜单</li>
-<li>将生成的前端代码放到对应位置。</li>
-<li>运行程序</li>
-</ol>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
-<li><p>显示状态 使用switch按钮</p>
-</li>
-<li><p>图片上传使用OSS对象存储</p>
-</li>
-<li><p>表格图片显示，使用原生img</p>
-</li>
-<li><p>前端数据校验使用 vue rule</p>
-</li>
-<li><p>后端数据校验使用JSR303</p>
-<ol>
-<li><p>使用javax.validation.constraints包下的多个校验注解</p>
-</li>
-<li><p>如果要开启校验功能，必须再接口上使用@Valid注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BrandEntity brand)</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>给校验的bean后紧跟BindingResult，封装了校验结果。</p>
-</li>
-<li><p>数据校验与分组校验</p>
-<ol>
-<li>创建标识接口</li>
-<li>@Valid注解更改为@Valided(对应的标识接口)注解</li>
-<li>在校验注解上添加groups={对应的标识接口}</li>
-<li>注意：只要使用了分组校验，未添加 groups 的校验注解将无效。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>自定义校验</p>
-<ol>
-<li>编写自定义的校验注解</li>
-<li>编写自定义的校验器</li>
-<li>关联自定义的校验器和自定义的校验注解</li>
-</ol>
-</li>
-<li><p>做统一异常处理</p>
-</li>
-</ol>
-<h1 id="取消vue的报错提示"><a href="#取消vue的报错提示" class="headerlink" title="取消vue的报错提示"></a>取消vue的报错提示</h1><p>编写文件并没有错误，是vue的错误检查要求太高了，在build/webpack.base.conf.js文件中的createLintingRule方法中的方法提全部注释掉，重启就可以了。</p>
-<h1 id="OSS-阿里云对象存储"><a href="#OSS-阿里云对象存储" class="headerlink" title="OSS 阿里云对象存储"></a>OSS 阿里云对象存储</h1><ol>
-<li>Bucket：存储空间</li>
-<li>Object：对象/文件</li>
-<li>Rejion：地域</li>
-<li>Endpoint：访问域名</li>
-<li>AccessKey：密钥（包括钥匙id和密码：AccessKeyId，AccessKeySecret）</li>
-</ol>
-<p>使用步骤：</p>
-<ol>
-<li>引入oss-starter</li>
-<li>配置key、endpoint相关信息</li>
-<li>使用OSSClient 自动注入，进行相关操作</li>
-<li>使用web签名获得相应的签名传给前端。</li>
-</ol>
-<h1 id="功能实现二"><a href="#功能实现二" class="headerlink" title="功能实现二"></a>功能实现二</h1><h2 id="SPU与SKU"><a href="#SPU与SKU" class="headerlink" title="SPU与SKU"></a>SPU与SKU</h2><p>规格属性（不变）与销售属性（可变）</p>
-<h3 id="属性分组"><a href="#属性分组" class="headerlink" title="属性分组"></a>属性分组</h3><ol>
-<li><p>将category的分类菜单，提取为组件</p>
-</li>
-<li><p>在attrgroup.vue中使用，导入组件</p>
-</li>
-<li><p>将自动生成的attrgroup.vue的前端代码导入到自己编写的vue中。</p>
-</li>
-<li><p>使用Vue 高级功能–父子组件传递数据（子给父数据，通过 <strong>事件机制</strong>，子给父发送事件，携带数据）</p>
-<ol>
-<li><p>在子组件中使用 @node-click=”事件方法名”</p>
-</li>
-<li><p>在methods中，实现方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">nodeclick</span>(<span class="params">data,node,component</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.$emit(<span class="string">&quot;tree-node-click&quot;</span>,data,node,component) <span class="comment">// 发送事件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>在父组件调用事件名 @tree-node-click=”treenodeclick”</p>
-</li>
-<li><p>编写方法获得数据</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">treenodeclick</span>(<span class="params">data,node,component</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;attrgroup感知到节点被点击&quot;</span>,data,node,component)</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;被点击的菜单id&quot;</span>,data.<span class="property">catId</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1091,7 +856,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/16/mysql/MySQL/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/16/mysql/MySQL%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1109,7 +874,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/16/mysql/MySQL/" class="post-title-link" itemprop="url">MySQL备忘录</a>
+          <a href="/2020/12/16/mysql/MySQL%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MySQL的使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1127,7 +892,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-06-30 18:03:57" itemprop="dateModified" datetime="2021-06-30T18:03:57+08:00">2021-06-30</time>
+      <time title="修改时间：2022-09-23 23:18:29" itemprop="dateModified" datetime="2022-09-23T23:18:29+08:00">2022-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
     </span>
 
   
@@ -1140,9 +914,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="查看创建表结构"><a href="#查看创建表结构" class="headerlink" title="查看创建表结构"></a>查看创建表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
+          <h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="查看创建表结构"><a href="#查看创建表结构" class="headerlink" title="查看创建表结构"></a>查看创建表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
 
-<h3 id="多字段中文排序"><a href="#多字段中文排序" class="headerlink" title="多字段中文排序"></a>多字段中文排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select t1.value,t2.chinese_name</span><br><span class="line">from dictionary as t1 </span><br><span class="line">right join website as t2 on t1.uuid=t2.country</span><br><span class="line">where t1.type=&quot;country&quot;</span><br><span class="line">ORDER BY CONVERT(t1.value USING gbk), CONVERT(t2.chinese_name USING gbk)</span><br></pre></td></tr></table></figure>
+<h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="多字段中文排序"><a href="#多字段中文排序" class="headerlink" title="多字段中文排序"></a>多字段中文排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select t1.value,t2.chinese_name</span><br><span class="line">from dictionary as t1 </span><br><span class="line">right join website as t2 on t1.uuid=t2.country</span><br><span class="line">where t1.type=&quot;country&quot;</span><br><span class="line">ORDER BY CONVERT(t1.value USING gbk), CONVERT(t2.chinese_name USING gbk)</span><br></pre></td></tr></table></figure>
 
 <h3 id="存在主表不在另一个表中的数据"><a href="#存在主表不在另一个表中的数据" class="headerlink" title="存在主表不在另一个表中的数据"></a>存在主表不在另一个表中的数据</h3><p>三种实现方式：</p>
 <ol>
@@ -1153,7 +927,51 @@
 <li><p>逻辑复杂，速度最快</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> num <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="operator">=</span> B.ID ) <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="高级MySQL"><a href="#高级MySQL" class="headerlink" title="高级MySQL"></a>高级MySQL</h1><p>MySQL架构：连接层-（服务层）处理层-引擎层-存储层</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="useSSL"><a href="#useSSL" class="headerlink" title="useSSL"></a>useSSL</h2><h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。</p>
+<p>TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
+<p>SSL协议提供服务主要：</p>
+<ol>
+<li>认证用户服务器，确保数据发送到正确的服务器；</li>
+<li>加密数据，防止数据传输途中被窃取使用；</li>
+<li>维护数据完整性，验证数据在传输过程中是否丢失；</li>
+</ol>
+<h3 id="useSSL-false-true"><a href="#useSSL-false-true" class="headerlink" title="useSSL=false / true"></a>useSSL=false / true</h3><p><strong>mysql连接中是否要设置成useSSL=true / false 与数据库中的用户的设置有关，每个数据库的用户都有一个sslType属性，如果设置了值，就需要useSSL设置成true，如果没有设置值，useSS设置成false。</strong></p>
+<p><strong>SSL协议的作用，用于对敏感的数据进行加密，类似http与https的区别。</strong></p>
+<p>MySQL在高版本需要指明是否进行SSL连接</p>
+<ol>
+<li>true 需要连接</li>
+<li>false 不需要连接</li>
+</ol>
+<p>web应用中连接mysql数据库时后台会出现这样的提示：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+,</span><br><span class="line">5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</span><br></pre></td></tr></table></figure>
+
+<p>解决</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url=jdbc:mysql://127.0.0.1:3306/xxx?useSSL=false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="数据库对象"><a href="#数据库对象" class="headerlink" title="数据库对象"></a>数据库对象</h2><ol>
+<li>表</li>
+<li>数据字典：系统表</li>
+<li>约束：保证数据的完整性</li>
+<li>视图</li>
+<li>索引</li>
+<li>存储过程</li>
+<li>存储函数</li>
+<li>触发器 </li>
+</ol>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>使用表的一部分，针对不用的用户指定不同的查询视图。视图为虚拟表，可以理解为存储起来的select语句。</p>
+<p>create view 视图名 as select</p>
+<p>对视图中的数据进行增加删除修改操作，数据库相应发生变化。优点：控制数据访问的权限。</p>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>一组经过预先编译的sql封装。</p>
+<p>函数一定会有返回值。存储过程可以没有返回值。</p>
+<p>好处：</p>
+<ol>
+<li>提高sql语句的重用性</li>
+<li>减少操作失误，提高效率</li>
+<li>减少网络传输量</li>
+<li>减少sql语句网络暴露的网上风险，提高数据查询的安全性。</li>
+</ol>
+<p>与视图的区别：视图偏向于查询看重成是一张表，存储过程用来存储sql，结构更加复杂，看中sql逻辑。</p>
+<h1 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h1><p>MySQL架构：连接层-（服务层）处理层-引擎层-存储层</p>
 <p>业务逻辑处理层包括：连接池-管理服务与工具-SQL处理接口-解析转换-优化器-缓存和缓冲。</p>
 <p>存储引擎相关命令：show engines;</p>
 <p>MyISAM与InnoDB数据库引擎对比：</p>
@@ -1168,7 +986,7 @@
 </ol>
 </li>
 </ol>
-<p>创建索引命令：create index idx_user_name on user(name, email)</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>创建索引命令：create index idx_user_name on user(name, email)</p>
 <p>SQL的Join查询：</p>
 <ol>
 <li><p>SQL执行顺序：</p>
@@ -1182,7 +1000,7 @@
 <li><p>Join图：left join; right join; inner join; full outer join(全外连接：a.key is null or b.key is null)</p>
 </li>
 </ol>
-<p>索引简介：索引（Index）帮助MySQL高效获取数据的数据结构。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>索引简介：索引（Index）帮助MySQL高效获取数据的数据结构。</p>
 <ol>
 <li><p>B数（多路搜索树）索引，B+树索引，哈希索引</p>
 </li>
@@ -1200,7 +1018,7 @@
 </ol>
 </li>
 </ol>
-<p>索引分类：</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>索引分类：</p>
 <ol>
 <li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引。</li>
 <li>唯一索引：索引列的值必须唯一，但允许有空值。</li>
@@ -1236,7 +1054,7 @@
 <li>经常增删改的表</li>
 <li>某数据列包含许多重复的内容</li>
 </ol>
-<p>性能分析：</p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>性能分析：</p>
 <ol>
 <li><p>MySQL常见瓶颈：</p>
 <ol>
@@ -1312,6 +1130,7 @@
 <p>union操作符：用于合并两个或多个select语句的结果集。默认选取不同的值。如果允许重复，使用union all。</p>
 <p>索引优化：</p>
 <p>两表优化方案，左连接查询，给右表建立索引。右连接查询，给左表建立索引。</p>
+<h2 id="面试名词"><a href="#面试名词" class="headerlink" title="面试名词"></a>面试名词</h2><h3 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h3><p>一个索引无法把数据查询出来，需要通过前几个索引最后再次查询逐渐索引才能把select的所有数据都查询出来。</p>
 
       
     </div>
@@ -1591,114 +1410,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/09/mybatis/MyBatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/09/mybatis/MyBatis/" class="post-title-link" itemprop="url">MyBatis了解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-09T00:00:00+08:00">2020-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-24 14:44:29" itemprop="dateModified" datetime="2021-02-24T14:44:29+08:00">2021-02-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/spring/mybatis/" itemprop="url" rel="index"><span itemprop="name">mybatis</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h3><p>缓存可以极大的提高查询效率。</p>
-<p>两级缓存：</p>
-<ol>
-<li><p>一级缓存：（本地缓存）</p>
-<ol>
-<li>默认作用域：sqlSession</li>
-<li>与数据库一次会话期间查询到的数据会放到本地缓存中。以后如果需要获取相同的数据，直接从缓存中拿。</li>
-</ol>
-</li>
-<li><p>二级缓存：（全局缓存）</p>
-<ol>
-<li><p>默认不开启，需要手动配置</p>
-</li>
-<li><p>使用步骤</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">– 1、全局配置文件中开启二级缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">*</span>&quot;<span class="attr">cacheEnabled</span>&quot; <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>*</span><br><span class="line">– 2、需要使用二级缓存的映射文件处使用cache配置缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">cache</span> /&gt;</span></span><br><span class="line">– 3、注意：POJO需要实现Serializable接口</span><br></pre></td></tr></table></figure></li>
-<li><p>缓存相关属性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">• eviction=“FIFO”：缓存回收策略：</span><br><span class="line">	• LRU – 最近最少使用的：移除最长时间不被使用的对象。</span><br><span class="line">    • FIFO – 先进先出：按对象进入缓存的顺序来移除它们。</span><br><span class="line">    • SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</span><br><span class="line">    • WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</span><br><span class="line">    • 默认的是 LRU。 </span><br><span class="line">• flushInterval：刷新间隔，单位毫秒</span><br><span class="line">	• 默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新</span><br><span class="line">• size：引用数目，正整数</span><br><span class="line">	• 代表缓存最多可以存储多少个对象，太大容易导致内存溢出</span><br><span class="line">• readOnly：只读，true/false</span><br><span class="line">    • true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。</span><br><span class="line">    • false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是 false。</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/Nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1886,6 +1597,235 @@
 <p>动静分离</p>
 <p>nginx配置高可用的集群</p>
 <p>nginx原理</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-28T00:00:00+08:00">2020-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-04-13 10:59:13" itemprop="dateModified" datetime="2021-04-13T10:59:13+08:00">2021-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -iname &quot;node&quot;</span><br><span class="line">find / -type &quot; *.config &quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://...</span><br></pre></td></tr></table></figure>
+
+<h2 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h2><ul>
+<li><p>tar.gz</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf xxx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [源] [目标地址]</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rm xxx</span><br><span class="line">强制删除</span><br><span class="line">rm -f xxx</span><br><span class="line">删除文件夹</span><br><span class="line">rm -rf xxx</span><br><span class="line"></span><br><span class="line">排除显示当前文件夹的文件并未被排除的文件</span><br><span class="line">ls | grep -v cJKmhpmERdSoFhCX_Fm9yw | grep -v x9kg3vvoQZSzTLSt4m9BuQ | grep -v VVNb4OKkSoOTinXw7vSMsQ | grep -v pZrsvW6TRNqs_qXigFYkpA | grep -v yd4BNfvSS1enINMdeWNAyg |  xargs rm -rf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看剩余空间"><a href="#查看剩余空间" class="headerlink" title="查看剩余空间"></a>查看剩余空间</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动软件命令"><a href="#启动软件命令" class="headerlink" title="启动软件命令"></a>启动软件命令</h2><h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户     ./elasticsearch -d</span><br></pre></td></tr></table></figure>
+
+<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非root用户		nohup ./kibana &amp;</span><br></pre></td></tr></table></figure>
+
+<h1 id="重要命令"><a href="#重要命令" class="headerlink" title="重要命令"></a>重要命令</h1><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>Linux grep 命令用于查找文件里符合条件的字符串。</p>
+<p>grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把<strong>含有范本样式</strong>的那<strong>一列显示</strong>出来。若不指定任何文件名称，或是所给予的文件名为 **-**，则 grep 指令会从标准输入设备读取数据。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [-abcEFGhHilLnqrsvVwxy][-A&lt;显示行数&gt;][-B&lt;显示列数&gt;][-C&lt;显示列数&gt;][-d&lt;进行动作&gt;][-e&lt;范本样式&gt;][-f&lt;范本文件&gt;][--help][范本样式][文件或目录...]</span><br></pre></td></tr></table></figure>
+
+<p><strong>该命令经常以管道的方式使用：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat default.conf | grep -n  &quot;is&quot; | grep 127</span><br></pre></td></tr></table></figure>
+
+<p>管道的意思就是将<code>|</code>前面命令的结果作为后面命令的输入内容。</p>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><ul>
+<li><strong>-n 或 –line-number</strong> : 在显示符合样式的那一行之前，标示出该行的列数编号。</li>
+<li><strong>-o 或 –only-matching</strong> : 只显示匹配PATTERN 部分。</li>
+<li><strong>-v 或 –invert-match</strong> : 显示不包含匹配文本的所有行。</li>
+</ul>
+<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>查询当前所设定的状态。</p>
+<p>multi-user.target 相当于以前的 level 3，也就是命令行终端；而 graphical.target 相当于以前的 level 5，也就是图形界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
+
+<p>开机以命令模式启动，执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>开机以图形界面启动，执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></table></figure>
+
+<h3 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h3><p>启动虚拟机会有两个选项</p>
+<p><img src="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png" alt="image.png"></p>
+<p>第一个是正常启动</p>
+<p>第二个是修改模式启动（出现问题的时候使用）</p>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ol>
+<li><p>root修改密码</p>
+<p>直接输入passwd修改</p>
+</li>
+<li><p>用户修改密码</p>
+<p>root用户输入passwd 用户名</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/25/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">编程技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-25 11:43:00" itemprop="dateCreated datePublished" datetime="2020-11-25T11:43:00+08:00">2020-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-08 15:15:27" itemprop="dateModified" datetime="2021-02-08T15:15:27+08:00">2021-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><h3 id="两个实体相同字段赋值"><a href="#两个实体相同字段赋值" class="headerlink" title="两个实体相同字段赋值"></a>两个实体相同字段赋值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanUtils.copyProperties(map, addEntity);</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历实体非空传入map"><a href="#遍历实体非空传入map" class="headerlink" title="遍历实体非空传入map"></a>遍历实体非空传入map</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();</span><br><span class="line">Field[] fields = addEntity.getClass().getDeclaredFields();</span><br><span class="line">for (Field f: fields) &#123;</span><br><span class="line">    f.setAccessible(true);</span><br><span class="line">    f.getName();</span><br><span class="line">    try &#123;</span><br><span class="line">        Object ob = f.get(addEntity);</span><br><span class="line">        if (null != ob)&#123;</span><br><span class="line">            properties.put(f.getName(), ob.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h3><p>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ParamsCheck &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此注解校验必传字段，判断需要字段是否为空</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    String <span class="title function_">attributeName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实体调用接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="meta">@ParamsCheck(attributeName = &quot;用户名&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ParamsCheck(attributeName = &quot;用户ID&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CheckPointParamsHandler</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Class clazz;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Field[] fields;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T t;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CheckPointParamsHandler</span><span class="params">(T t)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.t = t;</span><br><span class="line">        <span class="built_in">this</span>.clazz = t.getClass();</span><br><span class="line">        <span class="comment">//getDeclaredFields()返回Class中所有的字段，包括私有字段</span></span><br><span class="line">        <span class="comment">//getFields() 只返回公共字段，即有public修改的字段</span></span><br><span class="line">        <span class="built_in">this</span>.fields = t.getClass().getDeclaredFields();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断已经注解的字段是否为空</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">getParamChecksResults</span><span class="params">()</span> &#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="type">R</span> <span class="variable">res</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">R</span>();</span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">        <span class="keyword">for</span> (Field field :</span><br><span class="line">                fields) &#123;</span><br><span class="line">            <span class="comment">// 使用注解的必要字段不能为空--如果没有注解直接跳过</span></span><br><span class="line">            <span class="type">ParamsCheck</span> <span class="variable">annotation</span> <span class="operator">=</span> field.getAnnotation(ParamsCheck.class);</span><br><span class="line">            <span class="keyword">if</span> (annotation == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 判断使用注解的字段是否为空</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> field.getName();</span><br><span class="line">            <span class="type">char</span>[] tempChar = name.toCharArray();</span><br><span class="line">            tempChar[<span class="number">0</span>] -= <span class="number">32</span>;</span><br><span class="line">            <span class="comment">//获得方法名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">tempStr</span> <span class="operator">=</span> <span class="string">&quot;get&quot;</span> + String.valueOf(tempChar);</span><br><span class="line">            <span class="comment">//方法名为key，标签属性attributeName为value</span></span><br><span class="line">            map.put(tempStr, annotation.attributeName());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry :</span><br><span class="line">                map.entrySet()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> entry.getKey();</span><br><span class="line">            <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> entry.getValue();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 获得方法的对象</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(key);</span><br><span class="line">                <span class="comment">// 运行方法 获得属性的值</span></span><br><span class="line">                <span class="type">Object</span> <span class="variable">invoke</span> <span class="operator">=</span> method.invoke(t);</span><br><span class="line">                <span class="comment">// 校验属性的值是否为空</span></span><br><span class="line">                <span class="keyword">if</span> (invoke == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(invoke)) &#123;</span><br><span class="line">                    flag = <span class="literal">false</span>;</span><br><span class="line">                    sb.append(<span class="string">&quot;,&quot;</span>).append(value + <span class="string">&quot;不能为空&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag == <span class="literal">false</span>) &#123;</span><br><span class="line">            res = <span class="keyword">new</span> <span class="title class_">R</span>(sb.toString().substring(<span class="number">1</span>), <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res = <span class="keyword">new</span> <span class="title class_">R</span>(<span class="string">&quot;校验成功&quot;</span>, <span class="string">&quot;0&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HashMap初始化多少"><a href="#HashMap初始化多少" class="headerlink" title="HashMap初始化多少"></a>HashMap初始化多少</h3><p>为避免扩容提高性能。</p>
+<p>初始化的值为2的幂次方，并且需要注意负载因子（默认为0.75：如果输入7个，就不能初始化为8，应该为16）。</p>
+<h2 id="Arango"><a href="#Arango" class="headerlink" title="Arango"></a>Arango</h2><h3 id="arange中查询数据"><a href="#arange中查询数据" class="headerlink" title="arange中查询数据"></a>arange中查询数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> organization</span><br><span class="line"><span class="keyword">filter</span> c.uuid<span class="operator">=</span><span class="operator">=</span>&quot;528971722846769152&quot;</span><br><span class="line"><span class="keyword">return</span> c</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
