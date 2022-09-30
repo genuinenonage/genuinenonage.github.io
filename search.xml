@@ -5574,7 +5574,7 @@ root:为数据库用户名
 <li>使用ssh-kengen生成key pari</li>
 </ol>
 <p>“-t rsa”表示使用密钥的加密类型，还可以为dsa；-C设置注释文字，比如你的邮箱“YourEmail”</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t -rsa -C <span class="string">&quot;2429872493@qq.com&quot;</span></span><br><span class="line"><span class="comment"># 直接回车</span></span><br><span class="line"><span class="comment"># 输入该密钥的授权密码 可以不写为空，直接回车</span></span><br><span class="line"><span class="comment"># 确认该密钥的授权密码</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的邮箱&quot;</span></span><br><span class="line"><span class="comment"># 直接回车</span></span><br><span class="line"><span class="comment"># 输入该密钥的授权密码 可以不写为空，直接回车</span></span><br><span class="line"><span class="comment"># 确认该密钥的授权密码</span></span><br></pre></td></tr></table></figure>
 
 <p>identification保存在~/.ssh/id_rsa</p>
 <p>public key保存在~/.ssh/id_rsa.pub</p>
