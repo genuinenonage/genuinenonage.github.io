@@ -5586,8 +5586,7 @@ root:为数据库用户名
 <ol start="5">
 <li>在github等代码托管平台上，为当前账号添加新的SSH公钥，相当于注册到github服务器的授信任列表中，该列表可以添加多个SSH客户端的公钥，title用于区分识别多个SSH Key</li>
 </ol>
-<h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="Git-commit规范"><a href="#Git-commit规范" class="headerlink" title="Git commit规范"></a>Git commit规范</h3><p>![image-20220930101529707](/Users/genuine/Library/Application Support/typora-user-images/image-20220930101529707.png)</p>
-<p><img src="https://i.loli.net/2021/02/26/y7fiPpJlIHxkTmh.png" alt="image.png"></p>
+<h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="Git-commit规范"><a href="#Git-commit规范" class="headerlink" title="Git commit规范"></a>Git commit规范</h3><p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/2022-09-30-030911.png" alt="image-20220930110911697"></p>
 ]]></content>
       <categories>
         <category>git</category>
