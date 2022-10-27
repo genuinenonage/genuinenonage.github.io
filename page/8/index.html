@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,145 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2-%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">搭建hexo个人博客</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-05T00:00:00+08:00">2020-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-07-29 23:12:00" itemprop="dateModified" datetime="2020-07-29T23:12:00+08:00">2020-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简要搭建hexo个人博客"><a href="#简要搭建hexo个人博客" class="headerlink" title="简要搭建hexo个人博客"></a>简要搭建hexo个人博客</h2><ul>
+<li>首先电脑里要有Node.js(要选择安装upm)和git的应用程序。<br>接下来在cmd中操作即可。</li>
+<li>cmd中输入<blockquote>
+<p>npm install -g hexo-cli</p>
+</blockquote>
+</li>
+<li>安装hexo  </li>
+<li>选择合适的博客存放文件夹，输入<blockquote>
+<p>hexo init blog </p>
+</blockquote>
+</li>
+<li>等待初始化。<blockquote>
+<p>cd blog<br>hexo s</p>
+</blockquote>
+</li>
+<li>启动服务，可以在浏览器中看到个人博客，地址：localhost:4000/</li>
+</ul>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>清理一下，清理缓存和已生成的静态文件</p>
+<blockquote>
+<p>hexo clean</p>
+</blockquote>
+<p>生成一下</p>
+<blockquote>
+<p>hexo g  </p>
+</blockquote>
+<p>启动一下</p>
+<blockquote>
+<p>hexo s</p>
+</blockquote>
+<h3 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h3><ul>
+<li>在github创建仓库，命名有强制要求：<blockquote>
+<p>//例如：nicheng.github.io<br>你的昵称+  .github.io</p>
+</blockquote>
+</li>
+<li>更改_config.yml 文件<blockquote>
+<p>deploy:</p>
+<blockquote>
+<p>type: git<br>repo: 仓库地址<br>branch: master</p>
+</blockquote>
+</blockquote>
+</li>
+<li>部署到github上,cmd输入:<blockquote>
+<p>npm install –save hexo-deplover-git<br>hexo d</p>
+</blockquote>
+</li>
+<li>输入昵称密码</li>
+<li>部署成功，浏览器访问 你的昵称.github.io</li>
+</ul>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><ul>
+<li>卸载hexo<br>  npm uninstall hexo-cli -g<br>  然后再文件夹中的blog，手动卸载。<br>  注意：进行重装之前，如果还是在原来的位置上，必须手动清理了才能再次安装。</li>
+</ul>
+<h2 id="再次搭建博客"><a href="#再次搭建博客" class="headerlink" title="再次搭建博客"></a>再次搭建博客</h2><p>通过npm搭建博客</p>
+<p>通过npm安装主题，选择的NexT</p>
+<p>评论开始使用的手机号登录的畅言，后来换成了github的小插件 utterances</p>
+<p>在next文档中，查看，添加本地缓存</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
