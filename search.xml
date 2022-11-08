@@ -2515,7 +2515,39 @@ interface GreetingService
 <li><strong>-o 或 –only-matching</strong> : 只显示匹配PATTERN 部分。</li>
 <li><strong>-v 或 –invert-match</strong> : 显示不包含匹配文本的所有行。</li>
 </ul>
-<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><p>查询当前所设定的状态。</p>
+<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><h3 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h3><p>启动虚拟机会有两个选项</p>
+<p><img src="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png" alt="image.png"></p>
+<p>第一个是正常启动</p>
+<p>第二个是修改模式启动（出现问题的时候使用）</p>
+<h3 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h3><p>立即关机</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shutdown now</span><br></pre></td></tr></table></figure>
+
+<p>10分钟后关机</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shutdown -h 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p>立即重启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shutdown -r now</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>十分钟后重启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shutdown -r 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ol>
+<li><p>开机root登录</p>
+</li>
+<li><p>安装X（X Window System）命令：</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum groupinstall &quot;X Windwo System&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装图形界面软件GNOME Desktop命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum groupinstall &quot;GNOME Desktop&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>安装完成，输入命令<code>startx</code>或者 <code>init 3</code>来进入图形界面，输入命令<code>init 5</code>进入命令行界面</li>
+</ol>
+<h4 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h4><p>查询当前所设定的状态。</p>
 <p>multi-user.target 相当于以前的 level 3，也就是命令行终端；而 graphical.target 相当于以前的 level 5，也就是图形界面。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure>
 
@@ -2525,10 +2557,6 @@ interface GreetingService
 <p>开机以图形界面启动，执行：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></table></figure>
 
-<h3 id="开机选项"><a href="#开机选项" class="headerlink" title="开机选项"></a>开机选项</h3><p>启动虚拟机会有两个选项</p>
-<p><img src="https://i.loli.net/2020/12/11/OGVxFNMA7BI8lRc.png" alt="image.png"></p>
-<p>第一个是正常启动</p>
-<p>第二个是修改模式启动（出现问题的时候使用）</p>
 <h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ol>
 <li><p>root修改密码</p>
 <p>直接输入passwd修改</p>
@@ -2539,10 +2567,10 @@ interface GreetingService
 </ol>
 ]]></content>
       <categories>
-        <category>linux</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>linux</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
