@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/02/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/02/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="post-title-link" itemprop="url">三次握手和四次挥手</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-02 16:47:00 / 修改时间：16:59:04" itemprop="dateCreated datePublished" datetime="2021-04-02T16:47:00+08:00">2021-04-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>建立客户端与服务器的tcp连接。</p>
+<ol>
+<li>建立连接，客户端发送syn包（seq=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
+<li>服务器收到syn包，确认客户端的SYN(ack=j+1)，同时也发送一个SYN包（seq=k），即SYN+ACK包，此时服务器进入SYN_RECV状态。</li>
+<li>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，词包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手 。</li>
+</ol>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>终止客户端与服务器的tcp连接</p>
+<ol>
+<li>TCP客户端发送一个FIN（带有FIN附加标记的报文段），用来关闭客户到服务器的数据传送。</li>
+<li>服务器收到FIN，发挥一个ACK，确认序号为收到序号加1。和SYN一样，一个FIN将占用一个序号。（先发送ACK的目的是为了防止这段时间内，对方重传FIN报文段）</li>
+<li>服务器关闭客户端的连接，发送一个FIN给客户端。</li>
+<li>客户端发送ACK报文确认，并将确认序号设置为序号加1。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1352,81 +1434,6 @@
 <p>加法直接两数二进制相加；</p>
 <p>减法变为 加 负数。</p>
 <p>负数二进制怎么求：正数二进制 先取反 然后 加1 求的负数。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">https、公钥、私钥、数字证书</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-29 09:40:00 / 修改时间：16:44:55" itemprop="dateCreated datePublished" datetime="2020-12-29T09:40:00+08:00">2020-12-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="https通信的完整流程"><a href="#https通信的完整流程" class="headerlink" title="https通信的完整流程"></a>https通信的完整流程</h3><p>浏览器请求服务器，首先发送请求，服务器返回数字证书，数字证书中有3个东西（证书内容、加密密文、加密算法），当证书内容转变为hash值与密文通过CA机构的公钥解密获得的hash值相同时，表明该证书合法，并且从数字证书的证书内容中获得服务器端公钥。由于非对称密钥的加解密耗时，所以客户端会使用自己的对称密钥通过服务器公钥加密后发送给服务器，之后服务器通过自己的私钥进行解密，获得对称密钥，之后服务器和客户端通过对称密钥进行通信</p>
-<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>两把密匙：公钥和私钥</p>
-<p>使用公钥加密时，用私钥解密。</p>
-<p>使用私钥加密时，用公钥解密。</p>
-<p>私钥：由服务器保留。</p>
-<p>公钥：服务器发送给客户端使用 。</p>
 
       
     </div>

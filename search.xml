@@ -180,6 +180,75 @@
       </tags>
   </entry>
   <entry>
+    <title>IDEA的使用</title>
+    <url>/2021/04/06/IDEA%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><h2 id="包围代码"><a href="#包围代码" class="headerlink" title="包围代码"></a>包围代码</h2><p><code>option + command + T</code>快速生成 try/catch/finally if/else do/while synchronized 等包围代码</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>例如 <code>_a</code> 替换成 <code>A</code> </p>
+<h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><p>通过 <code>_([a-z])</code>选中 <code>_a</code> ，通过<code>\u$1</code>替换成<code>A</code></p>
+<p>每一个<code>()</code>都代表一个捕获组，使用<code>$n</code>进行分组，注意下标不能乱</p>
+<h4 id="大小写如何转换"><a href="#大小写如何转换" class="headerlink" title="大小写如何转换"></a>大小写如何转换</h4><p><code>\l</code>将一个字符更改为小写</p>
+<p><code>\u</code>将一个字符更改为大写</p>
+<p><code>\L</code>将所有字符更改为小写</p>
+<p><code>\U</code>将所有字符更改为大写</p>
+<h2 id="删除了iml文件怎么恢复"><a href="#删除了iml文件怎么恢复" class="headerlink" title="删除了iml文件怎么恢复"></a>删除了iml文件怎么恢复</h2><p>idea中项目服务的iml文件可以删除，想要重新生成，重新通过idea的maven插件加载对应服务的pom.xml文件就好了</p>
+<h2 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h2><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
+<p>步骤：加入要隐藏.idea文件</p>
+<ol>
+<li>打开file–》settings–》editor—-&gt;file types</li>
+<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
+<li>点击应用，点击ok</li>
+</ol>
+<ol start="4">
+<li>我们可以发现，idea文件被隐藏</li>
+<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
+</ol>
+<p>我添加了如下想要隐藏的文件</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到idea过期怎么办"><a href="#遇到idea过期怎么办" class="headerlink" title="遇到idea过期怎么办"></a>遇到idea过期怎么办</h2><p>打开<code>BetterIntelliJ</code>插件后，重启，点击插件reset功能，查看idea可使用截止日期在一个月以后，关闭插件即可。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+        <category>IDEA</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Maven知识点</title>
+    <url>/2020/12/22/Maven/</url>
+    <content><![CDATA[<h2 id="Maven以来中的scope的作用和用法"><a href="#Maven以来中的scope的作用和用法" class="headerlink" title="Maven以来中的scope的作用和用法"></a>Maven以来中的scope的作用和用法</h2><p>举例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="scope的值有以下五种："><a href="#scope的值有以下五种：" class="headerlink" title="scope的值有以下五种："></a>scope的值有以下五种：</h3><ol>
+<li><p>compile（默认）</p>
+<p>表示被依赖的项目需要参与当前项目的编译，包括后续的测试、运行周期。在部署的时候会打包到lib目录下，项目在编译、测试、运行阶段都需要。</p>
+</li>
+<li><p>test</p>
+<p>仅仅在测试的时候才会使用。不会打包。</p>
+</li>
+<li><p>runtime</p>
+<p>仅仅用于运行环境，在编译和测试环境下不会使用</p>
+</li>
+<li><p>privided</p>
+<p>用于编译和测试环境，不会打包到lib目录中。</p>
+</li>
+<li><p>system</p>
+<p>从参与度来说与provided相同，但是被依赖项不会从maven仓库获取，而是在本地文件系统中获取，一定需要配合systemPath属性使用。</p>
+</li>
+</ol>
+<h3 id="为什么需要区分scope"><a href="#为什么需要区分scope" class="headerlink" title="为什么需要区分scope"></a>为什么需要区分scope</h3><p>用来限制dependency的范围，可以在不用环境打包不用的jar包，比如junit测试类的jar包不需要再编译运行的时候，就可以设置scope为test。</p>
+<h2 id="optional标签为true什么意思"><a href="#optional标签为true什么意思" class="headerlink" title="optional标签为true什么意思"></a>optional标签为true什么意思</h2><p>举例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用optional标签的话，其他项目依赖此项目就不会进行传递，只能在本项目中使用。</p>
+]]></content>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Kafka学习-未完成</title>
     <url>/2020/12/10/Kafka/</url>
     <content><![CDATA[<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>定义</p>
@@ -272,67 +341,6 @@
 <p>与Flume很像</p>
 <p>重点：架构深入（面试）和API（开发）</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>MQ介绍</title>
-    <url>/2020/09/17/MQ%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="MQ介绍"><a href="#MQ介绍" class="headerlink" title="MQ介绍"></a>MQ介绍</h2><p>消息队列，先进先出的数据结构。</p>
-<p>发送方 –》 RPC –》 接受方<br>发送发 –》 消息发送MQ –》 有消息 –》 接受方</p>
-<p>优点：</p>
-<ul>
-<li>应用解耦：不同系统之间通过 MQ存储消息 连接消息。</li>
-<li>流量削峰：用户请求缓存到MQ中，系统在 MQ 中拉取支持的数量的请求。</li>
-<li>数据分发：消息生产方不需要关心谁来使用数据，只需要将数据发送到消息队列，数据使用方直接在消息队列中直接获取数据即可。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>系统可用性降低：系统引入外部依赖越多，系统稳定性越差，一旦MQ宕机，会对业务造成影响。<ul>
-<li>如何保证MQ的高可用？</li>
-</ul>
-</li>
-<li>系统复杂度提高：MQ加入增加系统复杂度，以前系统间时同步的远程调用，现在是MQ进行异步调用。<ul>
-<li>如何保证消息 没有被重复消费？怎么处理消息丢失情况？传递的顺序性？</li>
-</ul>
-</li>
-<li>一致性问题？<ul>
-<li>如何保证消息数据处理的一致性？</li>
-</ul>
-</li>
-</ul>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
-  </entry>
-  <entry>
-    <title>Maven知识点</title>
-    <url>/2020/12/22/Maven/</url>
-    <content><![CDATA[<h2 id="Maven以来中的scope的作用和用法"><a href="#Maven以来中的scope的作用和用法" class="headerlink" title="Maven以来中的scope的作用和用法"></a>Maven以来中的scope的作用和用法</h2><p>举例如下：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="scope的值有以下五种："><a href="#scope的值有以下五种：" class="headerlink" title="scope的值有以下五种："></a>scope的值有以下五种：</h3><ol>
-<li><p>compile（默认）</p>
-<p>表示被依赖的项目需要参与当前项目的编译，包括后续的测试、运行周期。在部署的时候会打包到lib目录下，项目在编译、测试、运行阶段都需要。</p>
-</li>
-<li><p>test</p>
-<p>仅仅在测试的时候才会使用。不会打包。</p>
-</li>
-<li><p>runtime</p>
-<p>仅仅用于运行环境，在编译和测试环境下不会使用</p>
-</li>
-<li><p>privided</p>
-<p>用于编译和测试环境，不会打包到lib目录中。</p>
-</li>
-<li><p>system</p>
-<p>从参与度来说与provided相同，但是被依赖项不会从maven仓库获取，而是在本地文件系统中获取，一定需要配合systemPath属性使用。</p>
-</li>
-</ol>
-<h3 id="为什么需要区分scope"><a href="#为什么需要区分scope" class="headerlink" title="为什么需要区分scope"></a>为什么需要区分scope</h3><p>用来限制dependency的范围，可以在不用环境打包不用的jar包，比如junit测试类的jar包不需要再编译运行的时候，就可以设置scope为test。</p>
-<h2 id="optional标签为true什么意思"><a href="#optional标签为true什么意思" class="headerlink" title="optional标签为true什么意思"></a>optional标签为true什么意思</h2><p>举例如下：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用optional标签的话，其他项目依赖此项目就不会进行传递，只能在本项目中使用。</p>
-]]></content>
-      <tags>
-        <tag>maven</tag>
-      </tags>
   </entry>
   <entry>
     <title>Nginx使用</title>
@@ -478,42 +486,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>IDEA的使用</title>
-    <url>/2021/04/06/IDEA%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><h2 id="包围代码"><a href="#包围代码" class="headerlink" title="包围代码"></a>包围代码</h2><p><code>option + command + T</code>快速生成 try/catch/finally if/else do/while synchronized 等包围代码</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>例如 <code>_a</code> 替换成 <code>A</code> </p>
-<h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><p>通过 <code>_([a-z])</code>选中 <code>_a</code> ，通过<code>\u$1</code>替换成<code>A</code></p>
-<p>每一个<code>()</code>都代表一个捕获组，使用<code>$n</code>进行分组，注意下标不能乱</p>
-<h4 id="大小写如何转换"><a href="#大小写如何转换" class="headerlink" title="大小写如何转换"></a>大小写如何转换</h4><p><code>\l</code>将一个字符更改为小写</p>
-<p><code>\u</code>将一个字符更改为大写</p>
-<p><code>\L</code>将所有字符更改为小写</p>
-<p><code>\U</code>将所有字符更改为大写</p>
-<h2 id="删除了iml文件怎么恢复"><a href="#删除了iml文件怎么恢复" class="headerlink" title="删除了iml文件怎么恢复"></a>删除了iml文件怎么恢复</h2><p>idea中项目服务的iml文件可以删除，想要重新生成，重新通过idea的maven插件加载对应服务的pom.xml文件就好了</p>
-<h2 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h2><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
-<p>步骤：加入要隐藏.idea文件</p>
-<ol>
-<li>打开file–》settings–》editor—-&gt;file types</li>
-<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
-<li>点击应用，点击ok</li>
-</ol>
-<ol start="4">
-<li>我们可以发现，idea文件被隐藏</li>
-<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
-</ol>
-<p>我添加了如下想要隐藏的文件</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
-
-<h2 id="遇到idea过期怎么办"><a href="#遇到idea过期怎么办" class="headerlink" title="遇到idea过期怎么办"></a>遇到idea过期怎么办</h2><p>打开<code>BetterIntelliJ</code>插件后，重启，点击插件reset功能，查看idea可使用截止日期在一个月以后，关闭插件即可。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-        <category>IDEA</category>
-      </categories>
-      <tags>
-        <tag>IDEA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Oracle的使用</title>
     <url>/2020/07/14/Oracle%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>查看触发器</p>
@@ -586,6 +558,44 @@ sqlplus / as sysdba
 ]]></content>
   </entry>
   <entry>
+    <title>MQ介绍</title>
+    <url>/2020/09/17/MQ%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="MQ介绍"><a href="#MQ介绍" class="headerlink" title="MQ介绍"></a>MQ介绍</h2><p>消息队列，先进先出的数据结构。</p>
+<p>发送方 –》 RPC –》 接受方<br>发送发 –》 消息发送MQ –》 有消息 –》 接受方</p>
+<p>优点：</p>
+<ul>
+<li>应用解耦：不同系统之间通过 MQ存储消息 连接消息。</li>
+<li>流量削峰：用户请求缓存到MQ中，系统在 MQ 中拉取支持的数量的请求。</li>
+<li>数据分发：消息生产方不需要关心谁来使用数据，只需要将数据发送到消息队列，数据使用方直接在消息队列中直接获取数据即可。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>系统可用性降低：系统引入外部依赖越多，系统稳定性越差，一旦MQ宕机，会对业务造成影响。<ul>
+<li>如何保证MQ的高可用？</li>
+</ul>
+</li>
+<li>系统复杂度提高：MQ加入增加系统复杂度，以前系统间时同步的远程调用，现在是MQ进行异步调用。<ul>
+<li>如何保证消息 没有被重复消费？怎么处理消息丢失情况？传递的顺序性？</li>
+</ul>
+</li>
+<li>一致性问题？<ul>
+<li>如何保证消息数据处理的一致性？</li>
+</ul>
+</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+  </entry>
+  <entry>
+    <title>tomcat问题</title>
+    <url>/2020/10/12/Tomcat%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="乱码问题"><a href="#乱码问题" class="headerlink" title="乱码问题"></a>乱码问题</h3><h5 id="springmvc启动tomcate控制台乱码问题"><a href="#springmvc启动tomcate控制台乱码问题" class="headerlink" title="springmvc启动tomcate控制台乱码问题"></a>springmvc启动tomcate控制台乱码问题</h5><p>在tomcat文件夹中的conf包下的logging.properties中找到</p>
+<p>java.util.logging.ConsoleHandler.encoding = UTF-8</p>
+<p>将这行代码注销改为</p>
+<p>java.util.logging.ConsoleHandler.encoding = GBK</p>
+<p>重启tomcat即可！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Poi的使用</title>
     <url>/2022/10/20/Poi%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Poi的使用"><a href="#Poi的使用" class="headerlink" title="Poi的使用"></a>Poi的使用</h1><h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- poi-ooxml是poi的升级版，直接使用poi-ooxm即可 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 下面是easypoi的依赖，同时引入不影响--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.afterturn<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easypoi-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 下面是jxl的依赖，同时引入不影响--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.jexcelapi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -622,14 +632,20 @@ sqlplus / as sysdba
       </tags>
   </entry>
   <entry>
-    <title>tomcat问题</title>
-    <url>/2020/10/12/Tomcat%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="乱码问题"><a href="#乱码问题" class="headerlink" title="乱码问题"></a>乱码问题</h3><h5 id="springmvc启动tomcate控制台乱码问题"><a href="#springmvc启动tomcate控制台乱码问题" class="headerlink" title="springmvc启动tomcate控制台乱码问题"></a>springmvc启动tomcate控制台乱码问题</h5><p>在tomcat文件夹中的conf包下的logging.properties中找到</p>
-<p>java.util.logging.ConsoleHandler.encoding = UTF-8</p>
-<p>将这行代码注销改为</p>
-<p>java.util.logging.ConsoleHandler.encoding = GBK</p>
-<p>重启tomcat即可！</p>
+    <title>Zookeeper了解</title>
+    <url>/2020/12/11/Zookeeper/</url>
+    <content><![CDATA[<p>概述</p>
+<p>Zookeeper是一个开源分布式的，为分布式应用提供协调服务的Apache项目。</p>
+<p>工作机制</p>
+<p>从设计模式角度理解</p>
+<p>是一个基于观察者模式设计的分布式服务管理框架，负责存储和管理大家都关系的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就负责通知已经在zookeeper上注册的观察者做出反应。</p>
 ]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>zookeeper</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
@@ -817,22 +833,6 @@ sqlplus / as sysdba
 <h2 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h2><h3 id="v-for-结合列表"><a href="#v-for-结合列表" class="headerlink" title="v-for 结合列表"></a>v-for 结合列表</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;example-1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.message&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>Zookeeper了解</title>
-    <url>/2020/12/11/Zookeeper/</url>
-    <content><![CDATA[<p>概述</p>
-<p>Zookeeper是一个开源分布式的，为分布式应用提供协调服务的Apache项目。</p>
-<p>工作机制</p>
-<p>从设计模式角度理解</p>
-<p>是一个基于观察者模式设计的分布式服务管理框架，负责存储和管理大家都关系的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就负责通知已经在zookeeper上注册的观察者做出反应。</p>
-]]></content>
-      <categories>
-        <category>大数据</category>
-      </categories>
-      <tags>
-        <tag>zookeeper</tag>
-      </tags>
   </entry>
   <entry>
     <title></title>
@@ -1051,21 +1051,41 @@ sqlplus / as sysdba
 ]]></content>
   </entry>
   <entry>
-    <title>组件，框架，中间件</title>
-    <url>/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
-<h6 id="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"><a href="#中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。" class="headerlink" title="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"></a>中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</h6><h6 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h6><p>IDC的分类：</p>
-<ol>
-<li>终端仿真/屏幕转换</li>
-<li>数据访问</li>
-<li>远程过程调用</li>
-<li>消息中间件</li>
-<li>交易中间件</li>
-<li>对象中间件</li>
-</ol>
-<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
+    <title>使用NATAPP内网穿透</title>
+    <url>/2022/12/09/%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
+    <content><![CDATA[<h1 id="Mac使用NATAPP内网穿透"><a href="#Mac使用NATAPP内网穿透" class="headerlink" title="Mac使用NATAPP内网穿透"></a>Mac使用NATAPP内网穿透</h1><h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>最近很多人居家办公，前后端联调需要一个能访问的公网环境。</p>
+<p>内网穿透，也即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。</p>
+<p>能让其他人像访问公网一样访问你的内网。</p>
+<h2 id="下载NATAPP"><a href="#下载NATAPP" class="headerlink" title="下载NATAPP"></a>下载NATAPP</h2><p>在官网下载地址：<a href="https://natapp.cn/">NATAPP官方网下载地址</a></p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092234581.png" alt="image-20221209092234581"></p>
+<p>下载完成解压后，就可以得到我们的资源文件。</p>
+<p>官方文档也比较详细：<a href="https://natapp.cn/article/natapp_newbie">官方文档</a></p>
+<h2 id="NATAPP配置与启动"><a href="#NATAPP配置与启动" class="headerlink" title="NATAPP配置与启动"></a>NATAPP配置与启动</h2><h3 id="NATAPP文件授权"><a href="#NATAPP文件授权" class="headerlink" title="NATAPP文件授权"></a>NATAPP文件授权</h3><p>下载解压完成后，这个安装包不能直接打开运行。需要给NATAPP文件授权：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 下载镜像文件所在目录</span><br><span class="line">chmod a+x natapp</span><br></pre></td></tr></table></figure>
+
+<p>授权完成后，就能看到该文件被识别为Unix可执行文件。</p>
+<h3 id="获取NATAPP的authtoken"><a href="#获取NATAPP的authtoken" class="headerlink" title="获取NATAPP的authtoken"></a>获取NATAPP的authtoken</h3><p>进入NATAPP官网：进行免费注册，注册成功后，选择左边菜单的购买隧道，如图：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092854215.png" alt="image-20221209092854215"></p>
+<p>选择第一个免费的就行，不过此处需要实名认证支付宝授权。我们进行实名授权，授权完成后，我们来到购买隧道页面：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093052318.png" alt="image-20221209093052318"></p>
+<p>此处的端口根据项目的端口来填，之后可以随时更改。就比如说你想让别人访问你本机的8080端口，那么这里就填写8080即可。点击免费购买完成购买。</p>
+<p>购买完成后在我的隧道中可以看到刚才购买的隧道：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093117648.png" alt="image-20221209093117648"></p>
+<p>复制authtoken即可。</p>
+<h3 id="启动NATAPP"><a href="#启动NATAPP" class="headerlink" title="启动NATAPP"></a>启动NATAPP</h3><p>来到终端，到该文件夹的目录运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./natapp -authtoken=你的authtoken</span><br></pre></td></tr></table></figure>
+
+<p>运行成功后如图所示：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093915899.png" alt="image-20221209093915899"></p>
+<p>图中的Forwarding信息 <a href="http://xwimcg.natappfree.cc/">http://xwimcg.natappfree.cc</a> -&gt; <strong>127.0.0.1:8080</strong> 代表你访问 <a href="http://xwimcg.natappfree.cc/">http://xwimcg.natappfree.cc</a> 相当于访问本地的 <strong>127.0.0.1:8080</strong>。<br>到此内网穿透就完成了。</p>
 ]]></content>
+      <categories>
+        <category>Mac</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>内网穿透</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
@@ -1120,26 +1140,21 @@ sqlplus / as sysdba
 ]]></content>
   </entry>
   <entry>
-    <title>消息中间件</title>
-    <url>/2020/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>非底层操作系统软件，非业务应用软件，不是直接给最终用户使用的，不能直接给客户带来价值的软件统称为中间件。  </p>
-<h3 id="什么是消息中间件"><a href="#什么是消息中间件" class="headerlink" title="什么是消息中间件"></a>什么是消息中间件</h3><p>关注数据的发送和接受，利用高效可靠的异步消息传递机制集成分布式系统。  </p>
-<h3 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h3><p>Java消息服务（Java Message Service），一个Java平台中关于面向消息中间件的API，用于两个应用程序之间，或分布式系统中发送消息，进行异步通信。  </p>
-<h4 id="JSM相关概念"><a href="#JSM相关概念" class="headerlink" title="JSM相关概念"></a>JSM相关概念</h4><p>提供者：实现JSM规范的消息中间件服务器<br>客户端：发送或接受消息的应用程序<br>生产者/发布者：创建并发送消息的客户端<br>消费者/订阅者：接受并处理消息的客户端<br>消息：应用程序之间传递的数据内容<br>消息模式：在客户端之间传递消息的方式，JSM中定义了主题和队列两种模式。</p>
-<h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><p>advanced massage queuing protocol 是一个提供统一服务的应用层标准协议，基于此协议的客户端与消息中间件传递消息，不受客户端/中间件不同产品，不同开发语言等条件的限制。  </p>
-<h3 id="常见消息中间件"><a href="#常见消息中间件" class="headerlink" title="常见消息中间件"></a>常见消息中间件</h3><h4 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h4><p>完全支持JMS1.1和J2EE1.4规范的JMS Provider实现。<br>优点：遵循JMS规范，安装部署方便。    </p>
-<h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>开源的AMQP实现，服务端采用Erlang语言编写。用于分布式系统中存储转发消息。<br>优点：继承Erlang天生的并发性，最初用于金融行业，稳定性，安全性有保障。  </p>
-<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><p>高吞吐量的分布式发布订阅消息系统，分布式的、分区的、可靠的分布式日志存储服务。<br>优点：依赖zk，可动态扩展节点，高性能、高吞吐量、无限扩容，消息可指定追溯。  </p>
-<h3 id="队列模式"><a href="#队列模式" class="headerlink" title="队列模式"></a>队列模式</h3><p>客户端包括生产者和消费者<br>队列中的消息只能被一个消费者消费<br>消费者可以随时消费队列中的消息  </p>
-<h3 id="主题模型"><a href="#主题模型" class="headerlink" title="主题模型"></a>主题模型</h3><p>客户端包括发布者和订阅者<br>主题中的消息被所有订阅者消费<br>消费者不能消费订阅之前就发送到主题中的消息  </p>
-<h3 id="JMS编码接口"><a href="#JMS编码接口" class="headerlink" title="JMS编码接口"></a>JMS编码接口</h3><p>ConnectionFactory 用于创建连接到消息中间件的连接工厂<br>Connection 应用程序和消息服务器之间的通信链路<br>Destination 消息发布和接受的地点，包括队列或主题<br>Session 一个单线程的上下文，用于发送和接受消息<br>MessageConsumer 由会话创建，用于接受发送到目标的消息<br>MessageProducer 有会话创建，用于发送消息到目标<br>Message 是在消费者和生产者之间传送的对象，消息头，一组消息属性，一个消息体。</p>
+    <title>组件，框架，中间件</title>
+    <url>/2020/07/17/%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%9E%84%E4%BB%B6%EF%BC%8C%E7%BB%84%E4%BB%B6%EF%BC%8C%E6%A1%86%E6%9E%B6%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="架构，构件，组件，框架，中间件"><a href="#架构，构件，组件，框架，中间件" class="headerlink" title="架构，构件，组件，框架，中间件"></a>架构，构件，组件，框架，中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>中间件是一种独立的系统软件或服务程序，分布式应用软件借助它在不同的技术之间 共享资源。<br>中间件位于客户机/服务器的操作系统上，管理计算机资源和网络通信。连接两个独立应用程序或独立系统的软件。<br>相连接的系统具有不同的接口也能交换信息。<br>执行中间件是介于操作系统和应用软件之间，为应用软件提供服务功能的软件，有消息中间件，交易中间件，应用服务器等。</p>
+<h6 id="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"><a href="#中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。" class="headerlink" title="中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。"></a>中间件是一种计算机软件连接了软件部件或应用程序。这种软件有一组服务构成，这些服务包括允许多进程运行在一个或多个机器上以达到在网络中互相交互的目的。</h6><h6 id="中间件的分类"><a href="#中间件的分类" class="headerlink" title="中间件的分类"></a>中间件的分类</h6><p>IDC的分类：</p>
+<ol>
+<li>终端仿真/屏幕转换</li>
+<li>数据访问</li>
+<li>远程过程调用</li>
+<li>消息中间件</li>
+<li>交易中间件</li>
+<li>对象中间件</li>
+</ol>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>一个具备完备功能的服务接口，可以使用一个组件构建一个系统。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>构成一类特定可复用设计的一组相互协作的类，框架规定了你的应用程序的体系结构。<br>它定义了整体结构，类和对象的分割，各部分的主要责任，类和对象怎么协作，以及控制流程。<br>实现者无需考虑框架层已经实现好的设计，只要按照开发的要求设计就可以了，然后把开发好的东西放到框架中就可以了。框架一般是成熟的，不断升级的软件。</p>
 ]]></content>
-      <categories>
-        <category>中间件</category>
-      </categories>
-      <tags>
-        <tag>中间件</tag>
-      </tags>
   </entry>
   <entry>
     <title>编程技巧</title>
@@ -1164,6 +1179,34 @@ sqlplus / as sysdba
 ]]></content>
   </entry>
   <entry>
+    <title>计划安排</title>
+    <url>/2020/01/01/%E8%AE%A1%E5%88%92%E5%AE%89%E6%8E%92/</url>
+    <content><![CDATA[<p>这次选择离职我下了很大的决心，我一定要坚持学习和实践，争取到进入阿里等大厂的机会。<br>仅仅是学习，我是没有机会的。我需要做出相应的实践成果。<br>我想要从事的是高并发的方向。<br>努力学习。<br>每天锻炼不忘初衷。就想大一时一样。<br>做事要稳。<br>Java基础，数据结构，算法，高并发，数据库，计算机网络，微服务等都是我要努力的方向。加油。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>消息中间件</title>
+    <url>/2020/07/20/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>非底层操作系统软件，非业务应用软件，不是直接给最终用户使用的，不能直接给客户带来价值的软件统称为中间件。  </p>
+<h3 id="什么是消息中间件"><a href="#什么是消息中间件" class="headerlink" title="什么是消息中间件"></a>什么是消息中间件</h3><p>关注数据的发送和接受，利用高效可靠的异步消息传递机制集成分布式系统。  </p>
+<h3 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h3><p>Java消息服务（Java Message Service），一个Java平台中关于面向消息中间件的API，用于两个应用程序之间，或分布式系统中发送消息，进行异步通信。  </p>
+<h4 id="JSM相关概念"><a href="#JSM相关概念" class="headerlink" title="JSM相关概念"></a>JSM相关概念</h4><p>提供者：实现JSM规范的消息中间件服务器<br>客户端：发送或接受消息的应用程序<br>生产者/发布者：创建并发送消息的客户端<br>消费者/订阅者：接受并处理消息的客户端<br>消息：应用程序之间传递的数据内容<br>消息模式：在客户端之间传递消息的方式，JSM中定义了主题和队列两种模式。</p>
+<h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><p>advanced massage queuing protocol 是一个提供统一服务的应用层标准协议，基于此协议的客户端与消息中间件传递消息，不受客户端/中间件不同产品，不同开发语言等条件的限制。  </p>
+<h3 id="常见消息中间件"><a href="#常见消息中间件" class="headerlink" title="常见消息中间件"></a>常见消息中间件</h3><h4 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h4><p>完全支持JMS1.1和J2EE1.4规范的JMS Provider实现。<br>优点：遵循JMS规范，安装部署方便。    </p>
+<h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>开源的AMQP实现，服务端采用Erlang语言编写。用于分布式系统中存储转发消息。<br>优点：继承Erlang天生的并发性，最初用于金融行业，稳定性，安全性有保障。  </p>
+<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><p>高吞吐量的分布式发布订阅消息系统，分布式的、分区的、可靠的分布式日志存储服务。<br>优点：依赖zk，可动态扩展节点，高性能、高吞吐量、无限扩容，消息可指定追溯。  </p>
+<h3 id="队列模式"><a href="#队列模式" class="headerlink" title="队列模式"></a>队列模式</h3><p>客户端包括生产者和消费者<br>队列中的消息只能被一个消费者消费<br>消费者可以随时消费队列中的消息  </p>
+<h3 id="主题模型"><a href="#主题模型" class="headerlink" title="主题模型"></a>主题模型</h3><p>客户端包括发布者和订阅者<br>主题中的消息被所有订阅者消费<br>消费者不能消费订阅之前就发送到主题中的消息  </p>
+<h3 id="JMS编码接口"><a href="#JMS编码接口" class="headerlink" title="JMS编码接口"></a>JMS编码接口</h3><p>ConnectionFactory 用于创建连接到消息中间件的连接工厂<br>Connection 应用程序和消息服务器之间的通信链路<br>Destination 消息发布和接受的地点，包括队列或主题<br>Session 一个单线程的上下文，用于发送和接受消息<br>MessageConsumer 由会话创建，用于接受发送到目标的消息<br>MessageProducer 有会话创建，用于发送消息到目标<br>Message 是在消费者和生产者之间传送的对象，消息头，一组消息属性，一个消息体。</p>
+]]></content>
+      <categories>
+        <category>中间件</category>
+      </categories>
+      <tags>
+        <tag>中间件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>负载均衡</title>
     <url>/2020/08/17/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</url>
     <content><![CDATA[<h3 id="什么是负载均衡"><a href="#什么是负载均衡" class="headerlink" title="什么是负载均衡"></a>什么是负载均衡</h3><p>Load balancing，即负载均衡，是一种计算机技术，用来在多个计算机（计算机集群）、网络连接、CPU、磁盘驱动器或其他资源中分配负载，以达到最优化资源使用、最大化吞吐率、最小化响应时间、同时避免过载的目的。<br>负载均衡（Load Balance），意思是将负载（工作任务，访问请求）进行平衡、分摊到多个操作单元（服务器，组件）上进行执行。是解决高性能，单点故障（高可用），扩展性（水平伸缩）的终极解决方案。</p>
@@ -1174,36 +1217,11 @@ sqlplus / as sysdba
       </tags>
   </entry>
   <entry>
-    <title>计划安排</title>
-    <url>/2020/01/01/%E8%AE%A1%E5%88%92%E5%AE%89%E6%8E%92/</url>
-    <content><![CDATA[<p>这次选择离职我下了很大的决心，我一定要坚持学习和实践，争取到进入阿里等大厂的机会。<br>仅仅是学习，我是没有机会的。我需要做出相应的实践成果。<br>我想要从事的是高并发的方向。<br>努力学习。<br>每天锻炼不忘初衷。就想大一时一样。<br>做事要稳。<br>Java基础，数据结构，算法，高并发，数据库，计算机网络，微服务等都是我要努力的方向。加油。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>轻量级与重量级</title>
     <url>/2020/07/17/%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%B8%8E%E9%87%8D%E9%87%8F%E7%BA%A7/</url>
     <content><![CDATA[<p>轻量级与重量级<br>两者是一个相对概念，主要是对应 应用框架的使用方便性和所提供的服务特性等方面作比较。<br>比如：<br>EJB是重量级框架：对编写的代码有限制，同时提供了分布式等复杂的功能。<br>Spring是轻量级框架：只需要普通的Java对象，提供中小应用使用的功能。</p>
 <p>划分一个应用是否属于轻量级还是重量级，主要看使用了多少服务。<br>使用的服务越多，容器要为普通Java对象做的工作越多，必然会影响到应用的发布时间或运行性能。<br>对于spring容器，提供了很多服务，但这些服务不是默认打开的，应用需要某种服务，需指明使用该服务。如果应用使用的服务很少，如：只使用了spring核心服务，可以认为此时应用属于轻量级的；如果应用使用了spring提供的大部分服务，这是应用就属于重量级。EJB容器就因为他默认为应用提供了EJB规范中所有的功能，所以属于重量级。</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>运算符</title>
-    <url>/2020/12/30/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>与：&amp;</p>
-<p>或：|</p>
-<p>非：~（输入1，返回0；输入0，返回1）</p>
-<p>异或：^（两个不同返回1，相同返回0）</p>
-<h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><p>左移位运算符：&lt;&lt;（运算对象向左移动指定位数，在低位补0）。</p>
-<p>右移位运算符：&gt;&gt;（值为正，在高位插0；值为负，在高位插1）。</p>
-<p>不分正负的右移位运算符：&gt;&gt;&gt;（无论正负，高位插0），这运算符C/C++没有。</p>
-<p>二进制加减法：</p>
-<p>加法直接两数二进制相加；</p>
-<p>减法变为 加 负数。</p>
-<p>负数二进制怎么求：正数二进制 先取反 然后 加1 求的负数。</p>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
   </entry>
   <entry>
     <title>MyBatis-Plus的使用</title>
@@ -1233,6 +1251,25 @@ sqlplus / as sysdba
       <tags>
         <tag>MyBatis-Plus</tag>
         <tag>分页</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运算符</title>
+    <url>/2020/12/30/%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>与：&amp;</p>
+<p>或：|</p>
+<p>非：~（输入1，返回0；输入0，返回1）</p>
+<p>异或：^（两个不同返回1，相同返回0）</p>
+<h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><p>左移位运算符：&lt;&lt;（运算对象向左移动指定位数，在低位补0）。</p>
+<p>右移位运算符：&gt;&gt;（值为正，在高位插0；值为负，在高位插1）。</p>
+<p>不分正负的右移位运算符：&gt;&gt;&gt;（无论正负，高位插0），这运算符C/C++没有。</p>
+<p>二进制加减法：</p>
+<p>加法直接两数二进制相加；</p>
+<p>减法变为 加 负数。</p>
+<p>负数二进制怎么求：正数二进制 先取反 然后 加1 求的负数。</p>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -1487,6 +1524,177 @@ sqlplus / as sysdba
       </tags>
   </entry>
   <entry>
+    <title>JVM-未完成</title>
+    <url>/2020/08/12/java/JVM-%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
+    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p>java 跨平台语言就是因为JVM<br>JVM 跨语言的平台：Kotlin,Clojure,Groovy(需各自的编译器)…<br>趋向于 多语言混合编程<br>如何搞懂JVM，自己动手编写一个JVM虚拟机。  </p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>虚拟机（Virtual Machine）虚拟的计算机，分为系统虚拟机和程序虚拟机（专门执行单个计算机程序而设计）。</p>
+<h2 id="Java虚拟机"><a href="#Java虚拟机" class="headerlink" title="Java虚拟机"></a>Java虚拟机</h2><p>Java技术的核心就是Java虚拟机（二进制字节码的运行环境）。<br>特点： </p>
+<ul>
+<li>一次编译，到处运行  </li>
+<li>自动内存管理  </li>
+<li>自动垃圾回收功能  <h3 id=""><a href="#" class="headerlink" title=""></a></h3>Java源文件 - 编译器 - 字节码文件 .class - 类加载器 - 字节码校验器 - 翻译字节码、JIT编译器（解释执行即时编译）  <h3 id="Java架构模型"><a href="#Java架构模型" class="headerlink" title="Java架构模型"></a>Java架构模型</h3>Java编译器上输入的指令流是基于栈的指令集架构。（另一种指令集架构是基于寄存器的指令集架构）<br>跨平台性、指令集小、指令多；执行性能比寄存器差。 <h3 id="反编译操作"><a href="#反编译操作" class="headerlink" title="反编译操作"></a>反编译操作</h3>cd out/production/java<br>javap -v StackStruTest.class    <h3 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a>JVM的生命周期</h3></li>
+</ul>
+<ol>
+<li><p>启动：引导类加载器（bootstrap class loader）创建一个初始类（initial class）来完成。这个类有虚拟机的具体实现来指定的。  </p>
+</li>
+<li><p>执行：执行Java，真正是执行程序jvm虚拟机的进程。（jps查看进程）  </p>
+</li>
+<li><p>退出：程序正常执行结束；遇到异常或错误；线程盗用exit()或halt()方法（Runtime()是单例的）。  </p>
+<h3 id="JVM的发展历程"><a href="#JVM的发展历程" class="headerlink" title="JVM的发展历程"></a>JVM的发展历程</h3><p>（san）classic VM 、 Exact VM 、 hotspot VM<br>（BEA）JRockit：专注于服务器端，纯即时编译器<br>（IBM）J9：IBM Technology for Java Virtual Machine 简称IT4J。<br>KVM：面向更低端的设备（如：智能控制器，传感器）<br>Azul VM和BEA Liquid VM 与特定硬件平台绑定、软硬件配合的专有虚拟机。<br>Apache Harmony<br>Microsoft JVM<br>TaobaoJVM<br>（非Java，应用Android系统）Dalvik VM<br>（Oracle发展中 跨语言全栈虚拟机）Graal VM  </p>
+<h1 id="类加载器与类加载子系统"><a href="#类加载器与类加载子系统" class="headerlink" title="类加载器与类加载子系统"></a>类加载器与类加载子系统</h1><p>类加载子系统 加载class文件，class文件在文件开头有特殊的标识。<br>ClassLoader只负责class文件的加载，是否能运行有ExecutionEngine决定。<br>加载的类信息存放于方法区的内存空间。方法去还有存放运行时常量池信息。  </p>
+<h3 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h3><p>开始 - 装载类HelloLoader - （是否装载顺利，否则抛出异常） - 链接 - 初始化HelloLoader - 调用 HelloLoader.main() - 结束  </p>
+</li>
+<li><p>加载Loading：</p>
+<ol>
+<li>通过类的全限定名获取此类的二进制字节流。</li>
+<li>静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法去这个类的各种数据的访问对象。</li>
+</ol>
+</li>
+<li><p>链接：</p>
+<ol>
+<li>验证Verify：确保class文件中的字节流中包含的信息符合当前虚拟机要求，保证被加载类的正确性。<ol>
+<li>主要四种验证：文件格式，元数据，字节码，符号引用验证。</li>
+</ol>
+</li>
+<li>准备Prepare：为类变量分配内存并赋值默认初始值，如零值。（后初始化）  <ol>
+<li>这里不包含final修饰的static，因为final在编译时就会分配，准备阶段会显式初始化；</li>
+<li>不会为实例变量分配初始化。类变量会分配在方法区中，而实例变量会随着对象一起分配到Java堆中。</li>
+</ol>
+</li>
+<li>解析Resolve：符号引用转换为直接引用。</li>
+</ol>
+</li>
+<li><p>初始化Initialization：</p>
+<ol>
+<li><p> 初始化阶段就是执行类构造器方法<clinit>()的过程。</p>
+</li>
+<li><p> 不需定义，javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。</p>
+</li>
+<li><p> 构造器方法中指令按语句在源文件中出现的顺序执行。</p>
+</li>
+<li><p> <clinit>()不同于类的构造器。</p>
+</li>
+<li><p> 类中有构造方法会出现<init>的结构</p>
+</li>
+<li><p> 该类有父类，加载Father类，其次加载Son类。</p>
+</li>
+<li><p> 虚拟机保证一个类的<clinit>()方法在多线程下被同步加锁（一个类只会被加载一次 ）。  </p>
+<h3 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h3><p>自定义类，系统类，扩展类，引导类加载器（四者是包含关系）<br>两种类型：  </p>
+</li>
+<li><p>引导类加载器（Java的核心类库使用引导类加载器进行加载的 .class.getClassLoader() 获取不到。C和C++编写的）</p>
+</li>
+<li><p>自定义类加载器（继承了ClassLoader的类，如系统，扩展类）</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>为什么要自定义类加载器：</p>
+<pre><code>1. 隔离加载类：使用中间件时，隔离不冲突。  
+2. 修改类加载的方式：需要的是狗动态加载。  
+3. 扩展加载源  
+4. 防止源码泄露  
+</code></pre>
+<ol>
+<li><p>启动类加载器（引导类加载器，Bootstrap classLoader）  </p>
+<ol>
+<li>没有父加载器</li>
+<li>加载Java的核心库</li>
+<li>加载扩展类和应用程序类加载器，并指定为他们的父类加载器。</li>
+<li>C/C++语言实现的，嵌套在JVM内部。  </li>
+</ol>
+</li>
+<li><p>扩展类加载器（Extension ClassLoader）</p>
+<ol>
+<li>Java语言编写，由sun.misc.Launcher$ExtClassLoader实现。</li>
+</ol>
+</li>
+</ol>
+<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p>有父类加载器向上委托。父类加载器失败交由子加载器自己处理。</p>
+<p>优势：<br>    1. 避免类的重复加载。<br>    2. 保护程序安全，防止核心API被篡改。  </p>
+<p>沙箱安全机制：保护引导类加载器不被破坏。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>JVM中两个class对象是否一个类名：</p>
+<pre><code>1. 类的完整类名一直，包括包名。  
+2. 加载这个类的ClassLoader必须相同。  
+</code></pre>
+<p>Java程序对类的使用方式：主动使用和被动使用   </p>
+<p>被动使用：不会初始化。  </p>
+<h1 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h1><p>（run data area）方法区（堆外内存）、堆、虚拟机栈、本地方法栈、程序计数器。<br>不同的JVM对内存的划分方式和管理机制存在部分差异。<br>线程间共享：堆、堆外内存（永久代或元空间、代码缓存）。<br>每个线程：独立包括程序计数器、栈、本地栈。  </p>
+<h4 id="Class-Runtime"><a href="#Class-Runtime" class="headerlink" title="Class Runtime"></a>Class Runtime</h4><p>一个JVM对应着一个Runtime实例  </p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>每个线程都与操作系统的本地线程直接映射。<br>后台系统线程主要有：</p>
+<ul>
+<li>虚拟机线程</li>
+<li>周期任务线程</li>
+<li>GC线程</li>
+<li>编译线程</li>
+<li>信号调度线程  </li>
+</ul>
+<h2 id="程序计数寄存器（PC寄存器）"><a href="#程序计数寄存器（PC寄存器）" class="headerlink" title="程序计数寄存器（PC寄存器）"></a>程序计数寄存器（PC寄存器）</h2><p>(Program Counter Register) ,类似CPU的寄存器。  </p>
+<p><img src="https://i.loli.net/2020/09/17/aAQRoLHXIhnO54K.png" alt="程序计数寄存器.PNG"></p>
+<p>PC寄存器：用来存储当前JVM线程指向下一条指令的地址。由执行引擎读取。</p>
+<p><img src="https://i.loli.net/2020/09/17/Fwsekfu6RhMy7cH.png" alt="程序计数寄存器执行过程.PNG"></p>
+<h2 id="CPU时间片"><a href="#CPU时间片" class="headerlink" title="CPU时间片"></a>CPU时间片</h2><p>CPU分配给各个程序的时间，一个时间段只有一个线程执行。</p>
+<p>并行：同时执行 vs串行</p>
+<p>并发：一个核执行，快速切换。</p>
+<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Java的指令是根据栈设计的。</p>
+<p>优点：跨平台，指令集小，编译器容易实现。</p>
+<p>栈是运行时的单位（如何运行，如何处理数据），堆是存储时的单位（数据怎么放，放在那里）。</p>
+<p>线程私有虚拟机栈，内部保存一个个的栈帧（对应一个个Java方法）。栈中的数据都是以栈帧（Stack Frame）格式存储的。</p>
+<p>栈帧：是一个内存区块，维系着方法执行过程中的各种数据信息。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>保存方法的局部变量（8中基本数据类型、对象的引用地址）、部分结果、参与方法的调用和返回</p>
+<h4 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h4><p>开发中遇到的异常有哪些？<br>固定大小虚拟机栈，栈容量不足，栈溢出StackOverfowError异常<br>虚拟机可以动态扩展，内存不足，内存溢出OutOfMemoryError异常</p>
+<h4 id="设置虚拟机栈的大小"><a href="#设置虚拟机栈的大小" class="headerlink" title="设置虚拟机栈的大小"></a>设置虚拟机栈的大小</h4><pre><code>// 调优：参数调优。
+-Xss size
+</code></pre>
+<h3 id="栈的存储单位"><a href="#栈的存储单位" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h3><h4 id="栈帧的内部结构"><a href="#栈帧的内部结构" class="headerlink" title="栈帧的内部结构"></a>栈帧的内部结构</h4><ul>
+<li>局部变量表</li>
+<li>操作数栈</li>
+<li>动态链接（指向运行时常量池的方法引用）</li>
+<li>方法返回地址（方法正常退出或异常退出的定义）</li>
+<li>一些附加信息</li>
+</ul>
+<p>局部变量表<br>操作数栈<br>代码追踪<br>栈顶缓存 技术<br>动态链接<br>方法的调用：解析与分派<br>方法返回地址<br>附加信息</p>
+<p>当前线程-Java栈-当前栈帧-局部变量表、操作数栈、动态链接、方法返回值。</p>
+<h1 id="面试问题"><a href="#面试问题" class="headerlink" title="面试问题"></a>面试问题</h1><ol>
+<li><p>PC寄存器为什么记录当前线程的执行地址？</p>
+<p> CPU 切换不同的线程，要知道接着从哪里开始执行。</p>
+</li>
+<li><p>PC寄存器为什么要设置成线程私有？</p>
+<p> 各个线程，各自PC寄存器记录自己线程的当前字节码指令地址。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>java</category>
+        <category>jvm</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>jvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java EE 与 J2EE 一样吗？有什么关系？</title>
+    <url>/2021/04/16/java/20210416-JavaEE%E4%B8%8EJ2EE%E4%B8%80%E6%A0%B7%E5%90%97%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/</url>
+    <content><![CDATA[<h2 id="J2EE的由来"><a href="#J2EE的由来" class="headerlink" title="J2EE的由来"></a>J2EE的由来</h2><p>1998年12月4日，工程代号名为<strong>Playground</strong>（竞技场）的<strong>JDK1.2</strong>发布了，该版本<strong>Sun</strong>公司把<strong>Java</strong>技术体系拆分为三个方向：</p>
+<ol>
+<li>面向桌面应用开发的<strong>J2SE</strong>（Java 2 Platform，Standard Edition）</li>
+<li>面向企业级开发的<strong>J2EE</strong>（Java 2 Platform， Enterprise Edition）</li>
+<li>面向手机等移动终端的<strong>J2ME</strong>（Java 2 Platform， Micro Edition）</li>
+</ol>
+<h2 id="Java-EE-由来"><a href="#Java-EE-由来" class="headerlink" title="Java EE 由来"></a>Java EE 由来</h2><p>2006年12月11日，工程代号为<strong>Mustang</strong>（野马）的<strong>JDK6</strong>发布了，Sun公司终结了从JDK1.2开始已有八年历史的<strong>J2EE</strong>、<strong>J2SE</strong>、<strong>J2ME</strong>的产品线命名，启用了<strong>Java EE 6</strong>、<strong>Java SE 6</strong>、<strong>Java ME 6</strong>的新命名来代替。</p>
+<h2 id="Java-EE-被废弃"><a href="#Java-EE-被废弃" class="headerlink" title="Java EE 被废弃"></a>Java EE 被废弃</h2><p>2018年3月，<strong>Oracle</strong>正式宣告<strong>Java EE</strong> 成为历史名词。</p>
+<p>虽然JavaEE曾经无比辉煌过，现在其中还持有JDBC、JMS、Servlet等使用极为广泛的基础组件，<strong>Oracle</strong>还是选择把它“扫地出门”。</p>
+<p>所有权直接赠送给<strong>Eclipse</strong>基金会，唯一条件是以后不准再使用“Java”这个商标，所以取而代之的将是<strong>Jakarta EE</strong>。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java8的新特性</title>
     <url>/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<p>新增了非常多的特性，主要有：</p>
@@ -1687,27 +1895,6 @@ interface GreetingService
       </tags>
   </entry>
   <entry>
-    <title>Java EE 与 J2EE 一样吗？有什么关系？</title>
-    <url>/2021/04/16/java/20210416-JavaEE%E4%B8%8EJ2EE%E4%B8%80%E6%A0%B7%E5%90%97%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/</url>
-    <content><![CDATA[<h2 id="J2EE的由来"><a href="#J2EE的由来" class="headerlink" title="J2EE的由来"></a>J2EE的由来</h2><p>1998年12月4日，工程代号名为<strong>Playground</strong>（竞技场）的<strong>JDK1.2</strong>发布了，该版本<strong>Sun</strong>公司把<strong>Java</strong>技术体系拆分为三个方向：</p>
-<ol>
-<li>面向桌面应用开发的<strong>J2SE</strong>（Java 2 Platform，Standard Edition）</li>
-<li>面向企业级开发的<strong>J2EE</strong>（Java 2 Platform， Enterprise Edition）</li>
-<li>面向手机等移动终端的<strong>J2ME</strong>（Java 2 Platform， Micro Edition）</li>
-</ol>
-<h2 id="Java-EE-由来"><a href="#Java-EE-由来" class="headerlink" title="Java EE 由来"></a>Java EE 由来</h2><p>2006年12月11日，工程代号为<strong>Mustang</strong>（野马）的<strong>JDK6</strong>发布了，Sun公司终结了从JDK1.2开始已有八年历史的<strong>J2EE</strong>、<strong>J2SE</strong>、<strong>J2ME</strong>的产品线命名，启用了<strong>Java EE 6</strong>、<strong>Java SE 6</strong>、<strong>Java ME 6</strong>的新命名来代替。</p>
-<h2 id="Java-EE-被废弃"><a href="#Java-EE-被废弃" class="headerlink" title="Java EE 被废弃"></a>Java EE 被废弃</h2><p>2018年3月，<strong>Oracle</strong>正式宣告<strong>Java EE</strong> 成为历史名词。</p>
-<p>虽然JavaEE曾经无比辉煌过，现在其中还持有JDBC、JMS、Servlet等使用极为广泛的基础组件，<strong>Oracle</strong>还是选择把它“扫地出门”。</p>
-<p>所有权直接赠送给<strong>Eclipse</strong>基金会，唯一条件是以后不准再使用“Java”这个商标，所以取而代之的将是<strong>Jakarta EE</strong>。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java多线程</title>
     <url>/2020/09/12/java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="实现多线程"><a href="#实现多线程" class="headerlink" title="实现多线程"></a>实现多线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>正在运行的程序。  </p>
@@ -1877,156 +2064,6 @@ interface GreetingService
       <tags>
         <tag>java</tag>
         <tag>并发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM-未完成</title>
-    <url>/2020/08/12/java/JVM-%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
-    <content><![CDATA[<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p>java 跨平台语言就是因为JVM<br>JVM 跨语言的平台：Kotlin,Clojure,Groovy(需各自的编译器)…<br>趋向于 多语言混合编程<br>如何搞懂JVM，自己动手编写一个JVM虚拟机。  </p>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>虚拟机（Virtual Machine）虚拟的计算机，分为系统虚拟机和程序虚拟机（专门执行单个计算机程序而设计）。</p>
-<h2 id="Java虚拟机"><a href="#Java虚拟机" class="headerlink" title="Java虚拟机"></a>Java虚拟机</h2><p>Java技术的核心就是Java虚拟机（二进制字节码的运行环境）。<br>特点： </p>
-<ul>
-<li>一次编译，到处运行  </li>
-<li>自动内存管理  </li>
-<li>自动垃圾回收功能  <h3 id=""><a href="#" class="headerlink" title=""></a></h3>Java源文件 - 编译器 - 字节码文件 .class - 类加载器 - 字节码校验器 - 翻译字节码、JIT编译器（解释执行即时编译）  <h3 id="Java架构模型"><a href="#Java架构模型" class="headerlink" title="Java架构模型"></a>Java架构模型</h3>Java编译器上输入的指令流是基于栈的指令集架构。（另一种指令集架构是基于寄存器的指令集架构）<br>跨平台性、指令集小、指令多；执行性能比寄存器差。 <h3 id="反编译操作"><a href="#反编译操作" class="headerlink" title="反编译操作"></a>反编译操作</h3>cd out/production/java<br>javap -v StackStruTest.class    <h3 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a>JVM的生命周期</h3></li>
-</ul>
-<ol>
-<li><p>启动：引导类加载器（bootstrap class loader）创建一个初始类（initial class）来完成。这个类有虚拟机的具体实现来指定的。  </p>
-</li>
-<li><p>执行：执行Java，真正是执行程序jvm虚拟机的进程。（jps查看进程）  </p>
-</li>
-<li><p>退出：程序正常执行结束；遇到异常或错误；线程盗用exit()或halt()方法（Runtime()是单例的）。  </p>
-<h3 id="JVM的发展历程"><a href="#JVM的发展历程" class="headerlink" title="JVM的发展历程"></a>JVM的发展历程</h3><p>（san）classic VM 、 Exact VM 、 hotspot VM<br>（BEA）JRockit：专注于服务器端，纯即时编译器<br>（IBM）J9：IBM Technology for Java Virtual Machine 简称IT4J。<br>KVM：面向更低端的设备（如：智能控制器，传感器）<br>Azul VM和BEA Liquid VM 与特定硬件平台绑定、软硬件配合的专有虚拟机。<br>Apache Harmony<br>Microsoft JVM<br>TaobaoJVM<br>（非Java，应用Android系统）Dalvik VM<br>（Oracle发展中 跨语言全栈虚拟机）Graal VM  </p>
-<h1 id="类加载器与类加载子系统"><a href="#类加载器与类加载子系统" class="headerlink" title="类加载器与类加载子系统"></a>类加载器与类加载子系统</h1><p>类加载子系统 加载class文件，class文件在文件开头有特殊的标识。<br>ClassLoader只负责class文件的加载，是否能运行有ExecutionEngine决定。<br>加载的类信息存放于方法区的内存空间。方法去还有存放运行时常量池信息。  </p>
-<h3 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h3><p>开始 - 装载类HelloLoader - （是否装载顺利，否则抛出异常） - 链接 - 初始化HelloLoader - 调用 HelloLoader.main() - 结束  </p>
-</li>
-<li><p>加载Loading：</p>
-<ol>
-<li>通过类的全限定名获取此类的二进制字节流。</li>
-<li>静态存储结构转化为方法区的运行时数据结构。</li>
-<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法去这个类的各种数据的访问对象。</li>
-</ol>
-</li>
-<li><p>链接：</p>
-<ol>
-<li>验证Verify：确保class文件中的字节流中包含的信息符合当前虚拟机要求，保证被加载类的正确性。<ol>
-<li>主要四种验证：文件格式，元数据，字节码，符号引用验证。</li>
-</ol>
-</li>
-<li>准备Prepare：为类变量分配内存并赋值默认初始值，如零值。（后初始化）  <ol>
-<li>这里不包含final修饰的static，因为final在编译时就会分配，准备阶段会显式初始化；</li>
-<li>不会为实例变量分配初始化。类变量会分配在方法区中，而实例变量会随着对象一起分配到Java堆中。</li>
-</ol>
-</li>
-<li>解析Resolve：符号引用转换为直接引用。</li>
-</ol>
-</li>
-<li><p>初始化Initialization：</p>
-<ol>
-<li><p> 初始化阶段就是执行类构造器方法<clinit>()的过程。</p>
-</li>
-<li><p> 不需定义，javac编译器自动收集类中的所有类变量的赋值动作和静态代码块中的语句合并而来。</p>
-</li>
-<li><p> 构造器方法中指令按语句在源文件中出现的顺序执行。</p>
-</li>
-<li><p> <clinit>()不同于类的构造器。</p>
-</li>
-<li><p> 类中有构造方法会出现<init>的结构</p>
-</li>
-<li><p> 该类有父类，加载Father类，其次加载Son类。</p>
-</li>
-<li><p> 虚拟机保证一个类的<clinit>()方法在多线程下被同步加锁（一个类只会被加载一次 ）。  </p>
-<h3 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h3><p>自定义类，系统类，扩展类，引导类加载器（四者是包含关系）<br>两种类型：  </p>
-</li>
-<li><p>引导类加载器（Java的核心类库使用引导类加载器进行加载的 .class.getClassLoader() 获取不到。C和C++编写的）</p>
-</li>
-<li><p>自定义类加载器（继承了ClassLoader的类，如系统，扩展类）</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>为什么要自定义类加载器：</p>
-<pre><code>1. 隔离加载类：使用中间件时，隔离不冲突。  
-2. 修改类加载的方式：需要的是狗动态加载。  
-3. 扩展加载源  
-4. 防止源码泄露  
-</code></pre>
-<ol>
-<li><p>启动类加载器（引导类加载器，Bootstrap classLoader）  </p>
-<ol>
-<li>没有父加载器</li>
-<li>加载Java的核心库</li>
-<li>加载扩展类和应用程序类加载器，并指定为他们的父类加载器。</li>
-<li>C/C++语言实现的，嵌套在JVM内部。  </li>
-</ol>
-</li>
-<li><p>扩展类加载器（Extension ClassLoader）</p>
-<ol>
-<li>Java语言编写，由sun.misc.Launcher$ExtClassLoader实现。</li>
-</ol>
-</li>
-</ol>
-<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p>有父类加载器向上委托。父类加载器失败交由子加载器自己处理。</p>
-<p>优势：<br>    1. 避免类的重复加载。<br>    2. 保护程序安全，防止核心API被篡改。  </p>
-<p>沙箱安全机制：保护引导类加载器不被破坏。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>JVM中两个class对象是否一个类名：</p>
-<pre><code>1. 类的完整类名一直，包括包名。  
-2. 加载这个类的ClassLoader必须相同。  
-</code></pre>
-<p>Java程序对类的使用方式：主动使用和被动使用   </p>
-<p>被动使用：不会初始化。  </p>
-<h1 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h1><p>（run data area）方法区（堆外内存）、堆、虚拟机栈、本地方法栈、程序计数器。<br>不同的JVM对内存的划分方式和管理机制存在部分差异。<br>线程间共享：堆、堆外内存（永久代或元空间、代码缓存）。<br>每个线程：独立包括程序计数器、栈、本地栈。  </p>
-<h4 id="Class-Runtime"><a href="#Class-Runtime" class="headerlink" title="Class Runtime"></a>Class Runtime</h4><p>一个JVM对应着一个Runtime实例  </p>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>每个线程都与操作系统的本地线程直接映射。<br>后台系统线程主要有：</p>
-<ul>
-<li>虚拟机线程</li>
-<li>周期任务线程</li>
-<li>GC线程</li>
-<li>编译线程</li>
-<li>信号调度线程  </li>
-</ul>
-<h2 id="程序计数寄存器（PC寄存器）"><a href="#程序计数寄存器（PC寄存器）" class="headerlink" title="程序计数寄存器（PC寄存器）"></a>程序计数寄存器（PC寄存器）</h2><p>(Program Counter Register) ,类似CPU的寄存器。  </p>
-<p><img src="https://i.loli.net/2020/09/17/aAQRoLHXIhnO54K.png" alt="程序计数寄存器.PNG"></p>
-<p>PC寄存器：用来存储当前JVM线程指向下一条指令的地址。由执行引擎读取。</p>
-<p><img src="https://i.loli.net/2020/09/17/Fwsekfu6RhMy7cH.png" alt="程序计数寄存器执行过程.PNG"></p>
-<h2 id="CPU时间片"><a href="#CPU时间片" class="headerlink" title="CPU时间片"></a>CPU时间片</h2><p>CPU分配给各个程序的时间，一个时间段只有一个线程执行。</p>
-<p>并行：同时执行 vs串行</p>
-<p>并发：一个核执行，快速切换。</p>
-<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Java的指令是根据栈设计的。</p>
-<p>优点：跨平台，指令集小，编译器容易实现。</p>
-<p>栈是运行时的单位（如何运行，如何处理数据），堆是存储时的单位（数据怎么放，放在那里）。</p>
-<p>线程私有虚拟机栈，内部保存一个个的栈帧（对应一个个Java方法）。栈中的数据都是以栈帧（Stack Frame）格式存储的。</p>
-<p>栈帧：是一个内存区块，维系着方法执行过程中的各种数据信息。</p>
-<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>保存方法的局部变量（8中基本数据类型、对象的引用地址）、部分结果、参与方法的调用和返回</p>
-<h4 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h4><p>开发中遇到的异常有哪些？<br>固定大小虚拟机栈，栈容量不足，栈溢出StackOverfowError异常<br>虚拟机可以动态扩展，内存不足，内存溢出OutOfMemoryError异常</p>
-<h4 id="设置虚拟机栈的大小"><a href="#设置虚拟机栈的大小" class="headerlink" title="设置虚拟机栈的大小"></a>设置虚拟机栈的大小</h4><pre><code>// 调优：参数调优。
--Xss size
-</code></pre>
-<h3 id="栈的存储单位"><a href="#栈的存储单位" class="headerlink" title="栈的存储单位"></a>栈的存储单位</h3><h4 id="栈帧的内部结构"><a href="#栈帧的内部结构" class="headerlink" title="栈帧的内部结构"></a>栈帧的内部结构</h4><ul>
-<li>局部变量表</li>
-<li>操作数栈</li>
-<li>动态链接（指向运行时常量池的方法引用）</li>
-<li>方法返回地址（方法正常退出或异常退出的定义）</li>
-<li>一些附加信息</li>
-</ul>
-<p>局部变量表<br>操作数栈<br>代码追踪<br>栈顶缓存 技术<br>动态链接<br>方法的调用：解析与分派<br>方法返回地址<br>附加信息</p>
-<p>当前线程-Java栈-当前栈帧-局部变量表、操作数栈、动态链接、方法返回值。</p>
-<h1 id="面试问题"><a href="#面试问题" class="headerlink" title="面试问题"></a>面试问题</h1><ol>
-<li><p>PC寄存器为什么记录当前线程的执行地址？</p>
-<p> CPU 切换不同的线程，要知道接着从哪里开始执行。</p>
-</li>
-<li><p>PC寄存器为什么要设置成线程私有？</p>
-<p> 各个线程，各自PC寄存器记录自己线程的当前字节码指令地址。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>java</category>
-        <category>jvm</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>jvm</tag>
       </tags>
   </entry>
   <entry>
@@ -2402,86 +2439,6 @@ interface GreetingService
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL中text类型</title>
-    <url>/2021/04/13/mysql/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h1><p>TEXT类型一般分为 TINYTEXT(255长度)、TEXT(65535)、 MEDIUMTEXT（int最大值16M），和LONGTEXT(long最大值4G)这四种，它被用来存储非二进制字符集，二进制字符集使用blob类型的字段来存储。</p>
-<p>对于text列，插入时MySQL不会对它进行填充，并且select时不会删除任何末尾的字节。</p>
-<p>如果text列被作为索引，则在它的内容后面添加空格时，会出现duplicate key错误，也就是说，如果我们定义了一个作为索引的text字段，它的值是’a’,则不能定义一个值为’a ‘的记录，因为这样会产生冲突。</p>
-<p>对text列进行排序的时候，决定顺序的字符个数是由参数max_sort_length来决定的</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> max_sort_length<span class="operator">=</span><span class="number">1000</span>; </span><br><span class="line"><span class="keyword">SELECT</span> id,comment <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> comment;</span><br></pre></td></tr></table></figure>
-
-<h1 id="text和varchar的区别"><a href="#text和varchar的区别" class="headerlink" title="text和varchar的区别"></a>text和varchar的区别</h1><p>在大多数情况下，我们可以把text视为varchar字段，但是这两个字段类型在存储字符大小上有一些区别：</p>
-<p>varchar在mysql中必须满足最大行宽度限制，也就是 65535(64k)字节，而varchar本身是按字符串个数来定义的,在mysql中使用uft-8字符集一个中文字符占用三个字节，所以单表varchar实际占用最大长度如下：<br>   1.使用utf-8字符编码集varchar最大长度是(65535-2)/3=21844个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。<br>   2.使用 utf-8mb4字符集，mysql中使用 utf-8mb4 字符集一个中文字符占用4个字节，所以 varchar 最大长度是(65535-2)/4=16383 个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。</p>
-<p>text的最大限制也是64k个字节,但是本质是溢出存储,innodb默认只会存放前768字节在数据页中,而剩余的数据则会存储在溢出段中。text类型的数据,将被存储在元数据表之外地方,但是varchar/char将和其他列一起存储在表数据文件中，值得注意的是，varchar列在溢出的时候会自动转换为text类型。text数据类型实际上将会大幅度增加数据库表文件尺寸。</p>
-<p>1、当text作为索引的时候，必须 制定索引的长度，而当varchar充当索引的时候，可以不用指明。</p>
-<p>2、text列不允许拥有默认值</p>
-<p>3、当text列的内容很多的时候，text列的内容会保留一个指针在记录中，这个指针指向了磁盘中的一块区域，当对这个表进行select *的时候，会从磁盘中读取text的值，影响查询的性能，而varchar不会存在这个问题。</p>
-<p>参考地址：<a href="https://www.cnblogs.com/wqbin/p/11927456.html">https://www.cnblogs.com/wqbin/p/11927456.html</a></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-        <category>数据类型</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL中char与varchar</title>
-    <url>/2021/04/13/mysql/20210413-MySQL%E4%B8%ADchar%E4%B8%8Evarchar/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>使用MySQL创建数据库表结构时，为了给字符串类型的数据定义数据类型，一般使用的都是char或者varchar。但使用过程中，比如模糊查询‘like’的使用，有感受到他们之间的不同。</p>
-<p>那么他们到底有什么区别，特性以及适用范围呢？</p>
-<h1 id="一、char"><a href="#一、char" class="headerlink" title="一、char"></a>一、char</h1><p>char：定长字符串</p>
-<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
-<li>存储空间固定。</li>
-<li>长度不够时，内部存储使用空格填充。</li>
-<li>若数据末尾存在空格，检索出来自动截断末尾空格。（无法区分空格是数据的还是自动填充的）</li>
-<li>若数据前端存在空格，不会截断。</li>
-<li>当数据的字符长度超过指定长度时，char会截断超出的字符。</li>
-</ol>
-<h2 id="使用情况："><a href="#使用情况：" class="headerlink" title="使用情况："></a>使用情况：</h2><ul>
-<li>适合存储很短的或者长度接近同一个长度的字符串。</li>
-<li>char比varchar在存取上更具效率，因为它是固定长度。</li>
-<li>对于非常短的列，char比varchar在存储空间上更有效率。</li>
-</ul>
-<h1 id="二、varchar"><a href="#二、varchar" class="headerlink" title="二、varchar"></a>二、varchar</h1><p>varchar：可变长字符串</p>
-<h2 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h2><ol>
-<li>存储空间不固定，根据数据长度决定。</li>
-<li>需要格外的1个或2个字节记录字符串的长度，字符串长度小于255字节使用1个字节，否则使用2个。</li>
-<li>最大长度为65535字节</li>
-<li>如果列为null，则需要额外一个自己作为标志。</li>
-<li>最大长度 = 字段长度 + 【长度记录（1或2字节）或 null标志位1字节】</li>
-</ol>
-<h2 id="使用情况"><a href="#使用情况" class="headerlink" title="使用情况"></a>使用情况</h2><ul>
-<li>字符串列的最大长度比平均长度大很多</li>
-<li>使用了像utf-8这样复杂的数据集，每个字符都用不同的字节数存储。</li>
-</ul>
-<h1 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h1><ul>
-<li>取数据的时候，char类型会去掉末尾多余的空格，而varchar是不会的。</li>
-<li>时间与空间效率<ul>
-<li>char的存取数度要比varchar要快得多</li>
-<li>varchar 空间利用率要比char 更充分</li>
-</ul>
-</li>
-<li>存储方式：<ul>
-<li>char的存储方式是，对英文字符（ASCII）占用1个字节，对一个汉字占用两个字节</li>
-<li>varchar的存储方式是，对每个英文字符占用2个字节，汉字也占用2个字节。</li>
-<li>两者的存储数据都非unicode的字符数据。</li>
-</ul>
-</li>
-</ul>
-<p>所以，从空间上考虑，varcahr较合适；从效率上考虑，用char合适。如何使用，还需要根据实际情况查询</p>
-<p>参考地址：<a href="https://blog.csdn.net/weixin_43054397/article/details/91126605">https://blog.csdn.net/weixin_43054397/article/details/91126605</a></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-        <category>数据类型</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux命令</title>
     <url>/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find / -iname &quot;node&quot;</span><br><span class="line">find / -type &quot; *.config &quot;</span><br></pre></td></tr></table></figure>
@@ -2710,6 +2667,86 @@ root:为数据库用户名
       </tags>
   </entry>
   <entry>
+    <title>MySQL中text类型</title>
+    <url>/2021/04/13/mysql/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h1><p>TEXT类型一般分为 TINYTEXT(255长度)、TEXT(65535)、 MEDIUMTEXT（int最大值16M），和LONGTEXT(long最大值4G)这四种，它被用来存储非二进制字符集，二进制字符集使用blob类型的字段来存储。</p>
+<p>对于text列，插入时MySQL不会对它进行填充，并且select时不会删除任何末尾的字节。</p>
+<p>如果text列被作为索引，则在它的内容后面添加空格时，会出现duplicate key错误，也就是说，如果我们定义了一个作为索引的text字段，它的值是’a’,则不能定义一个值为’a ‘的记录，因为这样会产生冲突。</p>
+<p>对text列进行排序的时候，决定顺序的字符个数是由参数max_sort_length来决定的</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> max_sort_length<span class="operator">=</span><span class="number">1000</span>; </span><br><span class="line"><span class="keyword">SELECT</span> id,comment <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> comment;</span><br></pre></td></tr></table></figure>
+
+<h1 id="text和varchar的区别"><a href="#text和varchar的区别" class="headerlink" title="text和varchar的区别"></a>text和varchar的区别</h1><p>在大多数情况下，我们可以把text视为varchar字段，但是这两个字段类型在存储字符大小上有一些区别：</p>
+<p>varchar在mysql中必须满足最大行宽度限制，也就是 65535(64k)字节，而varchar本身是按字符串个数来定义的,在mysql中使用uft-8字符集一个中文字符占用三个字节，所以单表varchar实际占用最大长度如下：<br>   1.使用utf-8字符编码集varchar最大长度是(65535-2)/3=21844个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。<br>   2.使用 utf-8mb4字符集，mysql中使用 utf-8mb4 字符集一个中文字符占用4个字节，所以 varchar 最大长度是(65535-2)/4=16383 个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。</p>
+<p>text的最大限制也是64k个字节,但是本质是溢出存储,innodb默认只会存放前768字节在数据页中,而剩余的数据则会存储在溢出段中。text类型的数据,将被存储在元数据表之外地方,但是varchar/char将和其他列一起存储在表数据文件中，值得注意的是，varchar列在溢出的时候会自动转换为text类型。text数据类型实际上将会大幅度增加数据库表文件尺寸。</p>
+<p>1、当text作为索引的时候，必须 制定索引的长度，而当varchar充当索引的时候，可以不用指明。</p>
+<p>2、text列不允许拥有默认值</p>
+<p>3、当text列的内容很多的时候，text列的内容会保留一个指针在记录中，这个指针指向了磁盘中的一块区域，当对这个表进行select *的时候，会从磁盘中读取text的值，影响查询的性能，而varchar不会存在这个问题。</p>
+<p>参考地址：<a href="https://www.cnblogs.com/wqbin/p/11927456.html">https://www.cnblogs.com/wqbin/p/11927456.html</a></p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+        <category>数据类型</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL中char与varchar</title>
+    <url>/2021/04/13/mysql/20210413-MySQL%E4%B8%ADchar%E4%B8%8Evarchar/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>使用MySQL创建数据库表结构时，为了给字符串类型的数据定义数据类型，一般使用的都是char或者varchar。但使用过程中，比如模糊查询‘like’的使用，有感受到他们之间的不同。</p>
+<p>那么他们到底有什么区别，特性以及适用范围呢？</p>
+<h1 id="一、char"><a href="#一、char" class="headerlink" title="一、char"></a>一、char</h1><p>char：定长字符串</p>
+<h2 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h2><ol>
+<li>存储空间固定。</li>
+<li>长度不够时，内部存储使用空格填充。</li>
+<li>若数据末尾存在空格，检索出来自动截断末尾空格。（无法区分空格是数据的还是自动填充的）</li>
+<li>若数据前端存在空格，不会截断。</li>
+<li>当数据的字符长度超过指定长度时，char会截断超出的字符。</li>
+</ol>
+<h2 id="使用情况："><a href="#使用情况：" class="headerlink" title="使用情况："></a>使用情况：</h2><ul>
+<li>适合存储很短的或者长度接近同一个长度的字符串。</li>
+<li>char比varchar在存取上更具效率，因为它是固定长度。</li>
+<li>对于非常短的列，char比varchar在存储空间上更有效率。</li>
+</ul>
+<h1 id="二、varchar"><a href="#二、varchar" class="headerlink" title="二、varchar"></a>二、varchar</h1><p>varchar：可变长字符串</p>
+<h2 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h2><ol>
+<li>存储空间不固定，根据数据长度决定。</li>
+<li>需要格外的1个或2个字节记录字符串的长度，字符串长度小于255字节使用1个字节，否则使用2个。</li>
+<li>最大长度为65535字节</li>
+<li>如果列为null，则需要额外一个自己作为标志。</li>
+<li>最大长度 = 字段长度 + 【长度记录（1或2字节）或 null标志位1字节】</li>
+</ol>
+<h2 id="使用情况"><a href="#使用情况" class="headerlink" title="使用情况"></a>使用情况</h2><ul>
+<li>字符串列的最大长度比平均长度大很多</li>
+<li>使用了像utf-8这样复杂的数据集，每个字符都用不同的字节数存储。</li>
+</ul>
+<h1 id="三、区别"><a href="#三、区别" class="headerlink" title="三、区别"></a>三、区别</h1><ul>
+<li>取数据的时候，char类型会去掉末尾多余的空格，而varchar是不会的。</li>
+<li>时间与空间效率<ul>
+<li>char的存取数度要比varchar要快得多</li>
+<li>varchar 空间利用率要比char 更充分</li>
+</ul>
+</li>
+<li>存储方式：<ul>
+<li>char的存储方式是，对英文字符（ASCII）占用1个字节，对一个汉字占用两个字节</li>
+<li>varchar的存储方式是，对每个英文字符占用2个字节，汉字也占用2个字节。</li>
+<li>两者的存储数据都非unicode的字符数据。</li>
+</ul>
+</li>
+</ul>
+<p>所以，从空间上考虑，varcahr较合适；从效率上考虑，用char合适。如何使用，还需要根据实际情况查询</p>
+<p>参考地址：<a href="https://blog.csdn.net/weixin_43054397/article/details/91126605">https://blog.csdn.net/weixin_43054397/article/details/91126605</a></p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+        <category>数据类型</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL范式</title>
     <url>/2021/04/13/mysql/20210413-MySQL%E8%8C%83%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><ol>
@@ -2748,6 +2785,25 @@ root:为数据库用户名
 </ol>
 <p><a href="https://blog.csdn.net/aguang110/article/details/84008615?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">参考地址</a></p>
 <h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL遇到连接超时问题</title>
+    <url>/2021/04/18/mysql/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="查看最大连接数"><a href="#查看最大连接数" class="headerlink" title="查看最大连接数"></a>查看最大连接数</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查看最大连接数</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;%max_connections%&#x27;</span></span><br><span class="line"><span class="comment">-- 查看已连接数</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">global</span> status <span class="keyword">like</span> <span class="string">&#x27;Max_used_connections&#x27;</span></span><br><span class="line"><span class="comment">-- 设置最大连接数，但是重启就还原了，可以在MySQL地配置文件中修改</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> max_connections<span class="operator">=</span><span class="number">1500</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>my.cnf</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">   max<span class="built_in">_</span>connections=1500</span><br></pre></td></tr></table></figure>
+
+<h3 id="打开表一直处于加载中，表死锁"><a href="#打开表一直处于加载中，表死锁" class="headerlink" title="打开表一直处于加载中，表死锁"></a>打开表一直处于加载中，表死锁</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 显示正在连接的进程</span></span><br><span class="line"><span class="keyword">show</span> processlist</span><br><span class="line"><span class="comment">-- 杀死进程号</span></span><br><span class="line"> kill <span class="number">60</span>;</span><br></pre></td></tr></table></figure>
+
+<p>死锁原因：并发操作表导致表死锁。<br>结束所有操作当前表的进程，再去查询表，发现表解锁！</p>
+]]></content>
       <categories>
         <category>mysql</category>
       </categories>
@@ -2986,22 +3042,39 @@ root:为数据库用户名
       </tags>
   </entry>
   <entry>
-    <title>MySQL遇到连接超时问题</title>
-    <url>/2021/04/18/mysql/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="查看最大连接数"><a href="#查看最大连接数" class="headerlink" title="查看最大连接数"></a>查看最大连接数</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查看最大连接数</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;%max_connections%&#x27;</span></span><br><span class="line"><span class="comment">-- 查看已连接数</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">global</span> status <span class="keyword">like</span> <span class="string">&#x27;Max_used_connections&#x27;</span></span><br><span class="line"><span class="comment">-- 设置最大连接数，但是重启就还原了，可以在MySQL地配置文件中修改</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> max_connections<span class="operator">=</span><span class="number">1500</span></span><br></pre></td></tr></table></figure>
+    <title>Nebula Graph图数据库学习</title>
+    <url>/2021/04/20/nosql/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Nebula Graph是一款开源的、分布式的、易扩展的原生图数据库，能够承载数十亿个点和数万亿条边的超大规模数据集，提供毫秒级查询。</p>
+<h2 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h2><p>Nebula Graph三种服务架构：</p>
+<ol>
+<li>Graph服务</li>
+<li>Meta服务</li>
+<li>Storage服务</li>
+</ol>
+<p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/nebula-graph-architecture-1.png" alt="Nebula Graph architecture"></p>
+<h3 id="Meta服务"><a href="#Meta服务" class="headerlink" title="Meta服务"></a>Meta服务</h3><p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/meta-architecture1.png" alt="The architecture of the Meta Service"></p>
+<p>Meta服务是由nebula-metad进程提供的，构成了基于Raft协议的集群，其中一个进程是leader，其它进程都是follower。</p>
+<p>功能：管理用户账号、管理分片、管理图空间、管理Schema信息、管理基于TTL的数据回收、管理作业。</p>
+<h3 id="Graph服务"><a href="#Graph服务" class="headerlink" title="Graph服务"></a>Graph服务</h3><p>负责处理计算请求</p>
+<h3 id="Storage服务"><a href="#Storage服务" class="headerlink" title="Storage服务"></a>Storage服务</h3><p>负责存储数据</p>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h3 id="Match"><a href="#Match" class="headerlink" title="Match"></a>Match</h3><p>定义一个搜索模式，匹配存储在Nebula Graph中的数据，用RETURN子句检索数据。</p>
+<h3 id="LOOKUP"><a href="#LOOKUP" class="headerlink" title="LOOKUP"></a>LOOKUP</h3><p>根据索引遍历数据。</p>
+<h3 id="GO"><a href="#GO" class="headerlink" title="GO"></a>GO</h3><p>用指定过滤条件遍历图，返回结果</p>
+<h3 id="FETCH"><a href="#FETCH" class="headerlink" title="FETCH"></a>FETCH</h3><p>可以获取指定点或边的属性值。</p>
+<h3 id="UNWIND"><a href="#UNWIND" class="headerlink" title="UNWIND"></a>UNWIND</h3><p>作为单独语句或语句中的子句使用。将列表拆分为单独的行，列表中的每个元素为一行。</p>
+<h3 id="SHOW"><a href="#SHOW" class="headerlink" title="SHOW"></a>SHOW</h3><p>显示一些Nebula Graph中的信息</p>
+<h4 id="查询vid所有数据"><a href="#查询vid所有数据" class="headerlink" title="查询vid所有数据"></a>查询vid所有数据</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FETCH</span> PROP <span class="keyword">ON</span> <span class="operator">*</span> &quot;569961631955718144&quot;;</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>my.cnf</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">   max<span class="built_in">_</span>connections=1500</span><br></pre></td></tr></table></figure>
 
-<h3 id="打开表一直处于加载中，表死锁"><a href="#打开表一直处于加载中，表死锁" class="headerlink" title="打开表一直处于加载中，表死锁"></a>打开表一直处于加载中，表死锁</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 显示正在连接的进程</span></span><br><span class="line"><span class="keyword">show</span> processlist</span><br><span class="line"><span class="comment">-- 杀死进程号</span></span><br><span class="line"> kill <span class="number">60</span>;</span><br></pre></td></tr></table></figure>
 
-<p>死锁原因：并发操作表导致表死锁。<br>结束所有操作当前表的进程，再去查询表，发现表解锁！</p>
+
+
 ]]></content>
       <categories>
-        <category>mysql</category>
+        <category>图数据库</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
+        <tag>图数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -3070,69 +3143,23 @@ ibd索引和数据在一起
 ]]></content>
   </entry>
   <entry>
-    <title>详解@Autowired 与 @Resource的区别</title>
-    <url>/2020/04/13/spring/20200413-@Autowired%E4%B8%8E@Resource%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>spring不但支持自己定义的@Autowired注解，还支持几个由JSR-250规范定义的注解，它们分别是@Resource、@PostConstruct以及@PreDestroy。</p>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>@Resource的作用相当于@Autowired，只不过@Autowired按byType自动注入，而@Resource默认按 byName自动注入罢了。</p>
-<p>@Resource有两个属性是比较重要的，分是name和type，</p>
-<p>Spring将@Resource注解的name属性解析为bean的名字，而type属性则解析为bean的类型。</p>
-<p>所以如果使用name属性，则使用byName的自动注入策略，而使用type属性时则使用byType自动注入策略。如果既不指定name也不指定type属性，这时将通过反射机制使用byName自动注入策略。</p>
-<h1 id="2-Resource装配顺序"><a href="#2-Resource装配顺序" class="headerlink" title="2. @Resource装配顺序"></a>2. @Resource装配顺序</h1><p>　　1. 如果同时指定了name和type，则从Spring上下文中找到唯一匹配的bean进行装配，找不到则抛出异常<br>　　2. 如果指定了name，则从上下文中查找名称（id）匹配的bean进行装配，找不到则抛出异常<br>　　3. 如果指定了type，则从上下文中找到类型匹配的唯一bean进行装配，找不到或者找到多个，都会抛出异常<br>　　4. 如果既没有指定name，又没有指定type，则自动按照byName方式进行装配；如果没有匹配，则回退为一个原始类型进行匹配，如果匹配则自动装配；</p>
-<h1 id="3-Autowired-与-Resource的区别："><a href="#3-Autowired-与-Resource的区别：" class="headerlink" title="3. @Autowired 与@Resource的区别："></a>3. @Autowired 与@Resource的区别：</h1><p>1、 @Autowired与@Resource都可以用来装配bean. 都可以写在字段上,或写在setter方法上。</p>
-<p>2、 @Autowired默认按类型装配（这个注解是属业spring的），默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false，如：@Autowired(required=false) ，如果我们想使用名称装配可以结合@Qualifier注解进行使用，如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired()</span> <span class="meta">@Qualifier(&quot;baseDao&quot;)</span></span><br><span class="line"><span class="keyword">private</span> BaseDao baseDao;</span><br></pre></td></tr></table></figure>
-
-<p>3、@Resource（这个注解属于J2EE的），默认按照名称进行装配，名称可以通过name属性进行指定，如果没有指定name属性，当注解写在字段上时，默认取字段名进行安装名称查找，如果注解写在setter方法上默认取属性名进行装配。当找不到与名称匹配的bean时才按照类型进行装配。但是需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。</p>
-<p>推荐使用：@Resource注解在字段上，这样就不用写setter方法了，并且这个注解是属于J2EE的，减少了与spring的耦合。这样代码看起就比较优雅。</p>
-<h1 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h1><p>@Autowired//默认按type注入<br>@Qualifier(“cusInfoService”)//一般作为@Autowired()的修饰用<br>@Resource(name=”cusInfoService”)//默认按name注入，可以通过name和type属性进行选择性注入</p>
-<p>一般@Autowired和@Qualifier一起用，@Resource单独用。</p>
-<p>当然没有冲突的话@Autowired也可以单独用</p>
-<p>参考地址： <a href="https://blog.csdn.net/weixin_40423597/article/details/80643990">https://blog.csdn.net/weixin_40423597/article/details/80643990</a></p>
-]]></content>
-      <categories>
-        <category>spring</category>
-        <category>注解</category>
-      </categories>
-      <tags>
-        <tag>spring</tag>
-        <tag>注解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nebula Graph图数据库学习</title>
-    <url>/2021/04/20/nosql/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Nebula Graph是一款开源的、分布式的、易扩展的原生图数据库，能够承载数十亿个点和数万亿条边的超大规模数据集，提供毫秒级查询。</p>
-<h2 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h2><p>Nebula Graph三种服务架构：</p>
+    <title>SpringMVC框架</title>
+    <url>/2020/09/18/spring/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/</url>
+    <content><![CDATA[<h1 id="SpringMVC框架"><a href="#SpringMVC框架" class="headerlink" title="SpringMVC框架"></a>SpringMVC框架</h1><p>springmvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p>
+<p>springmvc是一个基于mvc的web框架。</p>
+<h3 id="什么是mvc"><a href="#什么是mvc" class="headerlink" title="什么是mvc"></a>什么是mvc</h3><p>mvc是一个设计模式。</p>
+<h4 id="mvc在b-s系统下的应用"><a href="#mvc在b-s系统下的应用" class="headerlink" title="mvc在b/s系统下的应用"></a>mvc在b/s系统下的应用</h4><p><img src="https://i.loli.net/2020/09/18/L4xKMIndoywCD1q.jpg" alt="mvc在bs系统下的应用.jpg"></p>
+<h4 id="springmvc的框架"><a href="#springmvc的框架" class="headerlink" title="springmvc的框架"></a>springmvc的框架</h4><p><img src="https://i.loli.net/2020/09/21/cETUaj26e9LoM5O.png" alt="springmvc框架1.PNG"><br><img src="https://i.loli.net/2020/09/21/BLzTq9XCuEKQdpP.jpg" alt="springmvc框架2.jpg"></p>
+<p>组件：</p>
 <ol>
-<li>Graph服务</li>
-<li>Meta服务</li>
-<li>Storage服务</li>
+<li>前端控制器 Dispatcherservlet：作用接受请求，响应结果，相当于转发器(非常重要)。</li>
+<li>处理器映射器 HandlerMapping：根据请求的url查找Handler</li>
+<li>处理器适配器 HandlerAdapter：按特定的规则执行Handler</li>
+<li>处理器Handler（需要开发）:编写Handler按照HandlerAdapter的要求去做</li>
+<li>视图解析器 View reolver：进行视图解析，根据逻辑视图名解析成真正的视图（view）</li>
+<li>视图View（需要开发）：View是一个接口，实现类支持不同的View类型（jsp,freemarker,pdf…）</li>
 </ol>
-<p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/nebula-graph-architecture-1.png" alt="Nebula Graph architecture"></p>
-<h3 id="Meta服务"><a href="#Meta服务" class="headerlink" title="Meta服务"></a>Meta服务</h3><p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/meta-architecture1.png" alt="The architecture of the Meta Service"></p>
-<p>Meta服务是由nebula-metad进程提供的，构成了基于Raft协议的集群，其中一个进程是leader，其它进程都是follower。</p>
-<p>功能：管理用户账号、管理分片、管理图空间、管理Schema信息、管理基于TTL的数据回收、管理作业。</p>
-<h3 id="Graph服务"><a href="#Graph服务" class="headerlink" title="Graph服务"></a>Graph服务</h3><p>负责处理计算请求</p>
-<h3 id="Storage服务"><a href="#Storage服务" class="headerlink" title="Storage服务"></a>Storage服务</h3><p>负责存储数据</p>
-<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h3 id="Match"><a href="#Match" class="headerlink" title="Match"></a>Match</h3><p>定义一个搜索模式，匹配存储在Nebula Graph中的数据，用RETURN子句检索数据。</p>
-<h3 id="LOOKUP"><a href="#LOOKUP" class="headerlink" title="LOOKUP"></a>LOOKUP</h3><p>根据索引遍历数据。</p>
-<h3 id="GO"><a href="#GO" class="headerlink" title="GO"></a>GO</h3><p>用指定过滤条件遍历图，返回结果</p>
-<h3 id="FETCH"><a href="#FETCH" class="headerlink" title="FETCH"></a>FETCH</h3><p>可以获取指定点或边的属性值。</p>
-<h3 id="UNWIND"><a href="#UNWIND" class="headerlink" title="UNWIND"></a>UNWIND</h3><p>作为单独语句或语句中的子句使用。将列表拆分为单独的行，列表中的每个元素为一行。</p>
-<h3 id="SHOW"><a href="#SHOW" class="headerlink" title="SHOW"></a>SHOW</h3><p>显示一些Nebula Graph中的信息</p>
-<h4 id="查询vid所有数据"><a href="#查询vid所有数据" class="headerlink" title="查询vid所有数据"></a>查询vid所有数据</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FETCH</span> PROP <span class="keyword">ON</span> <span class="operator">*</span> &quot;569961631955718144&quot;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 ]]></content>
-      <categories>
-        <category>图数据库</category>
-      </categories>
-      <tags>
-        <tag>图数据库</tag>
-      </tags>
   </entry>
   <entry>
     <title>Spring Boot编程思想</title>
@@ -3170,25 +3197,6 @@ ibd索引和数据在一起
       </tags>
   </entry>
   <entry>
-    <title>SpringMVC框架</title>
-    <url>/2020/09/18/spring/SpringMVC%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1/</url>
-    <content><![CDATA[<h1 id="SpringMVC框架"><a href="#SpringMVC框架" class="headerlink" title="SpringMVC框架"></a>SpringMVC框架</h1><p>springmvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p>
-<p>springmvc是一个基于mvc的web框架。</p>
-<h3 id="什么是mvc"><a href="#什么是mvc" class="headerlink" title="什么是mvc"></a>什么是mvc</h3><p>mvc是一个设计模式。</p>
-<h4 id="mvc在b-s系统下的应用"><a href="#mvc在b-s系统下的应用" class="headerlink" title="mvc在b/s系统下的应用"></a>mvc在b/s系统下的应用</h4><p><img src="https://i.loli.net/2020/09/18/L4xKMIndoywCD1q.jpg" alt="mvc在bs系统下的应用.jpg"></p>
-<h4 id="springmvc的框架"><a href="#springmvc的框架" class="headerlink" title="springmvc的框架"></a>springmvc的框架</h4><p><img src="https://i.loli.net/2020/09/21/cETUaj26e9LoM5O.png" alt="springmvc框架1.PNG"><br><img src="https://i.loli.net/2020/09/21/BLzTq9XCuEKQdpP.jpg" alt="springmvc框架2.jpg"></p>
-<p>组件：</p>
-<ol>
-<li>前端控制器 Dispatcherservlet：作用接受请求，响应结果，相当于转发器(非常重要)。</li>
-<li>处理器映射器 HandlerMapping：根据请求的url查找Handler</li>
-<li>处理器适配器 HandlerAdapter：按特定的规则执行Handler</li>
-<li>处理器Handler（需要开发）:编写Handler按照HandlerAdapter的要求去做</li>
-<li>视图解析器 View reolver：进行视图解析，根据逻辑视图名解析成真正的视图（view）</li>
-<li>视图View（需要开发）：View是一个接口，实现类支持不同的View类型（jsp,freemarker,pdf…）</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Spring 注解学习-持续更新</title>
     <url>/2020/08/11/spring/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
     <content><![CDATA[<h2 id="Spring-注解"><a href="#Spring-注解" class="headerlink" title="Spring 注解"></a>Spring 注解</h2><h3 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">　　 <span class="meta">@Value(&quot;normal&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> String normal; <span class="comment">// 注入普通字符串</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Value(&quot;#&#123;systemProperties[&#x27;os.name&#x27;]&#125;&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> String systemPropertiesName; <span class="comment">// 注入操作系统属性</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Value(&quot;#&#123; T(java.lang.Math).random() * 100.0 &#125;&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">double</span> randomNumber; <span class="comment">//注入表达式结果</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Value(&quot;#&#123;beanInject.another&#125;&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> String fromAnotherBean; <span class="comment">// 注入其他Bean属性：注入beanInject对象的属性another，类具体定义见下面</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> Resource resourceFile; <span class="comment">// 注入文件资源</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Value(&quot;http://www.baidu.com&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> Resource testUrl; <span class="comment">// 注入URL资源</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Value(&quot;$&#123;book.name&#125;&quot;)</span></span><br><span class="line">   <span class="keyword">private</span> String bookName;<span class="comment">// 注入配置外部文件属性</span></span><br></pre></td></tr></table></figure>
@@ -3196,7 +3204,7 @@ ibd索引和数据在一起
 
 
 <h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><h3 id="WebMethod"><a href="#WebMethod" class="headerlink" title="@WebMethod"></a>@WebMethod</h3><h3 id="FeignClient"><a href="#FeignClient" class="headerlink" title="@FeignClient"></a>@FeignClient</h3><p>注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上。<br>    name：指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现<br>    url: url一般用于调试，可以手动指定@FeignClient调用的地址   </p>
-<h3 id="EnableMongoRepositories"><a href="#EnableMongoRepositories" class="headerlink" title="@EnableMongoRepositories"></a>@EnableMongoRepositories</h3><p>启动类中：让框架创建的Repository接口创建实现类，并添加到Spring容器中进行管理。<br>resources目录下：application.properties文件中配置MongoDB的连接字符串。<br>spring.data.mongodb.uri=mongodb://springbucks:<a href="mailto:&#x73;&#112;&#x72;&#105;&#110;&#x67;&#98;&#x75;&#x63;&#107;&#115;&#x40;&#x78;&#120;&#x78;&#46;&#x78;&#x78;&#x78;&#x2e;&#x78;&#x78;&#120;&#x2e;&#x78;&#120;&#120;">&#x73;&#112;&#x72;&#105;&#110;&#x67;&#98;&#x75;&#x63;&#107;&#115;&#x40;&#x78;&#120;&#x78;&#46;&#x78;&#x78;&#x78;&#x2e;&#x78;&#x78;&#120;&#x2e;&#x78;&#120;&#120;</a>:xxxxx/springbucks  </p>
+<h3 id="EnableMongoRepositories"><a href="#EnableMongoRepositories" class="headerlink" title="@EnableMongoRepositories"></a>@EnableMongoRepositories</h3><p>启动类中：让框架创建的Repository接口创建实现类，并添加到Spring容器中进行管理。<br>resources目录下：application.properties文件中配置MongoDB的连接字符串。<br>spring.data.mongodb.uri=mongodb://springbucks:<a href="mailto:&#115;&#112;&#114;&#105;&#110;&#103;&#x62;&#x75;&#99;&#x6b;&#x73;&#x40;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#x78;&#46;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;">&#115;&#112;&#114;&#105;&#110;&#103;&#x62;&#x75;&#99;&#x6b;&#x73;&#x40;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#x78;&#46;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;</a>:xxxxx/springbucks  </p>
 <h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h3><p>用来映射请求，也就是通过它来指定控制器可以处理哪些URL请求，相当于Servlet中在web.xml中配置  </p>
 <ol>
 <li>@Target中有两个属性，分别为 ElementType.METHOD 和 ElementType.TYPE ，也就是说 @RequestMapping 可以在方法和类的声明中使用  <h3 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h3></li>
@@ -3386,6 +3394,35 @@ ibd索引和数据在一起
       </tags>
   </entry>
   <entry>
+    <title>详解@Autowired 与 @Resource的区别</title>
+    <url>/2020/04/13/spring/20200413-@Autowired%E4%B8%8E@Resource%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>spring不但支持自己定义的@Autowired注解，还支持几个由JSR-250规范定义的注解，它们分别是@Resource、@PostConstruct以及@PreDestroy。</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>@Resource的作用相当于@Autowired，只不过@Autowired按byType自动注入，而@Resource默认按 byName自动注入罢了。</p>
+<p>@Resource有两个属性是比较重要的，分是name和type，</p>
+<p>Spring将@Resource注解的name属性解析为bean的名字，而type属性则解析为bean的类型。</p>
+<p>所以如果使用name属性，则使用byName的自动注入策略，而使用type属性时则使用byType自动注入策略。如果既不指定name也不指定type属性，这时将通过反射机制使用byName自动注入策略。</p>
+<h1 id="2-Resource装配顺序"><a href="#2-Resource装配顺序" class="headerlink" title="2. @Resource装配顺序"></a>2. @Resource装配顺序</h1><p>　　1. 如果同时指定了name和type，则从Spring上下文中找到唯一匹配的bean进行装配，找不到则抛出异常<br>　　2. 如果指定了name，则从上下文中查找名称（id）匹配的bean进行装配，找不到则抛出异常<br>　　3. 如果指定了type，则从上下文中找到类型匹配的唯一bean进行装配，找不到或者找到多个，都会抛出异常<br>　　4. 如果既没有指定name，又没有指定type，则自动按照byName方式进行装配；如果没有匹配，则回退为一个原始类型进行匹配，如果匹配则自动装配；</p>
+<h1 id="3-Autowired-与-Resource的区别："><a href="#3-Autowired-与-Resource的区别：" class="headerlink" title="3. @Autowired 与@Resource的区别："></a>3. @Autowired 与@Resource的区别：</h1><p>1、 @Autowired与@Resource都可以用来装配bean. 都可以写在字段上,或写在setter方法上。</p>
+<p>2、 @Autowired默认按类型装配（这个注解是属业spring的），默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false，如：@Autowired(required=false) ，如果我们想使用名称装配可以结合@Qualifier注解进行使用，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired()</span> <span class="meta">@Qualifier(&quot;baseDao&quot;)</span></span><br><span class="line"><span class="keyword">private</span> BaseDao baseDao;</span><br></pre></td></tr></table></figure>
+
+<p>3、@Resource（这个注解属于J2EE的），默认按照名称进行装配，名称可以通过name属性进行指定，如果没有指定name属性，当注解写在字段上时，默认取字段名进行安装名称查找，如果注解写在setter方法上默认取属性名进行装配。当找不到与名称匹配的bean时才按照类型进行装配。但是需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。</p>
+<p>推荐使用：@Resource注解在字段上，这样就不用写setter方法了，并且这个注解是属于J2EE的，减少了与spring的耦合。这样代码看起就比较优雅。</p>
+<h1 id="4-总结："><a href="#4-总结：" class="headerlink" title="4. 总结："></a>4. 总结：</h1><p>@Autowired//默认按type注入<br>@Qualifier(“cusInfoService”)//一般作为@Autowired()的修饰用<br>@Resource(name=”cusInfoService”)//默认按name注入，可以通过name和type属性进行选择性注入</p>
+<p>一般@Autowired和@Qualifier一起用，@Resource单独用。</p>
+<p>当然没有冲突的话@Autowired也可以单独用</p>
+<p>参考地址： <a href="https://blog.csdn.net/weixin_40423597/article/details/80643990">https://blog.csdn.net/weixin_40423597/article/details/80643990</a></p>
+]]></content>
+      <categories>
+        <category>spring</category>
+        <category>注解</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
+        <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《Java编程思想》已放弃转为别的书籍</title>
     <url>/2020/11/11/%E5%BA%9F%E5%BC%83/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="第1章-对象导论"><a href="#第1章-对象导论" class="headerlink" title="第1章 对象导论"></a>第1章 对象导论</h1><p>面向对象编程（Object-Oriented Programming OOP）是一种编程思维方式和编码架构。</p>
@@ -3513,23 +3550,6 @@ ibd索引和数据在一起
       </tags>
   </entry>
   <entry>
-    <title>https、公钥、私钥、数字证书</title>
-    <url>/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/</url>
-    <content><![CDATA[<h3 id="https通信的完整流程"><a href="#https通信的完整流程" class="headerlink" title="https通信的完整流程"></a>https通信的完整流程</h3><p>浏览器请求服务器，首先发送请求，服务器返回数字证书，数字证书中有3个东西（证书内容、加密密文、加密算法），当证书内容转变为hash值与密文通过CA机构的公钥解密获得的hash值相同时，表明该证书合法，并且从数字证书的证书内容中获得服务器端公钥。由于非对称密钥的加解密耗时，所以客户端会使用自己的对称密钥通过服务器公钥加密后发送给服务器，之后服务器通过自己的私钥进行解密，获得对称密钥，之后服务器和客户端通过对称密钥进行通信</p>
-<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>两把密匙：公钥和私钥</p>
-<p>使用公钥加密时，用私钥解密。</p>
-<p>使用私钥加密时，用公钥解密。</p>
-<p>私钥：由服务器保留。</p>
-<p>公钥：服务器发送给客户端使用 。</p>
-]]></content>
-      <tags>
-        <tag>https</tag>
-        <tag>公钥</tag>
-        <tag>私钥</tag>
-        <tag>数字证书</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>三次握手和四次挥手</title>
     <url>/2021/04/02/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/</url>
     <content><![CDATA[<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>建立客户端与服务器的tcp连接。</p>
@@ -3548,6 +3568,100 @@ ibd索引和数据在一起
 ]]></content>
       <tags>
         <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>https、公钥、私钥、数字证书</title>
+    <url>/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/</url>
+    <content><![CDATA[<h3 id="https通信的完整流程"><a href="#https通信的完整流程" class="headerlink" title="https通信的完整流程"></a>https通信的完整流程</h3><p>浏览器请求服务器，首先发送请求，服务器返回数字证书，数字证书中有3个东西（证书内容、加密密文、加密算法），当证书内容转变为hash值与密文通过CA机构的公钥解密获得的hash值相同时，表明该证书合法，并且从数字证书的证书内容中获得服务器端公钥。由于非对称密钥的加解密耗时，所以客户端会使用自己的对称密钥通过服务器公钥加密后发送给服务器，之后服务器通过自己的私钥进行解密，获得对称密钥，之后服务器和客户端通过对称密钥进行通信</p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>两把密匙：公钥和私钥</p>
+<p>使用公钥加密时，用私钥解密。</p>
+<p>使用私钥加密时，用公钥解密。</p>
+<p>私钥：由服务器保留。</p>
+<p>公钥：服务器发送给客户端使用 。</p>
+]]></content>
+      <tags>
+        <tag>https</tag>
+        <tag>公钥</tag>
+        <tag>私钥</tag>
+        <tag>数字证书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试题2</title>
+    <url>/2021/06/21/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95%E9%A2%982/</url>
+    <content><![CDATA[<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><ol>
+<li><p>Date类型与String类型转换</p>
+<ol>
+<li><p>Date –&gt; String</p>
+<p>函数DATE_FORMAT(date,format)  date:需要转换的日期    format:格式化的样式</p>
+</li>
+<li><p>String –&gt; Date</p>
+<p>STR_TO_DATE(str,format) str:字符形式的日期    format:格式化样式</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ol>
+<li>单例模式<ol>
+<li>单例模式只有一个实例（构造方法私有化）</li>
+<li>自己创建自己的实例。</li>
+<li>必须为其他对象提供唯一的实例。</li>
+</ol>
+</li>
+<li>单例应用场景：</li>
+<li></li>
+</ol>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><ol>
+<li><p>多线程的理解</p>
+</li>
+<li><p>String、StringBuffer与StringBuilder的区别。</p>
+<ol>
+<li>String：字符串常量。<ol>
+<li>String的值是不可变的，每次对String操作都会生成新的String对象。</li>
+<li>效率低下且浪费有限的内存空间。</li>
+</ol>
+</li>
+<li>StringBuffer和StringBuilder区别<ol>
+<li>两者为字符串变量，对字符串修改时不会产生新的未使用的对象。</li>
+<li>Builder类在Java5中被提出，和buffer之间的最大的不同在于方法不是线程安全的。（不能同步访问）</li>
+<li>Builder相较于Buffer有速度优势。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>方法重写：返回值类型必须与父类的返回值类型相同或是其子类。</p>
+</li>
+<li><p>什么是反向代理：</p>
+<ol>
+<li>正向代理：隐藏客户端信息（科学上网）</li>
+<li>反向代理：隐藏服务端信息（负载均衡访问，屏蔽内网服务器信息）</li>
+</ol>
+</li>
+</ol>
+<h3 id="面试官问题"><a href="#面试官问题" class="headerlink" title="面试官问题"></a>面试官问题</h3><ol>
+<li>讲一下个人的优缺点<ol>
+<li>缺点：<ol>
+<li>技术不扎实。</li>
+<li>在长空闲的时候，便会产生一定的惰性。</li>
+</ol>
+</li>
+<li>优点：<ol>
+<li>乐于学习，且深入学习。</li>
+<li>对自己参与的项目，负起责任。</li>
+<li>持续学习，对项目持续优化。</li>
+<li>多看、多学、多做。乐于工作，才能在现阶段，快速进步。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>面试题</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -3678,83 +3792,6 @@ ibd索引和数据在一起
 ]]></content>
       <tags>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>面试题2</title>
-    <url>/2021/06/21/%E9%9D%A2%E8%AF%95%E9%A2%98/%E9%9D%A2%E8%AF%95%E9%A2%982/</url>
-    <content><![CDATA[<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><ol>
-<li><p>Date类型与String类型转换</p>
-<ol>
-<li><p>Date –&gt; String</p>
-<p>函数DATE_FORMAT(date,format)  date:需要转换的日期    format:格式化的样式</p>
-</li>
-<li><p>String –&gt; Date</p>
-<p>STR_TO_DATE(str,format) str:字符形式的日期    format:格式化样式</p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ol>
-<li>单例模式<ol>
-<li>单例模式只有一个实例（构造方法私有化）</li>
-<li>自己创建自己的实例。</li>
-<li>必须为其他对象提供唯一的实例。</li>
-</ol>
-</li>
-<li>单例应用场景：</li>
-<li></li>
-</ol>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><ol>
-<li><p>多线程的理解</p>
-</li>
-<li><p>String、StringBuffer与StringBuilder的区别。</p>
-<ol>
-<li>String：字符串常量。<ol>
-<li>String的值是不可变的，每次对String操作都会生成新的String对象。</li>
-<li>效率低下且浪费有限的内存空间。</li>
-</ol>
-</li>
-<li>StringBuffer和StringBuilder区别<ol>
-<li>两者为字符串变量，对字符串修改时不会产生新的未使用的对象。</li>
-<li>Builder类在Java5中被提出，和buffer之间的最大的不同在于方法不是线程安全的。（不能同步访问）</li>
-<li>Builder相较于Buffer有速度优势。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>方法重写：返回值类型必须与父类的返回值类型相同或是其子类。</p>
-</li>
-<li><p>什么是反向代理：</p>
-<ol>
-<li>正向代理：隐藏客户端信息（科学上网）</li>
-<li>反向代理：隐藏服务端信息（负载均衡访问，屏蔽内网服务器信息）</li>
-</ol>
-</li>
-</ol>
-<h3 id="面试官问题"><a href="#面试官问题" class="headerlink" title="面试官问题"></a>面试官问题</h3><ol>
-<li>讲一下个人的优缺点<ol>
-<li>缺点：<ol>
-<li>技术不扎实。</li>
-<li>在长空闲的时候，便会产生一定的惰性。</li>
-</ol>
-</li>
-<li>优点：<ol>
-<li>乐于学习，且深入学习。</li>
-<li>对自己参与的项目，负起责任。</li>
-<li>持续学习，对项目持续优化。</li>
-<li>多看、多学、多做。乐于工作，才能在现阶段，快速进步。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>面试题</category>
-      </categories>
-      <tags>
-        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -4191,6 +4228,144 @@ ibd索引和数据在一起
       </tags>
   </entry>
   <entry>
+    <title>商城项目六</title>
+    <url>/2021/02/22/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/</url>
+    <content><![CDATA[<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><ol>
+<li><p>初始化线程的4种方式</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">1. 继承Thread</span><br><span class="line">2. 实现Runable接口</span><br><span class="line">3. 实现Callable接口 + FutureTask(可以拿到结果，可以处理异常)</span><br><span class="line">4. 线程池 给线程池直接提交任务</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">1，2不能得到返回值，3可以获得返回值</span><br><span class="line">1，2，3都不能控制资源</span><br><span class="line">4可以控制资源，性能稳定。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4种实现方式"><a href="#4种实现方式" class="headerlink" title="4种实现方式"></a>4种实现方式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="type">Thread01</span> <span class="variable">thread01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread01</span>();</span><br><span class="line">thread01.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="type">Runable01</span> <span class="variable">runable01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runable01</span>();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(runable01).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.1</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//3.2</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//阻塞 等待整个线程执行完成，获取返回结果</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> futureTask.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回结果：&quot;</span>+integer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="comment">//当前系统中池只有一两个，每个异步任务，提交给线程池</span></span><br><span class="line"><span class="comment">//创建全局类变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">service</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//4.1</span></span><br><span class="line">service.execute(<span class="keyword">new</span> <span class="title class_">Runable01</span>());</span><br><span class="line"><span class="comment">//4.2 使用原生线程池</span></span><br><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">                <span class="number">5</span>,</span><br><span class="line">                <span class="number">200</span>,</span><br><span class="line">                <span class="number">10</span>,</span><br><span class="line">                TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">LinkedBlockingDeque</span>&lt;&gt;(<span class="number">1000000</span>),</span><br><span class="line">                Executors.defaultThreadFactory(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.AbortPolicy());</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程池介绍"><a href="#线程池介绍" class="headerlink" title="线程池介绍"></a>线程池介绍</h3><h4 id="原生线程池"><a href="#原生线程池" class="headerlink" title="原生线程池"></a>原生线程池</h4><h5 id="有7大参数"><a href="#有7大参数" class="headerlink" title="有7大参数"></a>有7大参数</h5><ol>
+<li>corePoolSize 核心线程池：线程池创建好就准备就绪的线程数量，等待接收异步任务去执行。</li>
+<li>maximumPoolSize 最大线程数。</li>
+<li>keepAliveTime 存活时间。释放空闲线程，只要空闲线程大于核心线程。</li>
+<li>unit 时间单位。</li>
+<li>workQueue 阻塞队列。</li>
+<li>threadFactory 线程的创建工厂。</li>
+<li>handler 如果队列满了，按照指定的拒绝策略拒绝执行任务。</li>
+</ol>
+<h5 id="工作顺序"><a href="#工作顺序" class="headerlink" title="工作顺序"></a>工作顺序</h5><pre><code>1. 线程池创建，准备好core数量的核心线程。
+    1.1 核心满了，再进阻塞队列，空闲的回去阻塞队列获取任务
+    1.2 阻塞队列满了，就开新线程执行，最大额能开到max指定的数量
+    1.3 max满了就用拒绝任务
+    1.4 max都执行完成了，有很多空闲，在指定时间以后，就释放多余线程。
+    new LinkedBlockingDeque&lt;&gt;() 默认时Integer的最大值，会造成内存不够
+</code></pre>
+<h5 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h5><p>一个线程池core7，max20，queue50，100并发进来怎么分配？<br>          7个立即执行，50个进入队列，13个开新线程执行。剩下30个使用拒绝策略。<br>          如果不想抛弃还要执行。new ThreadPoolExecutor.CallerRunsPolicy() 使用同步执行的拒绝策略</p>
+<h4 id="常见4种线程池"><a href="#常见4种线程池" class="headerlink" title="常见4种线程池"></a>常见4种线程池</h4><ol>
+<li>Executors.newCachedThreadPool(); //core是0，所有都可回收</li>
+<li>Executors.newFixedThreadPool(); //固定大小，core=max，所有都不可回收</li>
+<li>Executors.newScheduledThreadPool();  //定时任务的线程池，可传递一个线程开始运行的时间</li>
+<li>Executors.newScheduledThreadPool(); //单线程线程池，后台从队列里面获取任务，依次执行，是同步的</li>
+</ol>
+<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><p>实现了Future接口，Future可以获取异步结果。</p>
+<p>当多个线程池运行，可以设置之间相互关系。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先创建一个线程池</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="简单异步运行"><a href="#简单异步运行" class="headerlink" title="简单异步运行"></a>简单异步运行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.runAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步运行获取返回值"><a href="#异步运行获取返回值" class="headerlink" title="异步运行获取返回值"></a>异步运行获取返回值</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.1</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> future.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回值：&quot;</span>+integer);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步完成时回调"><a href="#异步完成时回调" class="headerlink" title="异步完成时回调"></a>异步完成时回调</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.2 计算完成时回调</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).whenComplete((res,excption)-&gt;&#123;</span><br><span class="line">    <span class="comment">//虽然能得到异常信息，但是没法修改返回数据</span></span><br><span class="line">    System.out.println(<span class="string">&quot;异步任务完成了。。。结果是：&quot;</span>+res+<span class="string">&quot;；异常是：&quot;</span>+excption);</span><br><span class="line">&#125;).exceptionally(throwable -&gt; &#123;</span><br><span class="line">    <span class="comment">//可以感知异常，同时返回默认值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="异步完成后再处理"><a href="#异步完成后再处理" class="headerlink" title="异步完成后再处理"></a>异步完成后再处理</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.3 方法完成后的处理</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).handle((res,thr)-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (res!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (thr!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程串行化"><a href="#线程串行化" class="headerlink" title="线程串行化"></a>线程串行化</h3><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">thenRunAsync:不能获取到上一步的执行结果，无返回值</span><br><span class="line">thenAcceptAsync 能接受上一步结果，但无返回值</span><br><span class="line">thenApplyAsync 能接受上一步结果，有返回值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//thenRunAsync：</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).thenRunAsync(()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务2启动了。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<h3 id="两任务组合关系"><a href="#两任务组合关系" class="headerlink" title="两任务组合关系"></a>两任务组合关系</h3><p>首先创建两个异步线程</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">CompletableFuture&lt;Object&gt; future01 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前1线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行1结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"></span><br><span class="line">CompletableFuture&lt;Object&gt; future02 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前2线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行2结束&quot;</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
+
+<h4 id="两任务都完成，再执行三任务"><a href="#两任务都完成，再执行三任务" class="headerlink" title="两任务都完成，再执行三任务"></a>两任务都完成，再执行三任务</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1 不能获取两次执行结果</span></span><br><span class="line">future01.runAfterBothAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2 能获取两次执行结果，但没有返回值</span></span><br><span class="line">future01.thenAcceptBothAsync(future02,(f1,f2)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+f1+<span class="string">&quot;--&gt;&quot;</span>+f2);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//3 能获取两次执行结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.thenCombineAsync(future02, (f1, f2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> f1 + <span class="string">&quot;:&quot;</span> + f2 + <span class="string">&quot;-&gt;end&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
+
+<h4 id="两任务任一完成，执行三任务"><a href="#两任务任一完成，执行三任务" class="headerlink" title="两任务任一完成，执行三任务"></a>两任务任一完成，执行三任务</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1 不感知结果，没有返回值</span></span><br><span class="line">future01.runAfterEitherAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2 感知结果，没有返回值</span></span><br><span class="line">future01.acceptEitherAsync(future02,(res)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+res);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//3 感知结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.applyToEitherAsync(future02, res -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> res.toString() + <span class="string">&quot;-&gt;哈哈&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
+
+<h3 id="多任务组合关系"><a href="#多任务组合关系" class="headerlink" title="多任务组合关系"></a>多任务组合关系</h3><p>首先创建多个异步任务，这里创建了3个异步任务</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//等待所有结果都完成</span></span><br><span class="line">CompletableFuture&lt;Void&gt; allOf = CompletableFuture.allOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">allOf.get();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//等待任意一个任务执行完成，获得那个任务的返回值。</span></span><br><span class="line">CompletableFuture&lt;Object&gt; anyOf = CompletableFuture.anyOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">anyOf.get();</span><br></pre></td></tr></table></figure>
+
+<h2 id="MD5-amp-MD5盐值加密"><a href="#MD5-amp-MD5盐值加密" class="headerlink" title="MD5&amp;MD5盐值加密"></a>MD5&amp;MD5盐值加密</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>Message Digest algorithm 5：信息概要算法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> DigestUtils.md5Hex(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>任意长度数据，MD5值的长度都是固定的。</li>
+<li>容易计算。</li>
+<li>对原数据进行任何修改，哪怕只修改1个字节，MD5值都区别很大。</li>
+<li>很难找到不同的数据，具有相同的MD5值。</li>
+</ol>
+<h3 id="加盐"><a href="#加盐" class="headerlink" title="加盐"></a>加盐</h3><p>通过生成随机数与MD5生成字符串组合。</p>
+<p>数据库据同时存储MD5值和salt值（随机数）。验证正确性时使用salt进行MD5即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//盐值加密</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes());</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes(), <span class="string">&quot;$1$aaaaa&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="spring密码加密器"><a href="#spring密码加密器" class="headerlink" title="spring密码加密器"></a>spring密码加密器</h3><p>使用的盐值加密</p>
+<p>每次加密出来的encode都不同</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">String</span> <span class="variable">encode</span> <span class="operator">=</span> passwordEncoder.encode(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(encode);</span><br></pre></td></tr></table></figure>
+
+<p>每次可以让密码跟旧encode种比较，会从旧encode中获取到盐值。</p>
+<p>虽然每次的encode不同，但是都会跟原密码匹配。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">boolean</span> <span class="variable">matches</span> <span class="operator">=</span> passwordEncoder.matches(<span class="string">&quot;123456&quot;</span>, <span class="string">&quot;$2a$10$fZU3lFnAGKStM8JAqQtJVu1BHOF99PfK9LCNkGLal0tt.xCWky7rG&quot;</span>);</span><br><span class="line">System.out.println(matches);</span><br></pre></td></tr></table></figure>
+
+<h2 id="社交登录"><a href="#社交登录" class="headerlink" title="社交登录"></a>社交登录</h2><h3 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h3><p>第三方应用使用社交账号登录。</p>
+<ol>
+<li>向用户申请请求认证</li>
+<li>用户输入自己社交账号的账号密码</li>
+<li>使用上步授权，进行认证（QQ服务器）</li>
+<li>认证通过，返回访问令牌（QQ服务器）</li>
+<li>使用访问令牌，获取开放保护信息。</li>
+<li>认证令牌，返回受保护信息。</li>
+</ol>
+<h3 id="使用微博账号登录"><a href="#使用微博账号登录" class="headerlink" title="使用微博账号登录"></a>使用微博账号登录</h3><p>微博中使用code换取accesstoken，code只能用一次。</p>
+<p>短时间一个用户的acesstoken一段时间内是不会变化的</p>
+<p>授权回调页：<a href="http://gulimall.com/oauth2.0/weibo/success">http://gulimall.com/oauth2.0/weibo/success</a></p>
+<p>取消授权回调页：<a href="http://gulimall.com/fail">http://gulimall.com/fail</a></p>
+<p><a href="https://imgtu.com/i/cStzXF"><img src="https://z3.ax1x.com/2021/03/28/cStzXF.jpg" alt="cStzXF.jpg"></a></p>
+<h2 id="新技术"><a href="#新技术" class="headerlink" title="新技术"></a>新技术</h2><h3 id="Session共享问题解决"><a href="#Session共享问题解决" class="headerlink" title="Session共享问题解决"></a>Session共享问题解决</h3><ul>
+<li>统一存储</li>
+<li>子域session共享</li>
+</ul>
+<p>SpringSession原理</p>
+<h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><p>多系统情况下，一个地方登录，所有系统通用。</p>
+<p>gitee开源项目：xxl-sso克隆下来</p>
+<p>编写host文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">192.168.226.128	gulimall.com</span><br><span class="line">192.168.226.128	search.gulimall.com</span><br><span class="line">192.168.226.128	item.gulimall.com</span><br><span class="line">192.168.226.128	auth.gulimall.com</span><br><span class="line"></span><br><span class="line">127.0.0.1 ssoserver.com</span><br><span class="line">127.0.0.1 client1.com</span><br><span class="line">127.0.0.1 client2.com</span><br></pre></td></tr></table></figure>
+
+<p>运行服务器命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">目录地址\xxl-sso&gt; mvn clean package -Dmaven.skip.test=true</span><br><span class="line">cd xxl-sso-server\target</span><br><span class="line">java -jar xxl-sso-server-1.1.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>运行成功</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">浏览器sso登录地址</span><br><span class="line">http://ssoserver.com:8080/xxl-sso-server/login</span><br></pre></td></tr></table></figure>
+
+<p>运行2个客户端命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8081</span><br><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8082</span><br></pre></td></tr></table></figure>
+
+<p>运行成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">客户端地址</span><br><span class="line">http://client1.com:8081/xxl-sso-web-sample-springboot</span><br><span class="line">http://client2.com:8082/xxl-sso-web-sample-springboot</span><br></pre></td></tr></table></figure>
+
+<p>核心：三个系统域名不同，但是能给三个系统同步同一个用户票据。</p>
+<ol>
+<li>中央认证服务器：ssoserver.com</li>
+<li>其它系统，想要登录去ssoserver.com的登录，登录成功跳转回来。</li>
+<li>只要一个登录，其他都不用登录</li>
+<li>全系统统一一个sso-sessionid。所有系统可能域名都不相同</li>
+</ol>
+<h4 id="单点登录功能以后再做"><a href="#单点登录功能以后再做" class="headerlink" title="单点登录功能以后再做"></a>单点登录功能以后再做</h4>]]></content>
+      <tags>
+        <tag>商城</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>商城项目五</title>
     <url>/2021/02/25/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE5/</url>
     <content><![CDATA[<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><h2 id="缓存使用"><a href="#缓存使用" class="headerlink" title="缓存使用"></a>缓存使用</h2><p>哪些数据适合放入缓存？</p>
@@ -4330,144 +4505,6 @@ ibd索引和数据在一起
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="meta">@EnableConfigurationProperties(CacheProperties.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCacheConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    RedisCacheConfiguration <span class="title function_">redisCacheConfiguration</span><span class="params">(CacheProperties cacheProperties)</span>&#123;</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">config</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig();</span><br><span class="line"><span class="comment">//        config = config.entryTtl();</span></span><br><span class="line">        config = config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>()));</span><br><span class="line">        config = config.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(<span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>()));</span><br><span class="line">        <span class="comment">// 将配置文件中的所有配置都生效</span></span><br><span class="line">        CacheProperties.<span class="type">Redis</span> <span class="variable">redisProperties</span> <span class="operator">=</span> cacheProperties.getRedis();</span><br><span class="line">        <span class="keyword">if</span> (redisProperties.getTimeToLive() != <span class="literal">null</span>) &#123;</span><br><span class="line">            config = config.entryTtl(redisProperties.getTimeToLive());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (redisProperties.getKeyPrefix() != <span class="literal">null</span>) &#123;</span><br><span class="line">            config = config.prefixKeysWith(redisProperties.getKeyPrefix());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!redisProperties.isCacheNullValues()) &#123;</span><br><span class="line">            config = config.disableCachingNullValues();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!redisProperties.isUseKeyPrefix()) &#123;</span><br><span class="line">            config = config.disableKeyPrefix();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
-      <tags>
-        <tag>商城</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>商城项目六</title>
-    <url>/2021/02/22/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/</url>
-    <content><![CDATA[<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><ol>
-<li><p>初始化线程的4种方式</p>
-<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">1. 继承Thread</span><br><span class="line">2. 实现Runable接口</span><br><span class="line">3. 实现Callable接口 + FutureTask(可以拿到结果，可以处理异常)</span><br><span class="line">4. 线程池 给线程池直接提交任务</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">1，2不能得到返回值，3可以获得返回值</span><br><span class="line">1，2，3都不能控制资源</span><br><span class="line">4可以控制资源，性能稳定。</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="4种实现方式"><a href="#4种实现方式" class="headerlink" title="4种实现方式"></a>4种实现方式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="type">Thread01</span> <span class="variable">thread01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread01</span>();</span><br><span class="line">thread01.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="type">Runable01</span> <span class="variable">runable01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runable01</span>();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(runable01).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.1</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//3.2</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//阻塞 等待整个线程执行完成，获取返回结果</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> futureTask.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回结果：&quot;</span>+integer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="comment">//当前系统中池只有一两个，每个异步任务，提交给线程池</span></span><br><span class="line"><span class="comment">//创建全局类变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">service</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//4.1</span></span><br><span class="line">service.execute(<span class="keyword">new</span> <span class="title class_">Runable01</span>());</span><br><span class="line"><span class="comment">//4.2 使用原生线程池</span></span><br><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">                <span class="number">5</span>,</span><br><span class="line">                <span class="number">200</span>,</span><br><span class="line">                <span class="number">10</span>,</span><br><span class="line">                TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">LinkedBlockingDeque</span>&lt;&gt;(<span class="number">1000000</span>),</span><br><span class="line">                Executors.defaultThreadFactory(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.AbortPolicy());</span><br></pre></td></tr></table></figure>
-
-<h3 id="线程池介绍"><a href="#线程池介绍" class="headerlink" title="线程池介绍"></a>线程池介绍</h3><h4 id="原生线程池"><a href="#原生线程池" class="headerlink" title="原生线程池"></a>原生线程池</h4><h5 id="有7大参数"><a href="#有7大参数" class="headerlink" title="有7大参数"></a>有7大参数</h5><ol>
-<li>corePoolSize 核心线程池：线程池创建好就准备就绪的线程数量，等待接收异步任务去执行。</li>
-<li>maximumPoolSize 最大线程数。</li>
-<li>keepAliveTime 存活时间。释放空闲线程，只要空闲线程大于核心线程。</li>
-<li>unit 时间单位。</li>
-<li>workQueue 阻塞队列。</li>
-<li>threadFactory 线程的创建工厂。</li>
-<li>handler 如果队列满了，按照指定的拒绝策略拒绝执行任务。</li>
-</ol>
-<h5 id="工作顺序"><a href="#工作顺序" class="headerlink" title="工作顺序"></a>工作顺序</h5><pre><code>1. 线程池创建，准备好core数量的核心线程。
-    1.1 核心满了，再进阻塞队列，空闲的回去阻塞队列获取任务
-    1.2 阻塞队列满了，就开新线程执行，最大额能开到max指定的数量
-    1.3 max满了就用拒绝任务
-    1.4 max都执行完成了，有很多空闲，在指定时间以后，就释放多余线程。
-    new LinkedBlockingDeque&lt;&gt;() 默认时Integer的最大值，会造成内存不够
-</code></pre>
-<h5 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h5><p>一个线程池core7，max20，queue50，100并发进来怎么分配？<br>          7个立即执行，50个进入队列，13个开新线程执行。剩下30个使用拒绝策略。<br>          如果不想抛弃还要执行。new ThreadPoolExecutor.CallerRunsPolicy() 使用同步执行的拒绝策略</p>
-<h4 id="常见4种线程池"><a href="#常见4种线程池" class="headerlink" title="常见4种线程池"></a>常见4种线程池</h4><ol>
-<li>Executors.newCachedThreadPool(); //core是0，所有都可回收</li>
-<li>Executors.newFixedThreadPool(); //固定大小，core=max，所有都不可回收</li>
-<li>Executors.newScheduledThreadPool();  //定时任务的线程池，可传递一个线程开始运行的时间</li>
-<li>Executors.newScheduledThreadPool(); //单线程线程池，后台从队列里面获取任务，依次执行，是同步的</li>
-</ol>
-<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><p>实现了Future接口，Future可以获取异步结果。</p>
-<p>当多个线程池运行，可以设置之间相互关系。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先创建一个线程池</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="简单异步运行"><a href="#简单异步运行" class="headerlink" title="简单异步运行"></a>简单异步运行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.runAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步运行获取返回值"><a href="#异步运行获取返回值" class="headerlink" title="异步运行获取返回值"></a>异步运行获取返回值</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.1</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> future.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回值：&quot;</span>+integer);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步完成时回调"><a href="#异步完成时回调" class="headerlink" title="异步完成时回调"></a>异步完成时回调</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.2 计算完成时回调</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).whenComplete((res,excption)-&gt;&#123;</span><br><span class="line">    <span class="comment">//虽然能得到异常信息，但是没法修改返回数据</span></span><br><span class="line">    System.out.println(<span class="string">&quot;异步任务完成了。。。结果是：&quot;</span>+res+<span class="string">&quot;；异常是：&quot;</span>+excption);</span><br><span class="line">&#125;).exceptionally(throwable -&gt; &#123;</span><br><span class="line">    <span class="comment">//可以感知异常，同时返回默认值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步完成后再处理"><a href="#异步完成后再处理" class="headerlink" title="异步完成后再处理"></a>异步完成后再处理</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2.3 方法完成后的处理</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).handle((res,thr)-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (res!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (thr!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="线程串行化"><a href="#线程串行化" class="headerlink" title="线程串行化"></a>线程串行化</h3><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">thenRunAsync:不能获取到上一步的执行结果，无返回值</span><br><span class="line">thenAcceptAsync 能接受上一步结果，但无返回值</span><br><span class="line">thenApplyAsync 能接受上一步结果，有返回值</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//thenRunAsync：</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).thenRunAsync(()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务2启动了。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<h3 id="两任务组合关系"><a href="#两任务组合关系" class="headerlink" title="两任务组合关系"></a>两任务组合关系</h3><p>首先创建两个异步线程</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">CompletableFuture&lt;Object&gt; future01 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前1线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行1结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"></span><br><span class="line">CompletableFuture&lt;Object&gt; future02 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前2线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行2结束&quot;</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
-
-<h4 id="两任务都完成，再执行三任务"><a href="#两任务都完成，再执行三任务" class="headerlink" title="两任务都完成，再执行三任务"></a>两任务都完成，再执行三任务</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1 不能获取两次执行结果</span></span><br><span class="line">future01.runAfterBothAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2 能获取两次执行结果，但没有返回值</span></span><br><span class="line">future01.thenAcceptBothAsync(future02,(f1,f2)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+f1+<span class="string">&quot;--&gt;&quot;</span>+f2);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//3 能获取两次执行结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.thenCombineAsync(future02, (f1, f2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> f1 + <span class="string">&quot;:&quot;</span> + f2 + <span class="string">&quot;-&gt;end&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
-
-<h4 id="两任务任一完成，执行三任务"><a href="#两任务任一完成，执行三任务" class="headerlink" title="两任务任一完成，执行三任务"></a>两任务任一完成，执行三任务</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1 不感知结果，没有返回值</span></span><br><span class="line">future01.runAfterEitherAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//2 感知结果，没有返回值</span></span><br><span class="line">future01.acceptEitherAsync(future02,(res)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+res);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//3 感知结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.applyToEitherAsync(future02, res -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> res.toString() + <span class="string">&quot;-&gt;哈哈&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
-
-<h3 id="多任务组合关系"><a href="#多任务组合关系" class="headerlink" title="多任务组合关系"></a>多任务组合关系</h3><p>首先创建多个异步任务，这里创建了3个异步任务</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//等待所有结果都完成</span></span><br><span class="line">CompletableFuture&lt;Void&gt; allOf = CompletableFuture.allOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">allOf.get();</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//等待任意一个任务执行完成，获得那个任务的返回值。</span></span><br><span class="line">CompletableFuture&lt;Object&gt; anyOf = CompletableFuture.anyOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">anyOf.get();</span><br></pre></td></tr></table></figure>
-
-<h2 id="MD5-amp-MD5盐值加密"><a href="#MD5-amp-MD5盐值加密" class="headerlink" title="MD5&amp;MD5盐值加密"></a>MD5&amp;MD5盐值加密</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>Message Digest algorithm 5：信息概要算法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> DigestUtils.md5Hex(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
-
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
-<li>任意长度数据，MD5值的长度都是固定的。</li>
-<li>容易计算。</li>
-<li>对原数据进行任何修改，哪怕只修改1个字节，MD5值都区别很大。</li>
-<li>很难找到不同的数据，具有相同的MD5值。</li>
-</ol>
-<h3 id="加盐"><a href="#加盐" class="headerlink" title="加盐"></a>加盐</h3><p>通过生成随机数与MD5生成字符串组合。</p>
-<p>数据库据同时存储MD5值和salt值（随机数）。验证正确性时使用salt进行MD5即可。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//盐值加密</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes());</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes(), <span class="string">&quot;$1$aaaaa&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="spring密码加密器"><a href="#spring密码加密器" class="headerlink" title="spring密码加密器"></a>spring密码加密器</h3><p>使用的盐值加密</p>
-<p>每次加密出来的encode都不同</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">String</span> <span class="variable">encode</span> <span class="operator">=</span> passwordEncoder.encode(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(encode);</span><br></pre></td></tr></table></figure>
-
-<p>每次可以让密码跟旧encode种比较，会从旧encode中获取到盐值。</p>
-<p>虽然每次的encode不同，但是都会跟原密码匹配。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">boolean</span> <span class="variable">matches</span> <span class="operator">=</span> passwordEncoder.matches(<span class="string">&quot;123456&quot;</span>, <span class="string">&quot;$2a$10$fZU3lFnAGKStM8JAqQtJVu1BHOF99PfK9LCNkGLal0tt.xCWky7rG&quot;</span>);</span><br><span class="line">System.out.println(matches);</span><br></pre></td></tr></table></figure>
-
-<h2 id="社交登录"><a href="#社交登录" class="headerlink" title="社交登录"></a>社交登录</h2><h3 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h3><p>第三方应用使用社交账号登录。</p>
-<ol>
-<li>向用户申请请求认证</li>
-<li>用户输入自己社交账号的账号密码</li>
-<li>使用上步授权，进行认证（QQ服务器）</li>
-<li>认证通过，返回访问令牌（QQ服务器）</li>
-<li>使用访问令牌，获取开放保护信息。</li>
-<li>认证令牌，返回受保护信息。</li>
-</ol>
-<h3 id="使用微博账号登录"><a href="#使用微博账号登录" class="headerlink" title="使用微博账号登录"></a>使用微博账号登录</h3><p>微博中使用code换取accesstoken，code只能用一次。</p>
-<p>短时间一个用户的acesstoken一段时间内是不会变化的</p>
-<p>授权回调页：<a href="http://gulimall.com/oauth2.0/weibo/success">http://gulimall.com/oauth2.0/weibo/success</a></p>
-<p>取消授权回调页：<a href="http://gulimall.com/fail">http://gulimall.com/fail</a></p>
-<p><a href="https://imgtu.com/i/cStzXF"><img src="https://z3.ax1x.com/2021/03/28/cStzXF.jpg" alt="cStzXF.jpg"></a></p>
-<h2 id="新技术"><a href="#新技术" class="headerlink" title="新技术"></a>新技术</h2><h3 id="Session共享问题解决"><a href="#Session共享问题解决" class="headerlink" title="Session共享问题解决"></a>Session共享问题解决</h3><ul>
-<li>统一存储</li>
-<li>子域session共享</li>
-</ul>
-<p>SpringSession原理</p>
-<h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><p>多系统情况下，一个地方登录，所有系统通用。</p>
-<p>gitee开源项目：xxl-sso克隆下来</p>
-<p>编写host文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">192.168.226.128	gulimall.com</span><br><span class="line">192.168.226.128	search.gulimall.com</span><br><span class="line">192.168.226.128	item.gulimall.com</span><br><span class="line">192.168.226.128	auth.gulimall.com</span><br><span class="line"></span><br><span class="line">127.0.0.1 ssoserver.com</span><br><span class="line">127.0.0.1 client1.com</span><br><span class="line">127.0.0.1 client2.com</span><br></pre></td></tr></table></figure>
-
-<p>运行服务器命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">目录地址\xxl-sso&gt; mvn clean package -Dmaven.skip.test=true</span><br><span class="line">cd xxl-sso-server\target</span><br><span class="line">java -jar xxl-sso-server-1.1.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-
-<p>运行成功</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">浏览器sso登录地址</span><br><span class="line">http://ssoserver.com:8080/xxl-sso-server/login</span><br></pre></td></tr></table></figure>
-
-<p>运行2个客户端命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8081</span><br><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8082</span><br></pre></td></tr></table></figure>
-
-<p>运行成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">客户端地址</span><br><span class="line">http://client1.com:8081/xxl-sso-web-sample-springboot</span><br><span class="line">http://client2.com:8082/xxl-sso-web-sample-springboot</span><br></pre></td></tr></table></figure>
-
-<p>核心：三个系统域名不同，但是能给三个系统同步同一个用户票据。</p>
-<ol>
-<li>中央认证服务器：ssoserver.com</li>
-<li>其它系统，想要登录去ssoserver.com的登录，登录成功跳转回来。</li>
-<li>只要一个登录，其他都不用登录</li>
-<li>全系统统一一个sso-sessionid。所有系统可能域名都不相同</li>
-</ol>
-<h4 id="单点登录功能以后再做"><a href="#单点登录功能以后再做" class="headerlink" title="单点登录功能以后再做"></a>单点登录功能以后再做</h4>]]></content>
       <tags>
         <tag>商城</tag>
       </tags>

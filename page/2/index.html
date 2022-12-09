@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,116 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/16/spring/20210416-SpringBoot%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/16/spring/20210416-SpringBoot%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" class="post-title-link" itemprop="url">Spring Boot编程思想</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-16 22:08:00" itemprop="dateCreated datePublished" datetime="2021-04-16T22:08:00+08:00">2021-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-04-18 09:46:04" itemprop="dateModified" datetime="2021-04-18T09:46:04+08:00">2021-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/spring/spring-boot/" itemprop="url" rel="index"><span itemprop="name">spring boot</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>–<strong>架构的好坏不在于理论和技术，而在于实施者对业务的理解和专业水平。</strong>–</p>
+<h1 id="总览Spring-Boot"><a href="#总览Spring-Boot" class="headerlink" title="总览Spring Boot"></a>总览Spring Boot</h1><h2 id="Spring-Framework-时代"><a href="#Spring-Framework-时代" class="headerlink" title="Spring Framework 时代"></a>Spring Framework 时代</h2><p><strong>Spring Framework</strong> 一定程度上颠覆了<strong>J2EE</strong>开发模式，让我们知道除了J2EE标准外，还能用其他的模式开发。这依赖于Spring Framework的新概念：<strong>IOC</strong>（Inversion of Control，控制反转）和<strong>DI</strong>（Dependency Inject，依赖注入）。</p>
+<p>J2EE与Spring Framework都与JSR（Java Specification Requests，Java标准规范）密不可分。</p>
+<p>在J2EE技术体系中，IOC的实现方式为<strong>JNDI</strong>（Java Naming and Directory Interface，Java命名和目录接口），而DI是<strong>EJB</strong>容器注入。</p>
+<p>无论Spring Framework使接口如何优化，由于自身并非<strong>容器</strong>，基本上必须随Java EE容器启动而装载。<strong>Spring Boot</strong>的出现，改变了Spring技术体系的现状。</p>
+<h2 id="Spring-Boot-简介"><a href="#Spring-Boot-简介" class="headerlink" title="Spring Boot 简介"></a>Spring Boot 简介</h2><p>Spring Boot 被官方定义为“BUILD ANYTHING”。</p>
+<p>Spring Boot 为了快速启用最小化配置的Spring 应用而设计，并具有一套固定的视图，用于构建生产级别的应用。</p>
+<p>Spring Boot 使构架独立的Spring应用变得简单，通过固定的视图来固化Spring Boot应用的依赖的Spring平台和第三方类库（只需要确定Spring Boot的版本，不用考虑Spring Framework和第三方类库的版本），并且大多数的Spring boot应用只需要少量的Spring配置（包括属性配置与代码配置）。</p>
+<h2 id="Spring-Boot-特性"><a href="#Spring-Boot-特性" class="headerlink" title="Spring Boot 特性"></a>Spring Boot 特性</h2><ol>
+<li>创建独立的Spring应用。</li>
+<li>嵌入Tomcat、Jetty或Undertow等Web容器（不需要部署WAR文件）。</li>
+<li>提供固化的“starter”依赖，简化构建配置。</li>
+<li>当条件满足时自动装配Spring或第三方类库。</li>
+<li>提供运维（Production-Ready）特性，如指标信息、健康检查及外部化配置。</li>
+<li>无代码生成，不需要xml配置。</li>
+</ol>
+<h1 id="理解独立的Spring应用"><a href="#理解独立的Spring应用" class="headerlink" title="理解独立的Spring应用"></a>理解独立的Spring应用</h1><p>开发人员常将<strong>Spring Boot</strong>框架构建的应用称为Spring Boot应用，实际上是Spring应用。</p>
+<p>在大多数Spring Boot应用场景中，程序直接或间接地使用<strong>SpringApplication API</strong>引导应用，结合嵌入式<strong>Web</strong>容器，对外提供<strong>HTTP</strong>服务。</p>
+<p>当Spring Boot 出现嵌入式容器启动方式后，嵌入式容器成为Spring容器上下文中的组件<strong>Beans</strong>，随Spring应用上下文启动而注册并初始化。驱动Spring应用上下文启动的核心组件是Spring Boot核心<strong>API SpringApplication</strong>，所以是Spring应用，也可以称为Spring Boot应用。</p>
+<h1 id="理解嵌入式Web容器"><a href="#理解嵌入式Web容器" class="headerlink" title="理解嵌入式Web容器"></a>理解嵌入式Web容器</h1><p>Spring Boot可以嵌入<strong>Servlet Web</strong>容器和<strong>Reactive Web</strong> 容器。统称嵌入式<strong>Web</strong>容器，容器之间是互斥关系，无法并存。</p>
+<h2 id="嵌入式Servlet-Web容器"><a href="#嵌入式Servlet-Web容器" class="headerlink" title="嵌入式Servlet Web容器"></a>嵌入式Servlet Web容器</h2><p><strong>Spring Boot 2.0</strong>支持三种嵌入式**Servlet 3.1+**容器。</p>
+<p>包括：<strong>Tomcat</strong>、<strong>Jetty</strong>、<strong>Undertow</strong></p>
+<h3 id="Tomcat作为嵌入式Servlet-Web容器"><a href="#Tomcat作为嵌入式Servlet-Web容器" class="headerlink" title="Tomcat作为嵌入式Servlet Web容器"></a>Tomcat作为嵌入式Servlet Web容器</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1323,88 +1433,6 @@
 </ol>
 <h3 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h3><p>通过rabbit mq 的延时队列实现订单回滚事务。</p>
 <h1 id="支付"><a href="#支付" class="headerlink" title="支付"></a>支付</h1><h2 id="支付宝沙箱环境"><a href="#支付宝沙箱环境" class="headerlink" title="支付宝沙箱环境"></a>支付宝沙箱环境</h2><p>内网穿透待完成。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/02/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/02/%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="post-title-link" itemprop="url">三次握手和四次挥手</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-02 16:47:00 / 修改时间：16:59:04" itemprop="dateCreated datePublished" datetime="2021-04-02T16:47:00+08:00">2021-04-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>建立客户端与服务器的tcp连接。</p>
-<ol>
-<li>建立连接，客户端发送syn包（seq=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
-<li>服务器收到syn包，确认客户端的SYN(ack=j+1)，同时也发送一个SYN包（seq=k），即SYN+ACK包，此时服务器进入SYN_RECV状态。</li>
-<li>客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1)，词包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手 。</li>
-</ol>
-<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>终止客户端与服务器的tcp连接</p>
-<ol>
-<li>TCP客户端发送一个FIN（带有FIN附加标记的报文段），用来关闭客户到服务器的数据传送。</li>
-<li>服务器收到FIN，发挥一个ACK，确认序号为收到序号加1。和SYN一样，一个FIN将占用一个序号。（先发送ACK的目的是为了防止这段时间内，对方重传FIN报文段）</li>
-<li>服务器关闭客户端的连接，发送一个FIN给客户端。</li>
-<li>客户端发送ACK报文确认，并将确认序号设置为序号加1。</li>
-</ol>
 
       
     </div>

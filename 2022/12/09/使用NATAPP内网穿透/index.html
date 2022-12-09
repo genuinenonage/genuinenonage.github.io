@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Mac使用NATAPP内网穿透内网穿透最近很多人居家办公，前后端联调需要一个能访问的公网环境。 内网穿透，也即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。 能让其他人像访问公网一样访问你的内网。 下载NATAPP在官网下载地址：NATAPP官方网下载地址  下载完成解压后，就可以得到我们的资源文件。 官方文档也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用NATAPP内网穿透">
+<meta property="og:url" content="http://example.com/2022/12/09/%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="Mac使用NATAPP内网穿透内网穿透最近很多人居家办公，前后端联调需要一个能访问的公网环境。 内网穿透，也即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。 能让其他人像访问公网一样访问你的内网。 下载NATAPP在官网下载地址：NATAPP官方网下载地址  下载完成解压后，就可以得到我们的资源文件。 官方文档也">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092234581.png">
+<meta property="og:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092854215.png">
+<meta property="og:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093052318.png">
+<meta property="og:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093117648.png">
+<meta property="og:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093915899.png">
+<meta property="article:published_time" content="2022-12-09T01:11:00.000Z">
+<meta property="article:modified_time" content="2022-12-09T01:42:12.135Z">
+<meta property="article:author" content="QB">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="内网穿透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092234581.png">
+
+
+<link rel="canonical" href="http://example.com/2022/12/09/%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/12/09/%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/","path":"2022/12/09/使用NATAPP内网穿透/","title":"使用NATAPP内网穿透"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用NATAPP内网穿透 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">减少放电，增加充电</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-number">1.</span> <span class="nav-text">Mac使用NATAPP内网穿透</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-number">1.1.</span> <span class="nav-text">内网穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDNATAPP"><span class="nav-number">1.2.</span> <span class="nav-text">下载NATAPP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NATAPP%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%90%AF%E5%8A%A8"><span class="nav-number">1.3.</span> <span class="nav-text">NATAPP配置与启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NATAPP%E6%96%87%E4%BB%B6%E6%8E%88%E6%9D%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">NATAPP文件授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96NATAPP%E7%9A%84authtoken"><span class="nav-number">1.3.2.</span> <span class="nav-text">获取NATAPP的authtoken</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8NATAPP"><span class="nav-number">1.3.3.</span> <span class="nav-text">启动NATAPP</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/%E4%BD%BF%E7%94%A8NATAPP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用NATAPP内网穿透 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用NATAPP内网穿透
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-12-09 09:11:00 / 修改时间：09:42:12" itemprop="dateCreated datePublished" datetime="2022-12-09T09:11:00+08:00">2022-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Mac使用NATAPP内网穿透"><a href="#Mac使用NATAPP内网穿透" class="headerlink" title="Mac使用NATAPP内网穿透"></a>Mac使用NATAPP内网穿透</h1><h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>最近很多人居家办公，前后端联调需要一个能访问的公网环境。</p>
+<p>内网穿透，也即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。</p>
+<p>能让其他人像访问公网一样访问你的内网。</p>
+<h2 id="下载NATAPP"><a href="#下载NATAPP" class="headerlink" title="下载NATAPP"></a>下载NATAPP</h2><p>在官网下载地址：<a target="_blank" rel="noopener" href="https://natapp.cn/">NATAPP官方网下载地址</a></p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092234581.png" alt="image-20221209092234581"></p>
+<p>下载完成解压后，就可以得到我们的资源文件。</p>
+<p>官方文档也比较详细：<a target="_blank" rel="noopener" href="https://natapp.cn/article/natapp_newbie">官方文档</a></p>
+<h2 id="NATAPP配置与启动"><a href="#NATAPP配置与启动" class="headerlink" title="NATAPP配置与启动"></a>NATAPP配置与启动</h2><h3 id="NATAPP文件授权"><a href="#NATAPP文件授权" class="headerlink" title="NATAPP文件授权"></a>NATAPP文件授权</h3><p>下载解压完成后，这个安装包不能直接打开运行。需要给NATAPP文件授权：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 下载镜像文件所在目录</span><br><span class="line">chmod a+x natapp</span><br></pre></td></tr></table></figure>
+
+<p>授权完成后，就能看到该文件被识别为Unix可执行文件。</p>
+<h3 id="获取NATAPP的authtoken"><a href="#获取NATAPP的authtoken" class="headerlink" title="获取NATAPP的authtoken"></a>获取NATAPP的authtoken</h3><p>进入NATAPP官网：进行免费注册，注册成功后，选择左边菜单的购买隧道，如图：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209092854215.png" alt="image-20221209092854215"></p>
+<p>选择第一个免费的就行，不过此处需要实名认证支付宝授权。我们进行实名授权，授权完成后，我们来到购买隧道页面：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093052318.png" alt="image-20221209093052318"></p>
+<p>此处的端口根据项目的端口来填，之后可以随时更改。就比如说你想让别人访问你本机的8080端口，那么这里就填写8080即可。点击免费购买完成购买。</p>
+<p>购买完成后在我的隧道中可以看到刚才购买的隧道：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093117648.png" alt="image-20221209093117648"></p>
+<p>复制authtoken即可。</p>
+<h3 id="启动NATAPP"><a href="#启动NATAPP" class="headerlink" title="启动NATAPP"></a>启动NATAPP</h3><p>来到终端，到该文件夹的目录运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./natapp -authtoken=你的authtoken</span><br></pre></td></tr></table></figure>
+
+<p>运行成功后如图所示：</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/image-20221209093915899.png" alt="image-20221209093915899"></p>
+<p>图中的Forwarding信息 <a target="_blank" rel="noopener" href="http://xwimcg.natappfree.cc/">http://xwimcg.natappfree.cc</a> -&gt; <strong>127.0.0.1:8080</strong> 代表你访问 <a target="_blank" rel="noopener" href="http://xwimcg.natappfree.cc/">http://xwimcg.natappfree.cc</a> 相当于访问本地的 <strong>127.0.0.1:8080</strong>。<br>到此内网穿透就完成了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+              <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag"># 内网穿透</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/20/Poi%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="Poi的使用">
+                  <i class="fa fa-chevron-left"></i> Poi的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
