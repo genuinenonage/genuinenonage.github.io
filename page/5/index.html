@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/Nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -222,7 +222,220 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/11/28/linux/Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux命令</a>
+          <a href="/2020/11/28/Nginx/" class="post-title-link" itemprop="url">Nginx使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-28T00:00:00+08:00">2020-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-12-17 10:44:52" itemprop="dateModified" datetime="2020-12-17T10:44:52+08:00">2020-12-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Nginx是一个高性能的HTTP和反向代理web服务器，也提供IMAP/POP3/SMTP服务。</p>
+<p>是一款轻量级的Web服务器/反向代理服务器及电子邮件（IMA/POP3）代理服务器。</p>
+<p>BSD-like协议下发行</p>
+<h3 id="1-1-特点"><a href="#1-1-特点" class="headerlink" title="1.1 特点"></a>1.1 特点</h3><p>占有内存少，并发能力强</p>
+<p>支持热部署，可以支持7*24不间断运行。</p>
+<h3 id="1-2-作为web服务器"><a href="#1-2-作为web服务器" class="headerlink" title="1.2 作为web服务器"></a>1.2 作为web服务器</h3><p>Nginx可以作为静态页面的web服务器，同时还支持CGI协议的动态语言，比如perl、php等。但是不支持Java。Java程序只能通过tomcat配合完成。</p>
+<p>Nginx转为性能优化而开发，实现上非常注重效率。</p>
+<p>能经受高负载的考验，有报告表明能支持高达50000个并发连接数。</p>
+<h3 id="1-3-作为HTTP服务器"><a href="#1-3-作为HTTP服务器" class="headerlink" title="1.3 作为HTTP服务器"></a>1.3 作为HTTP服务器</h3><ul>
+<li>处理静态文件，索引文件以及自动索引：打开文件描述符缓冲。</li>
+<li>无缓冲的反向代理加速，简单的负载均衡和容错。</li>
+<li>FastCGI，简单的负载均衡和容错。</li>
+<li>模块化结构</li>
+<li>支持SSL 和 TLSSNI</li>
+</ul>
+<h3 id="1-4-基本概念"><a href="#1-4-基本概念" class="headerlink" title="1.4 基本概念"></a>1.4 基本概念</h3><h4 id="1-4-1-正向代理"><a href="#1-4-1-正向代理" class="headerlink" title="1.4.1 正向代理"></a>1.4.1 正向代理</h4><p>Nginx能用作正向代理来进行上网等功能。</p>
+<p>正向代理：如果把局域网外的Internet看作一个巨大的资源库，则局域网中的客户端要访问Internet，则需要通过代理服务器来访问（在客户端（浏览器）配置代理服务器），这种代理服务称为正向代理。</p>
+<h4 id="1-4-2-反向代理"><a href="#1-4-2-反向代理" class="headerlink" title="1.4.2 反向代理"></a>1.4.2 反向代理</h4><p>由于客户端对代理是无感知的，客户端不需要任何配置就可以访问</p>
+<p>我们只需要将请求发送到反向代理服务器，有反向代理服务器去选择目标服务器获取数据后，再返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器IP地址。</p>
+<h4 id="1-4-3-负载均衡"><a href="#1-4-3-负载均衡" class="headerlink" title="1.4.3 负载均衡"></a>1.4.3 负载均衡</h4><p><img src="https://i.loli.net/2020/11/28/MTJ29wsXSCfolZr.png" alt="image.png"></p>
+<h4 id="1-4-4-动静分离"><a href="#1-4-4-动静分离" class="headerlink" title="1.4.4 动静分离"></a>1.4.4 动静分离</h4><p>为了加快网站的解析速度，可以把动态页面和静态页面由不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。</p>
+<h2 id="2-Nginx安装"><a href="#2-Nginx安装" class="headerlink" title="2. Nginx安装"></a>2. Nginx安装</h2><p>镜像位置：/mydata/jingxiang/</p>
+<p>版本：</p>
+<p>pcre-8.37.tar.gz</p>
+<p>openssl-1.0.1t.tar.gz</p>
+<p>zlib-1.2.8.tar.gz</p>
+<p>nginx-1.12.2.tar.gz</p>
+<h3 id="1-安装pcre依赖"><a href="#1-安装pcre依赖" class="headerlink" title="1. 安装pcre依赖"></a>1. 安装pcre依赖</h3><p>下载压缩文件</p>
+<p>解压压缩文件</p>
+<p>进入目录执行 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p>使用命令编译和安装 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>查看版本号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcre-config --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装openssl和zlib"><a href="#2-安装openssl和zlib" class="headerlink" title="2. 安装openssl和zlib"></a>2. 安装openssl和zlib</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="一键安装上面三个依赖"><a href="#一键安装上面三个依赖" class="headerlink" title="一键安装上面三个依赖"></a>一键安装上面三个依赖</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3. 安装nginx"></a>3. 安装nginx</h3><p>下载压缩文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.12.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>解压压缩文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf nginx-1.12.2.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>进入解压目录执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+
+<p>执行命令编译和安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，会在/usr/local/文件夹下自动创建一个nginx文件夹  </p>
+<p>/usr/local/nginx/sbin 中有启动脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line">会发现两个进程</span><br></pre></td></tr></table></figure>
+
+<p>编辑配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lcoal/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">	server&#123;</span><br><span class="line">		listen			80; #端口号</span><br><span class="line">		server_name		localhost; #ip地址</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看开放的端口号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br><span class="line"></span><br><span class="line">设置开放端口号</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">firewall-cmd --add-service=http -permanent</span></span><br><span class="line">sudo firewall-cmd --add-port=80/tcp --permanent</span><br><span class="line"></span><br><span class="line">重启防火墙</span><br><span class="line">firewall-cmd -reload</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Nginx常用命令"><a href="#3-Nginx常用命令" class="headerlink" title="3. Nginx常用命令"></a>3. Nginx常用命令</h2><p>前提条件：必须进入nginx的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line"></span><br><span class="line">查看ngins版本号</span><br><span class="line">./nginx -v</span><br><span class="line"></span><br><span class="line">启动nginx</span><br><span class="line">./nginx</span><br><span class="line">查看验证</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"></span><br><span class="line">关闭nginx</span><br><span class="line">./nginx -s stop</span><br><span class="line">查看验证</span><br><span class="line">ps -ef | grep nginx</span><br><span class="line"></span><br><span class="line">重新加载nginx命令，比如：需要重新加载nginx的配置文件</span><br><span class="line">cd /usr/local/nginx/sbin/</span><br><span class="line">./nginx -s reload</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Nginx的配置文件"><a href="#4-Nginx的配置文件" class="headerlink" title="4. Nginx的配置文件"></a>4. Nginx的配置文件</h2><p>/usr/local/nginx/conf/</p>
+<p>由三部分组成</p>
+<h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><p>从配置文件开始到events块之间，设置一些影响nginx服务器整体运行的配置指令</p>
+<p>主要包括配置运行Nginx服务器的用户（组）、允许生成的worker process数，进程PID存放路径、日志存放路径和类型以及配置文件的引入等</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker_processes	1; # 值越大，可以支持的并发处理量也越多，不能超过cpu核数</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h3><p>影响Nginx服务器与用户的网络连接。</p>
+<p>常用的设置包括 是否开启对多work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种时间驱动模型来处理连接请求，每个 word process 可以同时支持的最大连接数等。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">	worker_connections	1024; # 支持最大连接数 1024 对Nginx影响较大</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h3><p>Nginx服务器配置中最频繁的部分</p>
+<p>代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。</p>
+<p>http块也可以包括http全局快、server块。</p>
+<h4 id="http全局块"><a href="#http全局块" class="headerlink" title="http全局块"></a>http全局块</h4><p>包括文件引入、MIME-TYPE定义、日志自定义、连接超时时间、单链接请求数上限等。</p>
+<h4 id="server块"><a href="#server块" class="headerlink" title="server块"></a>server块</h4><p>和虚拟主机有密切关系，虚拟主机从用户角度看，和一台独立的硬件主机是完全一样的，为了节约互联网服务器硬件成本。</p>
+<p>每个http块可以包含多个server块，而每个server块相当于一个虚拟主机</p>
+<p>每个server块可以分为全局server块，以及可以同时包含多个location块</p>
+<h5 id="全局server块"><a href="#全局server块" class="headerlink" title="全局server块"></a>全局server块</h5><p>本虚拟主机的监听配置和本虚拟主机的名称或IP配置。</p>
+<h5 id="location块"><a href="#location块" class="headerlink" title="location块"></a>location块</h5><p>一个server开可以配置多个localtion块。</p>
+<p>主要作用是基于Nginx服务器接收到的请求字符串（例如server_name/uri-string），对虚拟主机名称（或IP别名）之外的字符串（例如/uri-string）进行匹配，对特定的请求进行处理。地址定向、数据缓存和应答控制等功能，还有许多第三方模块的配置也可以在这里进行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">	server &#123;</span><br><span class="line">		listen	80;</span><br><span class="line">		server_name	localhost;</span><br><span class="line">		location / &#123;</span><br><span class="line">  			root	html;</span><br><span class="line">  			index	index.html	index.html;</span><br><span class="line">		&#125;</span><br><span class="line">		error_page	500	502	503	504	/50x.html;</span><br><span class="line">		location = /50x.html &#123;</span><br><span class="line">			root	html;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Nginx配置实例"><a href="#Nginx配置实例" class="headerlink" title="Nginx配置实例"></a>Nginx配置实例</h1><h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>实现效果</p>
+<p>准备工作</p>
+<p>安装tomcat，使用默认端口8080</p>
+<p>下载tomcat压缩包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.bfsu.edu.cn/apache/tomcat/tomcat-7/v7.0.107/bin/apache-tomcat-7.0.107.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>解压tomcat</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf apache-tomcat-7.0.107.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>安装JDK</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44538107/article/details/88683530">Linux安装jdk详细步骤_农村小白的博客-CSDN博客_linux安装jdk</a></p>
+<p>java -version</p>
+<p>启动tomcat</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd apache-tomcat-xxx</span><br><span class="line">cd bin</span><br><span class="line">./startup.sh </span><br><span class="line"></span><br><span class="line">启动成功，进入日志</span><br><span class="line">cd ../logs</span><br><span class="line"></span><br><span class="line">查看日志</span><br><span class="line">tail -f catalina.out</span><br></pre></td></tr></table></figure>
+
+<p>对外开放端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd -add-port=8080/tcp --permanent</span><br><span class="line">firewall-cmd -add-port=8081/tcp --permanent</span><br><span class="line">firewall-cmd -reload</span><br><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
+
+<p>再windwos中浏览器访问</p>
+<p><a target="_blank" rel="noopener" href="http://x.x.x.x:8080/">http://x.x.x.x:8080/</a></p>
+<p><img src="https://i.loli.net/2020/11/28/qrwxmknuNspSYeV.png" alt="image.png"></p>
+<p>小知识：浏览器请求url ：首先会再windows的host文件中找对应域名–》的对应ip地址。如果没有，会去网络的域名解析器查找。</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><h2 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h2><p>为了让请求更高效，把动态跟静态请求分开。</p>
+<p>使用Nginx处理静态页面，tomcat处理动态页面。</p>
+<p>实现方式有两种：</p>
+<ol>
+<li>把静态文件独立成单独的域名，放在独立的服务器上，也是主流的方案。</li>
+<li>动态跟静态文件混合在一起发布，通过通过Nginx分开。</li>
+</ol>
+<p>通过location来指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以是浏览器缓存过期时间，减少与服务器之前的请求和流量。</p>
+<p>具体Expires定义：给一个资源设定一个过期时间，无需去服务端验证，直接</p>
+<h1 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h1><h1 id="未来补充"><a href="#未来补充" class="headerlink" title="未来补充"></a>未来补充</h1><p>安装，常用命令和配置文件</p>
+<p>在Linux系统中安装nginx</p>
+<p>nginx配置实例</p>
+<p>反向代理</p>
+<p>nginx配置实例</p>
+<p>负载均衡</p>
+<p>nginx配置实例</p>
+<p>动静分离</p>
+<p>nginx配置高可用的集群</p>
+<p>nginx原理</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/28/Linux/Linux%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/28/Linux/Linux%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Linux命令</a>
         </h2>
 
         <div class="post-meta-container">
@@ -2217,272 +2430,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/09/21/java/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">Java8的新特性</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-21 07:31:00" itemprop="dateCreated datePublished" datetime="2020-09-21T07:31:00+08:00">2020-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-08 15:51:01" itemprop="dateModified" datetime="2021-02-08T15:51:01+08:00">2021-02-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>新增了非常多的特性，主要有：</p>
-<ul>
-<li><strong>Lambad表达式</strong>：Lambda 允许把函数作为一个方法的参数（函数作为参数传递到方法中）。</li>
-<li><strong>方法引用</strong>：可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合，使语言的构造更紧凑简洁，减少冗余代码。</li>
-<li><strong>默认方法</strong>：默认方法就是一个在接口里面有了一个实现的方法。</li>
-<li><strong>StreamAPI</strong>：新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。</li>
-<li><strong>DateTimeAPI</strong>：加强对日期与时间的处理。</li>
-<li><strong>Optional类</strong>：Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。</li>
-<li><strong>Nashorn，JavaScript引擎</strong>：Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。</li>
-</ul>
-<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。</p>
-<p>Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
-<ol>
-<li><p>接收2个int型整数,返回他们的和<br>(int x, int y) -&gt; x + y  </p>
-</li>
-<li><p>接受2个参数(数字),并返回他们的差值<br>(x, y) -&gt; x – y  </p>
-</li>
-<li><p>接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)<br>(String s) -&gt; System.out.print(s)</p>
-<pre><code> public class Java8Tester &#123;
-    public static void main(String args[])&#123;
-       Java8Tester tester = new Java8Tester();
-         
-       // 类型声明
-       MathOperation addition = (int a, int b) -&gt; a + b;
-         
-       // 不用类型声明
-       MathOperation subtraction = (a, b) -&gt; a - b;
-         
-       // 大括号中的返回语句
-       MathOperation multiplication = (int a, int b) -&gt; &#123; return a * b; &#125;;
-         
-       // 没有大括号及返回语句
-       MathOperation division = (int a, int b) -&gt; a / b;
-         
-       System.out.println(&quot;10 + 5 = &quot; + tester.operate(10, 5, addition));
-       System.out.println(&quot;10 - 5 = &quot; + tester.operate(10, 5, subtraction));
-       System.out.println(&quot;10 x 5 = &quot; + tester.operate(10, 5, multiplication));
-       System.out.println(&quot;10 / 5 = &quot; + tester.operate(10, 5, division));
-         
-       // 不用括号
-       GreetingService greetService1 = message -&gt;
-       System.out.println(&quot;Hello &quot; + message);
-         
-       // 用括号
-       GreetingService greetService2 = (message) -&gt;
-       System.out.println(&quot;Hello &quot; + message);
-         
-       greetService1.sayMessage(&quot;Runoob&quot;);
-       greetService2.sayMessage(&quot;Google&quot;);
-    &#125;
-     
-    interface MathOperation &#123;
-       int operation(int a, int b);
-    &#125;
-     
-    interface GreetingService &#123;
-       void sayMessage(String message);
-    &#125;
-     
-    private int operate(int a, int b, MathOperation mathOperation)&#123;
-       return mathOperation.operation(a, b);
-    &#125;
- &#125;
-</code></pre>
-</li>
-</ol>
-<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>方法引用通过方法的名字来指向一个方法。</p>
-<p>方法引用使用一对冒号 :: 。</p>
-<ul>
-<li><p>构造器引用：它的语法是Class::new，或者更一般的Class&lt; T &gt;::new</p>
-<ul>
-<li>实例如下：<br>final Car car = Car.create( Car::new );<br>final List&lt; Car &gt; cars = Arrays.asList( car );</li>
-</ul>
-</li>
-<li><p>静态方法引用：它的语法是Class::static_method</p>
-<ul>
-<li>实例如下：<br>cars.forEach( Car::collide );</li>
-</ul>
-</li>
-<li><p>特定类的任意对象的方法引用：它的语法是Class::method</p>
-<ul>
-<li>实例如下：<br>cars.forEach( Car::repair );</li>
-</ul>
-</li>
-<li><p>特定对象的方法引用：它的语法是instance::method</p>
-<ul>
-<li><p>实例如下：<br>final Car police = Car.create( Car::new );<br>cars.forEach( police::follow );</p>
-<pre><code>  public class Java8Tester &#123;
-     public static void main(String args[])&#123;
-        List names = new ArrayList();
-          
-        names.add(&quot;Google&quot;);
-        names.add(&quot;Runoob&quot;);
-        names.add(&quot;Taobao&quot;);
-        names.add(&quot;Baidu&quot;);
-        names.add(&quot;Sina&quot;);
-          
-        names.forEach(System.out::println);
-     &#125;
-  &#125;
-  实例中我们将 System.out::println 方法作为静态方法来引用。
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>函数式接口(Functional Interface)就是一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。</p>
-<p>函数式接口可以被隐式转换为 lambda 表达式。</p>
-<pre><code>@FunctionalInterface
-interface GreetingService 
-&#123;
-    void sayMessage(String message);
-&#125;
-</code></pre>
-<p>使用Lambda表达式来表示该接口的一个实现(注：JAVA 8 之前一般是用匿名类实现的)：</p>
-<pre><code>GreetingService greetService1 = message -&gt; System.out.println(&quot;Hello &quot; + message);
-</code></pre>
-<h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>新增了接口的默认方法。</p>
-<p>接口可以有实现方法，不需要实现类去实现其方法。</p>
-<p>只需在方法名前面加个 default 关键字即可实现默认方法。</p>
-<h4 id="静态默认方法"><a href="#静态默认方法" class="headerlink" title="静态默认方法"></a>静态默认方法</h4><p>Java 8 的另一个特性是接口可以声明（并且可以提供实现）静态方法。</p>
-<pre><code>public interface Vehicle &#123;
-   default void print()&#123;
-      System.out.println(&quot;我是一辆车!&quot;);
-   &#125;
-    // 静态方法
-   static void blowHorn()&#123;
-      System.out.println(&quot;按喇叭!!!&quot;);
-   &#125;
-&#125;
-</code></pre>
-<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</p>
-<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。</p>
-<h4 id="什么是-Stream？"><a href="#什么是-Stream？" class="headerlink" title="什么是 Stream？"></a>什么是 Stream？</h4><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作。</p>
-<ul>
-<li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
-<li>数据源 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
-<li>聚合操作 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。</li>
-<li>Pipelining: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。</li>
-<li>内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</li>
-</ul>
-<h4 id="生成流"><a href="#生成流" class="headerlink" title="生成流"></a>生成流</h4><p>在 Java 8 中, 集合接口有两个方法来生成流：</p>
-<ul>
-<li>stream()  为集合创建串行流。</li>
-<li>parallelStream()  为集合创建并行流。</li>
-</ul>
-<h3 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h3><ul>
-<li>一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</li>
-<li>Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。 </li>
-<li>Optional 类的引入很好的解决空指针异常。</li>
-</ul>
-<h3 id="日期时间API"><a href="#日期时间API" class="headerlink" title="日期时间API"></a>日期时间API</h3><p>通过发布新的Date-Time API  加强对日期与时间的处理。 </p>
-<p>旧版日期时间API问题：</p>
-<ul>
-<li>非线程安全：java.util.Date 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一。</li>
-<li>设计很差：Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字。</li>
-<li>时区处理麻烦：日期类并不提供国际化，没有时区支持。</li>
-</ul>
-<p>Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较重要的 API：</p>
-<ul>
-<li>Local(本地) − 简化了日期时间的处理，没有时区的问题。</li>
-<li>Zoned(时区) − 通过制定的时区处理日期时间。</li>
-</ul>
-<h4 id="本地化日期时间API"><a href="#本地化日期时间API" class="headerlink" title="本地化日期时间API"></a>本地化日期时间API</h4><p>LocalDate/LocalTime 和 LocalDateTime 类可以在处理时区不是必须的情况。</p>
-<h4 id="时区的时间日期API"><a href="#时区的时间日期API" class="headerlink" title="时区的时间日期API"></a>时区的时间日期API</h4><p>需要考虑到时区，就可以使用时区的日期时间API。</p>
-<pre><code>public void testZonedDateTime()&#123;
-    
-  // 获取当前时间日期
-  ZonedDateTime date1 = ZonedDateTime.parse(&quot;2015-12-03T10:15:30+05:30[Asia/Shanghai]&quot;);
-  System.out.println(&quot;date1: &quot; + date1);
-    
-  ZoneId id = ZoneId.of(&quot;Europe/Paris&quot;);
-  System.out.println(&quot;ZoneId: &quot; + id);
-    
-  ZoneId currentZone = ZoneId.systemDefault();
-  System.out.println(&quot;当期时区: &quot; + currentZone);
-</code></pre>
-<p>   }</p>
-<h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><p>在Java 8中，Base64编码已经成为Java类库的标准。</p>
-<p>Java 8 内置了 Base64 编码的编码器和解码器。</p>
-<p>Base64工具类提供了一套静态方法获取下面三种BASE64编解码器：</p>
-<ul>
-<li>基本：输出被映射到一组字符A-Za-z0-9+/，编码不添加任何行标，输出的解码仅支持A-Za-z0-9+/。</li>
-<li>URL：输出映射到一组字符A-Za-z0-9+_，输出是URL和文件。</li>
-<li>MIME：输出隐射到MIME友好格式。输出每行不超过76字符，并且使用’\r’并跟随’\n’作为分割。编码输出最后没有行分割。</li>
-</ul>
-<h4 id="内嵌类"><a href="#内嵌类" class="headerlink" title="内嵌类"></a>内嵌类</h4><ol>
-<li>static class Base64.Decoder  该类实现一个解码器用于，使用 Base64 编码来解码字节数据。</li>
-<li>static class Base64.Encoder  该类实现一个编码器，使用 Base64 编码来编码字节数据。</li>
-</ol>
-<p>有多个get方法使用。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -2496,7 +2443,7 @@ interface GreetingService
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

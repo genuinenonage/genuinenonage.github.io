@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,119 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/19/MyBatis/MyBatis%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/08/19/MyBatis/MyBatis%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MyBatis的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-19 17:21:00" itemprop="dateCreated datePublished" datetime="2020-08-19T17:21:00+08:00">2020-08-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-23 23:05:36" itemprop="dateModified" datetime="2022-09-23T23:05:36+08:00">2022-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h1><h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h3 id="注意一级缓存"><a href="#注意一级缓存" class="headerlink" title="注意一级缓存"></a>注意一级缓存</h3><p>在一个事务中，重复查询数据库，只会查询一次，其余走缓存，并且，如果数据进行了修改，将会把指向缓存的对象进行修改。导致，引用该对象的变量，发现数据莫名其妙的改变了。应该养成禁止修改数据库查询的数据后进行反复的修改和引用等操作，及时进行数据库修改操作，刷新缓存。</p>
+<h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h3><p>缓存可以极大的提高查询效率。</p>
+<p>两级缓存：</p>
+<h4 id="一级缓存：（本地缓存）"><a href="#一级缓存：（本地缓存）" class="headerlink" title="一级缓存：（本地缓存）"></a>一级缓存：（本地缓存）</h4><ol>
+<li>默认作用域：sqlSession</li>
+<li>与数据库一次会话期间查询到的数据会放到本地缓存中。以后如果需要获取相同的数据，直接从缓存中拿。</li>
+</ol>
+<h4 id="二级缓存：（全局缓存）"><a href="#二级缓存：（全局缓存）" class="headerlink" title="二级缓存：（全局缓存）"></a>二级缓存：（全局缓存）</h4><ol>
+<li><p>默认不开启，需要手动配置</p>
+</li>
+<li><p>使用步骤</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">– 1、全局配置文件中开启二级缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">*</span>&quot;<span class="attr">cacheEnabled</span>&quot; <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>*</span><br><span class="line">– 2、需要使用二级缓存的映射文件处使用cache配置缓存</span><br><span class="line"> <span class="tag">&lt;<span class="name">cache</span> /&gt;</span></span><br><span class="line">– 3、注意：POJO需要实现Serializable接口</span><br></pre></td></tr></table></figure></li>
+<li><p>缓存相关属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">• eviction=“FIFO”：缓存回收策略：</span><br><span class="line">	• LRU – 最近最少使用的：移除最长时间不被使用的对象。</span><br><span class="line">    • FIFO – 先进先出：按对象进入缓存的顺序来移除它们。</span><br><span class="line">    • SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。</span><br><span class="line">    • WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</span><br><span class="line">    • 默认的是 LRU。 </span><br><span class="line">• flushInterval：刷新间隔，单位毫秒</span><br><span class="line">	• 默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句时刷新</span><br><span class="line">• size：引用数目，正整数</span><br><span class="line">	• 代表缓存最多可以存储多少个对象，太大容易导致内存溢出</span><br><span class="line">• readOnly：只读，true/false</span><br><span class="line">    • true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。</span><br><span class="line">    • false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是 false。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>延迟加载，也叫懒加载，但是懒加载往往与分布查询同时使用  </p>
+<h3 id="分布查询"><a href="#分布查询" class="headerlink" title="分布查询"></a>分布查询</h3><p>先查询主表，通过主表的结果信息将作为参数传递给关联表，查询关联表的信息。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;resultMap id=&quot;MystudentStep&quot; type=&quot;com.tulun.bean.Student&quot;&gt;  </span><br><span class="line">    &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;  </span><br><span class="line">    &lt;result column=&quot;name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;  </span><br><span class="line">    &lt;result column=&quot;passward&quot; property=&quot;passward&quot;&gt;&lt;/result&gt;  </span><br><span class="line">    &lt;!--</span><br><span class="line">        association:定义关联对象的封装规则</span><br><span class="line">        select:表明当前属性是调用select 指定的方法查出的结果</span><br><span class="line">        column:指定将哪一列的值传给这个方法</span><br><span class="line">        流程：使用select 指定的方法（传入column 指定的这列参数的值）查出对象，</span><br><span class="line">                并封装给property 指定的属性</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;association property=&quot;dept&quot;</span><br><span class="line">                 select=&quot;com.tulun.dao.DeptMapper.getDeptById&quot;</span><br><span class="line">                 column=&quot;d_id&quot;&gt;</span><br><span class="line">    &lt;/association&gt;</span><br><span class="line">&lt;/resultMap&gt;  </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;getStuByIdStep&quot; resultMap=&quot;MystudentStep&quot;&gt;</span><br><span class="line">    select * from student where id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;select id=&quot;getDeptById&quot; resultType=&quot;com.tulun.bean.Dept&quot;&gt;</span><br><span class="line"> 	select * from dept where id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="延迟加载-1"><a href="#延迟加载-1" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>MyBatis中的延迟加载，也称为懒加载，是指在进行关联查询时，按照设置延迟规则推迟对关联对象的select查询。延迟加载可以有效的减少数据库压力。</p>
+<p>Mybatis 根据关联对象查询Select 语句的查询时机分为：直接加载、侵入式加载、深度延迟性加载。  </p>
+<ol>
+<li>直接加载<br>执行完主加载对象的select语句，马上执行关联对象的Select语句</li>
+<li>侵入式加载<br>执行完主加载对象查询后不会马上执行关联对象查询，但是当访问主加载对象时，就会加载关联对象的查询。即对关联对象的查询执行，侵入到了主加载对象的详情访问中。也可以这样理解：将关联对象的详情侵入到了主加载对象的详情中，即将关联对象的详情作为主加载对象的详情的一部分出现了。  </li>
+<li>深度延迟加载<br>执行主对象的查询时不会执行关联对象的执行，访问主对象详情时也不会执行关联对象的查询，只有当访问关联对象时才会对其进行查询 </li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -506,7 +619,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/11/spring/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/11/Spring/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -524,7 +637,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/08/11/spring/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="post-title-link" itemprop="url">Spring 注解学习-持续更新</a>
+          <a href="/2020/08/11/Spring/spring%E6%B3%A8%E8%A7%A3-%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="post-title-link" itemprop="url">Spring 注解学习-持续更新</a>
         </h2>
 
         <div class="post-meta-container">
@@ -569,7 +682,7 @@
 
 
 <h3 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h3><h3 id="WebMethod"><a href="#WebMethod" class="headerlink" title="@WebMethod"></a>@WebMethod</h3><h3 id="FeignClient"><a href="#FeignClient" class="headerlink" title="@FeignClient"></a>@FeignClient</h3><p>注解被@Target(ElementType.TYPE)修饰，表示FeignClient注解的作用目标在接口上。<br>    name：指定FeignClient的名称，如果项目使用了Ribbon，name属性会作为微服务的名称，用于服务发现<br>    url: url一般用于调试，可以手动指定@FeignClient调用的地址   </p>
-<h3 id="EnableMongoRepositories"><a href="#EnableMongoRepositories" class="headerlink" title="@EnableMongoRepositories"></a>@EnableMongoRepositories</h3><p>启动类中：让框架创建的Repository接口创建实现类，并添加到Spring容器中进行管理。<br>resources目录下：application.properties文件中配置MongoDB的连接字符串。<br>spring.data.mongodb.uri=mongodb://springbucks:<a href="mailto:&#115;&#112;&#114;&#105;&#110;&#103;&#x62;&#x75;&#99;&#x6b;&#x73;&#x40;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#x78;&#46;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;">&#115;&#112;&#114;&#105;&#110;&#103;&#x62;&#x75;&#99;&#x6b;&#x73;&#x40;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#x78;&#46;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;</a>:xxxxx/springbucks  </p>
+<h3 id="EnableMongoRepositories"><a href="#EnableMongoRepositories" class="headerlink" title="@EnableMongoRepositories"></a>@EnableMongoRepositories</h3><p>启动类中：让框架创建的Repository接口创建实现类，并添加到Spring容器中进行管理。<br>resources目录下：application.properties文件中配置MongoDB的连接字符串。<br>spring.data.mongodb.uri=mongodb://springbucks:<a href="mailto:&#115;&#x70;&#114;&#x69;&#110;&#103;&#x62;&#117;&#99;&#x6b;&#115;&#64;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#120;&#46;&#x78;&#x78;&#120;&#46;&#x78;&#120;&#120;">&#115;&#x70;&#114;&#x69;&#110;&#103;&#x62;&#117;&#99;&#x6b;&#115;&#64;&#x78;&#120;&#x78;&#46;&#120;&#x78;&#120;&#46;&#x78;&#x78;&#120;&#46;&#x78;&#120;&#120;</a>:xxxxx/springbucks  </p>
 <h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h3><p>用来映射请求，也就是通过它来指定控制器可以处理哪些URL请求，相当于Servlet中在web.xml中配置  </p>
 <ol>
 <li>@Target中有两个属性，分别为 ElementType.METHOD 和 ElementType.TYPE ，也就是说 @RequestMapping 可以在方法和类的声明中使用  <h3 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h3></li>
@@ -1326,93 +1439,6 @@ sqlplus / as sysdba
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/13/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/13/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">Navicat 链接远端Oracle数据库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-07-13 13:43:00" itemprop="dateCreated datePublished" datetime="2020-07-13T13:43:00+08:00">2020-07-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-02-08 15:39:09" itemprop="dateModified" datetime="2021-02-08T15:39:09+08:00">2021-02-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Oracle官网下载Oracle的客户端 install client。<br>官网地址：<a target="_blank" rel="noopener" href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
-<p>我下载的是：instantclient-basic-windows.x64-19.6.0.0.0dbru.zip</p>
-<p>我解压到：D:\Oracle\instantclient_19_6</p>
-<p>在这个目录下新建sqlnet.ora和tnsnames.ora两个文件<br>sqlnet.ora文件内容<br>　　SQLNET.AUTHENTICATION_SERVICES= (NTS)<br>　　NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)<br>tnsnames.ora文件内容<br>　　orcl =<br>　　　　(DESCRIPTION =<br> 　　　　 (ADDRESS_LIST =<br>   　　　　 (ADDRESS = (PROTOCOL = TCP)(HOST = <em><strong>192.168.146.143</strong></em> )(PORT = 1521))<br>  　　　　　　)<br> 　　　　　 (CONNECT_DATA =<br>    　　　　　    (SERVICE_NAME = <strong>orcl</strong> )<br>  　　　　　　)<br>　　　　　)<br>　注：粗体部分需要按需配置，如果端口是自定义的也需要相应变更。</p>
-<p>设置系统变量</p>
-<ol>
-<li>变量名：ORACLE_HOME<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：TNS_ADMIN<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：NLS_LANG<br>变量值：SIMPlIFIED CHINESE_CHINA.ZHS16GBK  </li>
-<li>修改Path变量<br>添加D:\Oracle\instantclient_19_6   <h3 id="安装Nevicat"><a href="#安装Nevicat" class="headerlink" title="安装Nevicat"></a>安装Nevicat</h3>通过Tools（工具）-&gt;Options-&gt; Miscellaneous -&gt; OCI  将Nevicat的oci.dll更改为Oracle客户端的oci.dll</li>
-</ol>
-<p>一切准备完成，可以直接用Nevicat链接远端Oracle数据库了。<br>我看的是两个人不同操作，有的步骤可能多余，我也不想再仔细研究了</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1426,7 +1452,7 @@ sqlplus / as sysdba
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

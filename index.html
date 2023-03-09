@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,135 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/23/Web/Cookie%E5%92%8CSession/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/23/Web/Cookie%E5%92%8CSession/" class="post-title-link" itemprop="url">Cookie和Session</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-23 19:01:00" itemprop="dateCreated datePublished" datetime="2023-02-23T19:01:00+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-09 14:06:29" itemprop="dateModified" datetime="2023-03-09T14:06:29+08:00">2023-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>会话跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie和Session。</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>Cookie是某些网站为了辨别用户身份，进行Session跟踪而存储在用户本地终端上的数据（通常经过加密），由用户客户端计算机暂时或永久保存的信息。</p>
+<h3 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h3><p>内存式：存储在内存中，浏览器关闭后就会消失，由于其存储时间较短，因此也被称为非持久Cookie或会话Cookie。</p>
+<p>硬盘式：保存在硬盘中，不会随浏览器的关闭而消失，除非用户手工清理或到了过期时间。由于硬盘式Cookie存储时间是长期的，因此也被称为持久Cookie。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>Cookie定义了一些HTTP请求头和HTTP响应头，通过这些HTTP头信息使服务器与客户进行状态交互。</p>
+<p>客户端请求服务器后，如果服务器需要记录用户状态，服务器会在响应信息中包含一个Set-Cookie的响应头，客户端会根据这个响应头存储Cookie信息。再次请求服务器时，客户端会在请求信息中包含一个Cookie请求头，而服务器会根据这个请求头进行用户身份、状态等较验。</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<p>在服务器响应请求中，响应头中包一个Set-Cookie字段。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>UserID=itbilu; Max-Age=3600; Version=1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Cookie的属性设置"><a href="#Cookie的属性设置" class="headerlink" title="Cookie的属性设置"></a>Cookie的属性设置</h3><p>Java中把Cookie封装成了javax.servlet.http.Cookie类。服务器通过操作Cookie类对象对客户端Cookie进行操作。</p>
+<p>通过request.getCookie()获取客户端提交的所有Cookie，通过response.addCookie()向客户端设置Cookie。</p>
+<p>每个属性对应一个getter方法与一个setter方法。</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70-20230309112232886.png" alt="img"></p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70-20230309112220181.png" alt="img"></p>
+<h4 id="Unicode编码：保存中文"><a href="#Unicode编码：保存中文" class="headerlink" title="Unicode编码：保存中文"></a>Unicode编码：保存中文</h4><p>中文与英文字符不同，中文属于Unicode字符，在内存中占4个字符，而英文属于ASCII字符，内存中只占2个字节。Cookie中使用Unicode字符时需要对Unicode字符进行编码，否则会乱码。</p>
+<p>Cookie中保存中文只能编码。一般使用UTF-8编码即可。不推荐使用GBK等中文编码，因为浏览器不一定支持，而且JavaScript也不支持GBK编码</p>
+<h4 id="设置Cookie的有效期"><a href="#设置Cookie的有效期" class="headerlink" title="设置Cookie的有效期"></a>设置Cookie的有效期</h4><p>从客户端读取Cookie时，包括maxAge在内的其他属性都是不可读的，也不会被提交。浏览器提交Cookie时只会提交name与value属性。maxAge属性只被浏览器用来判断Cookie是否过期。</p>
+<h4 id="修改和删除cookie"><a href="#修改和删除cookie" class="headerlink" title="修改和删除cookie"></a>修改和删除cookie</h4><p>要想修改Cookie只能使用一个同名的Cookie来覆盖原来的Cookie，达到修改的目的。删除时只需要把maxAge修改为0即可。</p>
+<p>修改、删除Cookie时，新建的Cookie除value、maxAge之外的所有属性，例如name、path、domain等，都要与原Cookie完全一样。否则，浏览器将视为两个不同的Cookie不予覆盖，导致修改、删除失败。</p>
+<h4 id="设置cookie的域名"><a href="#设置cookie的域名" class="headerlink" title="设置cookie的域名"></a>设置cookie的域名</h4><p>Cookie是不可跨域名的。域名 <a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a> 颁发的Cookie不会被提交到域名 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 去。这是由Cookie的隐私安全机制决定的。隐私安全机制能够禁止网站非法获取其他网站的Cookie。</p>
+<h4 id="设置cookie的安全属性"><a href="#设置cookie的安全属性" class="headerlink" title="设置cookie的安全属性"></a>设置cookie的安全属性</h4><p>secure属性并不能对Cookie内容加密，因而不能保证绝对的安全性。如果需要高安全性，需要在程序中对Cookie内容加密、解密，以防泄密。</p>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>客户端浏览器访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上。这就是Session。</p>
+<h3 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h3><p>某个客户端初次请求创建Session时，服务器先检查请求中是否包含Session标识，成为session id，包含说明已经为此客户端创建过session，服务器根据session id把Session检索出来，不包含则需要创建一个唯一session id，并在本次响应中返回给客户端保存。</p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70-20230309113835050.png" alt="img"></p>
+<h4 id="保存session-id的方式"><a href="#保存session-id的方式" class="headerlink" title="保存session id的方式"></a>保存session id的方式</h4><h5 id="使用Cookie保存"><a href="#使用Cookie保存" class="headerlink" title="使用Cookie保存"></a>使用Cookie保存</h5><p>在交互过程中浏览器可以自动的按照规则把这个标识发挥给服务器。一般这个cookie的名字都是类似于SEEESIONID。然而，比如weblogic对于web应用程序生成的cookie，JSESSIONID=ByOK3v，它的名字就是JSESSIONID。</p>
+<h5 id="URL重写"><a href="#URL重写" class="headerlink" title="URL重写"></a>URL重写</h5><p>由于cookie可以被人为的禁止，必须有其他机制以便在cookie被禁止时仍然能够把session id传递回服务器。经常被使用的一种技术叫做URL重写，就是把session id直接附加在URL路径的后面。一种是作为URL路径的附加信息http://…../xxx;jsessionid=ByOK3v，另一种是作为查询字符串附加在URL后面http://…../xxx?jsessionid=ByOK3v。</p>
+<h5 id="表单隐藏字段"><a href="#表单隐藏字段" class="headerlink" title="表单隐藏字段"></a>表单隐藏字段</h5><p>表单隐藏就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器。</p>
+<h3 id="Session的常用方法"><a href="#Session的常用方法" class="headerlink" title="Session的常用方法"></a>Session的常用方法</h3><p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70-20230309135307139.png" alt="img"></p>
+<p><img src="https://genuine-ipic.oss-cn-beijing.aliyuncs.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N3YWRpYW4yMDA4,size_16,color_FFFFFF,t_70-20230309135317292.png" alt="img"></p>
+<p>Session对应的类为javax.servlet.http.HttpSession类。Session对象是在客户端第一次请求服务器的时候创建的。Session也是一种key-value的属性对，通过getAttribute(String key)和setAttribute(String key，Objectvalue)方法读写客户状态信息。Servlet里通过request.getSession()方法获取该客户的Session。</p>
+<p>当多个客户端执行程序时，服务器会保存多个客户端的Session。获取Session的时候也不需要声明获取谁的Session。Session机制决定了当前客户只会获取到自己的Session，而不会获取到别人的Session。</p>
+<p>Session保存在服务器端。为了获得更高的存取速度，服务器一般把Session放在内存里。每个用户都会有一个独立的Session。如果Session内容过于复杂，当大量客户访问服务器时可能会导致内存溢出。因此，Session里的信息应该尽量精简。</p>
+<h2 id="Session和Cookie的区别与联系"><a href="#Session和Cookie的区别与联系" class="headerlink" title="Session和Cookie的区别与联系"></a>Session和Cookie的区别与联系</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol>
+<li>cookie数据存放在客户端，session数据放在服务器上。</li>
+<li>cookie不是很安全，别人可以分析存放在本地的cookie并进行cookie欺骗，考虑到安全应当使用session。</li>
+<li>session会在一定时间内保存在服务器上，当访问增多，会比较占用你服务器的性能，考虑性能应当使用cookie。</li>
+<li>不同浏览器对cookie的数据大小限制不同，个数限制也不相同。单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</li>
+<li>可以考虑将登陆信息等重要信息存放为session，不重要的信息可以放在cookie中。</li>
+</ol>
+<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><ol>
+<li>都是用来记录用户的信息，以便让服务器分辨不同的用户。</li>
+<li>可以搭配使用，但都有自己的使用局限，要考虑到安全和性能的问题。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/swadian2008/article/details/104267034">原文地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1065,7 +1194,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/20/nosql/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/20/NoSQL/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1083,7 +1212,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/20/nosql/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Nebula Graph图数据库学习</a>
+          <a href="/2021/04/20/NoSQL/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Nebula Graph图数据库学习</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1174,7 +1303,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/mysql/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/MySQL/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1192,7 +1321,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/18/mysql/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">MySQL遇到连接超时问题</a>
+          <a href="/2021/04/18/MySQL/20210418-MySQL%E9%81%87%E5%88%B0%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">MySQL遇到连接超时问题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1252,94 +1381,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/16/java/20210416-JavaEE%E4%B8%8EJ2EE%E4%B8%80%E6%A0%B7%E5%90%97%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/16/java/20210416-JavaEE%E4%B8%8EJ2EE%E4%B8%80%E6%A0%B7%E5%90%97%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F/" class="post-title-link" itemprop="url">Java EE 与 J2EE 一样吗？有什么关系？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-16 22:53:00 / 修改时间：23:19:11" itemprop="dateCreated datePublished" datetime="2021-04-16T22:53:00+08:00">2021-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="J2EE的由来"><a href="#J2EE的由来" class="headerlink" title="J2EE的由来"></a>J2EE的由来</h2><p>1998年12月4日，工程代号名为<strong>Playground</strong>（竞技场）的<strong>JDK1.2</strong>发布了，该版本<strong>Sun</strong>公司把<strong>Java</strong>技术体系拆分为三个方向：</p>
-<ol>
-<li>面向桌面应用开发的<strong>J2SE</strong>（Java 2 Platform，Standard Edition）</li>
-<li>面向企业级开发的<strong>J2EE</strong>（Java 2 Platform， Enterprise Edition）</li>
-<li>面向手机等移动终端的<strong>J2ME</strong>（Java 2 Platform， Micro Edition）</li>
-</ol>
-<h2 id="Java-EE-由来"><a href="#Java-EE-由来" class="headerlink" title="Java EE 由来"></a>Java EE 由来</h2><p>2006年12月11日，工程代号为<strong>Mustang</strong>（野马）的<strong>JDK6</strong>发布了，Sun公司终结了从JDK1.2开始已有八年历史的<strong>J2EE</strong>、<strong>J2SE</strong>、<strong>J2ME</strong>的产品线命名，启用了<strong>Java EE 6</strong>、<strong>Java SE 6</strong>、<strong>Java ME 6</strong>的新命名来代替。</p>
-<h2 id="Java-EE-被废弃"><a href="#Java-EE-被废弃" class="headerlink" title="Java EE 被废弃"></a>Java EE 被废弃</h2><p>2018年3月，<strong>Oracle</strong>正式宣告<strong>Java EE</strong> 成为历史名词。</p>
-<p>虽然JavaEE曾经无比辉煌过，现在其中还持有JDBC、JMS、Servlet等使用极为广泛的基础组件，<strong>Oracle</strong>还是选择把它“扫地出门”。</p>
-<p>所有权直接赠送给<strong>Eclipse</strong>基金会，唯一条件是以后不准再使用“Java”这个商标，所以取而代之的将是<strong>Jakarta EE</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1353,7 +1394,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
