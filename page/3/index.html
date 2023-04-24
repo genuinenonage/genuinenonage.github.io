@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,115 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/16/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/16/docker%E5%AE%89%E8%A3%85%E5%A4%9A%E7%A7%8D%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Docker安装多种容器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-16 15:31:50" itemprop="dateCreated datePublished" datetime="2021-03-16T15:31:50+08:00">2021-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-09 14:26:50" itemprop="dateModified" datetime="2023-03-09T14:26:50+08:00">2023-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="kafka-es"><a href="#kafka-es" class="headerlink" title="kafka/es"></a>kafka/es</h2><ol>
+<li><p>docker 安装kafka</p>
+<ol>
+<li><p>前置条件安装zookeeper</p>
+<blockquote>
+<p>docker run -d –name zookeeper -p 2181:2181 -v /etc/localtime:/etc/localtime wurstmeister/zookeeper</p>
+</blockquote>
+</li>
+<li><p>安装kafka</p>
+<blockquote>
+<p>docker run  -d –name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_CONNECT=39.97.117.252:2181 -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://39.97.117.252:9092 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 -t wurstmeister/kafka</p>
+</blockquote>
+</li>
+<li><p>参数意义</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-e KAFKA_BROKER_ID=0 在kafka集群中，每个kafka都有一个BROKER_ID来区分自己</span><br><span class="line"></span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=10.9.44.11:2181/kafka 配置zookeeper管理kafka的路径39.97.117.252:2181/kafka</span><br><span class="line"></span><br><span class="line">-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://10.9.44.11:9092 把kafka的地址端口注册给zookeeper</span><br><span class="line"></span><br><span class="line">-e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 配置kafka的监听端口</span><br><span class="line"></span><br><span class="line">-v /etc/localtime:/etc/localtime 容器时间同步虚拟机的时间</span><br></pre></td></tr></table></figure></li>
+<li><p>验证kafka是否可以使用</p>
+</li>
+<li><p>失败</p>
+</li>
+</ol>
+</li>
+<li><p>docker安装elasticsearch</p>
+<p>见商城4关于安装es的部分</p>
+</li>
+</ol>
+<h2 id="nacos"><a href="#nacos" class="headerlink" title="nacos"></a>nacos</h2><p>拉取镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nacos/nacos-server</span><br></pre></td></tr></table></figure>
+
+<p>通过镜像创建容器（默认账号密码都是nacos），创建成功后自动启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8848:8848 --env MODE=standalone  --name nacos  nacos/nacos-server</span><br></pre></td></tr></table></figure>
+
+<p>访问页面验证是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.xxx.xxx.xxx:8848/nacos</span><br></pre></td></tr></table></figure>
+
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull mobz/elasticsearch-head:5</span><br><span class="line">docker run -d -p 9100:9100 docker.io/mobz/elasticsearch-head:5</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1637,102 +1746,6 @@
 <p><code>v-if</code> 有更高的切换开销，而 <code>v-show</code> 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 <code>v-show</code> 较好；如果在运行时条件很少改变，则使用 <code>v-if</code> 较好。</p>
 <h2 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h2><h3 id="v-for-结合列表"><a href="#v-for-结合列表" class="headerlink" title="v-for 结合列表"></a>v-for 结合列表</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;example-1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.message&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/24/javaScript%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/24/javaScript%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">javaScript知识点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-24 18:45:00" itemprop="dateCreated datePublished" datetime="2020-12-24T18:45:00+08:00">2020-12-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-12-25 14:29:24" itemprop="dateModified" datetime="2020-12-25T14:29:24+08:00">2020-12-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="”-“与“-”的区别"><a href="#”-“与“-”的区别" class="headerlink" title="”==“与“===”的区别"></a>”==“与“===”的区别</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>== ： 两边值类型不同的时候，首先进行类型转换，再比较。</p>
-<p>=== ： 不做类型转换，类型不同一定不等</p>
-<h3 id="分别说明"><a href="#分别说明" class="headerlink" title="分别说明"></a>分别说明</h3><p>“===” 的规则：</p>
-<ol>
-<li>类型不同就不相等。</li>
-<li>如果两个都是数值，同一个值，相等；如果其中至少一个是NaN，不相等（判断一个值是否为NaN，只能用isNaN()来判断）</li>
-<li>两个都是字符串，每个位置的字符都一样，相等</li>
-<li>两个值都是true，或者都是false，相等</li>
-<li>两个值都引用同一个对象或函数，相等</li>
-<li>两个值都是null，或者都是undefined，相等</li>
-<li>否则不相等。</li>
-</ol>
-<p>“==” 的规则：如果两个值类型不同，他们可能相等。根据下面的规则进行类型转换再比较。</p>
-<ol>
-<li>如果一个是null、一个是undefined，那么相等</li>
-<li>如果一个是字符串，一个是数值，把字符串转换成数值再进行比较</li>
-<li>如果任一值是 true/false，把它转换成 1/0 再比较</li>
-<li>如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值在比较。对象转换利用的是toString或者valueOf方法。js核心内酯类，会尝试valueOf先于toString。</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>“==”它是值之间的比较；”===”是值和类型同时比较（要完全一直才相等）。</p>
-<h2 id="Truthy（真值）是什么"><a href="#Truthy（真值）是什么" class="headerlink" title="Truthy（真值）是什么"></a>Truthy（真值）是什么</h2><p>在JavaScript中，truthy（真值）指的是在布尔值上下文中，转换后的值是真的值。所有值都是真值，除非被定义为假值（即除 <code>false</code>、<code>0</code>、<code>-0</code>、<code>0n</code>、<code>“”</code>、<code>null</code>、<code>undefined</code>、<code>Nall</code> 以外皆为真值）</p>
 
       
     </div>
