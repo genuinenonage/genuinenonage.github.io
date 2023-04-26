@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,118 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/06/IDEA%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/06/IDEA%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">IDEA的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-06 14:46:00" itemprop="dateCreated datePublished" datetime="2021-04-06T14:46:00+08:00">2021-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-23 22:44:07" itemprop="dateModified" datetime="2022-09-23T22:44:07+08:00">2022-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/IDEA/" itemprop="url" rel="index"><span itemprop="name">IDEA</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><h2 id="包围代码"><a href="#包围代码" class="headerlink" title="包围代码"></a>包围代码</h2><p><code>option + command + T</code>快速生成 try/catch/finally if/else do/while synchronized 等包围代码</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h2><h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>例如 <code>_a</code> 替换成 <code>A</code> </p>
+<h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><p>通过 <code>_([a-z])</code>选中 <code>_a</code> ，通过<code>\u$1</code>替换成<code>A</code></p>
+<p>每一个<code>()</code>都代表一个捕获组，使用<code>$n</code>进行分组，注意下标不能乱</p>
+<h4 id="大小写如何转换"><a href="#大小写如何转换" class="headerlink" title="大小写如何转换"></a>大小写如何转换</h4><p><code>\l</code>将一个字符更改为小写</p>
+<p><code>\u</code>将一个字符更改为大写</p>
+<p><code>\L</code>将所有字符更改为小写</p>
+<p><code>\U</code>将所有字符更改为大写</p>
+<h2 id="删除了iml文件怎么恢复"><a href="#删除了iml文件怎么恢复" class="headerlink" title="删除了iml文件怎么恢复"></a>删除了iml文件怎么恢复</h2><p>idea中项目服务的iml文件可以删除，想要重新生成，重新通过idea的maven插件加载对应服务的pom.xml文件就好了</p>
+<h2 id="隐藏idea项目的文件"><a href="#隐藏idea项目的文件" class="headerlink" title="隐藏idea项目的文件"></a>隐藏idea项目的文件</h2><p>idea项目中的idea文件如何隐藏，以及不小心隐藏之后如何显示idea文件夹。</p>
+<p>步骤：加入要隐藏.idea文件</p>
+<ol>
+<li>打开file–》settings–》editor—-&gt;file types</li>
+<li>选择*.gitignore,在下面（Ignore Files and Folders:）一栏的后面输入  .idea;</li>
+<li>点击应用，点击ok</li>
+</ol>
+<ol start="4">
+<li>我们可以发现，idea文件被隐藏</li>
+<li>想要文件夹再次显示出来，只需按原本步骤，找到那一栏，把 .idea;   删除掉就可以了，点击应用、点击ok。</li>
+</ol>
+<p>我添加了如下想要隐藏的文件</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.idea;.mvn;*.iml;mvnw;mvnw.cmd;HELP.md;target;</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到idea过期怎么办"><a href="#遇到idea过期怎么办" class="headerlink" title="遇到idea过期怎么办"></a>遇到idea过期怎么办</h2><p>打开<code>BetterIntelliJ</code>插件后，重启，点击插件reset功能，查看idea可使用截止日期在一个月以后，关闭插件即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1457,81 +1569,6 @@
 <p>加法直接两数二进制相加；</p>
 <p>减法变为 加 负数。</p>
 <p>负数二进制怎么求：正数二进制 先取反 然后 加1 求的负数。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/29/%E7%BD%91%E7%BB%9C/https%E3%80%81%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5%E3%80%81%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6/" class="post-title-link" itemprop="url">https、公钥、私钥、数字证书</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-29 09:40:00 / 修改时间：16:44:55" itemprop="dateCreated datePublished" datetime="2020-12-29T09:40:00+08:00">2020-12-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="https通信的完整流程"><a href="#https通信的完整流程" class="headerlink" title="https通信的完整流程"></a>https通信的完整流程</h3><p>浏览器请求服务器，首先发送请求，服务器返回数字证书，数字证书中有3个东西（证书内容、加密密文、加密算法），当证书内容转变为hash值与密文通过CA机构的公钥解密获得的hash值相同时，表明该证书合法，并且从数字证书的证书内容中获得服务器端公钥。由于非对称密钥的加解密耗时，所以客户端会使用自己的对称密钥通过服务器公钥加密后发送给服务器，之后服务器通过自己的私钥进行解密，获得对称密钥，之后服务器和客户端通过对称密钥进行通信</p>
-<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>两把密匙：公钥和私钥</p>
-<p>使用公钥加密时，用私钥解密。</p>
-<p>使用私钥加密时，用公钥解密。</p>
-<p>私钥：由服务器保留。</p>
-<p>公钥：服务器发送给客户端使用 。</p>
 
       
     </div>
