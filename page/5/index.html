@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,291 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">MyBatis-Plus的学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-18 10:43:00" itemprop="dateCreated datePublished" datetime="2020-11-18T10:43:00+08:00">2020-11-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-23 22:51:34" itemprop="dateModified" datetime="2022-09-23T22:51:34+08:00">2022-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyBatis/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MyBatis-Plus(简称MP)是一个MyBatis的增强工具，在MyBatis的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用Mapper、通用Service，仅仅通过少量配置即可实现单表大部分CRUD操作，强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li>。。。</li>
+</ul>
+<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg" alt="framework"></p>
+<h3 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.imooc.com/learn/1130">MyBatis-Plus 入门 - 视频教程 - 慕课网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.imooc.com/learn/1171">MyBatis-Plus 进阶 - 视频教程 - 慕课网</a></li>
+</ul>
+<h2 id="快速开发"><a href="#快速开发" class="headerlink" title="快速开发"></a>快速开发</h2><p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/quick-start.html">快速开发链接</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全新的 <code>MyBatis-Plus</code> 3.0 版本基于 JDK8，提供了 <code>lambda</code> 形式的调用，所以安装集成 MP3.0 要求如下：</p>
+<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><p>Maven：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><p>Maven:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Spring Boot 工程：</p>
+<ul>
+<li><p>配置 MapperScan 注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Spring MVC 工程：</p>
+<ul>
+<li><p>配置 MapperScan</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>调整 SqlSessionFactory 为 MyBatis-Plus 的 SqlSessionFactory</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><ul>
+<li>@TableName</li>
+<li>@TableId</li>
+<li>@TableField</li>
+<li>@Version</li>
+<li>@EnumValue</li>
+<li>@TableLogic</li>
+<li>@SqlParser</li>
+<li>@KeySequence</li>
+</ul>
+<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h2><p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
+<p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/generator.html">代码生成器使用教程链接</a></p>
+<h2 id="CRUD接口"><a href="#CRUD接口" class="headerlink" title="CRUD接口"></a>CRUD接口</h2><p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/crud-interface.html">CRUD接口官方文档链接</a></p>
+<ul>
+<li>Service CRUD接口</li>
+<li>Mapper CRUD 接口</li>
+<li>mapper 层 选装件</li>
+</ul>
+<h2 id="条件构造器"><a href="#条件构造器" class="headerlink" title="条件构造器"></a>条件构造器</h2><p>说明：</p>
+<blockquote>
+<ul>
+<li><p>出现的第一个入参<code>boolean condition</code>表示该条件<strong>是否</strong>加入最后生成的sql中</p>
+</li>
+<li><p>代码块内的多个方法均为从上往下补全个别<code>boolean</code>类型的入参,默认为<code>true</code></p>
+</li>
+<li><p>出现的泛型<code>Param</code>均为<code>Wrapper</code>的子类实例(均具有<code>AbstractWrapper</code>的所有方法)</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="AbsractWrapper"><a href="#AbsractWrapper" class="headerlink" title="AbsractWrapper"></a>AbsractWrapper</h3><p>QueryWrapper(LambdaQueryWrapper) 和 UpdateWrapper(LambdaUpdateWrapper) 的父类<br>用于生成 sql 的 where 条件,entity属性也用于生成sql的where条件</p>
+<p>注意：entity生成的where条件与使用各个api生成的where条件<strong>没有任何关联行为</strong></p>
+<h4 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(Map&lt;R, V&gt; params)</span><br><span class="line">allEq(Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全部<a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#eq">eq</a>(或个别<a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a>)</li>
+</ul>
+<blockquote>
+<p>个别参数说明:</p>
+<p><code>params</code> : <code>key</code>为数据库字段名,<code>value</code>为字段值<br><code>null2IsNull</code> : 为<code>true</code>则在<code>map</code>的<code>value</code>为<code>null</code>时调用 <a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a> 方法,为<code>false</code>时则忽略<code>value</code>为<code>null</code>的</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="eq"><a href="#eq" class="headerlink" title="eq"></a>eq</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eq(R column, Object val)</span><br><span class="line">eq(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>等于 =</li>
+<li>例: <code>eq(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name = &#39;老王&#39;</code></li>
+</ul>
+<h4 id="ne"><a href="#ne" class="headerlink" title="ne"></a>ne</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ne(R column, Object val)</span><br><span class="line">ne(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不等于 &lt;&gt;</li>
+<li>例: <code>ne(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name &lt;&gt; &#39;老王&#39;</code></li>
+</ul>
+<h4 id="gt"><a href="#gt" class="headerlink" title="gt"></a>gt</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gt(R column, Object val)</span><br><span class="line">gt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大于 &gt;</li>
+<li>例: <code>gt(&quot;age&quot;, 18)</code>—&gt;<code>age &gt; 18</code></li>
+</ul>
+<h4 id="ge"><a href="#ge" class="headerlink" title="ge"></a>ge</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ge(R column, Object val)</span><br><span class="line">ge(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大于等于 &gt;=</li>
+<li>例: <code>ge(&quot;age&quot;, 18)</code>—&gt;<code>age &gt;= 18</code></li>
+</ul>
+<h4 id="lt"><a href="#lt" class="headerlink" title="lt"></a>lt</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lt(R column, Object val)</span><br><span class="line">lt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小于 &lt;</li>
+<li>例: <code>lt(&quot;age&quot;, 18)</code>—&gt;<code>age &lt; 18</code></li>
+</ul>
+<h4 id="le"><a href="#le" class="headerlink" title="le"></a>le</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">le(R column, Object val)</span><br><span class="line">le(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小于等于 &lt;=</li>
+<li>例: <code>le(&quot;age&quot;, 18)</code>—&gt;<code>age &lt;= 18</code></li>
+</ul>
+<h4 id="between"><a href="#between" class="headerlink" title="between"></a>between</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">between(R column, Object val1, Object val2)</span><br><span class="line">between(<span class="type">boolean</span> condition, R column, Object val1, Object val2)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>BETWEEN 值1 AND 值2</li>
+<li>例: <code>between(&quot;age&quot;, 18, 30)</code>—&gt;<code>age between 18 and 30</code></li>
+</ul>
+<h4 id="…"><a href="#…" class="headerlink" title="…."></a>….</h4><ul>
+<li>notBetween</li>
+<li>like</li>
+<li>notLike</li>
+<li>likeLeft</li>
+<li>likeRight</li>
+<li>isNull</li>
+<li>isNotNull</li>
+<li>in</li>
+<li>notIn</li>
+<li>inSql</li>
+<li>notInSql</li>
+<li>groupBy</li>
+<li>orderByAsc</li>
+<li>orderByDesc</li>
+<li>orderBy</li>
+<li>having</li>
+<li>func</li>
+<li>or</li>
+<li>and</li>
+<li>nested</li>
+<li>apply</li>
+<li>last</li>
+<li>exists</li>
+<li>notExists</li>
+</ul>
+<h3 id="QueryWrapper"><a href="#QueryWrapper" class="headerlink" title="QueryWrapper"></a>QueryWrapper</h3><blockquote>
+<p>说明：</p>
+<p>继承自 AbstractWrapper ,自身的内部属性 entity 也用于生成 where 条件及 LambdaQueryWrapper, 可以通过 new QueryWrapper().lambda() 方法获取</p>
+</blockquote>
+<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select(String... sqlSelect)</span><br><span class="line">select(Predicate&lt;TableFieldInfo&gt; predicate)</span><br><span class="line">select(Class&lt;T&gt; entityClass, Predicate&lt;TableFieldInfo&gt; predicate)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置查询字段</li>
+</ul>
+<blockquote>
+<p>说明:</p>
+<p>以上方法分为两类.<br>第二类方法为:过滤查询字段(主键除外),入参不包含 class 的调用前需要<code>wrapper</code>内的<code>entity</code>属性有值! 这两类方法重复调用以最后一次为准</p>
+</blockquote>
+<ul>
+<li>例: <code>select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;)</code></li>
+<li>例: <code>select(i -&gt; i.getProperty().startsWith(&quot;test&quot;))</code></li>
+</ul>
+<h3 id="UpdateWrapper"><a href="#UpdateWrapper" class="headerlink" title="UpdateWrapper"></a>UpdateWrapper</h3><blockquote>
+<p>说明：</p>
+<p>继承自 <code>AbstractWrapper</code> ,自身的内部属性 <code>entity</code> 也用于生成 where 条件及 <code>LambdaUpdateWrapper</code>, 可以通过 <code>new UpdateWrapper().lambda()</code> 方法获取</p>
+</blockquote>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set(String column, Object val)</span><br><span class="line">set(<span class="type">boolean</span> condition, String column, Object val)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SQL SET 字段</li>
+<li>例: <code>set(&quot;name&quot;, &quot;老李头&quot;)</code></li>
+<li>例: <code>set(&quot;name&quot;, &quot;&quot;)</code>—&gt;数据库字段值变为<strong>空字符串</strong></li>
+<li>例: <code>set(&quot;name&quot;, null)</code>—&gt;数据库字段值变为<code>null</code></li>
+</ul>
+<h4 id="setSql"><a href="#setSql" class="headerlink" title="setSql"></a>setSql</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setSql(String sql)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置 SET 部分 SQL</li>
+<li>例: <code>setSql(&quot;name = &#39;老李头&#39;&quot;)</code></li>
+</ul>
+<h4 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h4><ul>
+<li>获取 <code>LambdaWrapper</code><br>在<code>QueryWrapper</code>中是获取<code>LambdaQueryWrapper</code><br>在<code>UpdateWrapper</code>中是获取<code>LambdaUpdateWrapper</code></li>
+</ul>
+<h3 id="使用Wrapper自定义SQL"><a href="#使用Wrapper自定义SQL" class="headerlink" title="使用Wrapper自定义SQL"></a>使用Wrapper自定义SQL</h3><blockquote>
+<p>需求来源:</p>
+<p>在使用了<code>mybatis-plus</code>之后, 自定义SQL的同时也想使用<code>Wrapper</code>的便利应该怎么办？ 在<code>mybatis-plus</code>版本<code>3.0.7</code>得到了完美解决 版本需要大于或等于<code>3.0.7</code>, 以下两种方案取其一即可</p>
+</blockquote>
+<h4 id="Service-java"><a href="#Service-java" class="headerlink" title="Service.java"></a>Service.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlMapper.getAll(Wrappers.&lt;MysqlData&gt;lambdaQuery().eq(MysqlData::getGroup, <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案一-注解方式-Mapper-java"><a href="#方案一-注解方式-Mapper-java" class="headerlink" title="方案一 注解方式 Mapper.java"></a>方案一 注解方式 Mapper.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from mysql_data $&#123;ew.customSqlSegment&#125;&quot;)</span></span><br><span class="line">List&lt;MysqlData&gt; <span class="title function_">getAll</span><span class="params">(<span class="meta">@Param(Constants.WRAPPER)</span> Wrapper wrapper)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方案二-XML形式-Mapper-xml"><a href="#方案二-XML形式-Mapper-xml" class="headerlink" title="方案二 XML形式 Mapper.xml"></a>方案二 XML形式 Mapper.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;MysqlData&quot;</span>&gt;</span></span><br><span class="line">	SELECT * FROM mysql_data $&#123;ew.customSqlSegment&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="kotlin使用wrapper"><a href="#kotlin使用wrapper" class="headerlink" title="kotlin使用wrapper"></a>kotlin使用wrapper</h4><blockquote>
+<p>kotlin 可以使用 <code>QueryWrapper</code> 和 <code>UpdateWrapper</code> 但无法使用 <code>LambdaQueryWrapper</code> 和 <code>LambdaUpdateWrapper</code><br>如果想使用 lambda 方式的 wrapper 请使用 <code>KtQueryWrapper</code> 和 <code>KtUpdateWrapper</code></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2156,135 +2441,6 @@ interface GreetingService
 <li>增加了对象的数量（每个接口都做成一个对象）。</li>
 </ol>
 <p>​    </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/17/MySQL/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/09/17/MySQL/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">Mysql</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-09-17 11:04:00 / 修改时间：17:59:10" itemprop="dateCreated datePublished" datetime="2020-09-17T11:04:00+08:00">2020-09-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="索引数据结构红黑树，Hash表，B-Tree"><a href="#索引数据结构红黑树，Hash表，B-Tree" class="headerlink" title="索引数据结构红黑树，Hash表，B+Tree"></a>索引数据结构红黑树，Hash表，B+Tree</h2><p>二叉树，红黑树，Hash表，B-Tree。</p>
-<h3 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h3><p>索引是帮助Mysql高效获取数据的排好序的数据结构。</p>
-<p>红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。</p>
-<p>Hash：哈希算法：哈希散列值结果就是磁盘文件地址。</p>
-<ul>
-<li>不管表记录有多少，都能快速定位表数据的位置。</li>
-<li>但是不能很好解决范围查找。</li>
-</ul>
-<p>B-Tree： </p>
-<ul>
-<li>叶子节点具有相同的深度，存放数据。</li>
-<li>所有索引元素不重复。</li>
-<li>节点中的数据索引从左到右递增排列。</li>
-</ul>
-<p>B+Tree：每个数据节点都能快速找到相邻节点（节点之间双向指针）。</p>
-<ul>
-<li>   非叶子节点不存储data，只存储索引（非叶子节点冗余索引），可以放更多的索引。</li>
-<li>   叶子界定啊包含所有索引字段</li>
-<li> 叶子节点用指针链接，提高区间访问的性能。</li>
-<li>提高范围查找的性能。</li>
-</ul>
-<h3 id="B-Tree与B-Tree的不同："><a href="#B-Tree与B-Tree的不同：" class="headerlink" title="B-Tree与B+Tree的不同："></a>B-Tree与B+Tree的不同：</h3><ul>
-<li><p>B+Tree叶子节点之间增加双向指针，B-Tree叶子节点之间没有。</p>
-</li>
-<li><p>B+Tree非叶子简单不存放数据，只存放索引（所以造成冗余索引）；B-Tree所有节点都存放数据，没有冗余索引。</p>
-</li>
-<li><p>在树的高度相同的情况下，B+Tree能放的数据更多。</p>
-</li>
-</ul>
-<h2 id="千万级数据表快速查找"><a href="#千万级数据表快速查找" class="headerlink" title="千万级数据表快速查找"></a>千万级数据表快速查找</h2><p>Mysql底层数据结构：B+Tree（B-Tree变种）：多叉查找(x&lt;y&lt;=z]</p>
-<p>B+Tree的索引每个节点大小：16kb</p>
-<p>数据库有存储引擎的概念。表级别的概念。INNODB/MYISAM</p>
-<p>MYISAM（非聚集索引）:</p>
-<pre><code>frm表结构信息
-MYD存储数据
-MYI存储B+Tree的索引。
-</code></pre>
-<p>INNODB（聚集索引）: </p>
-<pre><code>frm表结构信息
-ibd索引和数据在一起
-</code></pre>
-<h2 id="基于B-Tree高性能索引"><a href="#基于B-Tree高性能索引" class="headerlink" title="基于B+Tree高性能索引"></a>基于B+Tree高性能索引</h2><p>INNODB索引实现（聚集）</p>
-<ul>
-<li>表数据文件本身就是按B+Tree组织的一个索引结构的文件。</li>
-<li>聚集索引：叶子节点包含了完整的数据记录。</li>
-<li>为什么INNODB表必须有主键，并且建议整型自增。<ul>
-<li>如果没有主键，mysql找字段中的唯一字段作为索引，如果都没有，MySQL会创建一个隐藏列。不要增加MySQL的性能负担。</li>
-<li>主键不要使用UUID（UUID不是整形也不是自增），B+树经常比大小，整形比大小快，上产环境高速SSD成本高。</li>
-<li>在B+Tree数据结构中，自增树插入对B+Tree树的分裂小（B+Tree会自动优化分裂树的结构，保证在一定的规范下），随机树插入对B+Tree的分裂大</li>
-</ul>
-</li>
-<li>为什么主键索引结构叶子节点存储的是主键值？（一致性和节省存储空间）</li>
-</ul>
-<h2 id="联合索引底层数据结构"><a href="#联合索引底层数据结构" class="headerlink" title="联合索引底层数据结构"></a>联合索引底层数据结构</h2><p>KEY ‘idx_name_age_position’ （’name’,’age’,’position’) USING BTREE</p>
-<p>根据索引字段的顺序进行比较。先比较name后age后position</p>
-<p><img src="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg" alt="联合索引底层数据结构.jpg"></p>
-<p>最左前缀优化：因为联合索引底层已经实现了</p>
-<pre><code>explain select * from employees where name=&#39;Bill&#39; and age=31;
-</code></pre>
-<p>还有很多的知识需要学习。</p>
 
       
     </div>

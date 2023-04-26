@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,241 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/25/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/25/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE3/" class="post-title-link" itemprop="url">商城项目（三）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-25 18:58:00" itemprop="dateCreated datePublished" datetime="2020-12-25T18:58:00+08:00">2020-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-01-07 17:50:00" itemprop="dateModified" datetime="2021-01-07T17:50:00+08:00">2021-01-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="功能实现一"><a href="#功能实现一" class="headerlink" title="功能实现一"></a>功能实现一</h1><p>先启动前端项目，然后启动Nacos，然后启动</p>
+<h2 id="三级分类"><a href="#三级分类" class="headerlink" title="三级分类"></a>三级分类</h2><p>数据库导入数据。</p>
+<p>打开categoryContoller</p>
+<p>查出所有分类以及子分类，以树形结构组装起来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制类</span></span><br><span class="line">List&lt;CategoryEntity&gt;categoryService.listWithTree();</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现类 使用beseMapper，renren-fast使用的bao层自动继承baseMapper</span></span><br><span class="line">baseMapper == Dao</span><br><span class="line">    </span><br><span class="line"><span class="comment">//1. 查出所有分类</span></span><br><span class="line">entities = baseMapper.selectList(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//2. 组装成所有的父子分类</span></span><br><span class="line"><span class="comment">//2.1. 找到所有的一级分类</span></span><br><span class="line">entities。stream().filter((categoryEntity) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> categoryEntity.getParentCid == <span class="number">0</span>;</span><br><span class="line">&#125;).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<p>在实体中添加属性children</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表明在数据表中不存在</span></span><br><span class="line"><span class="meta">@TableField(exist=false)</span></span><br><span class="line"><span class="keyword">private</span> List&lt;CategoryEntity&gt; children;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a>前端实现</h4><ol>
+<li><p>新建product/category.vue文件，使菜单知道新建的vue文件下。</p>
+</li>
+<li><p>在ElementUI中使用树形组件</p>
+</li>
+<li><p>前端向后端发送请求</p>
+</li>
+</ol>
+<h4 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h4><ol>
+<li><p>在gateway服务中编写配置类，在网关里面配置统一跨域</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GulimallCorsConfiguration</span> &#123;</span><br><span class="line">    <span class="comment">// 加入到容器中</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> CorsWebFilter <span class="title function_">corsWebFilter</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UrlBasedCorsConfigurationSource</span> <span class="variable">source</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UrlBasedCorsConfigurationSource</span>();</span><br><span class="line">        <span class="type">CorsConfiguration</span> <span class="variable">corsConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CorsConfiguration</span>();</span><br><span class="line">        <span class="comment">//配置跨域  头，方法，来源，携带cookie</span></span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">        corsConfiguration.setAllowCredentials(<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">// 任意路径</span></span><br><span class="line">        source.registerCorsConfiguration(<span class="string">&quot;/**&quot;</span>,corsConfiguration);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CorsWebFilter</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>编写配置文件，使用filter</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">product_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://gulimall-product</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/product/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/$\&#123;segment&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">admin_route</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://renren-fast</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/api/**</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">RewritePath=/api/(?&lt;segment&gt;.*),/renren-fast/$\&#123;segment&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>取消renren-fast项目的跨域配置类的设置。</p>
+</li>
+<li><p>确认后端返回的参数，准确接收。</p>
+</li>
+</ol>
+<h3 id="删除-添加菜单"><a href="#删除-添加菜单" class="headerlink" title="删除/添加菜单"></a>删除/添加菜单</h3><h4 id="页面效果"><a href="#页面效果" class="headerlink" title="页面效果"></a>页面效果</h4><ol>
+<li><p>使用ElementUI的自定义节点内容功能，使用其中的scoped slot功能。</p>
+</li>
+<li><p>导入需要的组件</p>
+<p>node-key:唯一主键</p>
+<p>show-checkbox:是否显示复选框</p>
+<p>expand-on-click-node:点击非箭头位置，是否展开关闭树</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-tree</span><br><span class="line">    :data=&quot;menus&quot;</span><br><span class="line">    :props=&quot;defaultProps&quot;</span><br><span class="line">    show-checkbox=&quot;true&quot;</span><br><span class="line">    node-key=&quot;catId&quot;</span><br><span class="line">    :expand-on-click-node=&quot;false&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;!-- vue slot 的插槽机制 --&gt;</span><br><span class="line">    &lt;span class=&quot;custom-tree-node&quot; slot-scope=&quot;&#123; node, data &#125;&quot;&gt;</span><br><span class="line">      &lt;span&gt;&#123;&#123; node.label &#125;&#125;&lt;/span&gt;</span><br><span class="line">      &lt;span&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if=&quot;node.level &lt;= 2&quot;</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          size=&quot;mini&quot;</span><br><span class="line">          @click=&quot;() =&gt; append(data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Append</span><br><span class="line">        &lt;/el-button&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          v-if=&quot;node.childNodes.length == 0&quot;</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          size=&quot;mini&quot;</span><br><span class="line">          @click=&quot;() =&gt; remove(node, data)&quot;</span><br><span class="line">        &gt;</span><br><span class="line">          Delete</span><br><span class="line">        &lt;/el-button&gt;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  &lt;/el-tree&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h4><ol>
+<li><p>对逻辑删除字段使用@TableLogic(value = “1”, delval = “0”) 注解，并表明删除规则。</p>
+</li>
+<li><p>编写删除方法。</p>
+</li>
+<li><p>下载postman模拟前端调用删除接口。</p>
+</li>
+</ol>
+<h4 id="删除效果细化-添加菜单"><a href="#删除效果细化-添加菜单" class="headerlink" title="删除效果细化/添加菜单"></a>删除效果细化/添加菜单</h4><p>实现以下几点功能：</p>
+<ol>
+<li>点击delete，有确认提示框</li>
+<li>删除菜单后，tree状态还是展开的</li>
+<li>点击append(添加)，弹出可输入提示框。</li>
+<li>将输入的数据和默认数据保存到data中</li>
+<li>通过发送请求实现保存功能。</li>
+</ol>
+<h3 id="修改-批量删除菜单"><a href="#修改-批量删除菜单" class="headerlink" title="修改/批量删除菜单"></a>修改/批量删除菜单</h3><h4 id="基本修改效果"><a href="#基本修改效果" class="headerlink" title="基本修改效果"></a>基本修改效果</h4><ol>
+<li>添加修改按钮</li>
+<li>设置点击提示框</li>
+<li>给提示开给你添加需要修改项可输入框</li>
+<li>发送请求，修改数据。</li>
+<li>注意在点击修改的时候，需要获得数据库最新的数据。</li>
+<li>请求修改成功后，刷新页面时要回显数据（查询一次数据库，将数据给到缓存中的data），防止与数据库字段不同。</li>
+<li>注意在不同操作，对缓存区的数据的修改。必要时，使数据归于默认值。</li>
+</ol>
+<h4 id="修改拖拽效果"><a href="#修改拖拽效果" class="headerlink" title="修改拖拽效果"></a>修改拖拽效果</h4><ol>
+<li>实现可拖拽效果</li>
+<li>实现switch选择按钮</li>
+<li>记录拖拽菜单的id和父id</li>
+<li>记录菜单的id和子id</li>
+<li>实现批量拖动的点击按钮</li>
+<li>菜单移动，设置限制，不允许超过3级菜单</li>
+<li>检查，菜单拖动还有什么问题</li>
+</ol>
+<h4 id="批量删除菜单"><a href="#批量删除菜单" class="headerlink" title="批量删除菜单"></a>批量删除菜单</h4><ol>
+<li><p>使用Element-UI的设置，获得批量选中的菜单id</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-tree</span> <span class="attr">ref</span>=<span class="string">&quot;menuTree&quot;</span></span></span><br><span class="line"><span class="tag">         &gt;</span><span class="tag">&lt;/<span class="name">el-tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选中的菜单的node</span></span><br><span class="line"><span class="keyword">let</span> checkedNodes = <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">menuTree</span>.<span class="title function_">getCheckedNodes</span>();</span><br></pre></td></tr></table></figure></li>
+<li><p>发送请求处理</p>
+</li>
+<li><p>设置批量删除的确认按钮</p>
+</li>
+</ol>
+<h2 id="品牌管理"><a href="#品牌管理" class="headerlink" title="品牌管理"></a>品牌管理</h2><h3 id="逆向生成的代码完成前端"><a href="#逆向生成的代码完成前端" class="headerlink" title="逆向生成的代码完成前端"></a>逆向生成的代码完成前端</h3><ol>
+<li>添加品牌管理菜单</li>
+<li>将生成的前端代码放到对应位置。</li>
+<li>运行程序</li>
+</ol>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><ol>
+<li><p>显示状态 使用switch按钮</p>
+</li>
+<li><p>图片上传使用OSS对象存储</p>
+</li>
+<li><p>表格图片显示，使用原生img</p>
+</li>
+<li><p>前端数据校验使用 vue rule</p>
+</li>
+<li><p>后端数据校验使用JSR303</p>
+<ol>
+<li><p>使用javax.validation.constraints包下的多个校验注解</p>
+</li>
+<li><p>如果要开启校验功能，必须再接口上使用@Valid注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BrandEntity brand)</span>&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>给校验的bean后紧跟BindingResult，封装了校验结果。</p>
+</li>
+<li><p>数据校验与分组校验</p>
+<ol>
+<li>创建标识接口</li>
+<li>@Valid注解更改为@Valided(对应的标识接口)注解</li>
+<li>在校验注解上添加groups={对应的标识接口}</li>
+<li>注意：只要使用了分组校验，未添加 groups 的校验注解将无效。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>自定义校验</p>
+<ol>
+<li>编写自定义的校验注解</li>
+<li>编写自定义的校验器</li>
+<li>关联自定义的校验器和自定义的校验注解</li>
+</ol>
+</li>
+<li><p>做统一异常处理</p>
+</li>
+</ol>
+<h1 id="取消vue的报错提示"><a href="#取消vue的报错提示" class="headerlink" title="取消vue的报错提示"></a>取消vue的报错提示</h1><p>编写文件并没有错误，是vue的错误检查要求太高了，在build/webpack.base.conf.js文件中的createLintingRule方法中的方法提全部注释掉，重启就可以了。</p>
+<h1 id="OSS-阿里云对象存储"><a href="#OSS-阿里云对象存储" class="headerlink" title="OSS 阿里云对象存储"></a>OSS 阿里云对象存储</h1><ol>
+<li>Bucket：存储空间</li>
+<li>Object：对象/文件</li>
+<li>Rejion：地域</li>
+<li>Endpoint：访问域名</li>
+<li>AccessKey：密钥（包括钥匙id和密码：AccessKeyId，AccessKeySecret）</li>
+</ol>
+<p>使用步骤：</p>
+<ol>
+<li>引入oss-starter</li>
+<li>配置key、endpoint相关信息</li>
+<li>使用OSSClient 自动注入，进行相关操作</li>
+<li>使用web签名获得相应的签名传给前端。</li>
+</ol>
+<h1 id="功能实现二"><a href="#功能实现二" class="headerlink" title="功能实现二"></a>功能实现二</h1><h2 id="SPU与SKU"><a href="#SPU与SKU" class="headerlink" title="SPU与SKU"></a>SPU与SKU</h2><p>规格属性（不变）与销售属性（可变）</p>
+<h3 id="属性分组"><a href="#属性分组" class="headerlink" title="属性分组"></a>属性分组</h3><ol>
+<li><p>将category的分类菜单，提取为组件</p>
+</li>
+<li><p>在attrgroup.vue中使用，导入组件</p>
+</li>
+<li><p>将自动生成的attrgroup.vue的前端代码导入到自己编写的vue中。</p>
+</li>
+<li><p>使用Vue 高级功能–父子组件传递数据（子给父数据，通过 <strong>事件机制</strong>，子给父发送事件，携带数据）</p>
+<ol>
+<li><p>在子组件中使用 @node-click=”事件方法名”</p>
+</li>
+<li><p>在methods中，实现方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">nodeclick</span>(<span class="params">data,node,component</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.$emit(<span class="string">&quot;tree-node-click&quot;</span>,data,node,component) <span class="comment">// 发送事件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在父组件调用事件名 @tree-node-click=”treenodeclick”</p>
+</li>
+<li><p>编写方法获得数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">treenodeclick</span>(<span class="params">data,node,component</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;attrgroup感知到节点被点击&quot;</span>,data,node,component)</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;被点击的菜单id&quot;</span>,data.<span class="property">catId</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1911,291 +2146,6 @@
 
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/11/18/MyBatis/MyBatis-Plus%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">MyBatis-Plus的学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-18 10:43:00" itemprop="dateCreated datePublished" datetime="2020-11-18T10:43:00+08:00">2020-11-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-09-23 22:51:34" itemprop="dateModified" datetime="2022-09-23T22:51:34+08:00">2022-09-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MyBatis/Mybatis-Plus/" itemprop="url" rel="index"><span itemprop="name">Mybatis-Plus</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MyBatis-Plus(简称MP)是一个MyBatis的增强工具，在MyBatis的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用Mapper、通用Service，仅仅通过少量配置即可实现单表大部分CRUD操作，强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li>。。。</li>
-</ul>
-<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg" alt="framework"></p>
-<h3 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.imooc.com/learn/1130">MyBatis-Plus 入门 - 视频教程 - 慕课网</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.imooc.com/learn/1171">MyBatis-Plus 进阶 - 视频教程 - 慕课网</a></li>
-</ul>
-<h2 id="快速开发"><a href="#快速开发" class="headerlink" title="快速开发"></a>快速开发</h2><p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/quick-start.html">快速开发链接</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>全新的 <code>MyBatis-Plus</code> 3.0 版本基于 JDK8，提供了 <code>lambda</code> 形式的调用，所以安装集成 MP3.0 要求如下：</p>
-<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><p>Maven：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><p>Maven:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>Spring Boot 工程：</p>
-<ul>
-<li><p>配置 MapperScan 注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>Spring MVC 工程：</p>
-<ul>
-<li><p>配置 MapperScan</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;basePackage&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.baomidou.mybatisplus.samples.quickstart.mapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>调整 SqlSessionFactory 为 MyBatis-Plus 的 SqlSessionFactory</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;sqlSessionFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><ul>
-<li>@TableName</li>
-<li>@TableId</li>
-<li>@TableField</li>
-<li>@Version</li>
-<li>@EnumValue</li>
-<li>@TableLogic</li>
-<li>@SqlParser</li>
-<li>@KeySequence</li>
-</ul>
-<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h2><p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
-<p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/generator.html">代码生成器使用教程链接</a></p>
-<h2 id="CRUD接口"><a href="#CRUD接口" class="headerlink" title="CRUD接口"></a>CRUD接口</h2><p><a target="_blank" rel="noopener" href="https://baomidou.com/guide/crud-interface.html">CRUD接口官方文档链接</a></p>
-<ul>
-<li>Service CRUD接口</li>
-<li>Mapper CRUD 接口</li>
-<li>mapper 层 选装件</li>
-</ul>
-<h2 id="条件构造器"><a href="#条件构造器" class="headerlink" title="条件构造器"></a>条件构造器</h2><p>说明：</p>
-<blockquote>
-<ul>
-<li><p>出现的第一个入参<code>boolean condition</code>表示该条件<strong>是否</strong>加入最后生成的sql中</p>
-</li>
-<li><p>代码块内的多个方法均为从上往下补全个别<code>boolean</code>类型的入参,默认为<code>true</code></p>
-</li>
-<li><p>出现的泛型<code>Param</code>均为<code>Wrapper</code>的子类实例(均具有<code>AbstractWrapper</code>的所有方法)</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="AbsractWrapper"><a href="#AbsractWrapper" class="headerlink" title="AbsractWrapper"></a>AbsractWrapper</h3><p>QueryWrapper(LambdaQueryWrapper) 和 UpdateWrapper(LambdaUpdateWrapper) 的父类<br>用于生成 sql 的 where 条件,entity属性也用于生成sql的where条件</p>
-<p>注意：entity生成的where条件与使用各个api生成的where条件<strong>没有任何关联行为</strong></p>
-<h4 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(Map&lt;R, V&gt; params)</span><br><span class="line">allEq(Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>全部<a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#eq">eq</a>(或个别<a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a>)</li>
-</ul>
-<blockquote>
-<p>个别参数说明:</p>
-<p><code>params</code> : <code>key</code>为数据库字段名,<code>value</code>为字段值<br><code>null2IsNull</code> : 为<code>true</code>则在<code>map</code>的<code>value</code>为<code>null</code>时调用 <a target="_blank" rel="noopener" href="https://baomidou.com/guide/wrapper.html#isnull">isNull</a> 方法,为<code>false</code>时则忽略<code>value</code>为<code>null</code>的</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params)</span><br><span class="line">allEq(BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull)</span><br><span class="line">allEq(<span class="type">boolean</span> condition, BiPredicate&lt;R, V&gt; filter, Map&lt;R, V&gt; params, <span class="type">boolean</span> null2IsNull) </span><br></pre></td></tr></table></figure>
-</blockquote>
-<h4 id="eq"><a href="#eq" class="headerlink" title="eq"></a>eq</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eq(R column, Object val)</span><br><span class="line">eq(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>等于 =</li>
-<li>例: <code>eq(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name = &#39;老王&#39;</code></li>
-</ul>
-<h4 id="ne"><a href="#ne" class="headerlink" title="ne"></a>ne</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ne(R column, Object val)</span><br><span class="line">ne(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>不等于 &lt;&gt;</li>
-<li>例: <code>ne(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name &lt;&gt; &#39;老王&#39;</code></li>
-</ul>
-<h4 id="gt"><a href="#gt" class="headerlink" title="gt"></a>gt</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gt(R column, Object val)</span><br><span class="line">gt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>大于 &gt;</li>
-<li>例: <code>gt(&quot;age&quot;, 18)</code>—&gt;<code>age &gt; 18</code></li>
-</ul>
-<h4 id="ge"><a href="#ge" class="headerlink" title="ge"></a>ge</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ge(R column, Object val)</span><br><span class="line">ge(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>大于等于 &gt;=</li>
-<li>例: <code>ge(&quot;age&quot;, 18)</code>—&gt;<code>age &gt;= 18</code></li>
-</ul>
-<h4 id="lt"><a href="#lt" class="headerlink" title="lt"></a>lt</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lt(R column, Object val)</span><br><span class="line">lt(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>小于 &lt;</li>
-<li>例: <code>lt(&quot;age&quot;, 18)</code>—&gt;<code>age &lt; 18</code></li>
-</ul>
-<h4 id="le"><a href="#le" class="headerlink" title="le"></a>le</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">le(R column, Object val)</span><br><span class="line">le(<span class="type">boolean</span> condition, R column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>小于等于 &lt;=</li>
-<li>例: <code>le(&quot;age&quot;, 18)</code>—&gt;<code>age &lt;= 18</code></li>
-</ul>
-<h4 id="between"><a href="#between" class="headerlink" title="between"></a>between</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">between(R column, Object val1, Object val2)</span><br><span class="line">between(<span class="type">boolean</span> condition, R column, Object val1, Object val2)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>BETWEEN 值1 AND 值2</li>
-<li>例: <code>between(&quot;age&quot;, 18, 30)</code>—&gt;<code>age between 18 and 30</code></li>
-</ul>
-<h4 id="…"><a href="#…" class="headerlink" title="…."></a>….</h4><ul>
-<li>notBetween</li>
-<li>like</li>
-<li>notLike</li>
-<li>likeLeft</li>
-<li>likeRight</li>
-<li>isNull</li>
-<li>isNotNull</li>
-<li>in</li>
-<li>notIn</li>
-<li>inSql</li>
-<li>notInSql</li>
-<li>groupBy</li>
-<li>orderByAsc</li>
-<li>orderByDesc</li>
-<li>orderBy</li>
-<li>having</li>
-<li>func</li>
-<li>or</li>
-<li>and</li>
-<li>nested</li>
-<li>apply</li>
-<li>last</li>
-<li>exists</li>
-<li>notExists</li>
-</ul>
-<h3 id="QueryWrapper"><a href="#QueryWrapper" class="headerlink" title="QueryWrapper"></a>QueryWrapper</h3><blockquote>
-<p>说明：</p>
-<p>继承自 AbstractWrapper ,自身的内部属性 entity 也用于生成 where 条件及 LambdaQueryWrapper, 可以通过 new QueryWrapper().lambda() 方法获取</p>
-</blockquote>
-<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select(String... sqlSelect)</span><br><span class="line">select(Predicate&lt;TableFieldInfo&gt; predicate)</span><br><span class="line">select(Class&lt;T&gt; entityClass, Predicate&lt;TableFieldInfo&gt; predicate)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置查询字段</li>
-</ul>
-<blockquote>
-<p>说明:</p>
-<p>以上方法分为两类.<br>第二类方法为:过滤查询字段(主键除外),入参不包含 class 的调用前需要<code>wrapper</code>内的<code>entity</code>属性有值! 这两类方法重复调用以最后一次为准</p>
-</blockquote>
-<ul>
-<li>例: <code>select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;)</code></li>
-<li>例: <code>select(i -&gt; i.getProperty().startsWith(&quot;test&quot;))</code></li>
-</ul>
-<h3 id="UpdateWrapper"><a href="#UpdateWrapper" class="headerlink" title="UpdateWrapper"></a>UpdateWrapper</h3><blockquote>
-<p>说明：</p>
-<p>继承自 <code>AbstractWrapper</code> ,自身的内部属性 <code>entity</code> 也用于生成 where 条件及 <code>LambdaUpdateWrapper</code>, 可以通过 <code>new UpdateWrapper().lambda()</code> 方法获取</p>
-</blockquote>
-<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set(String column, Object val)</span><br><span class="line">set(<span class="type">boolean</span> condition, String column, Object val)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>SQL SET 字段</li>
-<li>例: <code>set(&quot;name&quot;, &quot;老李头&quot;)</code></li>
-<li>例: <code>set(&quot;name&quot;, &quot;&quot;)</code>—&gt;数据库字段值变为<strong>空字符串</strong></li>
-<li>例: <code>set(&quot;name&quot;, null)</code>—&gt;数据库字段值变为<code>null</code></li>
-</ul>
-<h4 id="setSql"><a href="#setSql" class="headerlink" title="setSql"></a>setSql</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setSql(String sql)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置 SET 部分 SQL</li>
-<li>例: <code>setSql(&quot;name = &#39;老李头&#39;&quot;)</code></li>
-</ul>
-<h4 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h4><ul>
-<li>获取 <code>LambdaWrapper</code><br>在<code>QueryWrapper</code>中是获取<code>LambdaQueryWrapper</code><br>在<code>UpdateWrapper</code>中是获取<code>LambdaUpdateWrapper</code></li>
-</ul>
-<h3 id="使用Wrapper自定义SQL"><a href="#使用Wrapper自定义SQL" class="headerlink" title="使用Wrapper自定义SQL"></a>使用Wrapper自定义SQL</h3><blockquote>
-<p>需求来源:</p>
-<p>在使用了<code>mybatis-plus</code>之后, 自定义SQL的同时也想使用<code>Wrapper</code>的便利应该怎么办？ 在<code>mybatis-plus</code>版本<code>3.0.7</code>得到了完美解决 版本需要大于或等于<code>3.0.7</code>, 以下两种方案取其一即可</p>
-</blockquote>
-<h4 id="Service-java"><a href="#Service-java" class="headerlink" title="Service.java"></a>Service.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlMapper.getAll(Wrappers.&lt;MysqlData&gt;lambdaQuery().eq(MysqlData::getGroup, <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
-
-<h4 id="方案一-注解方式-Mapper-java"><a href="#方案一-注解方式-Mapper-java" class="headerlink" title="方案一 注解方式 Mapper.java"></a>方案一 注解方式 Mapper.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from mysql_data $&#123;ew.customSqlSegment&#125;&quot;)</span></span><br><span class="line">List&lt;MysqlData&gt; <span class="title function_">getAll</span><span class="params">(<span class="meta">@Param(Constants.WRAPPER)</span> Wrapper wrapper)</span>;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方案二-XML形式-Mapper-xml"><a href="#方案二-XML形式-Mapper-xml" class="headerlink" title="方案二 XML形式 Mapper.xml"></a>方案二 XML形式 Mapper.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;MysqlData&quot;</span>&gt;</span></span><br><span class="line">	SELECT * FROM mysql_data $&#123;ew.customSqlSegment&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="kotlin使用wrapper"><a href="#kotlin使用wrapper" class="headerlink" title="kotlin使用wrapper"></a>kotlin使用wrapper</h4><blockquote>
-<p>kotlin 可以使用 <code>QueryWrapper</code> 和 <code>UpdateWrapper</code> 但无法使用 <code>LambdaQueryWrapper</code> 和 <code>LambdaUpdateWrapper</code><br>如果想使用 lambda 方式的 wrapper 请使用 <code>KtQueryWrapper</code> 和 <code>KtUpdateWrapper</code></p>
-</blockquote>
 
       
     </div>

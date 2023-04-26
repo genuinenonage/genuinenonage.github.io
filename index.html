@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,174 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/25/%E5%90%8C%E5%88%9B/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/25/%E5%90%8C%E5%88%9B/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">认证中心登录流程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-25 10:20:00" itemprop="dateCreated datePublished" datetime="2023-04-25T10:20:00+08:00">2023-04-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-26 08:27:55" itemprop="dateModified" datetime="2023-04-26T08:27:55+08:00">2023-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%8C%E5%88%9B/" itemprop="url" rel="index"><span itemprop="name">同创</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="认证中心登录流程"><a href="#认证中心登录流程" class="headerlink" title="认证中心登录流程"></a>认证中心登录流程</h1><ol>
+<li><p>用户名密码调用认证中心登录接口</p>
+</li>
+<li><p>认证中心服务器操作：</p>
+<ol>
+<li><p>登录之前，先退出其他已登录账号</p>
+<ol>
+<li><p>删除登录凭证TGT和缓存的用户数据</p>
+</li>
+<li><p>删除凭证Cookie</p>
+</li>
+<li><p>删除所有TGT对应的调用凭证，并通知客户端登出注销本地Session</p>
+<ol>
+<li>删除TGT</li>
+<li>获取jwtToken</li>
+<li>把jwtToken存入黑名单</li>
+<li>响应客户端，登出请求</li>
+<li>删除jwtToken</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>根据用户名密码查询用户信息。</p>
+</li>
+<li><p>获取TGT登录凭证</p>
+<ol>
+<li>根据UUID随机生成TGT</li>
+<li>TGT为key，将用户信息缓存Redis</li>
+<li>TGT存入Cookie</li>
+</ol>
+</li>
+<li><p>生成授权码code，跳转重定向地址</p>
+<ol>
+<li>根据appId获取app地址</li>
+<li>根据UUID生成随机code</li>
+<li>code为key，将TGT登录凭证和app地址，缓存Redis</li>
+<li>将code拼接到重定向地址：业务页面地址+code</li>
+</ol>
+</li>
+<li><p>接口响应重定向地址</p>
+</li>
+</ol>
+</li>
+<li><p>重定向业务页面</p>
+</li>
+<li><p>业务页面调用业务后端服务</p>
+</li>
+<li><p>业务后端服务器根据code调用认证中心Oauth2获取token。（认证中心Oauth2同时支持code和用户名密码两种登录获取token方式）</p>
+</li>
+<li><p>认证中心获取token接口</p>
+<ol>
+<li>验证参数与应用</li>
+<li>校验授权，通过code，获取包含user等信息的AccessTokenContent对象<ol>
+<li>code获取缓存TGT</li>
+<li>根据TGT获取缓存用户信息</li>
+<li>从用户中心获取用户角色和权限信息</li>
+<li>分别缓存用户角色和权限信息</li>
+</ol>
+</li>
+<li>生成jwtToken并返回<ol>
+<li>根据TGT、用户信息、appId、业务地址</li>
+<li>根据UUID随机生成accessToken调用凭证</li>
+<li>accessToken为key缓存TGT、用户信息、appId、业务地址信息</li>
+<li>TGT为key缓存accessToken调用凭证</li>
+<li>根据UUID随机生成resfreshToken刷新调用凭证</li>
+<li>resfreshToken为key缓存TGT、用户信息、appId、业务地址、accessToken</li>
+<li>创建token对象（<em>accessToken</em>调用凭证，resfreshToken：当前<em>AccessToken</em>超时用于刷新<em>AccessToken</em>并延长服务端<em>session</em>时效必要参数，应用标识<em>appId</em>，用户信息<em>user</em>）</li>
+<li>将token对象生成JWT<ol>
+<li>String jwt = Jwts.<em>builder</em>().setClaims(claims).signWith(SignatureAlgorithm.<em>HS256</em>, secret).compact();</li>
+<li>将<em>accessToken</em>为<em>key</em>，缓存jwt</li>
+</ol>
+</li>
+<li>响应业务系统JWT</li>
+<li>业务系统响应前端token<ol>
+<li>业务系统通过response.getOutputStream().write(JSONObject.<em>toJSONString</em>(respResult).getBytes(StandardCharsets.<em>UTF_8</em>))响应前端token</li>
+</ol>
+</li>
+<li>业务前端根据token调用业务系统接口</li>
+<li>业务系统接口每次都会经过权限拦截，获取接口token，调用认证中心接口/checkToken，判断token是否在黑名单，不在存表示token有效。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1226,115 +1394,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 定时任务</span><br><span class="line">*  <span class="number">1.</span> <span class="meta">@EnableScheduling</span> 开启定时任务</span><br><span class="line">*  <span class="number">2.</span> <span class="meta">@Scheduled</span> 开启定时任务</span><br><span class="line">*  <span class="number">3.</span> 自动配置类 TaskSchedulingAutoConfiguration</span><br><span class="line">* 异步任务</span><br><span class="line">*  <span class="number">1.</span> <span class="meta">@EnableAsync</span>开启异步任务执行</span><br><span class="line">*  <span class="number">2.</span> <span class="meta">@Async</span> 给希望异步执行的方法标注</span><br><span class="line">*  <span class="number">3.</span> 自动配置类 TaskExecutionAutoConfiguration</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* <span class="number">1.</span> Spring 中cron表达式由<span class="number">6</span>位组成，不允许第<span class="number">7</span>位的年</span><br><span class="line">* <span class="number">2.</span> 在周几的位置，<span class="number">1</span>-<span class="number">7</span>代表周一到周日</span><br><span class="line">* <span class="number">3.</span> 定时任务不应该阻塞。默认是阻塞的</span><br><span class="line">*      <span class="number">1.</span> 业务已异步的方式，提交到线程池</span><br><span class="line">*      <span class="number">2.</span> 支持定时任务线程池：设置TaskSchedulingProperties</span><br><span class="line">*      <span class="number">3.</span> 让定时任务异步执行</span><br><span class="line">*          异步任务</span><br><span class="line">*    解决：使用异步+定时任务来完成定时任务不阻塞的功能</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/20/NoSQL/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/20/NoSQL/20210420-Nebula%20Graph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Nebula Graph图数据库学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-20 11:46:00" itemprop="dateCreated datePublished" datetime="2021-04-20T11:46:00+08:00">2021-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-21 12:01:49" itemprop="dateModified" datetime="2021-04-21T12:01:49+08:00">2021-04-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">图数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Nebula Graph是一款开源的、分布式的、易扩展的原生图数据库，能够承载数十亿个点和数万亿条边的超大规模数据集，提供毫秒级查询。</p>
-<h2 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h2><p>Nebula Graph三种服务架构：</p>
-<ol>
-<li>Graph服务</li>
-<li>Meta服务</li>
-<li>Storage服务</li>
-</ol>
-<p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/nebula-graph-architecture-1.png" alt="Nebula Graph architecture"></p>
-<h3 id="Meta服务"><a href="#Meta服务" class="headerlink" title="Meta服务"></a>Meta服务</h3><p><img src="https://docs-cdn.nebula-graph.com.cn/docs-2.0/1.introduction/2.nebula-graph-architecture/meta-architecture1.png" alt="The architecture of the Meta Service"></p>
-<p>Meta服务是由nebula-metad进程提供的，构成了基于Raft协议的集群，其中一个进程是leader，其它进程都是follower。</p>
-<p>功能：管理用户账号、管理分片、管理图空间、管理Schema信息、管理基于TTL的数据回收、管理作业。</p>
-<h3 id="Graph服务"><a href="#Graph服务" class="headerlink" title="Graph服务"></a>Graph服务</h3><p>负责处理计算请求</p>
-<h3 id="Storage服务"><a href="#Storage服务" class="headerlink" title="Storage服务"></a>Storage服务</h3><p>负责存储数据</p>
-<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h3 id="Match"><a href="#Match" class="headerlink" title="Match"></a>Match</h3><p>定义一个搜索模式，匹配存储在Nebula Graph中的数据，用RETURN子句检索数据。</p>
-<h3 id="LOOKUP"><a href="#LOOKUP" class="headerlink" title="LOOKUP"></a>LOOKUP</h3><p>根据索引遍历数据。</p>
-<h3 id="GO"><a href="#GO" class="headerlink" title="GO"></a>GO</h3><p>用指定过滤条件遍历图，返回结果</p>
-<h3 id="FETCH"><a href="#FETCH" class="headerlink" title="FETCH"></a>FETCH</h3><p>可以获取指定点或边的属性值。</p>
-<h3 id="UNWIND"><a href="#UNWIND" class="headerlink" title="UNWIND"></a>UNWIND</h3><p>作为单独语句或语句中的子句使用。将列表拆分为单独的行，列表中的每个元素为一行。</p>
-<h3 id="SHOW"><a href="#SHOW" class="headerlink" title="SHOW"></a>SHOW</h3><p>显示一些Nebula Graph中的信息</p>
-<h4 id="查询vid所有数据"><a href="#查询vid所有数据" class="headerlink" title="查询vid所有数据"></a>查询vid所有数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FETCH</span> PROP <span class="keyword">ON</span> <span class="operator">*</span> &quot;569961631955718144&quot;;</span><br></pre></td></tr></table></figure>
-
-
-
-
 
 
       

@@ -155,18 +155,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,135 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/17/MySQL/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/09/17/MySQL/Mysql%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">Mysql</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-09-17 11:04:00 / 修改时间：17:59:10" itemprop="dateCreated datePublished" datetime="2020-09-17T11:04:00+08:00">2020-09-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="索引数据结构红黑树，Hash表，B-Tree"><a href="#索引数据结构红黑树，Hash表，B-Tree" class="headerlink" title="索引数据结构红黑树，Hash表，B+Tree"></a>索引数据结构红黑树，Hash表，B+Tree</h2><p>二叉树，红黑树，Hash表，B-Tree。</p>
+<h3 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h3><p>索引是帮助Mysql高效获取数据的排好序的数据结构。</p>
+<p>红黑树本质也是二叉树，不过可以自动平衡，不让二叉树一边叶子过长。</p>
+<p>Hash：哈希算法：哈希散列值结果就是磁盘文件地址。</p>
+<ul>
+<li>不管表记录有多少，都能快速定位表数据的位置。</li>
+<li>但是不能很好解决范围查找。</li>
+</ul>
+<p>B-Tree： </p>
+<ul>
+<li>叶子节点具有相同的深度，存放数据。</li>
+<li>所有索引元素不重复。</li>
+<li>节点中的数据索引从左到右递增排列。</li>
+</ul>
+<p>B+Tree：每个数据节点都能快速找到相邻节点（节点之间双向指针）。</p>
+<ul>
+<li>   非叶子节点不存储data，只存储索引（非叶子节点冗余索引），可以放更多的索引。</li>
+<li>   叶子界定啊包含所有索引字段</li>
+<li> 叶子节点用指针链接，提高区间访问的性能。</li>
+<li>提高范围查找的性能。</li>
+</ul>
+<h3 id="B-Tree与B-Tree的不同："><a href="#B-Tree与B-Tree的不同：" class="headerlink" title="B-Tree与B+Tree的不同："></a>B-Tree与B+Tree的不同：</h3><ul>
+<li><p>B+Tree叶子节点之间增加双向指针，B-Tree叶子节点之间没有。</p>
+</li>
+<li><p>B+Tree非叶子简单不存放数据，只存放索引（所以造成冗余索引）；B-Tree所有节点都存放数据，没有冗余索引。</p>
+</li>
+<li><p>在树的高度相同的情况下，B+Tree能放的数据更多。</p>
+</li>
+</ul>
+<h2 id="千万级数据表快速查找"><a href="#千万级数据表快速查找" class="headerlink" title="千万级数据表快速查找"></a>千万级数据表快速查找</h2><p>Mysql底层数据结构：B+Tree（B-Tree变种）：多叉查找(x&lt;y&lt;=z]</p>
+<p>B+Tree的索引每个节点大小：16kb</p>
+<p>数据库有存储引擎的概念。表级别的概念。INNODB/MYISAM</p>
+<p>MYISAM（非聚集索引）:</p>
+<pre><code>frm表结构信息
+MYD存储数据
+MYI存储B+Tree的索引。
+</code></pre>
+<p>INNODB（聚集索引）: </p>
+<pre><code>frm表结构信息
+ibd索引和数据在一起
+</code></pre>
+<h2 id="基于B-Tree高性能索引"><a href="#基于B-Tree高性能索引" class="headerlink" title="基于B+Tree高性能索引"></a>基于B+Tree高性能索引</h2><p>INNODB索引实现（聚集）</p>
+<ul>
+<li>表数据文件本身就是按B+Tree组织的一个索引结构的文件。</li>
+<li>聚集索引：叶子节点包含了完整的数据记录。</li>
+<li>为什么INNODB表必须有主键，并且建议整型自增。<ul>
+<li>如果没有主键，mysql找字段中的唯一字段作为索引，如果都没有，MySQL会创建一个隐藏列。不要增加MySQL的性能负担。</li>
+<li>主键不要使用UUID（UUID不是整形也不是自增），B+树经常比大小，整形比大小快，上产环境高速SSD成本高。</li>
+<li>在B+Tree数据结构中，自增树插入对B+Tree树的分裂小（B+Tree会自动优化分裂树的结构，保证在一定的规范下），随机树插入对B+Tree的分裂大</li>
+</ul>
+</li>
+<li>为什么主键索引结构叶子节点存储的是主键值？（一致性和节省存储空间）</li>
+</ul>
+<h2 id="联合索引底层数据结构"><a href="#联合索引底层数据结构" class="headerlink" title="联合索引底层数据结构"></a>联合索引底层数据结构</h2><p>KEY ‘idx_name_age_position’ （’name’,’age’,’position’) USING BTREE</p>
+<p>根据索引字段的顺序进行比较。先比较name后age后position</p>
+<p><img src="https://i.loli.net/2020/09/17/pN3KRCx4UtlBEPi.jpg" alt="联合索引底层数据结构.jpg"></p>
+<p>最左前缀优化：因为联合索引底层已经实现了</p>
+<pre><code>explain select * from employees where name=&#39;Bill&#39; and age=31;
+</code></pre>
+<p>还有很多的知识需要学习。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2004,101 +2133,6 @@ root:为数据库用户名
 <h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><p>Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。</p>
 <p>正例：”test”.equals(object);</p>
 <p>说明：推荐使用 java.util.Objects#equals（JDK7 引入的工具类）。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="post-title-link" itemprop="url">消息中间件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-07-20 09:00:00" itemprop="dateCreated datePublished" datetime="2020-07-20T09:00:00+08:00">2020-07-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-07-30 10:13:00" itemprop="dateModified" datetime="2020-07-30T10:13:00+08:00">2020-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h2><h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><p>非底层操作系统软件，非业务应用软件，不是直接给最终用户使用的，不能直接给客户带来价值的软件统称为中间件。  </p>
-<h3 id="什么是消息中间件"><a href="#什么是消息中间件" class="headerlink" title="什么是消息中间件"></a>什么是消息中间件</h3><p>关注数据的发送和接受，利用高效可靠的异步消息传递机制集成分布式系统。  </p>
-<h3 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h3><p>Java消息服务（Java Message Service），一个Java平台中关于面向消息中间件的API，用于两个应用程序之间，或分布式系统中发送消息，进行异步通信。  </p>
-<h4 id="JSM相关概念"><a href="#JSM相关概念" class="headerlink" title="JSM相关概念"></a>JSM相关概念</h4><p>提供者：实现JSM规范的消息中间件服务器<br>客户端：发送或接受消息的应用程序<br>生产者/发布者：创建并发送消息的客户端<br>消费者/订阅者：接受并处理消息的客户端<br>消息：应用程序之间传递的数据内容<br>消息模式：在客户端之间传递消息的方式，JSM中定义了主题和队列两种模式。</p>
-<h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><p>advanced massage queuing protocol 是一个提供统一服务的应用层标准协议，基于此协议的客户端与消息中间件传递消息，不受客户端/中间件不同产品，不同开发语言等条件的限制。  </p>
-<h3 id="常见消息中间件"><a href="#常见消息中间件" class="headerlink" title="常见消息中间件"></a>常见消息中间件</h3><h4 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h4><p>完全支持JMS1.1和J2EE1.4规范的JMS Provider实现。<br>优点：遵循JMS规范，安装部署方便。    </p>
-<h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>开源的AMQP实现，服务端采用Erlang语言编写。用于分布式系统中存储转发消息。<br>优点：继承Erlang天生的并发性，最初用于金融行业，稳定性，安全性有保障。  </p>
-<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><p>高吞吐量的分布式发布订阅消息系统，分布式的、分区的、可靠的分布式日志存储服务。<br>优点：依赖zk，可动态扩展节点，高性能、高吞吐量、无限扩容，消息可指定追溯。  </p>
-<h3 id="队列模式"><a href="#队列模式" class="headerlink" title="队列模式"></a>队列模式</h3><p>客户端包括生产者和消费者<br>队列中的消息只能被一个消费者消费<br>消费者可以随时消费队列中的消息  </p>
-<h3 id="主题模型"><a href="#主题模型" class="headerlink" title="主题模型"></a>主题模型</h3><p>客户端包括发布者和订阅者<br>主题中的消息被所有订阅者消费<br>消费者不能消费订阅之前就发送到主题中的消息  </p>
-<h3 id="JMS编码接口"><a href="#JMS编码接口" class="headerlink" title="JMS编码接口"></a>JMS编码接口</h3><p>ConnectionFactory 用于创建连接到消息中间件的连接工厂<br>Connection 应用程序和消息服务器之间的通信链路<br>Destination 消息发布和接受的地点，包括队列或主题<br>Session 一个单线程的上下文，用于发送和接受消息<br>MessageConsumer 由会话创建，用于接受发送到目标的消息<br>MessageProducer 有会话创建，用于发送消息到目标<br>Message 是在消费者和生产者之间传送的对象，消息头，一组消息属性，一个消息体。</p>
 
       
     </div>

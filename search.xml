@@ -5960,4 +5960,99 @@ ibd索引和数据在一起
         <tag>elasticsearch</tag>
       </tags>
   </entry>
+  <entry>
+    <title>认证中心登录流程</title>
+    <url>/2023/04/25/%E5%90%8C%E5%88%9B/%E8%AE%A4%E8%AF%81%E4%B8%AD%E5%BF%83%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="认证中心登录流程"><a href="#认证中心登录流程" class="headerlink" title="认证中心登录流程"></a>认证中心登录流程</h1><ol>
+<li><p>用户名密码调用认证中心登录接口</p>
+</li>
+<li><p>认证中心服务器操作：</p>
+<ol>
+<li><p>登录之前，先退出其他已登录账号</p>
+<ol>
+<li><p>删除登录凭证TGT和缓存的用户数据</p>
+</li>
+<li><p>删除凭证Cookie</p>
+</li>
+<li><p>删除所有TGT对应的调用凭证，并通知客户端登出注销本地Session</p>
+<ol>
+<li>删除TGT</li>
+<li>获取jwtToken</li>
+<li>把jwtToken存入黑名单</li>
+<li>响应客户端，登出请求</li>
+<li>删除jwtToken</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>根据用户名密码查询用户信息。</p>
+</li>
+<li><p>获取TGT登录凭证</p>
+<ol>
+<li>根据UUID随机生成TGT</li>
+<li>TGT为key，将用户信息缓存Redis</li>
+<li>TGT存入Cookie</li>
+</ol>
+</li>
+<li><p>生成授权码code，跳转重定向地址</p>
+<ol>
+<li>根据appId获取app地址</li>
+<li>根据UUID生成随机code</li>
+<li>code为key，将TGT登录凭证和app地址，缓存Redis</li>
+<li>将code拼接到重定向地址：业务页面地址+code</li>
+</ol>
+</li>
+<li><p>接口响应重定向地址</p>
+</li>
+</ol>
+</li>
+<li><p>重定向业务页面</p>
+</li>
+<li><p>业务页面调用业务后端服务</p>
+</li>
+<li><p>业务后端服务器根据code调用认证中心Oauth2获取token。（认证中心Oauth2同时支持code和用户名密码两种登录获取token方式）</p>
+</li>
+<li><p>认证中心获取token接口</p>
+<ol>
+<li>验证参数与应用</li>
+<li>校验授权，通过code，获取包含user等信息的AccessTokenContent对象<ol>
+<li>code获取缓存TGT</li>
+<li>根据TGT获取缓存用户信息</li>
+<li>从用户中心获取用户角色和权限信息</li>
+<li>分别缓存用户角色和权限信息</li>
+</ol>
+</li>
+<li>生成jwtToken并返回<ol>
+<li>根据TGT、用户信息、appId、业务地址</li>
+<li>根据UUID随机生成accessToken调用凭证</li>
+<li>accessToken为key缓存TGT、用户信息、appId、业务地址信息</li>
+<li>TGT为key缓存accessToken调用凭证</li>
+<li>根据UUID随机生成resfreshToken刷新调用凭证</li>
+<li>resfreshToken为key缓存TGT、用户信息、appId、业务地址、accessToken</li>
+<li>创建token对象（<em>accessToken</em>调用凭证，resfreshToken：当前<em>AccessToken</em>超时用于刷新<em>AccessToken</em>并延长服务端<em>session</em>时效必要参数，应用标识<em>appId</em>，用户信息<em>user</em>）</li>
+<li>将token对象生成JWT<ol>
+<li>String jwt = Jwts.<em>builder</em>().setClaims(claims).signWith(SignatureAlgorithm.<em>HS256</em>, secret).compact();</li>
+<li>将<em>accessToken</em>为<em>key</em>，缓存jwt</li>
+</ol>
+</li>
+<li>响应业务系统JWT</li>
+<li>业务系统响应前端token<ol>
+<li>业务系统通过response.getOutputStream().write(JSONObject.<em>toJSONString</em>(respResult).getBytes(StandardCharsets.<em>UTF_8</em>))响应前端token</li>
+</ol>
+</li>
+<li>业务前端根据token调用业务系统接口</li>
+<li>业务系统接口每次都会经过权限拦截，获取接口token，调用认证中心接口/checkToken，判断token是否在黑名单，不在存表示token有效。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>同创</category>
+      </categories>
+      <tags>
+        <tag>同创</tag>
+      </tags>
+  </entry>
 </search>
