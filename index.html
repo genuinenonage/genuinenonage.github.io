@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,118 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/27/%E5%9F%8B%E7%82%B9%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/27/%E5%9F%8B%E7%82%B9%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/" class="post-title-link" itemprop="url">埋点与日志的区别是什么？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-27 11:03:00 / 修改时间：11:15:16" itemprop="dateCreated datePublished" datetime="2023-04-27T11:03:00+08:00">2023-04-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li><p>代码里有专门打日志的代码，也有专门打埋点的。</p>
+</li>
+<li><p>主要作用：日志用于排查问题，埋点用于记录用户行为数据。</p>
+</li>
+</ol>
+<h1 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h1><p>埋点主要是了解用户行为的重要步骤，注入特定的代码以记录关键指标用于未来提升应用性能的重要环节。</p>
+<h2 id="埋点与日志的区别"><a href="#埋点与日志的区别" class="headerlink" title="埋点与日志的区别"></a>埋点与日志的区别</h2><ol>
+<li><p>埋点可以看作是日志的子集。被埋点的任何数据都应该记录在日志中。</p>
+</li>
+<li><p>埋点承担了为聚合分析发布关键性能数据的职责。</p>
+</li>
+<li><p>日志则提供了用户在不同级别跟踪应用的细节信息。</p>
+<blockquote>
+<p>从低到高依次为:</p>
+<p>Verobse:几乎提供了所有的细节，主要用于跟踪执行过程中控制流</p>
+<p>Debug:表示数据主要用于调试</p>
+<p>Info:表示非错误信息</p>
+<p>Warning:表示可恢复的错误</p>
+<p>Error：表示不可恢复的错误</p>
+</blockquote>
+</li>
+<li><p>日志的记录会贯穿应用的整个生命周期，而埋点只应该用在某些特定阶段。</p>
+</li>
+<li><p>埋点数据会发送到服务器，日志是记录在本地设备。</p>
+</li>
+<li><p>埋点与日志不可相互替代</p>
+</li>
+<li><p>日志可以非常详细。埋点应该尽可能少地，因为向服务器报告时会消耗网络资源。</p>
+</li>
+</ol>
+<p>因此，只对有需要的事件进行埋点非常重要，这些事件要包含足够多的数据以满足重要报告的需要，埋点和过度埋点之间并没有清晰的界限。一开始应仅对少量报告进行埋点，然后随着时间推移，逐步增加埋点的覆盖率。</p>
+<h2 id="埋点上传机制"><a href="#埋点上传机制" class="headerlink" title="埋点上传机制"></a>埋点上传机制</h2><p>实时上报：服务端提供日志记录接口，当触发事件时，直接调用日志记录接口将日志记录在服务端。如果是频率低，数据量小，实时性要求高的数据可以不设限制。</p>
+<p>延时上报：服务端提供日志上传接口，客户端将日志暂存本地，当达到一定大小或一定时间时，将日志通过上传接口压缩后上传。这个时间和数据量一般根据公司业务情况自定义。</p>
+<h2 id="如何提升埋点质量"><a href="#如何提升埋点质量" class="headerlink" title="如何提升埋点质量"></a>如何提升埋点质量</h2><h3 id="关键数据后端埋点"><a href="#关键数据后端埋点" class="headerlink" title="关键数据后端埋点"></a>关键数据后端埋点</h3><p>关键行为采集使用后端埋点。比如订单支付、注册成功与否，通过后端数据采集，好处是：数据量全面和提高数据的准确性、实时性。</p>
+<h3 id="完善的埋点规范"><a href="#完善的埋点规范" class="headerlink" title="完善的埋点规范"></a>完善的埋点规范</h3><p>比如我们规定埋点名称只能由字母、下划线、数字组成，并保证其的唯一性。例如，设定ck是点击、sw是展示；埋点事件命名规范是：{团队|业务|角色}{组件|页面}{具体元素}_{动作}</p>
+<blockquote>
+<p>示例：</p>
+<p> trademark_NavBar_bar_ck 。trademark代表业务线，NavBar代表页面，bar代表功能，ck是点击</p>
+<p> patent_comt_share_ck 。patent代表业务线，comt评价组件，share分享按钮，ck点击</p>
+</blockquote>
+<h3 id="流程规范约束"><a href="#流程规范约束" class="headerlink" title="流程规范约束"></a>流程规范约束</h3><p>埋点需求和业务功能需求一样重要，也需要经历【需求—评审—开发—测试—验收—上线】的完整生命周期，如果能按照这个流程规范一环一环做好，那么我们已经能够避免90%的风险。</p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1709302436597846884&wfr=spider&for=pc">原文地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1257,142 +1369,6 @@
 <li>Execption是可以被抛出的基本类型。</li>
 </ol>
 <h2 id="第13章字符串"><a href="#第13章字符串" class="headerlink" title="第13章字符串"></a>第13章字符串</h2>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20210428-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20210428-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">优先队列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-28 09:56:00 / 修改时间：11:23:07" itemprop="dateCreated datePublished" datetime="2021-04-28T09:56:00+08:00">2021-04-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="什么是优先队列"><a href="#什么是优先队列" class="headerlink" title="什么是优先队列"></a>什么是优先队列</h1><p>在数据队列中，数据是有优先权的。优先权高得数据，先从队列中出来。</p>
-<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>优先队列的数据结构至少有两种操作：insert（插入）和deleteMin（删除最小者）。</p>
-<p>等价于enqueu（入队）和dequeue（出队）操作。</p>
-<h2 id="简单的实现"><a href="#简单的实现" class="headerlink" title="简单的实现"></a>简单的实现</h2><p>使用基本链表实现：</p>
-<ol>
-<li>简单链表：在表头已O(1)插入，并遍历链表以O(N)删除最小元。</li>
-<li>排序的链表：以O(N)排序插入，以O(1)删除最小元。</li>
-</ol>
-<p>基于删除不多于插入的实现，实现1比较好。</p>
-<p>使用二叉查找树实现：两个操作的平均时间都是O(log N)。不过反复操作可能会毁坏树的平衡，并且过分的是它有支持好多不需要的操作。</p>
-<p>下面使用的基本的数据结构实现优先队列，不需要链，以最坏情形时间O(log N)支持两种操作。插入操作将花费常数时间。</p>
-<p>在后面的使用链接的结构实现优先队列的合并。</p>
-<h1 id="二叉堆（堆）"><a href="#二叉堆（堆）" class="headerlink" title="二叉堆（堆）"></a>二叉堆（堆）</h1><h3 id="堆具有两个性质："><a href="#堆具有两个性质：" class="headerlink" title="堆具有两个性质："></a>堆具有两个性质：</h3><ol>
-<li>结构性：堆是一个完全二叉树，一颗被完全填满的二叉树，只有其底层上的元素从左到右填入。<ol>
-<li>由于完全二叉树有规律，可以用一个数组表示，不需要使用链。</li>
-<li>数组在任一位置i上的元素，左儿子在位置2i上，右儿子在其左儿子的下一个位置（2i+1）上，它的父亲在位置[i/2]上。</li>
-<li>堆结构由一个数组和一个记录堆大小的整数 组成。</li>
-<li>数组中从下标1处开始存储数据。位置0处存放暂时的可替换数据（用于插入删除操作）。</li>
-</ol>
-</li>
-</ol>
-<ol start="2">
-<li>堆序性：最小元应该在堆的根上。即数组下标1处。</li>
-</ol>
-<h3 id="基本的堆操作"><a href="#基本的堆操作" class="headerlink" title="基本的堆操作"></a>基本的堆操作</h3><p>见代码：<a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinaryHeap.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinaryHeap.java</a></p>
-<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>新元素插入堆中，暂时放到数组位置1处，在下一个可用位置创建一个空穴。通过上滤策略（空穴与父节点交换为位置），在堆中知道找到正确的位置。再将输入放到对应的空穴位置。</p>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>删除根节点（即数组位置1处），出现一个空穴，将数组中末尾的值放到数组位置1处。通过下滤找到，该空穴合适的位置，再把末尾的值放到空穴处。</p>
-<h3 id="其他堆操作"><a href="#其他堆操作" class="headerlink" title="其他堆操作"></a>其他堆操作</h3><ol>
-<li><p>decreaseKey(降低关键字的值)：decrease(p, ▲)。降低在位置p处的项的值，降低的幅度为▲。</p>
-</li>
-<li><p>increaseKey(增加关键字的值)</p>
-</li>
-<li><p>delete(删除)：首先执行降低关键字的值，再执行删除最小元操作。</p>
-<p>举例：进程为用户手动终止，必须从优先队列中除去。</p>
-</li>
-<li><p>buildHeap(构建堆)</p>
-</li>
-</ol>
-<h2 id="d-堆"><a href="#d-堆" class="headerlink" title="d-堆"></a>d-堆</h2><p>d-堆是二叉堆的简单推广。</p>
-<p>只是所有的节点都有d个儿子。</p>
-<h1 id="可合并的堆"><a href="#可合并的堆" class="headerlink" title="可合并的堆"></a>可合并的堆</h1><p>堆的实现，不能实施find操作，最明显的缺点是：两个堆合成一个堆是困难的。下面介绍三种复杂程度不一的数据结构使得一次merge操作的运行时间是O(log N)。</p>
-<h2 id="左式堆"><a href="#左式堆" class="headerlink" title="左式堆"></a>左式堆</h2><p>见代码</p>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/LeftistHeap.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/LeftistHeap.java</a></p>
-<p>左式堆与二叉堆具有相同的堆序性。不过有自己的结构性。且是非常不平衡的。</p>
-<h3 id="零路径长"><a href="#零路径长" class="headerlink" title="零路径长"></a>零路径长</h3><p>任一节点X的零路径长（null path length）np(X) 定义为：从X到一个不具有两个儿子的节点的最短路径的长。</p>
-<p>因此，具有0个或1个儿子节点的npl为0。而 npl = -1。</p>
-<h3 id="左式堆的性质"><a href="#左式堆的性质" class="headerlink" title="左式堆的性质"></a>左式堆的性质</h3><ol>
-<li>满足堆序性</li>
-<li>结构性质：左式堆中的每一个节点X，左儿子的零路径长至少与右儿子的零路径长相等。（左npl &gt;= 右npl）</li>
-</ol>
-<h2 id="斜堆"><a href="#斜堆" class="headerlink" title="斜堆"></a>斜堆</h2><p>斜堆是对左式堆的自调节形式。</p>
-<p>斜堆具有堆序性的二叉树，但不存在对树的结构限制。</p>
-<h2 id="二项队列"><a href="#二项队列" class="headerlink" title="二项队列"></a>二项队列</h2><p>见代码：<a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinomialQueue.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinomialQueue.java</a></p>
-<p>虽然左式堆和斜堆都在每次操作以O(log N)时间有效值支持合并、插入和删除最小元。但还是有改进的余地。</p>
-<p>二项队列均支持这三种操作，每次操作的最坏情形运行时间为O(log N)，而插入操作平均时间花费常数时间。</p>
-<h3 id="二项队列的结构"><a href="#二项队列的结构" class="headerlink" title="二项队列的结构"></a>二项队列的结构</h3><p>二项队列与其他优先对立的实现的区别在于：一个二项队列不是一颗堆序的树，而是堆序的树的集合，称为森林（forest）。</p>
-<p>每一颗堆序树都有约束的形式叫做二项树。</p>
-<h3 id="二项队列的实现"><a href="#二项队列的实现" class="headerlink" title="二项队列的实现"></a>二项队列的实现</h3><p>二项队列是：二项树的数组。（数组存放各个二项树的根）</p>
-
       
     </div>
 

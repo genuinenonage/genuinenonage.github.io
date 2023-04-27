@@ -392,78 +392,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Oracle的使用</title>
-    <url>/2020/07/14/Oracle%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>查看触发器</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text <span class="keyword">from</span> all_source <span class="keyword">where</span> type <span class="operator">=</span> <span class="string">&#x27;TRIGGER&#x27;</span> <span class="keyword">and</span> name <span class="operator">=</span> <span class="string">&#x27;TR_T00HM009_AFT_T00HZ004&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>启用/禁用触发器</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 enable <span class="keyword">all</span> triggers; <span class="comment">-- 启用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 disable <span class="keyword">all</span> triggers; <span class="comment">-- 禁用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> enable; <span class="comment">-- 启用指定触发器</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> disable; <span class="comment">-- 禁用指定触发器</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>查看存储过程</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text form user_source <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;%T00HZ004_PKG%&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Oracle数据库恢复与备份"><a href="#Oracle数据库恢复与备份" class="headerlink" title="Oracle数据库恢复与备份"></a>Oracle数据库恢复与备份</h2><h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nolog
-conn /as sysdba
-//或
-sqlplus / as sysdba
-</code></pre>
-<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
-<li>在本地创建表空间<blockquote>
-<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
-</blockquote>
-</li>
-<li>创建用户<blockquote>
-<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
-</blockquote>
-</li>
-<li>给用户授权：<blockquote>
-<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
-</blockquote>
-</li>
-<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
-<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
-</blockquote>
-</li>
-<li>cmd导入库数据泵  <blockquote>
-<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
-</blockquote>
-<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
-<li>cmd导出数据库<blockquote>
-<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
-</blockquote>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Oracle</category>
-      </categories>
-      <tags>
-        <tag>Oracle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Navicat 链接远端Oracle数据库</title>
-    <url>/2020/07/13/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<p>Oracle官网下载Oracle的客户端 install client。<br>官网地址：<a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
-<p>我下载的是：instantclient-basic-windows.x64-19.6.0.0.0dbru.zip</p>
-<p>我解压到：D:\Oracle\instantclient_19_6</p>
-<p>在这个目录下新建sqlnet.ora和tnsnames.ora两个文件<br>sqlnet.ora文件内容<br>　　SQLNET.AUTHENTICATION_SERVICES= (NTS)<br>　　NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)<br>tnsnames.ora文件内容<br>　　orcl =<br>　　　　(DESCRIPTION =<br> 　　　　 (ADDRESS_LIST =<br>   　　　　 (ADDRESS = (PROTOCOL = TCP)(HOST = <em><strong>192.168.146.143</strong></em> )(PORT = 1521))<br>  　　　　　　)<br> 　　　　　 (CONNECT_DATA =<br>    　　　　　    (SERVICE_NAME = <strong>orcl</strong> )<br>  　　　　　　)<br>　　　　　)<br>　注：粗体部分需要按需配置，如果端口是自定义的也需要相应变更。</p>
-<p>设置系统变量</p>
-<ol>
-<li>变量名：ORACLE_HOME<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：TNS_ADMIN<br>变量值：D:\Oracle\instantclient_19_6  </li>
-<li>变量名：NLS_LANG<br>变量值：SIMPlIFIED CHINESE_CHINA.ZHS16GBK  </li>
-<li>修改Path变量<br>添加D:\Oracle\instantclient_19_6   <h3 id="安装Nevicat"><a href="#安装Nevicat" class="headerlink" title="安装Nevicat"></a>安装Nevicat</h3>通过Tools（工具）-&gt;Options-&gt; Miscellaneous -&gt; OCI  将Nevicat的oci.dll更改为Oracle客户端的oci.dll</li>
-</ol>
-<p>一切准备完成，可以直接用Nevicat链接远端Oracle数据库了。<br>我看的是两个人不同操作，有的步骤可能多余，我也不想再仔细研究了</p>
-]]></content>
-  </entry>
-  <entry>
     <title>MQ介绍</title>
     <url>/2020/09/17/MQ%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<h1 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h1><h2 id="MQ介绍"><a href="#MQ介绍" class="headerlink" title="MQ介绍"></a>MQ介绍</h2><p>消息队列，先进先出的数据结构。</p>
@@ -5594,39 +5522,6 @@ ibd索引和数据在一起
 ]]></content>
   </entry>
   <entry>
-    <title>一些知识点</title>
-    <url>/2020/11/10/%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
-    <content><![CDATA[<h3 id="1-一方库、二方库、三方库是什么？"><a href="#1-一方库、二方库、三方库是什么？" class="headerlink" title="1. 一方库、二方库、三方库是什么？"></a>1. 一方库、二方库、三方库是什么？</h3><p>一方库：本工程中的各模块的相互依赖。</p>
-<p>二方库：公司内部的依赖库，一般指公司内部的其他项目发布的jar包</p>
-<p>三方库：公司之外的开源库，比如apache、ibm、google等发布的依赖</p>
-<h3 id="2-Java中-方法签名是什么？"><a href="#2-Java中-方法签名是什么？" class="headerlink" title="2. Java中 方法签名是什么？"></a>2. Java中 方法签名是什么？</h3><p>方法声明的两个组件构成了方法签名：方法的名称和参数类型。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">double</span> <span class="title function_">calculateAnswer</span><span class="params">(<span class="type">double</span> wingSpan, <span class="type">int</span> numberOfEngines,</span></span><br><span class="line"><span class="params">                              <span class="type">double</span> length, <span class="type">double</span> grossTons)</span> &#123;</span><br><span class="line">    <span class="comment">//do the calculation here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面方法的签名是:<br><code>calculateAnswer(double, int, double, double)</code></p>
-<h3 id="3-OOM"><a href="#3-OOM" class="headerlink" title="3. OOM"></a>3. OOM</h3><h4 id="什么是OOM？"><a href="#什么是OOM？" class="headerlink" title="什么是OOM？"></a>什么是OOM？</h4><p>OOM，全称”Out Of Memory”—“内存用完了”，来源于java.lang.OutOfMemoryError。</p>
-<p>当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也没有空间可回收时，就会抛出这个error。</p>
-<h4 id="为什么会OOM？"><a href="#为什么会OOM？" class="headerlink" title="为什么会OOM？"></a>为什么会OOM？</h4><ol>
-<li>分配的少了：虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。</li>
-<li>应用用的太多，并且用完没释放，浪费了。此时造成内存泄露或者内存溢出。</li>
-</ol>
-<h4 id="内存泄漏，内存溢出"><a href="#内存泄漏，内存溢出" class="headerlink" title="内存泄漏，内存溢出"></a>内存泄漏，内存溢出</h4><p><strong>内存泄漏</strong>：申请使用完的内存没有释放，导致虚拟机不能再次使用该内存，此时这段内存就泄露了。因为申请者不用了，而又不能被虚拟机分配给别人用。</p>
-<p><strong>内存溢出</strong>：申请的内存超出了JVM能提供的内存大小，此时称之为溢出。</p>
-<p><strong>在Java语言中</strong>，由于存在了垃圾自动回收机制，所以，我们一般不用去主动释放不用的对象所占的内存，也就是理论上来说，是<strong>不会存在“内存泄露”的</strong>。</p>
-<p><strong>如果编码不当</strong>，比如，将某个对象的引用放到了全局的Map中，虽然方法结束了，但是由于垃圾回收器会根据对象的引用情况来回收内存，导致该对象不能被及时的回收。如果该种情况出现次数多了，就<strong>会导致内存溢出</strong>，比如<strong>系统中经常使用的缓存机制。</strong></p>
-<h3 id="4-内部接口的作用？"><a href="#4-内部接口的作用？" class="headerlink" title="4. 内部接口的作用？"></a>4. 内部接口的作用？</h3><p>也被称为嵌套接口，在另一个接口内声明一个接口。</p>
-<ol>
-<li>逻辑分组仅在一个地方使用的接口的一种方式。</li>
-<li>增加了封装。</li>
-<li>更易读和可维护的代码。</li>
-</ol>
-<h3 id="5-缓存（cache）与缓冲区（buffer）的主要区别"><a href="#5-缓存（cache）与缓冲区（buffer）的主要区别" class="headerlink" title="5. 缓存（cache）与缓冲区（buffer）的主要区别"></a>5. 缓存（cache）与缓冲区（buffer）的主要区别</h3><p>Buffer的核心作用是用来缓冲，缓和冲击。</p>
-<p>Cache的核心作用是加快取用的速度。</p>
-]]></content>
-      <tags>
-        <tag>知识点</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>动态代理</title>
     <url>/2023/04/24/java/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<p>首先了解下静态代理。</p>
@@ -6069,5 +5964,125 @@ ibd索引和数据在一起
 </blockquote>
 <p>以上内容为百度百科。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>埋点与日志的区别是什么？</title>
+    <url>/2023/04/27/%E5%9F%8B%E7%82%B9%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<ol>
+<li><p>代码里有专门打日志的代码，也有专门打埋点的。</p>
+</li>
+<li><p>主要作用：日志用于排查问题，埋点用于记录用户行为数据。</p>
+</li>
+</ol>
+<h1 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h1><p>埋点主要是了解用户行为的重要步骤，注入特定的代码以记录关键指标用于未来提升应用性能的重要环节。</p>
+<h2 id="埋点与日志的区别"><a href="#埋点与日志的区别" class="headerlink" title="埋点与日志的区别"></a>埋点与日志的区别</h2><ol>
+<li><p>埋点可以看作是日志的子集。被埋点的任何数据都应该记录在日志中。</p>
+</li>
+<li><p>埋点承担了为聚合分析发布关键性能数据的职责。</p>
+</li>
+<li><p>日志则提供了用户在不同级别跟踪应用的细节信息。</p>
+<blockquote>
+<p>从低到高依次为:</p>
+<p>Verobse:几乎提供了所有的细节，主要用于跟踪执行过程中控制流</p>
+<p>Debug:表示数据主要用于调试</p>
+<p>Info:表示非错误信息</p>
+<p>Warning:表示可恢复的错误</p>
+<p>Error：表示不可恢复的错误</p>
+</blockquote>
+</li>
+<li><p>日志的记录会贯穿应用的整个生命周期，而埋点只应该用在某些特定阶段。</p>
+</li>
+<li><p>埋点数据会发送到服务器，日志是记录在本地设备。</p>
+</li>
+<li><p>埋点与日志不可相互替代</p>
+</li>
+<li><p>日志可以非常详细。埋点应该尽可能少地，因为向服务器报告时会消耗网络资源。</p>
+</li>
+</ol>
+<p>因此，只对有需要的事件进行埋点非常重要，这些事件要包含足够多的数据以满足重要报告的需要，埋点和过度埋点之间并没有清晰的界限。一开始应仅对少量报告进行埋点，然后随着时间推移，逐步增加埋点的覆盖率。</p>
+<h2 id="埋点上传机制"><a href="#埋点上传机制" class="headerlink" title="埋点上传机制"></a>埋点上传机制</h2><p>实时上报：服务端提供日志记录接口，当触发事件时，直接调用日志记录接口将日志记录在服务端。如果是频率低，数据量小，实时性要求高的数据可以不设限制。</p>
+<p>延时上报：服务端提供日志上传接口，客户端将日志暂存本地，当达到一定大小或一定时间时，将日志通过上传接口压缩后上传。这个时间和数据量一般根据公司业务情况自定义。</p>
+<h2 id="如何提升埋点质量"><a href="#如何提升埋点质量" class="headerlink" title="如何提升埋点质量"></a>如何提升埋点质量</h2><h3 id="关键数据后端埋点"><a href="#关键数据后端埋点" class="headerlink" title="关键数据后端埋点"></a>关键数据后端埋点</h3><p>关键行为采集使用后端埋点。比如订单支付、注册成功与否，通过后端数据采集，好处是：数据量全面和提高数据的准确性、实时性。</p>
+<h3 id="完善的埋点规范"><a href="#完善的埋点规范" class="headerlink" title="完善的埋点规范"></a>完善的埋点规范</h3><p>比如我们规定埋点名称只能由字母、下划线、数字组成，并保证其的唯一性。例如，设定ck是点击、sw是展示；埋点事件命名规范是：{团队|业务|角色}{组件|页面}{具体元素}_{动作}</p>
+<blockquote>
+<p>示例：</p>
+<p> trademark_NavBar_bar_ck 。trademark代表业务线，NavBar代表页面，bar代表功能，ck是点击</p>
+<p> patent_comt_share_ck 。patent代表业务线，comt评价组件，share分享按钮，ck点击</p>
+</blockquote>
+<h3 id="流程规范约束"><a href="#流程规范约束" class="headerlink" title="流程规范约束"></a>流程规范约束</h3><p>埋点需求和业务功能需求一样重要，也需要经历【需求—评审—开发—测试—验收—上线】的完整生命周期，如果能按照这个流程规范一环一环做好，那么我们已经能够避免90%的风险。</p>
+<p><a href="https://baijiahao.baidu.com/s?id=1709302436597846884&wfr=spider&for=pc">原文地址</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Navicat 链接远端Oracle数据库</title>
+    <url>/2020/07/13/Oracle/Navicat%20%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%AB%AFOracle%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<p>Oracle官网下载Oracle的客户端 install client。<br>官网地址：<a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html">https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html</a></p>
+<p>我下载的是：instantclient-basic-windows.x64-19.6.0.0.0dbru.zip</p>
+<p>我解压到：D:\Oracle\instantclient_19_6</p>
+<p>在这个目录下新建sqlnet.ora和tnsnames.ora两个文件<br>sqlnet.ora文件内容<br>　　SQLNET.AUTHENTICATION_SERVICES= (NTS)<br>　　NAMES.DIRECTORY_PATH= (TNSNAMES, EZCONNECT)<br>tnsnames.ora文件内容<br>　　orcl =<br>　　　　(DESCRIPTION =<br> 　　　　 (ADDRESS_LIST =<br>   　　　　 (ADDRESS = (PROTOCOL = TCP)(HOST = <em><strong>192.168.146.143</strong></em> )(PORT = 1521))<br>  　　　　　　)<br> 　　　　　 (CONNECT_DATA =<br>    　　　　　    (SERVICE_NAME = <strong>orcl</strong> )<br>  　　　　　　)<br>　　　　　)<br>　注：粗体部分需要按需配置，如果端口是自定义的也需要相应变更。</p>
+<p>设置系统变量</p>
+<ol>
+<li>变量名：ORACLE_HOME<br>变量值：D:\Oracle\instantclient_19_6  </li>
+<li>变量名：TNS_ADMIN<br>变量值：D:\Oracle\instantclient_19_6  </li>
+<li>变量名：NLS_LANG<br>变量值：SIMPlIFIED CHINESE_CHINA.ZHS16GBK  </li>
+<li>修改Path变量<br>添加D:\Oracle\instantclient_19_6   <h3 id="安装Nevicat"><a href="#安装Nevicat" class="headerlink" title="安装Nevicat"></a>安装Nevicat</h3>通过Tools（工具）-&gt;Options-&gt; Miscellaneous -&gt; OCI  将Nevicat的oci.dll更改为Oracle客户端的oci.dll</li>
+</ol>
+<p>一切准备完成，可以直接用Nevicat链接远端Oracle数据库了。<br>我看的是两个人不同操作，有的步骤可能多余，我也不想再仔细研究了</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Oracle的使用</title>
+    <url>/2020/07/14/Oracle/Oracle%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>查看触发器</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text <span class="keyword">from</span> all_source <span class="keyword">where</span> type <span class="operator">=</span> <span class="string">&#x27;TRIGGER&#x27;</span> <span class="keyword">and</span> name <span class="operator">=</span> <span class="string">&#x27;TR_T00HM009_AFT_T00HZ004&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>启用/禁用触发器</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 enable <span class="keyword">all</span> triggers; <span class="comment">-- 启用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T00HM009 disable <span class="keyword">all</span> triggers; <span class="comment">-- 禁用指定表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> enable; <span class="comment">-- 启用指定触发器</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">trigger</span> <span class="string">&#x27;&#x27;</span> disable; <span class="comment">-- 禁用指定触发器</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>查看存储过程</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> text form user_source <span class="keyword">where</span> name <span class="keyword">like</span> <span class="string">&#x27;%T00HZ004_PKG%&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Oracle数据库恢复与备份"><a href="#Oracle数据库恢复与备份" class="headerlink" title="Oracle数据库恢复与备份"></a>Oracle数据库恢复与备份</h2><h3 id="登录Oracle"><a href="#登录Oracle" class="headerlink" title="登录Oracle"></a>登录Oracle</h3><pre><code>sqlplus /nolog
+conn /as sysdba
+//或
+sqlplus / as sysdba
+</code></pre>
+<h3 id="恢复impdp"><a href="#恢复impdp" class="headerlink" title="恢复impdp"></a>恢复impdp</h3><ol>
+<li>在本地创建表空间<blockquote>
+<p>CREATE TABLESPACE NNC_DATA01(表空间名) DATAFILE ‘E:\tablespace\nncdata01.dbf’(地址及bdf文件名) SIZE 1000M(表空间大小) AUTOEXTEND ON NEXT 50M(自动扩展空间大小) EXTENT MANAGEMENT LOCAL UNIFORM SIZE 256K;</p>
+</blockquote>
+</li>
+<li>创建用户<blockquote>
+<p>create user yonghuming(设置用户名) identified by mima(设置密码) default tablespace NNC_DATA01(创建的表空间名) temporary tablespace temp;</p>
+</blockquote>
+</li>
+<li>给用户授权：<blockquote>
+<p>grant connect,resource to yonghuming;<br>grant create session to yonghuming;<br>grant MANAGE SCHEDULER to yonghuming;<br>grant CREATE VIEW to yonghuming;<br>grant CREATE JOB to yonghuming;<br>grant UNLIMITED TABLESPACE to yonghuming;<br>grant dba to yonghuming;    //这个必须有  </p>
+</blockquote>
+</li>
+<li>创建 导入数据库的存放目录，用于impdp，如果存在了就不用创建了。  <blockquote>
+<p>select * from dba_directories;<br>create or replace directory dir as ‘D:\importdir’;  </p>
+</blockquote>
+</li>
+<li>cmd导入库数据泵  <blockquote>
+<p>impdp yonghuming(目标库用户名)/(目标库用户相应的密码)@orcl   DIRECTORY=importdir(地址目录变量)  dumpfile=OK051501BAK0628.DMP(需要导入的库文件)  remap_schema=OK051501(原库用户名):yonghuming(目标库用户名)  logfile=dtey20200628_dtey200706.log(日志文件名)  TABLE_EXISTS_ACTION=TRUNCATE;   </p>
+</blockquote>
+<h3 id="备份expdp"><a href="#备份expdp" class="headerlink" title="备份expdp"></a>备份expdp</h3></li>
+<li>cmd导出数据库<blockquote>
+<p>//–先查询一下存放的路径<br>select * from dba_directories;<br>expdp okdemo(原用户名)/okmima(原用户密码)@orcl schemas=okdemo(原用户名) dumpfile=okdemobak0714.dmp(导出数据库文件名) logfile=okdemobak0714.log(日志文件名) directory=dir(数据库文件和日志文件存放地址变量);</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Oracle</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
   </entry>
 </search>

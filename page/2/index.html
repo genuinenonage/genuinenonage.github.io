@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -195,6 +195,142 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20210428-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/20210428-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">优先队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-28 09:56:00 / 修改时间：11:23:07" itemprop="dateCreated datePublished" datetime="2021-04-28T09:56:00+08:00">2021-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="什么是优先队列"><a href="#什么是优先队列" class="headerlink" title="什么是优先队列"></a>什么是优先队列</h1><p>在数据队列中，数据是有优先权的。优先权高得数据，先从队列中出来。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>优先队列的数据结构至少有两种操作：insert（插入）和deleteMin（删除最小者）。</p>
+<p>等价于enqueu（入队）和dequeue（出队）操作。</p>
+<h2 id="简单的实现"><a href="#简单的实现" class="headerlink" title="简单的实现"></a>简单的实现</h2><p>使用基本链表实现：</p>
+<ol>
+<li>简单链表：在表头已O(1)插入，并遍历链表以O(N)删除最小元。</li>
+<li>排序的链表：以O(N)排序插入，以O(1)删除最小元。</li>
+</ol>
+<p>基于删除不多于插入的实现，实现1比较好。</p>
+<p>使用二叉查找树实现：两个操作的平均时间都是O(log N)。不过反复操作可能会毁坏树的平衡，并且过分的是它有支持好多不需要的操作。</p>
+<p>下面使用的基本的数据结构实现优先队列，不需要链，以最坏情形时间O(log N)支持两种操作。插入操作将花费常数时间。</p>
+<p>在后面的使用链接的结构实现优先队列的合并。</p>
+<h1 id="二叉堆（堆）"><a href="#二叉堆（堆）" class="headerlink" title="二叉堆（堆）"></a>二叉堆（堆）</h1><h3 id="堆具有两个性质："><a href="#堆具有两个性质：" class="headerlink" title="堆具有两个性质："></a>堆具有两个性质：</h3><ol>
+<li>结构性：堆是一个完全二叉树，一颗被完全填满的二叉树，只有其底层上的元素从左到右填入。<ol>
+<li>由于完全二叉树有规律，可以用一个数组表示，不需要使用链。</li>
+<li>数组在任一位置i上的元素，左儿子在位置2i上，右儿子在其左儿子的下一个位置（2i+1）上，它的父亲在位置[i/2]上。</li>
+<li>堆结构由一个数组和一个记录堆大小的整数 组成。</li>
+<li>数组中从下标1处开始存储数据。位置0处存放暂时的可替换数据（用于插入删除操作）。</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li>堆序性：最小元应该在堆的根上。即数组下标1处。</li>
+</ol>
+<h3 id="基本的堆操作"><a href="#基本的堆操作" class="headerlink" title="基本的堆操作"></a>基本的堆操作</h3><p>见代码：<a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinaryHeap.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinaryHeap.java</a></p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>新元素插入堆中，暂时放到数组位置1处，在下一个可用位置创建一个空穴。通过上滤策略（空穴与父节点交换为位置），在堆中知道找到正确的位置。再将输入放到对应的空穴位置。</p>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>删除根节点（即数组位置1处），出现一个空穴，将数组中末尾的值放到数组位置1处。通过下滤找到，该空穴合适的位置，再把末尾的值放到空穴处。</p>
+<h3 id="其他堆操作"><a href="#其他堆操作" class="headerlink" title="其他堆操作"></a>其他堆操作</h3><ol>
+<li><p>decreaseKey(降低关键字的值)：decrease(p, ▲)。降低在位置p处的项的值，降低的幅度为▲。</p>
+</li>
+<li><p>increaseKey(增加关键字的值)</p>
+</li>
+<li><p>delete(删除)：首先执行降低关键字的值，再执行删除最小元操作。</p>
+<p>举例：进程为用户手动终止，必须从优先队列中除去。</p>
+</li>
+<li><p>buildHeap(构建堆)</p>
+</li>
+</ol>
+<h2 id="d-堆"><a href="#d-堆" class="headerlink" title="d-堆"></a>d-堆</h2><p>d-堆是二叉堆的简单推广。</p>
+<p>只是所有的节点都有d个儿子。</p>
+<h1 id="可合并的堆"><a href="#可合并的堆" class="headerlink" title="可合并的堆"></a>可合并的堆</h1><p>堆的实现，不能实施find操作，最明显的缺点是：两个堆合成一个堆是困难的。下面介绍三种复杂程度不一的数据结构使得一次merge操作的运行时间是O(log N)。</p>
+<h2 id="左式堆"><a href="#左式堆" class="headerlink" title="左式堆"></a>左式堆</h2><p>见代码</p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/LeftistHeap.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/LeftistHeap.java</a></p>
+<p>左式堆与二叉堆具有相同的堆序性。不过有自己的结构性。且是非常不平衡的。</p>
+<h3 id="零路径长"><a href="#零路径长" class="headerlink" title="零路径长"></a>零路径长</h3><p>任一节点X的零路径长（null path length）np(X) 定义为：从X到一个不具有两个儿子的节点的最短路径的长。</p>
+<p>因此，具有0个或1个儿子节点的npl为0。而 npl = -1。</p>
+<h3 id="左式堆的性质"><a href="#左式堆的性质" class="headerlink" title="左式堆的性质"></a>左式堆的性质</h3><ol>
+<li>满足堆序性</li>
+<li>结构性质：左式堆中的每一个节点X，左儿子的零路径长至少与右儿子的零路径长相等。（左npl &gt;= 右npl）</li>
+</ol>
+<h2 id="斜堆"><a href="#斜堆" class="headerlink" title="斜堆"></a>斜堆</h2><p>斜堆是对左式堆的自调节形式。</p>
+<p>斜堆具有堆序性的二叉树，但不存在对树的结构限制。</p>
+<h2 id="二项队列"><a href="#二项队列" class="headerlink" title="二项队列"></a>二项队列</h2><p>见代码：<a target="_blank" rel="noopener" href="https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinomialQueue.java">https://gitee.com/qi_wave/study_java/blob/37fac214e5307fbaa94a4ad58905c670e59acc9f/java/src/main/java/DataStructures_and_AlgorithmAnalysis_in_Java/z06/BinomialQueue.java</a></p>
+<p>虽然左式堆和斜堆都在每次操作以O(log N)时间有效值支持合并、插入和删除最小元。但还是有改进的余地。</p>
+<p>二项队列均支持这三种操作，每次操作的最坏情形运行时间为O(log N)，而插入操作平均时间花费常数时间。</p>
+<h3 id="二项队列的结构"><a href="#二项队列的结构" class="headerlink" title="二项队列的结构"></a>二项队列的结构</h3><p>二项队列与其他优先对立的实现的区别在于：一个二项队列不是一颗堆序的树，而是堆序的树的集合，称为森林（forest）。</p>
+<p>每一颗堆序树都有约束的形式叫做二项树。</p>
+<h3 id="二项队列的实现"><a href="#二项队列的实现" class="headerlink" title="二项队列的实现"></a>二项队列的实现</h3><p>二项队列是：二项树的数组。（数组存放各个二项树的根）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -322,7 +458,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-21 12:01:49" itemprop="dateModified" datetime="2021-04-21T12:01:49+08:00">2021-04-21</time>
+      <time title="修改时间：2023-04-27 10:48:21" itemprop="dateModified" datetime="2023-04-27T10:48:21+08:00">2023-04-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1068,121 +1204,6 @@
 </ul>
 <p>所以，从空间上考虑，varcahr较合适；从效率上考虑，用char合适。如何使用，还需要根据实际情况查询</p>
 <p>参考地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43054397/article/details/91126605">https://blog.csdn.net/weixin_43054397/article/details/91126605</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/12/Spring/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/12/Spring/%E8%AF%A6%E8%A7%A3@Qualifer%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">详解@Qualifer注解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-12 22:47:00" itemprop="dateCreated datePublished" datetime="2021-04-12T22:47:00+08:00">2021-04-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-13 08:08:09" itemprop="dateModified" datetime="2021-04-13T08:08:09+08:00">2021-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/spring/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>了解 <strong>Spring</strong> 框架的 <code>@Qualifier</code> 注解，它解决了哪些问题，以及如何使用它。</p>
-<p>还将了解它与 <code>@Primary</code> 注解的不同之处。</p>
-<h1 id="2-Autowired问题"><a href="#2-Autowired问题" class="headerlink" title="2. @Autowired问题"></a>2. @Autowired问题</h1><p>使用 <code>@Autowired</code> 注解是 <strong>Spring</strong> 依赖注入的绝好方法。但是有些场景下仅仅靠这个注解不足以让 <strong>Spring</strong> 知道要注入哪个 <strong>bean</strong> 。默认情况下， <code>@Autowired</code> 按类型装配 <strong>Spring Bean</strong> 。如果容器有多个相同类型的  <strong>bean</strong> ，则框架将抛出异常 <code>NoUniqueBeanDefinitionException</code> ，以提示有多个满足条件的 <strong>bean</strong> 进行装配。程序无法正确做出判断使用哪一个，下面就是个鲜活的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(&quot;fooFormatter&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;foo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component(&quot;barFormatter&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BarFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;bar&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Formatter formatter;</span><br><span class="line">    <span class="comment">//todo </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果我们尝试将 <strong>FooService</strong> 加载到上下文中，<strong>Spring</strong> 框架将抛出 <code>NoUniqueBeanDefinitionException</code> 。这是因为 <strong>Spring</strong> 不知道要注入哪个 <strong>bean</strong> 。</p>
-<p>为了避免这个问题。有几种解决方案。要讲解的 <code>@Qualifier</code> 注解就是其中之一。</p>
-<h1 id="3-Qualifier"><a href="#3-Qualifier" class="headerlink" title="3. Qualifier"></a>3. Qualifier</h1><p>通过使用 <code>@Qualifier</code> 注解，可以消除需要注入哪个 <strong>bean</strong> 的问题。通过包含<code>@Qualifier</code>注解来指出我们想要使用哪个<strong>bean</strong>来解决问题：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="meta">@Qualifier(&quot;fooFormatter&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Formatter formatter;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//todo </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过将<code>@Qualifier</code>注解与想要使用的特定<strong>Spring bean</strong>的名称一起进行装配，<strong>Spring</strong>框架就能从多个相同类型并满足装配要求的<strong>bean</strong>中找到想要的，避免让<strong>Spring</strong>脑裂。我们需要做的是<code>@Component</code>或者<code>@Bean</code>注解中声明的<strong>value</strong>属性以确定名称。</p>
-<p>其实我们也可以在 <code>Formatter</code> 实现类上使用 <code>@Qualifier</code> 注释，而不是在 <code>@Component</code> 或者 <code>@Bean</code> 中指定名称，也能达到相同的效果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;fooFormatter&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;foo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;barFormatter&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BarFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;bar&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-Qualifier-VS-Primary"><a href="#4-Qualifier-VS-Primary" class="headerlink" title="4. @Qualifier VS @Primary"></a>4. @Qualifier VS @Primary</h1><p>还有另一个名为 <code>@Primary</code> 的注解，我们也可以用来发生依赖注入的歧义时决定要注入哪个 <strong>bean</strong>。当存在多个相同类型的 <strong>bean</strong> 时，此注解定义了首选项。除非另有说明，否则将使用与 <code>@Primary</code> 注释关联的 <strong>bean</strong> 。<br>我们来看一个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Employee <span class="title function_">tomEmployee</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;Tom&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> Employee <span class="title function_">johnEmployee</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Employee</span>(<span class="string">&quot;john&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在此示例中，两个方法都返回相同的 <code>Employee</code>类型。<strong>Spring</strong> 将注入的 <strong>bean</strong> 是方法 <code>johnEmployee</code> 返回的 <strong>bean</strong>。这是因为它包含 <code>@Primary</code> 注解。当我们想要指定默认情况下应该注入特定类型的 <strong>bean</strong> 时，此注解很有用。如果我们在某个注入点需要另一个 <strong>bean</strong>，我们需要专门指出它。我们可以通过 <code>@Qualifier</code> 注解来做到这一点。例如，我们可以通过使用 <code>@Qualifier</code> 注释来指定我们想要使用 <code>tomEmployee</code> 方法返回的 <strong>bean</strong> 。值得注意的是，如果 <code>@Qualifier</code> 和 <code>@Primary</code> 注释都存在，那么 <code>@Qualifier</code> 注释将具有优先权。基本上，<code>@Primary</code> 是定义了默认值，而 <code>@Qualifier</code> 则非常具体。当然<code> @Component</code> 也可以使用<code> @Primary</code> 注解，这次使用的还是上面3的示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Primary</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;foo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BarFormatter</span> <span class="keyword">implements</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;bar&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这种情况下，<code>@Primary</code> 注解指定了默认注入的是 <code>FooFormatter</code>，消除了场景中的注入歧义。</p>
-<h1 id="5-通过名称来自动注入"><a href="#5-通过名称来自动注入" class="headerlink" title="5. 通过名称来自动注入"></a>5. 通过名称来自动注入</h1><p>在使用 <code>@Autowired</code> 进行自动装配时，如果 <strong>Spring</strong> 没有其他提示，将会按照需要注入的变量名称来寻找合适的 <strong>bean</strong>。也可以解决依赖注入歧义的问题。让我们看一些基于我们最初的例子的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FooService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Formatter fooFormatter;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//todo </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这种情况下，<strong>Spring</strong> 将确定要注入的 <strong>bean</strong> 是 <code>FooFormatter</code>，因为字段名称与我们在该 <strong>bean</strong> 的 <code>@Component</code>或者 <code>@Bean</code> 注解中使用的值(默认 <code>@Bean</code> 使用方法名)相匹配。</p>
-<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1><p>通过对 <code>@Qualifier</code> 的探讨，我们知道该注解是用来消除依赖注入冲突的。通过@Qualifier注解设置value，告诉Spring应该注入的bean的名称。</p>
-<p>借鉴地址：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/100371910?from_voters_page=true">https://zhuanlan.zhihu.com/p/100371910?from_voters_page=true</a></p>
 
       
     </div>
