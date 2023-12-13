@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="mac通过ssh服务器密钥连接服务器 获取服务器密钥文件：key.pem，并把密钥文件存储在一个地方（最好放在~&#x2F;.ssh&#x2F;目录下）。  密钥pem文件的权限需要设置为只有拥有者读写权限(600)。   1sudo chmod 0600 key.pem   执行ssh命令，成功连接服务器  1234&#x2F;&#x2F; 当前目录ssh -i key.pem ubuntu@192.168.2.100或者ssh -i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac通过ssh免密连接云服务器">
+<meta property="og:url" content="http://example.com/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="genuine nonage">
+<meta property="og:description" content="mac通过ssh服务器密钥连接服务器 获取服务器密钥文件：key.pem，并把密钥文件存储在一个地方（最好放在~&#x2F;.ssh&#x2F;目录下）。  密钥pem文件的权限需要设置为只有拥有者读写权限(600)。   1sudo chmod 0600 key.pem   执行ssh命令，成功连接服务器  1234&#x2F;&#x2F; 当前目录ssh -i key.pem ubuntu@192.168.2.100或者ssh -i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-13T15:01:00.000Z">
+<meta property="article:modified_time" content="2023-12-13T15:36:01.930Z">
+<meta property="article:author" content="QB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/","path":"2023/12/13/mac-ssh-密钥连接ubuntu云服务器/","title":"mac通过ssh免密连接云服务器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>mac通过ssh免密连接云服务器 | genuine nonage</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">genuine nonage</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">减少放电，增加充电</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac%E9%80%9A%E8%BF%87ssh%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">mac通过ssh服务器密钥连接服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac%E4%BD%BF%E7%94%A8ssh%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">mac使用ssh实现免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D"><span class="nav-number">3.</span> <span class="nav-text">客户端给服务器设置别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B8%A9%E5%9D%91%E6%9D%83%E9%99%90%E6%89%A9%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">踩坑权限扩展</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">QB</p>
+  <div class="site-description" itemprop="description">菜鸡</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="mac通过ssh免密连接云服务器 | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mac通过ssh免密连接云服务器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-13 23:01:00 / 修改时间：23:36:01" itemprop="dateCreated datePublished" datetime="2023-12-13T23:01:00+08:00">2023-12-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="mac通过ssh服务器密钥连接服务器"><a href="#mac通过ssh服务器密钥连接服务器" class="headerlink" title="mac通过ssh服务器密钥连接服务器"></a>mac通过ssh服务器密钥连接服务器</h3><ol>
+<li><p>获取服务器密钥文件：key.pem，并把密钥文件存储在一个地方（最好放在~/.ssh/目录下）。</p>
+</li>
+<li><p>密钥pem文件的权限需要设置为只有拥有者读写权限(600)。</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 0600 key.pem</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行ssh命令，成功连接服务器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 当前目录</span><br><span class="line">ssh -i key.pem ubuntu@192.168.2.100</span><br><span class="line">或者</span><br><span class="line">ssh -i /目录/key.pem ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>免密登录。如果需要长期登录远程服务器，使用ssh-add把pem文件添加到ssh高速缓存，下次直接登录。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -K key.pem</span><br><span class="line"></span><br><span class="line">ssh ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>使用别名，快捷登录</li>
+</ol>
+<p>在~/.ssh下创建config，配置别名。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh/</span><br><span class="line">vim config</span><br><span class="line"></span><br><span class="line">// config中的内容</span><br><span class="line">Host ubuntu</span><br><span class="line">HostName 124.221.90.34</span><br><span class="line">User ubuntu</span><br><span class="line"></span><br><span class="line">// 保存退出 esc :wq</span><br><span class="line">// ssh使用别名登录</span><br><span class="line">ssh ubuntu</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="mac使用ssh实现免密登录"><a href="#mac使用ssh实现免密登录" class="headerlink" title="mac使用ssh实现免密登录"></a>mac使用ssh实现免密登录</h3><p>ssh登录分两种，一种是基于口令（账号密码），另外一种是基于密钥的方式。</p>
+<p>基于口令，就是每次登录输入账号和密码，显然这样做是比较麻烦的。</p>
+<p>如何基于密钥实现免密登录。</p>
+<ol>
+<li>使用ssh-keygen生产密钥对。最好是到ssh的目录下去操作，这样会在ssh的目录下生成密钥对：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -f cvm   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-t 是要使用的算法</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f 要生成的文件名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入命令后两次直接回车</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完成后，会在目录~/.ssh下生成对应的密钥对。</p>
+<ol start="2">
+<li>将公钥添加到要免密登录的服务器中</li>
+</ol>
+<p>使用ssh-copy-id命令将上一步生成的公钥(.pub结尾)上传到服务器中，期间需要输入一次服务器密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i cvm.pub root@ip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-i 指定要添加的公钥的文件名</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">root  免密登陆的用户名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ip	服务器的ip</span></span><br></pre></td></tr></table></figure>
+
+<p>ssh-copy-id 会将指定的文件内容追加到服务器 <strong>~/.ssh/authorized_keys</strong> 文件中。</p>
+<ol start="3">
+<li>使用ssh-add命令将生成的密钥(<strong>cvm</strong>)加入到ssh高速缓存中:</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -K cvm</span><br></pre></td></tr></table></figure>
+
+<p>ssh-add命令是把专用密钥添加到ssh-agent的高速缓存中,从而提高ssh的认证速度。</p>
+<p>执行完这两部，就可以进行免密登陆了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@ip</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="客户端给服务器设置别名"><a href="#客户端给服务器设置别名" class="headerlink" title="客户端给服务器设置别名"></a>客户端给服务器设置别名</h3><p>服务器的ip难记或者太多了，可以给各个免密的服务器设置一个别名，之后直接ssh 别名就可以实现登陆服务器</p>
+<p>mac的～/.ssh目录下的config文件，没有的话可以手动创建，在这个配置文件里面设置别名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Host cvm</span><br><span class="line">HostName ip</span><br><span class="line">User root</span><br><span class="line">IdentityFile ~/.ssh/cvm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Host	别名的名称</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HostName	服务的ip</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User	用户，这里是root</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">IdentityFile  密钥的路径 可不填</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里还有一个Port属性 是端口，默认是22，可不填</span></span><br></pre></td></tr></table></figure>
+
+<p>之后就可以直接使用 ssh cvm 免费登陆了</p>
+<h3 id="踩坑权限扩展"><a href="#踩坑权限扩展" class="headerlink" title="踩坑权限扩展"></a>踩坑权限扩展</h3><p>ssh进行认证的过程中除了对用户目录有权限要求外，对服务器上的 .ssh 文件夹和 authorized_keys 文件同样也要限制，如果日志中提示这两个的问题，可以通过如下方式进行修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/27/%E5%9F%8B%E7%82%B9%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88/" rel="prev" title="埋点与日志的区别是什么？">
+                  <i class="fa fa-chevron-left"></i> 埋点与日志的区别是什么？
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QB</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"genuinenonage/comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

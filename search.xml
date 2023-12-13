@@ -6085,4 +6085,70 @@ sqlplus / as sysdba
         <tag>Oracle</tag>
       </tags>
   </entry>
+  <entry>
+    <title>mac通过ssh免密连接云服务器</title>
+    <url>/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<h3 id="mac通过ssh服务器密钥连接服务器"><a href="#mac通过ssh服务器密钥连接服务器" class="headerlink" title="mac通过ssh服务器密钥连接服务器"></a>mac通过ssh服务器密钥连接服务器</h3><ol>
+<li><p>获取服务器密钥文件：key.pem，并把密钥文件存储在一个地方（最好放在~/.ssh/目录下）。</p>
+</li>
+<li><p>密钥pem文件的权限需要设置为只有拥有者读写权限(600)。</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo chmod 0600 key.pem</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行ssh命令，成功连接服务器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 当前目录</span><br><span class="line">ssh -i key.pem ubuntu@192.168.2.100</span><br><span class="line">或者</span><br><span class="line">ssh -i /目录/key.pem ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>免密登录。如果需要长期登录远程服务器，使用ssh-add把pem文件添加到ssh高速缓存，下次直接登录。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-add -K key.pem</span><br><span class="line"></span><br><span class="line">ssh ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>使用别名，快捷登录</li>
+</ol>
+<p>在~/.ssh下创建config，配置别名。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.ssh/</span><br><span class="line">vim config</span><br><span class="line"></span><br><span class="line">// config中的内容</span><br><span class="line">Host ubuntu</span><br><span class="line">HostName 124.221.90.34</span><br><span class="line">User ubuntu</span><br><span class="line"></span><br><span class="line">// 保存退出 esc :wq</span><br><span class="line">// ssh使用别名登录</span><br><span class="line">ssh ubuntu</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="mac使用ssh实现免密登录"><a href="#mac使用ssh实现免密登录" class="headerlink" title="mac使用ssh实现免密登录"></a>mac使用ssh实现免密登录</h3><p>ssh登录分两种，一种是基于口令（账号密码），另外一种是基于密钥的方式。</p>
+<p>基于口令，就是每次登录输入账号和密码，显然这样做是比较麻烦的。</p>
+<p>如何基于密钥实现免密登录。</p>
+<ol>
+<li>使用ssh-keygen生产密钥对。最好是到ssh的目录下去操作，这样会在ssh的目录下生成密钥对：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -f cvm   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-t 是要使用的算法</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f 要生成的文件名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入命令后两次直接回车</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完成后，会在目录~/.ssh下生成对应的密钥对。</p>
+<ol start="2">
+<li>将公钥添加到要免密登录的服务器中</li>
+</ol>
+<p>使用ssh-copy-id命令将上一步生成的公钥(.pub结尾)上传到服务器中，期间需要输入一次服务器密码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i cvm.pub root@ip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-i 指定要添加的公钥的文件名</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">root  免密登陆的用户名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ip	服务器的ip</span></span><br></pre></td></tr></table></figure>
+
+<p>ssh-copy-id 会将指定的文件内容追加到服务器 <strong>~/.ssh/authorized_keys</strong> 文件中。</p>
+<ol start="3">
+<li>使用ssh-add命令将生成的密钥(<strong>cvm</strong>)加入到ssh高速缓存中:</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-add -K cvm</span><br></pre></td></tr></table></figure>
+
+<p>ssh-add命令是把专用密钥添加到ssh-agent的高速缓存中,从而提高ssh的认证速度。</p>
+<p>执行完这两部，就可以进行免密登陆了</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@ip</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="客户端给服务器设置别名"><a href="#客户端给服务器设置别名" class="headerlink" title="客户端给服务器设置别名"></a>客户端给服务器设置别名</h3><p>服务器的ip难记或者太多了，可以给各个免密的服务器设置一个别名，之后直接ssh 别名就可以实现登陆服务器</p>
+<p>mac的～/.ssh目录下的config文件，没有的话可以手动创建，在这个配置文件里面设置别名：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Host cvm</span><br><span class="line">HostName ip</span><br><span class="line">User root</span><br><span class="line">IdentityFile ~/.ssh/cvm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Host	别名的名称</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HostName	服务的ip</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User	用户，这里是root</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">IdentityFile  密钥的路径 可不填</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里还有一个Port属性 是端口，默认是22，可不填</span></span><br></pre></td></tr></table></figure>
+
+<p>之后就可以直接使用 ssh cvm 免费登陆了</p>
+<h3 id="踩坑权限扩展"><a href="#踩坑权限扩展" class="headerlink" title="踩坑权限扩展"></a>踩坑权限扩展</h3><p>ssh进行认证的过程中除了对用户目录有权限要求外，对服务器上的 .ssh 文件夹和 authorized_keys 文件同样也要限制，如果日志中提示这两个的问题，可以通过如下方式进行修改：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
 </search>

@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,136 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/13/mac-ssh-%E5%AF%86%E9%92%A5%E8%BF%9E%E6%8E%A5ubuntu%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">mac通过ssh免密连接云服务器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-13 23:01:00 / 修改时间：23:36:01" itemprop="dateCreated datePublished" datetime="2023-12-13T23:01:00+08:00">2023-12-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="mac通过ssh服务器密钥连接服务器"><a href="#mac通过ssh服务器密钥连接服务器" class="headerlink" title="mac通过ssh服务器密钥连接服务器"></a>mac通过ssh服务器密钥连接服务器</h3><ol>
+<li><p>获取服务器密钥文件：key.pem，并把密钥文件存储在一个地方（最好放在~/.ssh/目录下）。</p>
+</li>
+<li><p>密钥pem文件的权限需要设置为只有拥有者读写权限(600)。</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 0600 key.pem</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行ssh命令，成功连接服务器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 当前目录</span><br><span class="line">ssh -i key.pem ubuntu@192.168.2.100</span><br><span class="line">或者</span><br><span class="line">ssh -i /目录/key.pem ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>免密登录。如果需要长期登录远程服务器，使用ssh-add把pem文件添加到ssh高速缓存，下次直接登录。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -K key.pem</span><br><span class="line"></span><br><span class="line">ssh ubuntu@192.168.2.100</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>使用别名，快捷登录</li>
+</ol>
+<p>在~/.ssh下创建config，配置别名。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh/</span><br><span class="line">vim config</span><br><span class="line"></span><br><span class="line">// config中的内容</span><br><span class="line">Host ubuntu</span><br><span class="line">HostName 124.221.90.34</span><br><span class="line">User ubuntu</span><br><span class="line"></span><br><span class="line">// 保存退出 esc :wq</span><br><span class="line">// ssh使用别名登录</span><br><span class="line">ssh ubuntu</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="mac使用ssh实现免密登录"><a href="#mac使用ssh实现免密登录" class="headerlink" title="mac使用ssh实现免密登录"></a>mac使用ssh实现免密登录</h3><p>ssh登录分两种，一种是基于口令（账号密码），另外一种是基于密钥的方式。</p>
+<p>基于口令，就是每次登录输入账号和密码，显然这样做是比较麻烦的。</p>
+<p>如何基于密钥实现免密登录。</p>
+<ol>
+<li>使用ssh-keygen生产密钥对。最好是到ssh的目录下去操作，这样会在ssh的目录下生成密钥对：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ssh-keygen -t rsa -f cvm   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-t 是要使用的算法</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-f 要生成的文件名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入命令后两次直接回车</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完成后，会在目录~/.ssh下生成对应的密钥对。</p>
+<ol start="2">
+<li>将公钥添加到要免密登录的服务器中</li>
+</ol>
+<p>使用ssh-copy-id命令将上一步生成的公钥(.pub结尾)上传到服务器中，期间需要输入一次服务器密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i cvm.pub root@ip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-i 指定要添加的公钥的文件名</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">root  免密登陆的用户名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ip	服务器的ip</span></span><br></pre></td></tr></table></figure>
+
+<p>ssh-copy-id 会将指定的文件内容追加到服务器 <strong>~/.ssh/authorized_keys</strong> 文件中。</p>
+<ol start="3">
+<li>使用ssh-add命令将生成的密钥(<strong>cvm</strong>)加入到ssh高速缓存中:</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -K cvm</span><br></pre></td></tr></table></figure>
+
+<p>ssh-add命令是把专用密钥添加到ssh-agent的高速缓存中,从而提高ssh的认证速度。</p>
+<p>执行完这两部，就可以进行免密登陆了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@ip</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="客户端给服务器设置别名"><a href="#客户端给服务器设置别名" class="headerlink" title="客户端给服务器设置别名"></a>客户端给服务器设置别名</h3><p>服务器的ip难记或者太多了，可以给各个免密的服务器设置一个别名，之后直接ssh 别名就可以实现登陆服务器</p>
+<p>mac的～/.ssh目录下的config文件，没有的话可以手动创建，在这个配置文件里面设置别名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Host cvm</span><br><span class="line">HostName ip</span><br><span class="line">User root</span><br><span class="line">IdentityFile ~/.ssh/cvm</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Host	别名的名称</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HostName	服务的ip</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User	用户，这里是root</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">IdentityFile  密钥的路径 可不填</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里还有一个Port属性 是端口，默认是22，可不填</span></span><br></pre></td></tr></table></figure>
+
+<p>之后就可以直接使用 ssh cvm 免费登陆了</p>
+<h3 id="踩坑权限扩展"><a href="#踩坑权限扩展" class="headerlink" title="踩坑权限扩展"></a>踩坑权限扩展</h3><p>ssh进行认证的过程中除了对用户目录有权限要求外，对服务器上的 .ssh 文件夹和 authorized_keys 文件同样也要限制，如果日志中提示这两个的问题，可以通过如下方式进行修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1182,193 +1312,6 @@
 </ol>
 <h4 id="什么是限流"><a href="#什么是限流" class="headerlink" title="什么是限流"></a>什么是限流</h4><p>对打入服务的请求流量进行控制，使服务能够承担不超过自己额能力的流量压力。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E4%B9%A6%E7%B1%8D/20210531-%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/05/31/%E4%B9%A6%E7%B1%8D/20210531-%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">《Java编程思想》知识点总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-31 10:11:00" itemprop="dateCreated datePublished" datetime="2021-05-31T10:11:00+08:00">2021-05-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-06-02 18:59:59" itemprop="dateModified" datetime="2021-06-02T18:59:59+08:00">2021-06-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B9%A6%E7%B1%8D/" itemprop="url" rel="index"><span itemprop="name">书籍</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="第9章-接口"><a href="#第9章-接口" class="headerlink" title="第9章 接口"></a>第9章 接口</h2><h3 id="9-4-Java中的多重继承"><a href="#9-4-Java中的多重继承" class="headerlink" title="9.4 Java中的多重继承"></a>9.4 Java中的多重继承</h3><h4 id="使用接口的核心原因："><a href="#使用接口的核心原因：" class="headerlink" title="使用接口的核心原因："></a>使用接口的核心原因：</h4><ol>
-<li>提高灵活性：能够向上转型为多个基类型。</li>
-<li>与抽象基类相同：防止客户程序员创建该类，确保这仅仅是一个接口。</li>
-</ol>
-<h3 id="9-5-通过继承来扩展接口"><a href="#9-5-通过继承来扩展接口" class="headerlink" title="9.5 通过继承来扩展接口"></a>9.5 通过继承来扩展接口</h3><p>在打算组合的不同接口中，使用相同的方法名，通常会造成代码可读性的混乱。并且重载方法仅通过返回类型是无法区分并且会报错的。</p>
-<h3 id="9-6-适配接口"><a href="#9-6-适配接口" class="headerlink" title="9.6 适配接口"></a>9.6 适配接口</h3><p>让方法接受接口类型，是一种让任何类都可以对该方法进行适配的方法。这就是使用接口而不是使用类的强大之处。（可以使用适配器模式）</p>
-<h3 id="9-7-接口中的域"><a href="#9-7-接口中的域" class="headerlink" title="9.7 接口中的域"></a>9.7 接口中的域</h3><p>接口中的任何域都是static和final的，自动public的。会在类第一次加载时进行初始化。</p>
-<h3 id="9-8-嵌套接口"><a href="#9-8-嵌套接口" class="headerlink" title="9.8 嵌套接口"></a>9.8 嵌套接口</h3><p>接口可以被实现为private的。实现private接口，不允许向上转型。它不可以用作返回值类型，将返回值交给有权使用它的对象。</p>
-<h3 id="9-9-接口与工厂"><a href="#9-9-接口与工厂" class="headerlink" title="9.9 接口与工厂"></a>9.9 接口与工厂</h3><p>接口是实现多重继承的途径。生成遵循某个接口的对象的典型方式：工厂方法设计模式。</p>
-<p>工厂方法会添加额外级别的间接性。一个创建的原因是想要创建框架。</p>
-<h3 id="9-10-总结"><a href="#9-10-总结" class="headerlink" title="9.10 总结"></a>9.10 总结</h3><h4 id="什么时候使用类？抽象类？接口？。"><a href="#什么时候使用类？抽象类？接口？。" class="headerlink" title="什么时候使用类？抽象类？接口？。"></a>什么时候使用类？抽象类？接口？。</h4><p>如果创建不带任何方法定义和成员变量的基类：选择接口。</p>
-<p>如果某事物应该称为一个基类，第一选择使它成为接口。</p>
-<p>优先选择类而不是接口。从类开始，如果明确接口的必需性，进行重构。</p>
-<p>构建一个通用接口，不同的子类用不同的方式表示此接口。可以使用抽象类。（在抽象类中，实现通用方法，不同的方式的方法构造成抽象方法有子类实现）</p>
-<h2 id="第10章-内部类"><a href="#第10章-内部类" class="headerlink" title="第10章 内部类"></a>第10章 内部类</h2><h3 id="（普通的）内部类"><a href="#（普通的）内部类" class="headerlink" title="（普通的）内部类"></a>（普通的）内部类</h3><p>如何创建内部类：把类的定义置于外围类的里面。</p>
-<p>需要以该方式指明内部类对象的类型：OuterClassName.InnerClassName。</p>
-<p>内部类的用处：</p>
-<ol>
-<li>内部类是一种名字隐藏和组织代码的模式。</li>
-<li>内部类有其外部类所有元素的访问权。</li>
-</ol>
-<p>使用 <code>.this</code> 与 <code>.new</code>？</p>
-<p>需要外部类的引用，使用<code>外部类名字.this</code></p>
-<p>如何创建普通内部类对象：必须使用外部类对象来创建内部类对象。例如：<code>dn.new Inner()</code>   （在拥有外部类对象之前，不可能创建内部类对象，因为内部类对象会暗暗地连接到创建它的外部类对象上。除了嵌套类(静态内部类)）</p>
-<h3 id="在方法和作用域内的内部类"><a href="#在方法和作用域内的内部类" class="headerlink" title="在方法和作用域内的内部类"></a>在方法和作用域内的内部类</h3><p>在定义的作用域之外，它是不可用的；除此之外，它与普通的类一样。</p>
-<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>何为匿名内部类？</p>
-<p>语法表明：创建一个继承自某个类的匿名类的对象。通过new表达式返回的引用被自动向上转型为对那个类的引用。</p>
-<p>匿名内部类，使用一个在其外部定义的对象，要求其参数引用是final的。否则编译时错误。</p>
-<p>匿名内部类没有命名构造器（没有名字），通过实例初始化，达到为匿名内部类创建一个构造器的效果。</p>
-<p>匿名内部类可以扩展类或实现一个接口。</p>
-<h3 id="嵌套类（静态内部类）"><a href="#嵌套类（静态内部类）" class="headerlink" title="嵌套类（静态内部类）"></a>嵌套类（静态内部类）</h3><p>如果不需要内部类对象与其外围类之间有联系，可以将内部类声明为static。常称为嵌套类（静态内部类）。</p>
-<p>嵌套类可以作为接口的一部分。放在接口中的任何类都自动是public和static的。</p>
-<p>如果想要创建某些公共代码，使得它们可以被某个接口的所有不同实现所共用，那么用接口内部的嵌套类会显得很方便。</p>
-<h3 id="为什么需要内部类"><a href="#为什么需要内部类" class="headerlink" title="为什么需要内部类"></a>为什么需要内部类</h3><p>外围类继承接口，并不能总享受到接口的方便，有时需要用到接口的实现。</p>
-<p><strong>使用内部类最吸引人的原因是</strong>：<strong>每个内部类都能独立地继承自一个（接口的）实现，对于内部类都没有影响。</strong></p>
-<p>（<strong>多重继承</strong>）如果拥有抽象的类或具体的类，而不是接口，只能使用内部类才能实现多重继承。</p>
-<p>使用内部类的一些<strong>其他特性</strong>：</p>
-<ol>
-<li>内部类对象可以有多个实例，每个实例都有自己的状态信息，并且与其外围类对象的信息相互独立。</li>
-<li>在单个外围类中，可以让多个内部类以不同的方式实现同一个接口，或继承同一个类。</li>
-</ol>
-<h4 id="闭包与回调"><a href="#闭包与回调" class="headerlink" title="闭包与回调"></a>闭包与回调</h4><p>闭包是一个可调用的对象，记录了一些信息，信息来源于它的作用域。（内部类就是Java的闭包）</p>
-<p>回调，类似于指针的机制。在运行时动态的决定调用什么方法。</p>
-<h4 id="内部类与控制框架"><a href="#内部类与控制框架" class="headerlink" title="内部类与控制框架"></a>内部类与控制框架</h4><ol>
-<li>控制框架的完整实现是由单个的类创建的，从而使得实现的细节被封装了起来。内部类用来表示解决问题做必须的各种不同的行为。</li>
-<li>内部类能够很容易的访问外围类的任意成员。</li>
-</ol>
-<h3 id="内部类的继承"><a href="#内部类的继承" class="headerlink" title="内部类的继承"></a>内部类的继承</h3><p>内部类的构造器必须连接外围类对象的引用。必须在内部类构造器内，需要使用语法 <code>enclosingClassReference.super();</code> 才能提供必要的引用，程序才能编译通过。</p>
-<h3 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h3><p>可以在代码块里创建内部类，可以访问当前代码块内的常量，以及外围类的所有成员。</p>
-<p>为何不用匿名内部类？局部内部类可以使用构造器，匿名内部类只能使用实例初始化。</p>
-<h2 id="第11章-持有对象"><a href="#第11章-持有对象" class="headerlink" title="第11章 持有对象"></a>第11章 持有对象</h2><h3 id="添加一组元素"><a href="#添加一组元素" class="headerlink" title="添加一组元素"></a>添加一组元素</h3><p>在<code>java.util</code>包中的<code>Arrays和Collections</code>类中都有很多使用方法，可以在Collection中添加一组元素。</p>
-<p><code>Arrays.asList()</code> 方法接受一个数组或是一个用逗号分隔的元素列表（使用可变参数）将其转换为一个List对象。</p>
-<p><code>Collections.addAll()</code> 方法接受一个Collection对象，以及一个数组或是一个用逗号分隔的元素列表，将元素添加到Collection中。</p>
-<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器是一个对象，遍历并选择序列中的对象，客户端程序员不必知道或关心该序列底层的结构。（轻量级对象：创建它的代价小）</p>
-<h4 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h4><p>Java的<strong>Iterator</strong>只能单项移动。</p>
-<ol>
-<li>使用<code>iterator()</code>要求容器返回一个<code>Iterator</code>。Iterator将准备好返回第一个元素。</li>
-<li>使用<code>next()</code>获得序列中的下一个元素。</li>
-<li>使用<code>hasNext()</code>检查序列中是否还有元素。</li>
-<li>使用<code>remove()</code>将迭代器新近元素删除。</li>
-</ol>
-<h4 id="ListIterator"><a href="#ListIterator" class="headerlink" title="ListIterator"></a>ListIterator</h4><p>ListIterator是一个更强大的Iterator的子类型，它只能用于各种List类的访问。ListIterator可以双向移动。并且可以使用set()方法替换它访问过的最后一个元素。</p>
-<ol>
-<li>使用<code>provious()</code>获取序列中的前一个元素。</li>
-<li>使用<code>hasPrevious()</code>检查序列是否还有前一个元素。</li>
-<li>使用<code>set()</code>替换访问过的最后一个元素。</li>
-</ol>
-<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>LinkedList也像ArrayList一样实现了基本的List接口。还添加了可以使其用作栈、队列或双端队列（实现双端队列接口）的方法。</p>
-<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><p>栈是指后进先出（LIFO）的容器。有时栈也称为叠加栈。LinkedList具有能够直接实现栈的所有功能方法，因此可以直接将LInkedList作为栈使用。</p>
-<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>保存不重复的元素。</p>
-<p>TreeSet将元素存储在红-黑树数据结构中。HashSet使用散列函数。LinkedHashList使用散列和链表。</p>
-<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>将对象与对象相关联的设计。HashMap，TreeMap，LinkedHashMap。</p>
-<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p>队列是一个先进先出（FIFO）的容器。</p>
-<p>在并发编程中特别重要。</p>
-<h3 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h3><p>优先级队列。默认的排序将使用对象在队列中的自然顺序。可以通过自己提供的Comparator来修改这个顺序。</p>
-<h3 id="Collection和Iterator"><a href="#Collection和Iterator" class="headerlink" title="Collection和Iterator"></a>Collection和Iterator</h3><p>Collection是描述所有序列容器的共性的根接口。</p>
-<p>java.util.AbstractCollection类提供了Collection的默认实现，可以创建AbstractCollection的子类型。</p>
-<p>java中用迭代器表示容器之间的共性。</p>
-<p>继承AbstractCollection只需实现iterator()和size()方法。</p>
-<p>创建一个Collection的实现，必须实现所有的Collection方法。</p>
-<h3 id="Foreach与迭代器"><a href="#Foreach与迭代器" class="headerlink" title="Foreach与迭代器"></a>Foreach与迭代器</h3><p>创建了任何实现Iterator的类，都可以将它用于foreach语句中。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>新程序中不应该使用过时的Vector、Hashtable和Stack。</p>
-<h2 id="第12章-异常处理错误"><a href="#第12章-异常处理错误" class="headerlink" title="第12章 异常处理错误"></a>第12章 异常处理错误</h2><p>当抛出异常后，发生了什么？</p>
-<ol>
-<li>将使用<strong>new</strong>在堆上创建异常对象。</li>
-<li>当前的执行路径被终止，并且从当前环境中弹出对异常对象的引用。</li>
-<li>异常处理机制接管程序，并开始寻找一个恰当的地方来继续执行程序。（恰当的地方就是异常处理程序：任务是将程序从错误状态中恢复，以使程序能要么换一种方式运行，要么继续运行下去）</li>
-</ol>
-<p>终止与恢复</p>
-<p>异常处理理论上有两种基本模型。</p>
-<ol>
-<li>Java支持<strong>终止模型</strong>。一旦异常被抛出，就表明错误已无法挽回，也不能回来继续执行。</li>
-<li><strong>恢复模型</strong>。通常希望异常被处理后能继续执行程序。（遇见错误调用方法修正该错误，或者，把try块放在while循环里，直到得到满意的结果）</li>
-</ol>
-<h4 id="捕获所有异常"><a href="#捕获所有异常" class="headerlink" title="捕获所有异常"></a>捕获所有异常</h4><h5 id="栈轨迹"><a href="#栈轨迹" class="headerlink" title="栈轨迹"></a>栈轨迹</h5><p><code>printStackTrace()</code> 打印<strong>Throwable和Throwable的调用栈</strong>轨迹（由栈轨迹中的元素所构成的数组，栈顶元素时调用序列中的最后一个方法调用，即<strong>Throwable</strong>被创建和抛出之处）。</p>
-<h5 id="重新抛出异常"><a href="#重新抛出异常" class="headerlink" title="重新抛出异常"></a>重新抛出异常</h5><p>捕获异常的时候，表示已经得到了对当前异常对象的引用，可以直接把他重新抛出。printStackTrace()方法显示的是原来异常抛出点的调用栈信息。想要更新这个信息，可以调用<code>fillInStackTrace()</code>方法。（返回一个Throwable对象，通过把当前调用栈信息填入原来那个异常对象而建立的。调用<code>fillInStackTrace()</code>的那一行就成了异常的新发生地了。）</p>
-<h5 id="异常链"><a href="#异常链" class="headerlink" title="异常链"></a>异常链</h5><p>捕获一个异常后抛出另一个异常，把原始异常的信息保存下来，称为异常链。</p>
-<p>把其他类型的异常连接起来使用<code>initCause()</code>方法而不是构造器。</p>
-<p>Java标准异常</p>
-<ol>
-<li>Error用来表示编译时和系统错误。</li>
-<li>Execption是可以被抛出的基本类型。</li>
-</ol>
-<h2 id="第13章字符串"><a href="#第13章字符串" class="headerlink" title="第13章字符串"></a>第13章字符串</h2>
       
     </div>
 
