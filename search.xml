@@ -6149,6 +6149,7 @@ sqlplus / as sysdba
 <h3 id="踩坑权限扩展"><a href="#踩坑权限扩展" class="headerlink" title="踩坑权限扩展"></a>踩坑权限扩展</h3><p>ssh进行认证的过程中除了对用户目录有权限要求外，对服务器上的 .ssh 文件夹和 authorized_keys 文件同样也要限制，如果日志中提示这两个的问题，可以通过如下方式进行修改：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 
+<p><a href="https://baijiahao.baidu.com/s?id=1709302436597846884&wfr=spider&for=pc">参考地址</a></p>
 ]]></content>
   </entry>
 </search>
