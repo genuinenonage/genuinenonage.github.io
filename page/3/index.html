@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,101 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/13/MySQL/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/13/MySQL/20210413-MySQL%E4%B8%ADtext%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">MySQL中text类型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-13 09:48:00 / 修改时间：09:58:05" itemprop="dateCreated datePublished" datetime="2021-04-13T09:48:00+08:00">2021-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/mysql/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">数据类型</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h1><p>TEXT类型一般分为 TINYTEXT(255长度)、TEXT(65535)、 MEDIUMTEXT（int最大值16M），和LONGTEXT(long最大值4G)这四种，它被用来存储非二进制字符集，二进制字符集使用blob类型的字段来存储。</p>
+<p>对于text列，插入时MySQL不会对它进行填充，并且select时不会删除任何末尾的字节。</p>
+<p>如果text列被作为索引，则在它的内容后面添加空格时，会出现duplicate key错误，也就是说，如果我们定义了一个作为索引的text字段，它的值是’a’,则不能定义一个值为’a ‘的记录，因为这样会产生冲突。</p>
+<p>对text列进行排序的时候，决定顺序的字符个数是由参数max_sort_length来决定的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> max_sort_length<span class="operator">=</span><span class="number">1000</span>; </span><br><span class="line"><span class="keyword">SELECT</span> id,comment <span class="keyword">FROM</span> <span class="keyword">table</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> comment;</span><br></pre></td></tr></table></figure>
+
+<h1 id="text和varchar的区别"><a href="#text和varchar的区别" class="headerlink" title="text和varchar的区别"></a>text和varchar的区别</h1><p>在大多数情况下，我们可以把text视为varchar字段，但是这两个字段类型在存储字符大小上有一些区别：</p>
+<p>varchar在mysql中必须满足最大行宽度限制，也就是 65535(64k)字节，而varchar本身是按字符串个数来定义的,在mysql中使用uft-8字符集一个中文字符占用三个字节，所以单表varchar实际占用最大长度如下：<br>   1.使用utf-8字符编码集varchar最大长度是(65535-2)/3=21844个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。<br>   2.使用 utf-8mb4字符集，mysql中使用 utf-8mb4 字符集一个中文字符占用4个字节，所以 varchar 最大长度是(65535-2)/4=16383 个字符（超过255个字节会有2字节的额外占用空间开销，所以减2,如果是255以下,则减1）。</p>
+<p>text的最大限制也是64k个字节,但是本质是溢出存储,innodb默认只会存放前768字节在数据页中,而剩余的数据则会存储在溢出段中。text类型的数据,将被存储在元数据表之外地方,但是varchar/char将和其他列一起存储在表数据文件中，值得注意的是，varchar列在溢出的时候会自动转换为text类型。text数据类型实际上将会大幅度增加数据库表文件尺寸。</p>
+<p>1、当text作为索引的时候，必须 制定索引的长度，而当varchar充当索引的时候，可以不用指明。</p>
+<p>2、text列不允许拥有默认值</p>
+<p>3、当text列的内容很多的时候，text列的内容会保留一个指针在记录中，这个指针指向了磁盘中的一块区域，当对这个表进行select *的时候，会从磁盘中读取text的值，影响查询的性能，而varchar不会存在这个问题。</p>
+<p>参考地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wqbin/p/11927456.html">https://www.cnblogs.com/wqbin/p/11927456.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1345,213 +1440,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/22/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/02/22/%E9%A1%B9%E7%9B%AE/%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE6/" class="post-title-link" itemprop="url">商城项目六</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-22 14:15:00" itemprop="dateCreated datePublished" datetime="2021-02-22T14:15:00+08:00">2021-02-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-05 18:18:02" itemprop="dateModified" datetime="2021-04-05T18:18:02+08:00">2021-04-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><ol>
-<li><p>初始化线程的4种方式</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 继承Thread</span><br><span class="line">2. 实现Runable接口</span><br><span class="line">3. 实现Callable接口 + FutureTask(可以拿到结果，可以处理异常)</span><br><span class="line">4. 线程池 给线程池直接提交任务</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">1，2不能得到返回值，3可以获得返回值</span><br><span class="line">1，2，3都不能控制资源</span><br><span class="line">4可以控制资源，性能稳定。</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="4种实现方式"><a href="#4种实现方式" class="headerlink" title="4种实现方式"></a>4种实现方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="type">Thread01</span> <span class="variable">thread01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread01</span>();</span><br><span class="line">thread01.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="type">Runable01</span> <span class="variable">runable01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runable01</span>();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(runable01).start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.1</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//3.2</span></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Callable01</span>());</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(futureTask).start();</span><br><span class="line"><span class="comment">//阻塞 等待整个线程执行完成，获取返回结果</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> futureTask.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回结果：&quot;</span>+integer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="comment">//当前系统中池只有一两个，每个异步任务，提交给线程池</span></span><br><span class="line"><span class="comment">//创建全局类变量</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">service</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//4.1</span></span><br><span class="line">service.execute(<span class="keyword">new</span> <span class="title class_">Runable01</span>());</span><br><span class="line"><span class="comment">//4.2 使用原生线程池</span></span><br><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">                <span class="number">5</span>,</span><br><span class="line">                <span class="number">200</span>,</span><br><span class="line">                <span class="number">10</span>,</span><br><span class="line">                TimeUnit.SECONDS,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">LinkedBlockingDeque</span>&lt;&gt;(<span class="number">1000000</span>),</span><br><span class="line">                Executors.defaultThreadFactory(),</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.AbortPolicy());</span><br></pre></td></tr></table></figure>
-
-<h3 id="线程池介绍"><a href="#线程池介绍" class="headerlink" title="线程池介绍"></a>线程池介绍</h3><h4 id="原生线程池"><a href="#原生线程池" class="headerlink" title="原生线程池"></a>原生线程池</h4><h5 id="有7大参数"><a href="#有7大参数" class="headerlink" title="有7大参数"></a>有7大参数</h5><ol>
-<li>corePoolSize 核心线程池：线程池创建好就准备就绪的线程数量，等待接收异步任务去执行。</li>
-<li>maximumPoolSize 最大线程数。</li>
-<li>keepAliveTime 存活时间。释放空闲线程，只要空闲线程大于核心线程。</li>
-<li>unit 时间单位。</li>
-<li>workQueue 阻塞队列。</li>
-<li>threadFactory 线程的创建工厂。</li>
-<li>handler 如果队列满了，按照指定的拒绝策略拒绝执行任务。</li>
-</ol>
-<h5 id="工作顺序"><a href="#工作顺序" class="headerlink" title="工作顺序"></a>工作顺序</h5><pre><code>1. 线程池创建，准备好core数量的核心线程。
-    1.1 核心满了，再进阻塞队列，空闲的回去阻塞队列获取任务
-    1.2 阻塞队列满了，就开新线程执行，最大额能开到max指定的数量
-    1.3 max满了就用拒绝任务
-    1.4 max都执行完成了，有很多空闲，在指定时间以后，就释放多余线程。
-    new LinkedBlockingDeque&lt;&gt;() 默认时Integer的最大值，会造成内存不够
-</code></pre>
-<h5 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h5><p>一个线程池core7，max20，queue50，100并发进来怎么分配？<br>          7个立即执行，50个进入队列，13个开新线程执行。剩下30个使用拒绝策略。<br>          如果不想抛弃还要执行。new ThreadPoolExecutor.CallerRunsPolicy() 使用同步执行的拒绝策略</p>
-<h4 id="常见4种线程池"><a href="#常见4种线程池" class="headerlink" title="常见4种线程池"></a>常见4种线程池</h4><ol>
-<li>Executors.newCachedThreadPool(); //core是0，所有都可回收</li>
-<li>Executors.newFixedThreadPool(); //固定大小，core=max，所有都不可回收</li>
-<li>Executors.newScheduledThreadPool();  //定时任务的线程池，可传递一个线程开始运行的时间</li>
-<li>Executors.newScheduledThreadPool(); //单线程线程池，后台从队列里面获取任务，依次执行，是同步的</li>
-</ol>
-<h3 id="CompletableFuture"><a href="#CompletableFuture" class="headerlink" title="CompletableFuture"></a>CompletableFuture</h3><p>实现了Future接口，Future可以获取异步结果。</p>
-<p>当多个线程池运行，可以设置之间相互关系。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先创建一个线程池</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="简单异步运行"><a href="#简单异步运行" class="headerlink" title="简单异步运行"></a>简单异步运行</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.runAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步运行获取返回值"><a href="#异步运行获取返回值" class="headerlink" title="异步运行获取返回值"></a>异步运行获取返回值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.1</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">integer</span> <span class="operator">=</span> future.get();</span><br><span class="line">System.out.println(<span class="string">&quot;返回值：&quot;</span>+integer);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步完成时回调"><a href="#异步完成时回调" class="headerlink" title="异步完成时回调"></a>异步完成时回调</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.2 计算完成时回调</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).whenComplete((res,excption)-&gt;&#123;</span><br><span class="line">    <span class="comment">//虽然能得到异常信息，但是没法修改返回数据</span></span><br><span class="line">    System.out.println(<span class="string">&quot;异步任务完成了。。。结果是：&quot;</span>+res+<span class="string">&quot;；异常是：&quot;</span>+excption);</span><br><span class="line">&#125;).exceptionally(throwable -&gt; &#123;</span><br><span class="line">    <span class="comment">//可以感知异常，同时返回默认值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="异步完成后再处理"><a href="#异步完成后再处理" class="headerlink" title="异步完成后再处理"></a>异步完成后再处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.3 方法完成后的处理</span></span><br><span class="line">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).handle((res,thr)-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span> (res!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (thr!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="线程串行化"><a href="#线程串行化" class="headerlink" title="线程串行化"></a>线程串行化</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thenRunAsync:不能获取到上一步的执行结果，无返回值</span><br><span class="line">thenAcceptAsync 能接受上一步结果，但无返回值</span><br><span class="line">thenApplyAsync 能接受上一步结果，有返回值</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//thenRunAsync：</span></span><br><span class="line">CompletableFuture&lt;Void&gt; future = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor).thenRunAsync(()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务2启动了。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<h3 id="两任务组合关系"><a href="#两任务组合关系" class="headerlink" title="两任务组合关系"></a>两任务组合关系</h3><p>首先创建两个异步线程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CompletableFuture&lt;Object&gt; future01 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前1线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行1结果：&quot;</span> + i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;, executor);</span><br><span class="line"></span><br><span class="line">CompletableFuture&lt;Object&gt; future02 = CompletableFuture.supplyAsync(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;当前2线程id：&quot;</span> + Thread.currentThread().getId());</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;运行2结束&quot;</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br></pre></td></tr></table></figure>
-
-<h4 id="两任务都完成，再执行三任务"><a href="#两任务都完成，再执行三任务" class="headerlink" title="两任务都完成，再执行三任务"></a>两任务都完成，再执行三任务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 不能获取两次执行结果</span></span><br><span class="line">future01.runAfterBothAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2 能获取两次执行结果，但没有返回值</span></span><br><span class="line">future01.thenAcceptBothAsync(future02,(f1,f2)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+f1+<span class="string">&quot;--&gt;&quot;</span>+f2);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3 能获取两次执行结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.thenCombineAsync(future02, (f1, f2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> f1 + <span class="string">&quot;:&quot;</span> + f2 + <span class="string">&quot;-&gt;end&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
-
-<h4 id="两任务任一完成，执行三任务"><a href="#两任务任一完成，执行三任务" class="headerlink" title="两任务任一完成，执行三任务"></a>两任务任一完成，执行三任务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 不感知结果，没有返回值</span></span><br><span class="line">future01.runAfterEitherAsync(future02,()-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。&quot;</span>);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2 感知结果，没有返回值</span></span><br><span class="line">future01.acceptEitherAsync(future02,(res)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;任务3开始。。。之前的结果：&quot;</span>+res);</span><br><span class="line">&#125;,executor);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3 感知结果，有返回值</span></span><br><span class="line">CompletableFuture&lt;String&gt; future = future01.applyToEitherAsync(future02, res -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> res.toString() + <span class="string">&quot;-&gt;哈哈&quot;</span>;</span><br><span class="line">&#125;, executor);</span><br><span class="line">System.out.println(<span class="string">&quot;结果返回：&quot;</span>+future.get());</span><br></pre></td></tr></table></figure>
-
-<h3 id="多任务组合关系"><a href="#多任务组合关系" class="headerlink" title="多任务组合关系"></a>多任务组合关系</h3><p>首先创建多个异步任务，这里创建了3个异步任务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待所有结果都完成</span></span><br><span class="line">CompletableFuture&lt;Void&gt; allOf = CompletableFuture.allOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">allOf.get();</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待任意一个任务执行完成，获得那个任务的返回值。</span></span><br><span class="line">CompletableFuture&lt;Object&gt; anyOf = CompletableFuture.anyOf(futureImg, futureAttr, futureDesc);</span><br><span class="line">anyOf.get();</span><br></pre></td></tr></table></figure>
-
-<h2 id="MD5-amp-MD5盐值加密"><a href="#MD5-amp-MD5盐值加密" class="headerlink" title="MD5&amp;MD5盐值加密"></a>MD5&amp;MD5盐值加密</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>Message Digest algorithm 5：信息概要算法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> DigestUtils.md5Hex(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
-
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
-<li>任意长度数据，MD5值的长度都是固定的。</li>
-<li>容易计算。</li>
-<li>对原数据进行任何修改，哪怕只修改1个字节，MD5值都区别很大。</li>
-<li>很难找到不同的数据，具有相同的MD5值。</li>
-</ol>
-<h3 id="加盐"><a href="#加盐" class="headerlink" title="加盐"></a>加盐</h3><p>通过生成随机数与MD5生成字符串组合。</p>
-<p>数据库据同时存储MD5值和salt值（随机数）。验证正确性时使用salt进行MD5即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//盐值加密</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes());</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> Md5Crypt.md5Crypt(<span class="string">&quot;123456&quot;</span>.getBytes(), <span class="string">&quot;$1$aaaaa&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="spring密码加密器"><a href="#spring密码加密器" class="headerlink" title="spring密码加密器"></a>spring密码加密器</h3><p>使用的盐值加密</p>
-<p>每次加密出来的encode都不同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">String</span> <span class="variable">encode</span> <span class="operator">=</span> passwordEncoder.encode(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">System.out.println(encode);</span><br></pre></td></tr></table></figure>
-
-<p>每次可以让密码跟旧encode种比较，会从旧encode中获取到盐值。</p>
-<p>虽然每次的encode不同，但是都会跟原密码匹配。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BCryptPasswordEncoder</span> <span class="variable">passwordEncoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line"><span class="type">boolean</span> <span class="variable">matches</span> <span class="operator">=</span> passwordEncoder.matches(<span class="string">&quot;123456&quot;</span>, <span class="string">&quot;$2a$10$fZU3lFnAGKStM8JAqQtJVu1BHOF99PfK9LCNkGLal0tt.xCWky7rG&quot;</span>);</span><br><span class="line">System.out.println(matches);</span><br></pre></td></tr></table></figure>
-
-<h2 id="社交登录"><a href="#社交登录" class="headerlink" title="社交登录"></a>社交登录</h2><h3 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h3><p>第三方应用使用社交账号登录。</p>
-<ol>
-<li>向用户申请请求认证</li>
-<li>用户输入自己社交账号的账号密码</li>
-<li>使用上步授权，进行认证（QQ服务器）</li>
-<li>认证通过，返回访问令牌（QQ服务器）</li>
-<li>使用访问令牌，获取开放保护信息。</li>
-<li>认证令牌，返回受保护信息。</li>
-</ol>
-<h3 id="使用微博账号登录"><a href="#使用微博账号登录" class="headerlink" title="使用微博账号登录"></a>使用微博账号登录</h3><p>微博中使用code换取accesstoken，code只能用一次。</p>
-<p>短时间一个用户的acesstoken一段时间内是不会变化的</p>
-<p>授权回调页：<a target="_blank" rel="noopener" href="http://gulimall.com/oauth2.0/weibo/success">http://gulimall.com/oauth2.0/weibo/success</a></p>
-<p>取消授权回调页：<a target="_blank" rel="noopener" href="http://gulimall.com/fail">http://gulimall.com/fail</a></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cStzXF"><img src="https://z3.ax1x.com/2021/03/28/cStzXF.jpg" alt="cStzXF.jpg"></a></p>
-<h2 id="新技术"><a href="#新技术" class="headerlink" title="新技术"></a>新技术</h2><h3 id="Session共享问题解决"><a href="#Session共享问题解决" class="headerlink" title="Session共享问题解决"></a>Session共享问题解决</h3><ul>
-<li>统一存储</li>
-<li>子域session共享</li>
-</ul>
-<p>SpringSession原理</p>
-<h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><p>多系统情况下，一个地方登录，所有系统通用。</p>
-<p>gitee开源项目：xxl-sso克隆下来</p>
-<p>编写host文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192.168.226.128	gulimall.com</span><br><span class="line">192.168.226.128	search.gulimall.com</span><br><span class="line">192.168.226.128	item.gulimall.com</span><br><span class="line">192.168.226.128	auth.gulimall.com</span><br><span class="line"></span><br><span class="line">127.0.0.1 ssoserver.com</span><br><span class="line">127.0.0.1 client1.com</span><br><span class="line">127.0.0.1 client2.com</span><br></pre></td></tr></table></figure>
-
-<p>运行服务器命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">目录地址\xxl-sso&gt; mvn clean package -Dmaven.skip.test=true</span><br><span class="line">cd xxl-sso-server\target</span><br><span class="line">java -jar xxl-sso-server-1.1.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-
-<p>运行成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">浏览器sso登录地址</span><br><span class="line">http://ssoserver.com:8080/xxl-sso-server/login</span><br></pre></td></tr></table></figure>
-
-<p>运行2个客户端命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8081</span><br><span class="line">目录\xxl-sso\xxl-sso-samples\xxl-sso-web-sample-springboot\target&gt;java -jar xxl-sso-web-sample-springboot-1.1.1-SNAPSHOT.jar --server.port=8082</span><br></pre></td></tr></table></figure>
-
-<p>运行成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">客户端地址</span><br><span class="line">http://client1.com:8081/xxl-sso-web-sample-springboot</span><br><span class="line">http://client2.com:8082/xxl-sso-web-sample-springboot</span><br></pre></td></tr></table></figure>
-
-<p>核心：三个系统域名不同，但是能给三个系统同步同一个用户票据。</p>
-<ol>
-<li>中央认证服务器：ssoserver.com</li>
-<li>其它系统，想要登录去ssoserver.com的登录，登录成功跳转回来。</li>
-<li>只要一个登录，其他都不用登录</li>
-<li>全系统统一一个sso-sessionid。所有系统可能域名都不相同</li>
-</ol>
-<h4 id="单点登录功能以后再做"><a href="#单点登录功能以后再做" class="headerlink" title="单点登录功能以后再做"></a>单点登录功能以后再做</h4>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1563,7 +1453,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
