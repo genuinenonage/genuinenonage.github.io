@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,117 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/20/Poi%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/20/Poi%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Poi的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-20 19:27:00" itemprop="dateCreated datePublished" datetime="2022-10-20T19:27:00+08:00">2022-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-10-27 20:07:41" itemprop="dateModified" datetime="2022-10-27T20:07:41+08:00">2022-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Excel/" itemprop="url" rel="index"><span itemprop="name">Excel</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Excel/Poi/" itemprop="url" rel="index"><span itemprop="name">Poi</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Poi的使用"><a href="#Poi的使用" class="headerlink" title="Poi的使用"></a>Poi的使用</h1><h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- poi-ooxml是poi的升级版，直接使用poi-ooxm即可 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 下面是easypoi的依赖，同时引入不影响--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.afterturn<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easypoi-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 下面是jxl的依赖，同时引入不影响--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.jexcelapi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="POI和JXL"><a href="#POI和JXL" class="headerlink" title="POI和JXL"></a>POI和JXL</h3><p>excel流行的开发工具有两种：POI和JXL</p>
+<p>如果Excel需求的功能比较复杂尽量使用Poi，</p>
+<p>如果Excel有大量数据可以考虑使用Jxl，Jxl插入数据比Poi快。</p>
+<h3 id="POI"><a href="#POI" class="headerlink" title="POI"></a>POI</h3><p>Poi提供03和07版本，两个区别如下：</p>
+<ol>
+<li><p>03优点：数据写在内存中，最后一次性写入磁盘，速度快</p>
+</li>
+<li><p>03缺点：最多只能处理65536行数据，否则会抛出异常</p>
+</li>
+<li><p>07优点：可以一次写大量数据，如20W条</p>
+</li>
+<li><p>07缺点：写数据慢，耗内存，可能会发生内存异常，如100W条数据</p>
+</li>
+</ol>
+<h3 id="第三方类库"><a href="#第三方类库" class="headerlink" title="第三方类库"></a>第三方类库</h3><p>对Apache Poi的封装第三方库有EasyPoi和EasyExcel</p>
+<p>SAX模式：一边扫描一边解析，不需要将数据存储在内存中。</p>
+<p>EasyPoi 读写数据时，优先将数据写入内存，读写性能非常高，但是当数据量很大的时候，会出现OOM。也提供了SAX模式。</p>
+<p>EasyExcel 基于SAX模式进行读写数据，不会出现OOM情况，程序运行比较稳定，相对于 EasyPoi 来说，读写性能稍慢。</p>
+<p>EasyPoi 对定制化的导出支持更丰富，如果当前项目的需求，并发量不大、数据量也不大，但是需要导出 Excel 的文件样式千差万别，推荐用EasyPoi；反之，使用EasyExcel。</p>
+<h3 id="My工具的使用"><a href="#My工具的使用" class="headerlink" title="My工具的使用"></a>My工具的使用</h3><p>PoiUtil工具类中有对单元格内容的提取，拷贝表、行、单元格的操作</p>
+<p>ExcelUtils中有以前在项目中使用的基础的单表导入和导出功能</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1160,110 +1271,6 @@
 </ol>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aguang110/article/details/84008615?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">参考地址</a></p>
 <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/13/%E7%BD%91%E7%BB%9C/20210413-get%E5%92%8Cpost%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">get和post请求区别</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-13 16:15:00 / 修改时间：16:34:26" itemprop="dateCreated datePublished" datetime="2021-04-13T16:15:00+08:00">2021-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="get与post区别"><a href="#get与post区别" class="headerlink" title="get与post区别"></a>get与post区别</h3><h4 id="浏览器的get和post"><a href="#浏览器的get和post" class="headerlink" title="浏览器的get和post"></a>浏览器的get和post</h4><p>get反复读取不应该对访问的数据有副作用。没有副作用被称为“幂等”。</p>
-<p>get是读取，可对get请求的数据做缓存。缓存可以做到浏览器本身（避免在发送请求），也可以做到代理上（如nginx）。</p>
-<p>post请求让服务器做一件事。往往是有副作用的，不幂等的。页面<form>标签会定义一个表单。点击其中的submit元素会发送post请求。</p>
-<p>不幂等意味着不能多次执行，不能做缓存。</p>
-<p><strong>并不是说get不能有body，posturl不能放querystring。</strong></p>
-<h4 id="接口中的get和post"><a href="#接口中的get和post" class="headerlink" title="接口中的get和post"></a>接口中的get和post</h4><p>rest风格只是为了统一可以随意使用的请求方式，规定get参数放在url，post参数放在body中。这样使用，只是为了前后端方便。</p>
-<h4 id="关于安全性"><a href="#关于安全性" class="headerlink" title="关于安全性"></a>关于安全性</h4><p>POST用body传输数据，而GET用url传输，更加容易看到。</p>
-<p>但从攻击的角度，get和post都不够安全，因为HTTP本身是明文协议。每个http请求和响应的每个byte都会在网络上明文传输，不管是url、header还是body。完全不是一个“是否容易在浏览器地址栏上看到”的问题。</p>
-<p>为避免传输中数据被窃取，<strong>必须做从客户端到服务器的端端加密。业界的通行做法就是https</strong>。</p>
-<p>如果请求要经过不信任的公网，避免泄密的<strong>唯一手段就是https</strong>。</p>
-<h4 id="关于编码"><a href="#关于编码" class="headerlink" title="关于编码"></a>关于编码</h4><p>url只能支持ASCII编码，body能支持任意binary。</p>
-<p>所以，rest风格下，get的参数只能支持ASCII编码，post能支持任意binary。</p>
-<p>浏览器发出的POST请求就是表单提交，application/x-www-form-urlencoded针对简单的key-value场景；multipart/form-data，针对只有文件提交，或者同时有文件和key-value的混合提交表单的场景。</p>
-<h4 id="浏览器的POST需要发两个请求吗？"><a href="#浏览器的POST需要发两个请求吗？" class="headerlink" title="浏览器的POST需要发两个请求吗？"></a>浏览器的POST需要发两个请求吗？</h4><p>比如一个上传文件的服务，请求url中包含了文件名称，请求体中是个尺寸为几百兆的压缩二进制流。服务器端接收到请求后，就可以先拿到请求头部，查看用户是不是有权限上传，文件名是不是符合规范等。如果不符合，就不再处理请求体的数据了，直接丢弃。而不用等到整个请求都处理完了再拒绝。</p>
-<p>为了进一步优化，客户端可以利用HTTP的Continued协议来这样做：客户端总是先发送所有请求头给服务器，让服务器校验。如果通过了，服务器回复“100 - Continue”，客户端再把剩下的数据发给服务器。如果请求被拒了，服务器就回复个400之类的错误，这个交互就终止了。这样，就可以避免浪费带宽传请求体。但是代价就是会多一次Round Trip。如果刚好请求体的数据也不多，那么一次性全部发给服务器可能反而更好。</p>
-<p>基于此，客户端就能做一些优化，比如内部设定一次POST的数据超过1KB就先只发“请求头”，否则就一次性全发。客户端甚至还可以做一些Adaptive的策略，统计发送成功率，如果成功率很高，就总是全部发等等。不同浏览器，不同的客户端（curl，postman）可以有各自的不同的方案。不管怎样做，优化目的总是在提高数据吞吐和降低带宽浪费上做一个折衷。</p>
-<p>因此到底是发一次还是发N次，客户端可以很灵活的决定。因为不管怎么发都是符合HTTP协议的，因此我们应该视为这种优化是一种实现细节，而不用扯到GET和POST本身的区别上。更不要当个什么世纪大发现。</p>
-<h4 id="什么算请求体"><a href="#什么算请求体" class="headerlink" title="什么算请求体"></a>什么算请求体</h4><h4 id="关于url的长度"><a href="#关于url的长度" class="headerlink" title="关于url的长度"></a>关于url的长度</h4><p>常说的“GET数据有长度限制“其实是指”URL的长度限制“。</p>
-<p>HTTP协议本身对URL长度并没有做任何规定。实际的限制是由客户端/浏览器以及服务器端决定的。</p>
-<p>比如我们常说的2048个字符的限制，其实是IE8的限制。并且原始文档的说的其实是“URL的最大长度是2083个字符，path的部分最长是2048个字符“。新的IE已经开始使用Chrome的内核了，也就意味着“浏览器端URL的长度限制为2048字符”这种说法会慢慢成为历史。</p>
-<p>其他的客户端，比如Java的，js的http client大多数也并没有限制URL最大有多长。</p>
-<p>apache实际上限制的是HTTP请求第一行“Request Line“的长度，即<METHOD><URL> <VERSION>那一行。</p>
-<p>Tomcat的限制是web.xml里maxHttpHeaderSize来设置的，控制的是整个“请求头”的总长度。</p>
-<h5 id="为啥要限制呢？"><a href="#为啥要限制呢？" class="headerlink" title="为啥要限制呢？"></a>为啥要限制呢？</h5><p>如果写过解析一段字符串的代码就能明白，解析的时候要分配内存。对于一个字节流的解析，必须分配buffer来保存所有要存储的数据。而URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；同时，超长URL的好处并不多，我也只有处理老系统的URL时因为不敢碰原来的逻辑，又得追加更多数据，才会使用超长URL。</p>
-<p>对于开发者来说，使用超长的URL完全是给自己埋坑，需要同时要考虑前后端，以及中间代理每一个环节的配置。此外，超长URL会影响搜索引擎的爬虫，有些爬虫甚至无法处理超过2000个字节的URL。这也就意味着这些URL无法被搜到，坑爹啊。</p>
-<p>原文地址：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28586791">https://www.zhihu.com/question/28586791</a></p>
-
       
     </div>
 

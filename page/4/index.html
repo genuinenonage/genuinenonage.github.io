@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,100 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/24/swagger%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="QB">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="genuine nonage">
+      <meta itemprop="description" content="菜鸡">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | genuine nonage">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/02/24/swagger%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">swagger配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-24 09:16:00" itemprop="dateCreated datePublished" datetime="2021-02-24T09:16:00+08:00">2021-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-02-25 09:30:09" itemprop="dateModified" datetime="2021-02-25T09:30:09+08:00">2021-02-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li><p>添加maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置swagger--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>添加swagger配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Swagger配置类.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableSwagger2</span>                <span class="comment">// Swagger的开关，表示已经启用Swagger</span></span><br><span class="line"><span class="meta">@Configuration</span>                 <span class="comment">// 声明当前配置类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SwaggerConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;swagger.basePackage&#125;&quot;)</span>    </span><br><span class="line">    <span class="keyword">private</span> String basePackage;       <span class="comment">// controller接口所在的包</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;swagger.title&#125;&quot;)</span>    </span><br><span class="line">    <span class="keyword">private</span> String title;           <span class="comment">// 当前文档的标题</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;swagger.description&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String description;         <span class="comment">// 当前文档的详细描述</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;swagger.version&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String version;         <span class="comment">// 当前文档的版本</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Docket <span class="title function_">createRestApi</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Docket</span>(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo())</span><br><span class="line">            .select()</span><br><span class="line">            .apis(RequestHandlerSelectors.basePackage(basePackage))</span><br><span class="line">            .paths(PathSelectors.any())</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ApiInfo <span class="title function_">apiInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiInfoBuilder</span>()</span><br><span class="line">            .title(title)</span><br><span class="line">            .description(description)</span><br><span class="line">            .version(version)</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>application.yml添加配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置swagger</span></span><br><span class="line">    <span class="attr">swagger:</span></span><br><span class="line">        <span class="attr">basePackage:</span> <span class="string">com.genuine.controller</span></span><br><span class="line">        <span class="attr">title:</span> <span class="string">swagger-API</span></span><br><span class="line">        <span class="attr">description:</span> <span class="string">详细描述</span></span><br><span class="line">        <span class="attr">version:</span> <span class="string">V1.0</span></span><br></pre></td></tr></table></figure></li>
+<li><p>添加接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api(value = &quot;接口介绍&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value=&quot;yisheng&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;I Love You。&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>测试</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问地址：http://localhost:端口号/项目名称/swagger-ui.html     </span><br></pre></td></tr></table></figure></li>
+<li><p>beautiful UI</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>swagger-bootstrap-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">地址是 http://localhost:8080/doc.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdn.net/20180621154833310?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMTc1OTg2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1629,307 +1723,6 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>使用optional标签的话，其他项目依赖此项目就不会进行传递，只能在本项目中使用。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/16/MySQL/MySQL%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="QB">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="genuine nonage">
-      <meta itemprop="description" content="菜鸡">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | genuine nonage">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/12/16/MySQL/MySQL%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MySQL的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-16 14:53:00" itemprop="dateCreated datePublished" datetime="2020-12-16T14:53:00+08:00">2020-12-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-09-23 23:18:29" itemprop="dateModified" datetime="2022-09-23T23:18:29+08:00">2022-09-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><h3 id="查看创建表结构"><a href="#查看创建表结构" class="headerlink" title="查看创建表结构"></a>查看创建表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
-
-<h2 id="优雅操作"><a href="#优雅操作" class="headerlink" title="优雅操作"></a>优雅操作</h2><h3 id="多字段中文排序"><a href="#多字段中文排序" class="headerlink" title="多字段中文排序"></a>多字段中文排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select t1.value,t2.chinese_name</span><br><span class="line">from dictionary as t1 </span><br><span class="line">right join website as t2 on t1.uuid=t2.country</span><br><span class="line">where t1.type=&quot;country&quot;</span><br><span class="line">ORDER BY CONVERT(t1.value USING gbk), CONVERT(t2.chinese_name USING gbk)</span><br></pre></td></tr></table></figure>
-
-<h3 id="存在主表不在另一个表中的数据"><a href="#存在主表不在另一个表中的数据" class="headerlink" title="存在主表不在另一个表中的数据"></a>存在主表不在另一个表中的数据</h3><p>三种实现方式：</p>
-<ol>
-<li><p>使用not in，容易理解，效率最低</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> A.ID <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> ID <span class="keyword">from</span> B)</span><br></pre></td></tr></table></figure></li>
-<li><p>使用左连接字段为空的记录</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> A.ID <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B A.ID <span class="operator">=</span> B.ID <span class="keyword">where</span> B.ID <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>逻辑复杂，速度最快</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> num <span class="keyword">from</span> A <span class="keyword">where</span> A.ID <span class="operator">=</span> B.ID ) <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="useSSL"><a href="#useSSL" class="headerlink" title="useSSL"></a>useSSL</h2><h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。</p>
-<p>TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
-<p>SSL协议提供服务主要：</p>
-<ol>
-<li>认证用户服务器，确保数据发送到正确的服务器；</li>
-<li>加密数据，防止数据传输途中被窃取使用；</li>
-<li>维护数据完整性，验证数据在传输过程中是否丢失；</li>
-</ol>
-<h3 id="useSSL-false-true"><a href="#useSSL-false-true" class="headerlink" title="useSSL=false / true"></a>useSSL=false / true</h3><p><strong>mysql连接中是否要设置成useSSL=true / false 与数据库中的用户的设置有关，每个数据库的用户都有一个sslType属性，如果设置了值，就需要useSSL设置成true，如果没有设置值，useSS设置成false。</strong></p>
-<p><strong>SSL协议的作用，用于对敏感的数据进行加密，类似http与https的区别。</strong></p>
-<p>MySQL在高版本需要指明是否进行SSL连接</p>
-<ol>
-<li>true 需要连接</li>
-<li>false 不需要连接</li>
-</ol>
-<p>web应用中连接mysql数据库时后台会出现这样的提示：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Establishing SSL connection without server’s identity verification is not recommended. According to MySQL 5.5.45+,</span><br><span class="line">5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn’t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to ‘false’. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</span><br></pre></td></tr></table></figure>
-
-<p>解决</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url=jdbc:mysql://127.0.0.1:3306/xxx?useSSL=false</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="数据库对象"><a href="#数据库对象" class="headerlink" title="数据库对象"></a>数据库对象</h2><ol>
-<li>表</li>
-<li>数据字典：系统表</li>
-<li>约束：保证数据的完整性</li>
-<li>视图</li>
-<li>索引</li>
-<li>存储过程</li>
-<li>存储函数</li>
-<li>触发器 </li>
-</ol>
-<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>使用表的一部分，针对不用的用户指定不同的查询视图。视图为虚拟表，可以理解为存储起来的select语句。</p>
-<p>create view 视图名 as select</p>
-<p>对视图中的数据进行增加删除修改操作，数据库相应发生变化。优点：控制数据访问的权限。</p>
-<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>一组经过预先编译的sql封装。</p>
-<p>函数一定会有返回值。存储过程可以没有返回值。</p>
-<p>好处：</p>
-<ol>
-<li>提高sql语句的重用性</li>
-<li>减少操作失误，提高效率</li>
-<li>减少网络传输量</li>
-<li>减少sql语句网络暴露的网上风险，提高数据查询的安全性。</li>
-</ol>
-<p>与视图的区别：视图偏向于查询看重成是一张表，存储过程用来存储sql，结构更加复杂，看中sql逻辑。</p>
-<h1 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h1><p>MySQL架构：连接层-（服务层）处理层-引擎层-存储层</p>
-<p>业务逻辑处理层包括：连接池-管理服务与工具-SQL处理接口-解析转换-优化器-缓存和缓冲。</p>
-<p>存储引擎相关命令：show engines;</p>
-<p>MyISAM与InnoDB数据库引擎对比：</p>
-<p><img src="https://i.loli.net/2021/06/28/AnZBQPNa29ToCf4.png" alt="image-20210628143712555"></p>
-<p>SQL性能下降原因：</p>
-<ol>
-<li>性能下降了SQL慢；执行时间长；等待时间长；<ol>
-<li>查询语句写的烂</li>
-<li>索引失效（单值、符合）</li>
-<li>关联太多join（设计缺陷或不得已的需求）</li>
-<li>服务器调优及各个参数设置（缓冲、线程数等）</li>
-</ol>
-</li>
-</ol>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>创建索引命令：create index idx_user_name on user(name, email)</p>
-<p>SQL的Join查询：</p>
-<ol>
-<li><p>SQL执行顺序：</p>
-<ol>
-<li><p>手写顺序</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span> <span class="keyword">on</span> <span class="operator">&lt;</span>公有部分用来配对<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>机读顺序</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">on</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="operator">&lt;&gt;</span> <span class="keyword">join</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">having</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line"><span class="keyword">distinct</span> <span class="operator">&lt;&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;&gt;</span></span><br><span class="line">limit <span class="operator">&lt;&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>Join图：left join; right join; inner join; full outer join(全外连接：a.key is null or b.key is null)</p>
-</li>
-</ol>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>索引简介：索引（Index）帮助MySQL高效获取数据的数据结构。</p>
-<ol>
-<li><p>B数（多路搜索树）索引，B+树索引，哈希索引</p>
-</li>
-<li><p>索引优势：</p>
-<ol>
-<li>提高数据检索的效率，降低数据库的IO成本；</li>
-<li>降低数据排序的成本，降低了CPU的消耗。</li>
-</ol>
-</li>
-<li><p>索引劣势：</p>
-<ol>
-<li>索引也是一张表，保存了主键与索引字段，并指向实体库的记录。占空间。</li>
-<li>提高了查询速度，却降低了更新表的速度</li>
-<li>索引只是提高效率的一个因素，如果MySQL有大数据量的表，需要花时间研究建立最优秀的索引或优化查询。</li>
-</ol>
-</li>
-</ol>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>索引分类：</p>
-<ol>
-<li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引。</li>
-<li>唯一索引：索引列的值必须唯一，但允许有空值。</li>
-<li>复合索引：一个索引包含多个列。</li>
-<li>基本语法：<ol>
-<li>创建：<ol>
-<li>create &lt;&gt; index indexName ON mytable(columnname(length))</li>
-<li>alter mytable ADD &lt;&gt; index [indexName] ON (columnname(length))</li>
-</ol>
-</li>
-<li>删除：drop index [indexName] ON mytable;</li>
-<li>查看：show index from tableName;</li>
-</ol>
-</li>
-</ol>
-<p>mysql索引结构包括：BTree；Hash索引；full-text全文索引；R-Tree索引。</p>
-<p>BTree树图形结构：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/RUkTTH"><img src="https://z3.ax1x.com/2021/06/28/RUkTTH.png" alt="RUkTTH.png"></a></p>
-<p>需要创建索引的情况：</p>
-<ol>
-<li>主键自动创建唯一索引。</li>
-<li>频繁作为查找条件的字段应创建索引。</li>
-<li>查询中与其他表关联的字段，外键关系建立索引。</li>
-<li>频繁更新的字段不适合创建索引</li>
-<li>where条件里用不到的字段不创建索引。</li>
-<li>单键/组合索引选择？（高并发倾向组合索引）</li>
-<li>排序字段若通过索引去访问将提高排序速度。</li>
-<li>查询中统计或者分组字段</li>
-</ol>
-<p>不需要创建索引的情况：</p>
-<ol>
-<li>表记录太少</li>
-<li>经常增删改的表</li>
-<li>某数据列包含许多重复的内容</li>
-</ol>
-<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>性能分析：</p>
-<ol>
-<li><p>MySQL常见瓶颈：</p>
-<ol>
-<li>CPU：CPU在饱和的时候一般发生在数据装入内存或从磁盘上读取数据时</li>
-<li>IO：发生在装入数据远大于内存容量的时候</li>
-<li>服务器硬件的性能瓶颈</li>
-</ol>
-</li>
-<li><p>Explain</p>
-<ol>
-<li><p>是什么：执行计划。</p>
-</li>
-<li><p>干什么： </p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/RUmSFe"><img src="https://z3.ax1x.com/2021/06/28/RUmSFe.png" alt="RUmSFe.png"></a></p>
-</li>
-<li><p>怎么用：</p>
-<ol>
-<li>explain+SQL语句</li>
-<li>执行计划包含的信息：id  select_type  table  type  possible_keys  key  key_len  ref  rows  Extra</li>
-</ol>
-</li>
-<li><p>名词解释：</p>
-<ol>
-<li>id：查询的序列号<ol>
-<li>id相同：执行顺序由上至下</li>
-<li>id不同：id越大优先级越高</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>select_type：查询的类型，用于区别普通、联合、子查询等的复杂情况。</p>
-<pre><code>  1. simple：简单查询，不包括子查询或者union
-  2. primary：查询中包含子查询，最外层的查询
-  3. subquery：子查询
-  4. derived：子查询作为衍生，结果放到临时表
-  5. union：第二个select出现在union之后，别被纪委union。若union包还在from子句的子查询中，外层select将被标记为derived。
-  6. union result：从union表获取结果的select
-</code></pre>
-<ol start="3">
-<li>table：哪张表</li>
-<li>type：<ol>
-<li>显示查询使用的了何种类型</li>
-<li>从最好到最差依次是：system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;ALL</li>
-<li>system：表只有一行记录</li>
-<li>const：通过索引能找到唯一记录。（主键或唯一索引）</li>
-<li>eq_ref：唯一性索引扫描，每个索引键，表中只有一条记录与之匹配。</li>
-<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行。</li>
-<li>range：之间所指定范围的行，使用一个索引来选择行。</li>
-<li>index：全索引扫描，读取索引中的数据。索引文件比数据文件小。</li>
-<li>ALL：遍历所有数据</li>
-</ol>
-</li>
-<li>possible_keys：显示可能应用在这张表中的索引。</li>
-<li>key：实际查询时，使用的索引。</li>
-<li>key_len：索引使用的字节数。查询中使用的索引的长度。长度越短越好。</li>
-<li>ref：显示索引那一列被使用了。</li>
-<li>rows：找到记录读取的行数。</li>
-<li>Extra：包含不在其他列的重要的信息<ol>
-<li><strong>Using filesort</strong>：不好；mysql没有使用索引排序，使用的外部排序。（文件排序）</li>
-<li><strong>Using temportry</strong>：不好；使用了临时表。</li>
-<li><strong>Using index</strong>：很好；（覆盖索引 Covering Index select节u功德数据从索引中取得，不必根据索引读取数据文件）</li>
-<li>Using where：使用罗where过滤；</li>
-<li>using join buffer：使用了连接缓存；</li>
-<li>impossible where：where的结果总是false；</li>
-<li>distinct：找到第一个匹配，不再找相同的。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p>union操作符：用于合并两个或多个select语句的结果集。默认选取不同的值。如果允许重复，使用union all。</p>
-<p>索引优化：</p>
-<p>两表优化方案，左连接查询，给右表建立索引。右连接查询，给左表建立索引。</p>
-<h2 id="面试名词"><a href="#面试名词" class="headerlink" title="面试名词"></a>面试名词</h2><h3 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h3><p>一个索引无法把数据查询出来，需要通过前几个索引最后再次查询逐渐索引才能把select的所有数据都查询出来。</p>
 
       
     </div>
